@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -15,6 +16,7 @@ public class App extends Application {
         Parent root = fxmlLoader.load();
         Scene tela = new Scene(root);
         
+        primaryStage.getIcons().add(new Image("icon.png"));
         primaryStage.setTitle("Locadora Central");
         primaryStage.setScene(tela);
         primaryStage.show();

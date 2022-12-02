@@ -123,7 +123,7 @@
             </Button>
          </children>
       </Pane>
-      <ImageView fitHeight="238.0" fitWidth="795.0" layoutX="65.0" layoutY="39.0">
+      <ImageView fitHeight="238.0" fitWidth="795.0" layoutX="53.0" layoutY="38.0">
          <image>
             <Image url="@logo.jpg" />
          </image>
