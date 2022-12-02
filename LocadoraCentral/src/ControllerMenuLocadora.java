@@ -78,7 +78,6 @@ public class ControllerMenuLocadora {
     @FXML
     private Pane paneMenuVeiculosFechado;
 
-
     @FXML
     void adicionaCliente(ActionEvent event) {
         System.out.println("Adiciona Cliente");
@@ -129,20 +128,219 @@ public class ControllerMenuLocadora {
 
     @FXML
     void fecharMenuClientes(ActionEvent event) {
-        paneMenuClientesFechado.setVisible(true);
         paneMenuClientesExpandido.setVisible(false);
+        paneMenuClientesFechado.setVisible(true);
     }
 
     @FXML
     void fecharMenuLocacoes(ActionEvent event) {
-        paneMenuLocacoesFechado.setVisible(true);
         paneMenuLocacoesExpandido.setVisible(false);
+        paneMenuLocacoesFechado.setVisible(true);
     }
 
     @FXML
     void fecharMenuVeiculos(ActionEvent event) {
-        paneMenuVeiculosFechado.setVisible(true);
         paneMenuVeiculosExpandido.setVisible(false);
+        paneMenuVeiculosFechado.setVisible(true);
+    }
+
+
+
+
+    @FXML
+    void hoverBtnClienteFechado(MouseEvent event) {
+        btnClientesExpandir.setStyle("-fx-background-color: #2e0513; -fx-cursor: hand;");
+        paneMenuClientesFechado.setStyle("-fx-background-color: #2e0513;");
+    }
+
+    @FXML
+    void notHoverBtnClienteFechado(MouseEvent event) {
+        btnClientesExpandir.setStyle("-fx-background-color: #370617;");
+        paneMenuClientesFechado.setStyle("-fx-background-color: #370617;");
+    }
+
+    @FXML
+    void hoverBtnClienteExpandido(MouseEvent event) {
+        btnClientesFechar.setStyle("-fx-background-color: #2e0513; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void notHoverBtnClienteExpandido(MouseEvent event) {
+        btnClientesFechar.setStyle("-fx-background-color: #370617;");
+    }
+
+
+
+    @FXML
+    void hoverBtnVeiculoFechado(MouseEvent event) {
+        btnVeiculosExpandir.setStyle("-fx-background-color: #3e081a; -fx-cursor: hand;");
+        paneMenuVeiculosFechado.setStyle("-fx-background-color: #3e081a;");
+    }
+
+    @FXML
+    void notHoverBtnVeiculoFechado(MouseEvent event) {
+        btnVeiculosExpandir.setStyle("-fx-background-color: #45081d;");
+        paneMenuVeiculosFechado.setStyle("-fx-background-color: #45081d;");
+    }
+
+    @FXML
+    void hoverBtnVeiculoExpandido(MouseEvent event) {
+        btnVeiculosFechar.setStyle("-fx-background-color: #3e081a; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void notHoverBtnVeiculoExpandido(MouseEvent event) {
+        btnVeiculosFechar.setStyle("-fx-background-color: #45081d;");
+    }
+
+
+
+    @FXML
+    void hoverBtnLocacaoFechado(MouseEvent event) {
+        btnLocacoesExpandir.setStyle("-fx-background-color: #500922; -fx-cursor: hand;");
+        paneMenuLocacoesFechado.setStyle("-fx-background-color: #500922;");
+    }
+
+    @FXML
+    void notHoverBtnLocacaoFechado(MouseEvent event) {
+        btnLocacoesExpandir.setStyle("-fx-background-color: #5c0a27;");
+        paneMenuLocacoesFechado.setStyle("-fx-background-color: #5c0a27;");
+    }
+
+    @FXML
+    void hoverBtnLocacaoExpandido(MouseEvent event) {
+        btnLocacoesFechar.setStyle("-fx-background-color: #500922; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void notHoverBtnLocacaoExpandido(MouseEvent event) {
+        btnLocacoesFechar.setStyle("-fx-background-color: #5c0a27;");
+    }
+   
+
+
+
+
+
+
+    @FXML
+    void hoverAdicionaCliente(MouseEvent event) {
+        btnAdicionaCliente.setStyle("-fx-background-color: #2e0513; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void hoverAdicionaLocacao(MouseEvent event) {
+        btnAdicionaLocacao.setStyle("-fx-background-color: #500922; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void hoverAdicionaVeiculo(MouseEvent event) {
+        btnAdicionaVeiculo.setStyle("-fx-background-color: #3e081a; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void hoverAlteraInformacoesCliente(MouseEvent event) {
+        btnAlterarInformacoesCliente.setStyle("-fx-background-color: #2e0513; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void hoverAlteraInformacoesLocacao(MouseEvent event) {
+        btnAlteraInformacoesLocacao.setStyle("-fx-background-color: #500922; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void hoverAlteraInformacoesVeiculo(MouseEvent event) {
+        btnAlteraInformacoesVeiculo.setStyle("-fx-background-color: #3e081a; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void hoverRemoveCliente(MouseEvent event) {
+        btnRemoveCliente.setStyle("-fx-background-color: #2e0513; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void hoverRemoveLocacao(MouseEvent event) {
+        btnRemoveLocacao.setStyle("-fx-background-color: #500922; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void hoverRemoveVeiculo(MouseEvent event) {
+        btnRemoveVeiculo.setStyle("-fx-background-color: #3e081a; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void hoverVisualizaInformacoesCliente(MouseEvent event) {
+        btnVisualizaInformacoesCliente.setStyle("-fx-background-color: #2e0513; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void hoverVisualizaInformacoesLocacao(MouseEvent event) {
+        btnVisualizaInformacoesLocacao.setStyle("-fx-background-color: #500922; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void hoverVisualizaInformacoesVeiculo(MouseEvent event) {
+        btnVisualizaInformacoesVeiculo.setStyle("-fx-background-color: #3e081a; -fx-cursor: hand;");
+    }
+
+    @FXML
+    void notHoverAdicionaCliente(MouseEvent event) {
+        btnAdicionaCliente.setStyle("-fx-background-color: #370617");
+    }
+
+    @FXML
+    void notHoverAdicionaLocacao(MouseEvent event) {
+        btnAdicionaLocacao.setStyle("-fx-background-color: #5c0a27");
+    }
+
+    @FXML
+    void notHoverAdicionaVeiculo(MouseEvent event) {
+        btnAdicionaVeiculo.setStyle("-fx-background-color: #45081d");
+    }
+
+    @FXML
+    void notHoverAlteraInformacoesCliente(MouseEvent event) {
+        btnAlterarInformacoesCliente.setStyle("-fx-background-color: #370617");
+    }
+
+    @FXML
+    void notHoverAlteraInformacoesLocacao(MouseEvent event) {
+        btnAlteraInformacoesLocacao.setStyle("-fx-background-color: #5c0a27");
+    }
+
+    @FXML
+    void notHoverAlteraInformacoesVeiculo(MouseEvent event) {
+        btnAlteraInformacoesVeiculo.setStyle("-fx-background-color: #45081d");
+    }
+
+    @FXML
+    void notHoverRemoveCliente(MouseEvent event) {
+        btnRemoveCliente.setStyle("-fx-background-color: #370617");
+    }
+
+    @FXML
+    void notHoverRemoveLocacao(MouseEvent event) {
+        btnRemoveLocacao.setStyle("-fx-background-color: #5c0a27");
+    }
+
+    @FXML
+    void notHoverRemoveVeiculo(MouseEvent event) {
+        btnRemoveVeiculo.setStyle("-fx-background-color: #45081d");
+    }
+
+    @FXML
+    void notHoverVisualizaInformacoesCliente(MouseEvent event) {
+        btnVisualizaInformacoesCliente.setStyle("-fx-background-color: #370617");
+    }
+
+    @FXML
+    void notHoverVisualizaInformacoesLocacao(MouseEvent event) {
+        btnVisualizaInformacoesLocacao.setStyle("-fx-background-color: #5c0a27");
+    }
+
+    @FXML
+    void notHoverVisualizaInformacoesVeiculo(MouseEvent event) {
+        btnVisualizaInformacoesVeiculo.setStyle("-fx-background-color: #45081d");
     }
 
     @FXML
@@ -168,52 +366,11 @@ public class ControllerMenuLocadora {
     @FXML
     void visualizaInformacoesLocacao(ActionEvent event) {
         System.out.println("Visualiza Informacoes Locacao");
-    }   
+    }
 
     @FXML
     void visualizaInformacoesVeiculo(ActionEvent event) {
         System.out.println("Visualiza Informacoes Veiculo");
     }
-
-    @FXML
-    void hoverAdicionaCliente(MouseEvent event) {
-        btnAdicionaCliente.setStyle("-fx-background-color: #2e0513;");
-    }
-
-    @FXML
-    void hoverAlteraInformacoes(MouseEvent event) {
-        btnAlterarInformacoesCliente.setStyle("-fx-background-color: #2e0513;");
-    }
-
-    @FXML
-    void hoverRemoveCliente(MouseEvent event) {
-        btnRemoveCliente.setStyle("-fx-background-color: #2e0513;");
-    }
-
-    @FXML
-    void hoverVisualizaInformacoes(MouseEvent event) {
-        btnVisualizaInformacoesCliente.setStyle("-fx-background-color: #2e0513;");
-    }
-
-    @FXML
-    void notHoverAdicionaCliente(MouseEvent event) {
-        btnAdicionaCliente.setStyle("-fx-background-color: #370617;");
-    }
-
-    @FXML
-    void notHoverAlteraInformacoes(MouseEvent event) {
-        btnAlterarInformacoesCliente.setStyle("-fx-background-color: #370617;");
-    }
-
-    @FXML
-    void notHoverRemoveCliente(MouseEvent event) {
-        btnRemoveCliente.setStyle("-fx-background-color: #370617;");
-    }
-
-    @FXML
-    void notHoverVisualizaInformacoes(MouseEvent event) {
-        btnVisualizaInformacoesCliente.setStyle("-fx-background-color: #370617;");
-    }
-
 
 }

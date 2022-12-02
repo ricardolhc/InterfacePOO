@@ -13,38 +13,38 @@
             <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <Pane fx:id="paneMenuClientesFechado" layoutY="552.0" maxHeight="200.0" prefHeight="48.0" prefWidth="300.0" style="-fx-background-color: #370617;">
+      <Pane fx:id="paneMenuClientesFechado" layoutY="551.0" maxHeight="200.0" prefHeight="49.0" prefWidth="300.0" style="-fx-background-color: #370617;">
          <children>
-            <Button fx:id="btnClientesExpandir" layoutX="-1.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#expandirMenuClientes" prefHeight="48.0" prefWidth="300.0" style="-fx-background-color: #370617;" text="Clientes" textFill="WHITE">
+            <Button fx:id="btnClientesExpandir" layoutY="3.0" mnemonicParsing="false" onAction="#expandirMenuClientes" onMouseExited="#notHoverBtnClienteFechado" onMouseMoved="#hoverBtnClienteFechado" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #370617;" text="Cliente" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="paneMenuClientesExpandido" layoutY="301.0" maxHeight="443.0" prefHeight="298.0" prefWidth="300.0" style="-fx-background-color: #370617;">
+      <Pane fx:id="paneMenuClientesExpandido" layoutY="301.0" maxHeight="443.0" prefHeight="298.0" prefWidth="300.0" style="-fx-background-color: #370617;" visible="false">
          <children>
-            <Button fx:id="btnClientesFechar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fecharMenuClientes" prefHeight="71.0" prefWidth="300.0" style="-fx-background-color: #370617;" text="Clientes" textFill="WHITE" underline="true">
+            <Button fx:id="btnClientesFechar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fecharMenuClientes" onMouseExited="#notHoverBtnClienteExpandido" onMouseMoved="#hoverBtnClienteExpandido" prefHeight="71.0" prefWidth="300.0" style="-fx-background-color: #370617;" text="Cliente" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Button>
-            <Button fx:id="btnAdicionaCliente" layoutY="71.0" mnemonicParsing="false" onAction="#adicionaCliente" onMouseExited="#notHoverAdicionaCliente" onMouseMoved="#hoverAdicionaCliente" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #370617;" text="Adicionar cliente" textFill="WHITE">
+            <Button fx:id="btnAdicionaCliente" layoutY="71.0" mnemonicParsing="false" onAction="#adicionaCliente" onMouseExited="#notHoverAdicionaCliente" onMouseMoved="#hoverAdicionaCliente" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #370617; -fx-background-radius: 0;" text="Adicionar cliente" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnRemoveCliente" layoutY="114.0" mnemonicParsing="false" onAction="#removeCliente" onMouseExited="#notHoverRemoveCliente" onMouseMoved="#hoverRemoveCliente" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #370617;" text="Remover cliente" textFill="WHITE">
+            <Button fx:id="btnRemoveCliente" layoutY="114.0" mnemonicParsing="false" onAction="#removeCliente" onMouseExited="#notHoverRemoveCliente" onMouseMoved="#hoverRemoveCliente" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #370617; -fx-background-radius: 0;" text="Remover cliente" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnVisualizaInformacoesCliente" layoutY="157.0" mnemonicParsing="false" onAction="#visualizaInformacoesCliente" onMouseExited="#notHoverVisualizaInformacoes" onMouseMoved="#hoverVisualizaInformacoes" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #370617;" text="Visualizar informações" textFill="WHITE">
+            <Button fx:id="btnVisualizaInformacoesCliente" layoutY="157.0" mnemonicParsing="false" onAction="#visualizaInformacoesCliente" onMouseExited="#notHoverVisualizaInformacoesCliente" onMouseMoved="#hoverVisualizaInformacoesCliente" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #370617; -fx-background-radius: 0;" text="Visualizar informações" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnAlterarInformacoesCliente" layoutY="200.0" mnemonicParsing="false" onAction="#alterarInformacoesCliente" onMouseExited="#notHoverAlteraInformacoes" onMouseMoved="#hoverAlteraInformacoes" prefHeight="31.0" prefWidth="300.0" style="-fx-background-color: #370617;" text="Alterar informações" textFill="WHITE" wrapText="true">
+            <Button fx:id="btnAlterarInformacoesCliente" layoutY="200.0" mnemonicParsing="false" onAction="#alterarInformacoesCliente" onMouseExited="#notHoverAlteraInformacoesCliente" onMouseMoved="#hoverAlteraInformacoesCliente" prefHeight="31.0" prefWidth="300.0" style="-fx-background-color: #370617; -fx-background-radius: 0;" text="Alterar informações" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>
@@ -53,7 +53,7 @@
       </Pane>
       <Pane fx:id="paneMenuVeiculosFechado" layoutX="300.0" layoutY="551.0" prefHeight="48.0" prefWidth="300.0" style="-fx-background-color: #45081d;">
          <children>
-            <Button fx:id="btnVeiculosExpandir" layoutY="5.0" mnemonicParsing="false" onAction="#expandirMenuVeiculos" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #45081d;" text="Veículos" textFill="WHITE">
+            <Button fx:id="btnVeiculosExpandir" layoutY="5.0" mnemonicParsing="false" onAction="#expandirMenuVeiculos" onMouseExited="#notHoverBtnVeiculoFechado" onMouseMoved="#hoverBtnVeiculoFechado" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #45081d;" text="Veiculo" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -62,27 +62,27 @@
       </Pane>
       <Pane fx:id="paneMenuVeiculosExpandido" layoutX="300.0" layoutY="301.0" prefHeight="298.0" prefWidth="300.0" style="-fx-background-color: #45081d;" visible="false">
          <children>
-            <Button fx:id="btnVeiculosFechar" mnemonicParsing="false" onAction="#fecharMenuVeiculos" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #45081d;" text="Veículos" textFill="WHITE" underline="true">
+            <Button fx:id="btnVeiculosFechar" mnemonicParsing="false" onAction="#fecharMenuVeiculos" onMouseExited="#notHoverBtnVeiculoExpandido" onMouseMoved="#hoverBtnVeiculoExpandido" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #45081d;" text="Veiculo" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Button>
-            <Button fx:id="btnAdicionaVeiculo" layoutY="77.0" mnemonicParsing="false" onAction="#adicionaVeiculo" style="-fx-background-color: #45081d;" text="Adicionar veículo" textFill="WHITE">
+            <Button fx:id="btnRemoveVeiculo" layoutY="113.0" mnemonicParsing="false" onAction="#removeVeiculo" onMouseExited="#notHoverRemoveVeiculo" onMouseMoved="#hoverRemoveVeiculo" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #45081d; -fx-background-radius: 0;" text="Remover veículo" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnRemoveVeiculo" layoutY="120.0" mnemonicParsing="false" onAction="#removeVeiculo" style="-fx-background-color: #45081d;" text="Remover veículo" textFill="WHITE">
+            <Button fx:id="btnVisualizaInformacoesVeiculo" layoutY="156.0" mnemonicParsing="false" onAction="#visualizaInformacoesVeiculo" onMouseExited="#notHoverVisualizaInformacoesVeiculo" onMouseMoved="#hoverVisualizaInformacoesVeiculo" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #45081d; -fx-background-radius: 0;" text="Visualizar informações" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnVisualizaInformacoesVeiculo" layoutY="163.0" mnemonicParsing="false" onAction="#visualizaInformacoesVeiculo" prefHeight="18.0" prefWidth="228.0" style="-fx-background-color: #45081d;" text="Visualizar informações" textFill="WHITE">
+            <Button fx:id="btnAlteraInformacoesVeiculo" layoutY="199.0" mnemonicParsing="false" onAction="#alteraInformacoesVeiculo" onMouseExited="#notHoverAlteraInformacoesVeiculo" onMouseMoved="#hoverAlteraInformacoesVeiculo" prefHeight="36.0" prefWidth="300.0" style="-fx-background-color: #45081d; -fx-background-radius: 0;" text="Alterar informações" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnAlteraInformacoesVeiculo" layoutY="206.0" mnemonicParsing="false" onAction="#alteraInformacoesVeiculo" prefHeight="77.0" prefWidth="300.0" style="-fx-background-color: #45081d;" text="Alterar informações de um veículo" textFill="WHITE" wrapText="true">
+            <Button fx:id="btnAdicionaVeiculo" layoutY="70.0" mnemonicParsing="false" onAction="#adicionaVeiculo" onMouseExited="#notHoverAdicionaVeiculo" onMouseMoved="#hoverAdicionaVeiculo" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #45081d; -fx-background-radius: 0;" text="Adicionar veículo" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -91,7 +91,7 @@
       </Pane>
       <Pane fx:id="paneMenuLocacoesFechado" layoutX="600.0" layoutY="551.0" prefHeight="48.0" prefWidth="300.0" style="-fx-background-color: #5c0a27;">
          <children>
-            <Button fx:id="btnLocacoesExpandir" layoutY="5.0" mnemonicParsing="false" onAction="#expandirMenuLocacoes" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27;" text="Locações" textFill="WHITE">
+            <Button fx:id="btnLocacoesExpandir" layoutY="5.0" mnemonicParsing="false" onAction="#expandirMenuLocacoes" onMouseExited="#notHoverBtnLocacaoFechado" onMouseMoved="#hoverBtnLocacaoFechado" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27;" text="Locação" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -100,27 +100,27 @@
       </Pane>
       <Pane fx:id="paneMenuLocacoesExpandido" layoutX="600.0" layoutY="301.0" prefHeight="298.0" prefWidth="300.0" style="-fx-background-color: #5c0a27;" visible="false">
          <children>
-            <Button fx:id="btnLocacoesFechar" layoutY="5.0" mnemonicParsing="false" onAction="#fecharMenuLocacoes" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27;" text="Locações" textFill="WHITE" underline="true">
+            <Button fx:id="btnLocacoesFechar" mnemonicParsing="false" onAction="#fecharMenuLocacoes" onMouseExited="#notHoverBtnLocacaoExpandido" onMouseMoved="#hoverBtnLocacaoExpandido" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27;" text="Locação" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Button>
-            <Button fx:id="btnAdicionaLocacao" layoutY="82.0" mnemonicParsing="false" onAction="#adicionaLocacao" style="-fx-background-color: #5c0a27;" text="Adicionar locação" textFill="WHITE">
+            <Button fx:id="btnAdicionaLocacao" layoutY="71.0" mnemonicParsing="false" onAction="#adicionaLocacao" onMouseExited="#notHoverAdicionaLocacao" onMouseMoved="#hoverAdicionaLocacao" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27; -fx-background-radius: 0;" text="Adicionar locação" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnRemoveLocacao" layoutY="125.0" mnemonicParsing="false" onAction="#removeLocacao" style="-fx-background-color: #5c0a27;" text="Remover locação" textFill="WHITE">
+            <Button fx:id="btnRemoveLocacao" layoutY="114.0" mnemonicParsing="false" onAction="#removeLocacao" onMouseExited="#notHoverRemoveLocacao" onMouseMoved="#hoverRemoveLocacao" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27; -fx-background-radius: 0;" text="Remover locação" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnVisualizaInformacoesLocacao" layoutY="168.0" mnemonicParsing="false" onAction="#visualizaInformacoesLocacao" style="-fx-background-color: #5c0a27;" text="Visualizar informações" textFill="WHITE">
+            <Button fx:id="btnVisualizaInformacoesLocacao" layoutY="157.0" mnemonicParsing="false" onAction="#visualizaInformacoesLocacao" onMouseExited="#notHoverVisualizaInformacoesLocacao" onMouseMoved="#hoverVisualizaInformacoesLocacao" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27; -fx-background-radius: 0;" text="Visualizar informações" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnAlteraInformacoesLocacao" layoutY="211.0" mnemonicParsing="false" onAction="#alteraInformacoesLocacao" prefHeight="77.0" prefWidth="300.0" style="-fx-background-color: #5c0a27;" text="Alterar informações de uma locação" textFill="WHITE" wrapText="true">
+            <Button fx:id="btnAlteraInformacoesLocacao" layoutY="200.0" mnemonicParsing="false" onAction="#alteraInformacoesLocacao" onMouseExited="#notHoverAlteraInformacoesLocacao" onMouseMoved="#hoverAlteraInformacoesLocacao" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27; -fx-background-radius: 0;" text="Alterar informações" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>
