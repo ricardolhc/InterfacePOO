@@ -1,10 +1,32 @@
+
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import lista.ListaClientes;
+import lista.ListaLocacoes;
+import lista.ListaVeiculos;
+
+import lista.Cliente;
 
 public class ControllerMenuLocadora {
+
+    @FXML
+    private AnchorPane rootPane;
 
     @FXML
     private Button btnAdicionaCliente;
@@ -78,13 +100,38 @@ public class ControllerMenuLocadora {
     @FXML
     private Pane paneMenuVeiculosFechado;
 
+    private ListaClientes listaClientes;
+
+    private ListaClientes listaClientes2;
+
+    @FXML
+    public void initialize(URL location, ResourceBundle resources) {
+        
+    }
+
+    
+
     @FXML
     void adicionaCliente(ActionEvent event) {
-        System.out.println("Adiciona Cliente");
+
+        try {
+
+            AnchorPane anchorPaneAdicionaCliente = FXMLLoader.load(getClass().getResource("viewAdicionaCliente.fxml"));
+            rootPane.getChildren().setAll(anchorPaneAdicionaCliente);
+
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewAdicionaCliente.fxml"));
+            ControllerAdicionaCliente controllerAdicionaCliente = loader.<ControllerAdicionaCliente>getController();
+            controllerAdicionaCliente.initListaClientes(listaClientes);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
     }
 
     @FXML
     void adicionaLocacao(ActionEvent event) {
+        System.out.println(listaClientes.get(0).toString());
         System.out.println("Adiciona Locacao");
     }
 
@@ -372,5 +419,10 @@ public class ControllerMenuLocadora {
     void visualizaInformacoesVeiculo(ActionEvent event) {
         System.out.println("Visualiza Informacoes Veiculo");
     }
+
+    public void setListaClientes(ListaClientes listaClientes) {
+        this.listaClientes = listaClientes;
+    }
+
 
 }
