@@ -93,7 +93,6 @@ public class ControllerAdicionaCliente {
     @FXML
     void hoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 10;");
-        
     }
 
     @FXML
@@ -257,6 +256,17 @@ public class ControllerAdicionaCliente {
 
     }
 
+
+    @FXML
+    void limparCampos(MouseEvent event) {
+        textFieldNome.clear();
+        textFieldCPF.clear();
+        textFieldCarteiraMotorista.clear();
+        textFieldTelefone.clear();
+        textFieldEndereco.clear();
+
+        rootPane.requestFocus();
+    }
 
 
 

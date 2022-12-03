@@ -130,6 +130,24 @@ public class ControllerMenuLocadora {
     }
 
     @FXML
+    void removeCliente(ActionEvent event) {
+
+        try {
+
+            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("viewRemoveCliente.fxml"));
+            rootPane.getChildren().setAll(anchorPaneRemoveCliente);
+
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewRemoveCliente.fxml"));
+            //ControllerRemoveCliente controllerRemoveCliente = loader.<ControllerRemoveCliente>getController();
+            //controllerRemoveCliente.initListaClientes(listaClientes);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+    }
+
+    @FXML
     void adicionaLocacao(ActionEvent event) {
         System.out.println(listaClientes.get(0).toString());
         System.out.println("Adiciona Locacao");
@@ -390,10 +408,10 @@ public class ControllerMenuLocadora {
         btnVisualizaInformacoesVeiculo.setStyle("-fx-background-color: #45081d");
     }
 
-    @FXML
-    void removeCliente(ActionEvent event) {
-        System.out.println("Remove Cliente");
-    }
+    // @FXML
+    // void removeCliente(ActionEvent event) {
+    //     System.out.println("Remove Cliente");
+    // }
 
     @FXML
     void removeLocacao(ActionEvent event) {
@@ -408,6 +426,19 @@ public class ControllerMenuLocadora {
     @FXML
     void visualizaInformacoesCliente(ActionEvent event) {
         System.out.println("Visualiza Informacoes Cliente");
+
+        try {
+
+            AnchorPane anchorPaneInfoCliente = FXMLLoader.load(getClass().getResource("viewInfoCliente.fxml"));
+            rootPane.getChildren().setAll(anchorPaneInfoCliente);
+
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewInfoCliente.fxml"));
+            //ControllerRemoveCliente controllerRemoveCliente = loader.<ControllerRemoveCliente>getController();
+            //controllerRemoveCliente.initListaClientes(listaClientes);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @FXML

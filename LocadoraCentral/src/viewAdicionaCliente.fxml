@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerAdicionaCliente">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerAdicionaCliente">
    <children>
-      <Label layoutX="310.0" layoutY="14.0" prefHeight="54.0" prefWidth="279.0" text="Adiciona Cliente" textFill="WHITE">
+      <Label layoutX="303.0" layoutY="14.0" prefHeight="54.0" prefWidth="294.0" text="Adicionar Cliente" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -75,7 +75,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnLimpar" layoutX="463.0" layoutY="476.0" mnemonicParsing="false" onMouseExited="#notHoverBtnLimpar" onMouseMoved="#hoverBtnLimpar" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 10; -fx-background-color: #747474;" text="Limpar" textFill="WHITE">
+      <Button fx:id="btnLimpar" layoutX="463.0" layoutY="476.0" mnemonicParsing="false" onMouseClicked="#limparCampos" onMouseExited="#notHoverBtnLimpar" onMouseMoved="#hoverBtnLimpar" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 10; -fx-background-color: #747474;" text="Limpar" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

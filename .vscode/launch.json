@@ -6,13 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch App",
-            "request": "launch",
-            "mainClass": "App",
-            "projectName": "interfacePOO_cdaca01d"
-        },
-        {
-            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
@@ -22,8 +15,8 @@
             "name": "Launch App",
             "request": "launch",
             "mainClass": "App",
-            "projectName": "ConversorCelsiusFarenheit_1bbaad7a",
-            "vmArgs": "--module-path \"C:/Users/tales/OneDrive/Documentos/Java/Interfaces/EXEMPLO/ConversorCelsiusFarenheit/javafx-sdk-19/lib\" --add-modules javafx.controls,javafx.fxml"
+            "projectName": "interfacePOO_aedd3860",
+            "vmArgs": "--module-path \"C:/Users/tales/OneDrive/Documentos/Java/Interfaces/InterfaceLocadora/interfacePOO/javafx-sdk-19/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
