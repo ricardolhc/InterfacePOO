@@ -1,27 +1,18 @@
-
-
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+
 import lista.ListaClientes;
 import lista.ListaLocacoes;
 import lista.ListaVeiculos;
-
-import lista.Cliente;
 
 public class ControllerMenuLocadora {
 
@@ -100,29 +91,25 @@ public class ControllerMenuLocadora {
     @FXML
     private Pane paneMenuVeiculosFechado;
 
-    private ListaClientes listaClientes;
+    private static ListaClientes listaClientes;
 
-    private ListaClientes listaClientes2;
+    private static ListaLocacoes listaLocacoes;
+
+    private static ListaVeiculos listaVeiculos;
+
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        
     }
 
     
 
     @FXML
     void adicionaCliente(ActionEvent event) {
-
         try {
 
             AnchorPane anchorPaneAdicionaCliente = FXMLLoader.load(getClass().getResource("viewAdicionaCliente.fxml"));
             rootPane.getChildren().setAll(anchorPaneAdicionaCliente);
-
-            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewAdicionaCliente.fxml"));
-            ControllerAdicionaCliente controllerAdicionaCliente = loader.<ControllerAdicionaCliente>getController();
-            controllerAdicionaCliente.initListaClientes(listaClientes);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -131,25 +118,16 @@ public class ControllerMenuLocadora {
 
     @FXML
     void removeCliente(ActionEvent event) {
-
         try {
-
             AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("viewRemoveCliente.fxml"));
             rootPane.getChildren().setAll(anchorPaneRemoveCliente);
-
-            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewRemoveCliente.fxml"));
-            //ControllerRemoveCliente controllerRemoveCliente = loader.<ControllerRemoveCliente>getController();
-            //controllerRemoveCliente.initListaClientes(listaClientes);
         } catch (Exception e) {
             System.out.println(e);
-        }
-        
+        }   
     }
 
     @FXML
     void adicionaLocacao(ActionEvent event) {
-        System.out.println(listaClientes.get(0).toString());
         System.out.println("Adiciona Locacao");
     }
 
@@ -428,14 +406,8 @@ public class ControllerMenuLocadora {
         System.out.println("Visualiza Informacoes Cliente");
 
         try {
-
             AnchorPane anchorPaneInfoCliente = FXMLLoader.load(getClass().getResource("viewInfoCliente.fxml"));
             rootPane.getChildren().setAll(anchorPaneInfoCliente);
-
-            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewInfoCliente.fxml"));
-            //ControllerRemoveCliente controllerRemoveCliente = loader.<ControllerRemoveCliente>getController();
-            //controllerRemoveCliente.initListaClientes(listaClientes);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -451,9 +423,20 @@ public class ControllerMenuLocadora {
         System.out.println("Visualiza Informacoes Veiculo");
     }
 
-    public void setListaClientes(ListaClientes listaClientes) {
-        this.listaClientes = listaClientes;
+    public void setListaClientes(ListaClientes listaClientesNova) {
+        listaClientes = listaClientesNova;
     }
 
+    public static ListaClientes getListaClientes() {
+        return listaClientes;
+    }
+
+    public static ListaLocacoes getListaLocacoes() {
+        return listaLocacoes;
+    }
+
+    public static ListaVeiculos getListaVeiculos() {
+        return listaVeiculos;
+    }
 
 }

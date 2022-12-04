@@ -1,9 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -12,7 +10,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import lista.ListaClientes;
 import lista.Cliente;
 
@@ -45,19 +42,18 @@ public class ControllerAdicionaCliente {
     @FXML
     private Button btnLimpar;
 
-    private static ListaClientes listaClientes;
+    private ListaClientes listaClientes;
 
     @FXML
     void initialize() {
         mascaraCPF(textFieldCPF);
         mascaraCNH(textFieldCarteiraMotorista);
-        mascaraTelefone(textFieldTelefone);   
+        mascaraTelefone(textFieldTelefone);
+        listaClientes = ControllerMenuLocadora.getListaClientes();
     }
-
 
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
-        
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("viewIndex.fxml"));
             Pane cmdPane = (Pane) fxmlLoader.load();
@@ -102,25 +98,84 @@ public class ControllerAdicionaCliente {
 
     @FXML
     void adicionarCliente(ActionEvent event) {
-   
-        /*
-        String cpf = textFieldCPF.getText();
-        String cnh = textFieldCarteiraMotorista.getText();
-        String telefone = textFieldTelefone.getText();
-        String nome = textFieldNome.getText();
-        String endereco = textFieldEndereco.getText();
 
-        System.out.println(cpf + " " + cnh + " " + telefone + " " + nome + " " + endereco);
-        */
-        System.out.println(listaClientes.get(0).toString());
-        
+        /* VERIFICAR SE O CAMPO ESTÁ VAZIO */
+        if (textFieldCPF.getText().isEmpty() || textFieldCarteiraMotorista.getText().isEmpty()
+                || textFieldTelefone.getText().isEmpty() || textFieldNome.getText().isEmpty()
+                || textFieldEndereco.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERRO");
+            alert.setHeaderText(null);
+            alert.setContentText("Preencha todos os campos!");
+            alert.showAndWait();
+
+        } else {
+
+            try {
+                String cpf = textFieldCPF.getText();
+                String cnh = textFieldCarteiraMotorista.getText();
+                String telefone = textFieldTelefone.getText();
+                String nome = textFieldNome.getText();
+                String endereco = textFieldEndereco.getText();
+                long cpfLong;
+                int cnhInt;
+                long telefoneLong;
+
+                cpf = cpf.replace(".", "");
+                cpf = cpf.replace("-", "");
+
+                telefone = telefone.replace("(", "");
+                telefone = telefone.replace(")", "");
+                telefone = telefone.replace("-", "");
+
+                cnhInt = Integer.parseInt(cnh);
+                telefoneLong = Long.parseLong(telefone);
+                cpfLong = Long.parseLong(cpf);
+
+                if(cpf.length() != 11){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("ERRO");
+                    alert.setHeaderText(null);
+                    alert.setContentText("CPF inválido!");
+                    alert.showAndWait();
+                } else {
+                    if(telefone.length() != 11 && telefone.length() != 10){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("ERRO");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Telefone inválido!");
+                        alert.showAndWait();
+                    } else {
+                        /* VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO */
+                        if (listaClientes.existe(cpfLong)) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("ERRO");
+                            alert.setHeaderText(null);
+                            alert.setContentText("CPF já cadastrado!");
+                            alert.showAndWait();
+                        } else {
+                            /* ADICIONAR CLIENTE */
+                            limparCampos(null);
+                            listaClientes.add(new Cliente(cpf, nome, cnhInt, endereco, telefoneLong));
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("SUCESSO");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Cliente adicionado com sucesso!");
+                            alert.showAndWait();
+                        }
+                    }
+                }
+            } catch (NullPointerException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("ERRO");
+                alert.setHeaderText(null);
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
+        }
+
     }
-
-    public void initListaClientes(ListaClientes listaClientesNova) {
-        listaClientes = listaClientesNova;
-    }
-
-
 
     public void mascaraCPF(TextField textField) {
 
@@ -175,7 +230,6 @@ public class ControllerAdicionaCliente {
 
     }
 
-
     public void mascaraCNH(TextField textField) {
         textField.setOnKeyTyped((KeyEvent event) -> {
             if ("0123456789".contains(event.getCharacter()) == false) {
@@ -200,53 +254,55 @@ public class ControllerAdicionaCliente {
 
     public void mascaraTelefone(TextField textField) {
         textField.setOnKeyTyped((KeyEvent event) -> {
-            if("0123456789".contains(event.getCharacter())==false){
+            if ("0123456789".contains(event.getCharacter()) == false) {
                 event.consume();
             }
 
-            if(event.getCharacter().trim().length()==0){ // apagando
+            if (event.getCharacter().trim().length() == 0) { // apagando
 
-                if(textField.getText().length()==10&&textField.getText().substring(9,10).equals("-")){
-                    textField.setText(textField.getText().substring(0,9));
+                if (textField.getText().length() == 10 && textField.getText().substring(9, 10).equals("-")) {
+                    textField.setText(textField.getText().substring(0, 9));
                     textField.positionCaret(textField.getText().length());
                 }
-                if(textField.getText().length()==9&&textField.getText().substring(8,9).equals("-")){
-                    textField.setText(textField.getText().substring(0,8));
+                if (textField.getText().length() == 9 && textField.getText().substring(8, 9).equals("-")) {
+                    textField.setText(textField.getText().substring(0, 8));
                     textField.positionCaret(textField.getText().length());
                 }
-                if(textField.getText().length()==4){
-                    textField.setText(textField.getText().substring(0,3));
+                if (textField.getText().length() == 4) {
+                    textField.setText(textField.getText().substring(0, 3));
                     textField.positionCaret(textField.getText().length());
                 }
-                if(textField.getText().length()==1){
+                if (textField.getText().length() == 1) {
                     textField.setText("");
                 }
 
-            }else{ //escrevendo
-                if(textField.getText().length()==14) event.consume();
+            } else { // escrevendo
+                if (textField.getText().length() == 14)
+                    event.consume();
 
-                if(textField.getText().length()==0){
-                    textField.setText("("+event.getCharacter());
+                if (textField.getText().length() == 0) {
+                    textField.setText("(" + event.getCharacter());
                     textField.positionCaret(textField.getText().length());
                     event.consume();
                 }
-                if(textField.getText().length()==3){
-                    textField.setText(textField.getText()+")"+event.getCharacter());
+                if (textField.getText().length() == 3) {
+                    textField.setText(textField.getText() + ")" + event.getCharacter());
                     textField.positionCaret(textField.getText().length());
                     event.consume();
                 }
-                if(textField.getText().length()==8){
-                    textField.setText(textField.getText()+"-"+event.getCharacter());
+                if (textField.getText().length() == 8) {
+                    textField.setText(textField.getText() + "-" + event.getCharacter());
                     textField.positionCaret(textField.getText().length());
                     event.consume();
                 }
-                if(textField.getText().length()==9&&textField.getText().substring(8,9)!="-"){
-                    textField.setText(textField.getText()+"-"+event.getCharacter());
+                if (textField.getText().length() == 9 && textField.getText().substring(8, 9) != "-") {
+                    textField.setText(textField.getText() + "-" + event.getCharacter());
                     textField.positionCaret(textField.getText().length());
                     event.consume();
                 }
-                if(textField.getText().length()==13&&textField.getText().substring(8,9).equals("-")){
-                    textField.setText(textField.getText().substring(0,8)+textField.getText().substring(9,10)+"-"+textField.getText().substring(10,13)+event.getCharacter());
+                if (textField.getText().length() == 13 && textField.getText().substring(8, 9).equals("-")) {
+                    textField.setText(textField.getText().substring(0, 8) + textField.getText().substring(9, 10) + "-"
+                            + textField.getText().substring(10, 13) + event.getCharacter());
                     textField.positionCaret(textField.getText().length());
                     event.consume();
                 }
@@ -256,7 +312,6 @@ public class ControllerAdicionaCliente {
 
     }
 
-
     @FXML
     void limparCampos(MouseEvent event) {
         textFieldNome.clear();
@@ -264,10 +319,8 @@ public class ControllerAdicionaCliente {
         textFieldCarteiraMotorista.clear();
         textFieldTelefone.clear();
         textFieldEndereco.clear();
-
         rootPane.requestFocus();
     }
-
 
 
 }
