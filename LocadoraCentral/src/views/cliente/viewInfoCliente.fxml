@@ -97,19 +97,19 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="tableViewInfoCompleta" editable="true" layoutX="44.0" layoutY="231.0" prefHeight="315.0" prefWidth="810.0" style="-fx-background-color: #b5b5b5;" visible="false">
+      <TableView fx:id="tableViewInfoCompleta" editable="true" layoutX="40.0" layoutY="231.0" prefHeight="315.0" prefWidth="818.0" style="-fx-background-color: #b5b5b5;" visible="false">
         <columns>
-          <TableColumn fx:id="tableColumnCpfInfoCompleta" prefWidth="142.39998626708984" text="CPF" />
-          <TableColumn fx:id="tableColumnNomeInfoCompleta" prefWidth="207.20001220703125" text="Nome" />
+          <TableColumn fx:id="tableColumnCpfInfoCompleta" prefWidth="106.40001678466797" text="CPF" />
+          <TableColumn fx:id="tableColumnNomeInfoCompleta" prefWidth="244.79995727539062" text="Nome" />
             <TableColumn fx:id="tableColumnCarteiraMotoristaInfoCompleta" prefWidth="149.60000610351562" text="Carteira Motorista" />
-            <TableColumn fx:id="tableColumnEnderecoInfoCompleta" prefWidth="128.0" text="Endereço" />
-            <TableColumn fx:id="tableColumnTelefoneInfoCompleta" prefWidth="184.79998779296875" text="Telefone" />
+            <TableColumn fx:id="tableColumnEnderecoInfoCompleta" prefWidth="188.79998779296875" text="Endereço" />
+            <TableColumn fx:id="tableColumnTelefoneInfoCompleta" prefWidth="126.4000244140625" text="Telefone" />
         </columns>
       </TableView>
       <TableView fx:id="tableViewInfoResumo" layoutX="45.0" layoutY="231.0" prefHeight="315.0" prefWidth="810.0" style="-fx-background-color: #b5b5b5;" visible="false">
         <columns>
-          <TableColumn fx:id="tableColumnCpfInfoResumo" minWidth="0.0" prefWidth="400.800048828125" text="CPF" />
-          <TableColumn fx:id="tableColumnNomeInfoResumo" prefWidth="407.2000045776367" text="Nome" />
+          <TableColumn fx:id="tableColumnCpfInfoResumo" minWidth="0.0" prefWidth="122.40001678466797" text="CPF" />
+          <TableColumn fx:id="tableColumnNomeInfoResumo" prefWidth="687.2000122070312" text="Nome" />
         </columns>
       </TableView>
    </children>
