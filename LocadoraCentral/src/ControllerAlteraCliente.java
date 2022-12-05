@@ -114,7 +114,7 @@ public class ControllerAlteraCliente {
 
     @FXML
     void hoverBtnProcurar(MouseEvent event) {
-        btnProcurar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 10;");
+        btnProcurar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML
@@ -226,7 +226,7 @@ public class ControllerAlteraCliente {
 
     @FXML
     void hoverBtnLimpar(MouseEvent event) {
-        btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 10;");
+        btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML
@@ -237,7 +237,7 @@ public class ControllerAlteraCliente {
 
     @FXML
     void hoverBtnAlterar(MouseEvent event) {
-        btnAlterar.setStyle("-fx-background-color: #676508;-fx-cursor: hand; -fx-background-radius: 10;");
+        btnAlterar.setStyle("-fx-background-color: #676508;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML
@@ -252,17 +252,17 @@ public class ControllerAlteraCliente {
 
     @FXML
     void notHoverBtnProcurar(MouseEvent event) {
-        btnProcurar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 10;");
+        btnProcurar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML
     void notHoverBtnLimpar(MouseEvent event) {
-        btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 10;");
+        btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML
     void notHoverBtnAlterar(MouseEvent event) {
-        btnAlterar.setStyle("-fx-background-color: #807d0a;-fx-cursor: hand; -fx-background-radius: 10;");
+        btnAlterar.setStyle("-fx-background-color: #807d0a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML

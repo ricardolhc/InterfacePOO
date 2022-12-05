@@ -172,19 +172,19 @@ public class ControllerMenuLocadora {
     }
 
     @FXML
-    void fecharMenuClientes(ActionEvent event) {
+    void fecharMenuClientes(MouseEvent event) {
         paneMenuClientesExpandido.setVisible(false);
         paneMenuClientesFechado.setVisible(true);
     }
 
     @FXML
-    void fecharMenuLocacoes(ActionEvent event) {
+    void fecharMenuLocacoes(MouseEvent event) {
         paneMenuLocacoesExpandido.setVisible(false);
         paneMenuLocacoesFechado.setVisible(true);
     }
 
     @FXML
-    void fecharMenuVeiculos(ActionEvent event) {
+    void fecharMenuVeiculos(MouseEvent event) {
         paneMenuVeiculosExpandido.setVisible(false);
         paneMenuVeiculosFechado.setVisible(true);
     }
@@ -194,14 +194,8 @@ public class ControllerMenuLocadora {
 
     @FXML
     void hoverBtnClienteFechado(MouseEvent event) {
-        btnClientesExpandir.setStyle("-fx-background-color: #2e0513; -fx-cursor: hand;");
-        paneMenuClientesFechado.setStyle("-fx-background-color: #2e0513;");
-    }
-
-    @FXML
-    void notHoverBtnClienteFechado(MouseEvent event) {
-        btnClientesExpandir.setStyle("-fx-background-color: #370617;");
-        paneMenuClientesFechado.setStyle("-fx-background-color: #370617;");
+        paneMenuClientesFechado.setVisible(false);
+        paneMenuClientesExpandido.setVisible(true);
     }
 
     @FXML
@@ -216,8 +210,8 @@ public class ControllerMenuLocadora {
 
     @FXML
     void hoverBtnVeiculoFechado(MouseEvent event) {
-        btnVeiculosExpandir.setStyle("-fx-background-color: #3e081a; -fx-cursor: hand;");
-        paneMenuVeiculosFechado.setStyle("-fx-background-color: #3e081a;");
+        paneMenuVeiculosFechado.setVisible(false);
+        paneMenuVeiculosExpandido.setVisible(true);
     }
 
     @FXML
@@ -240,14 +234,8 @@ public class ControllerMenuLocadora {
 
     @FXML
     void hoverBtnLocacaoFechado(MouseEvent event) {
-        btnLocacoesExpandir.setStyle("-fx-background-color: #500922; -fx-cursor: hand;");
-        paneMenuLocacoesFechado.setStyle("-fx-background-color: #500922;");
-    }
-
-    @FXML
-    void notHoverBtnLocacaoFechado(MouseEvent event) {
-        btnLocacoesExpandir.setStyle("-fx-background-color: #5c0a27;");
-        paneMenuLocacoesFechado.setStyle("-fx-background-color: #5c0a27;");
+        paneMenuLocacoesFechado.setVisible(false);
+        paneMenuLocacoesExpandido.setVisible(true);
     }
 
     @FXML
