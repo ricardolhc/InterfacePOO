@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerAdicionaCliente">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerAdicionaCliente">
    <children>
       <Label layoutX="303.0" layoutY="14.0" prefHeight="54.0" prefWidth="294.0" text="Adicionar Cliente" textFill="WHITE">
          <font>
@@ -20,7 +20,7 @@
             <Image url="@pngVoltar.png" />
          </image>
       </ImageView>
-      <TextField fx:id="textFieldCPF" layoutX="44.0" layoutY="156.0" prefHeight="30.0" prefWidth="311.0" promptText="Digite seu CPF" style="-fx-background-radius: 20; -fx-background-color: white;">
+      <TextField fx:id="textFieldCPF" layoutX="44.0" layoutY="156.0" prefHeight="30.0" prefWidth="311.0" promptText="Digite o CPF" style="-fx-background-radius: 20; -fx-background-color: white;">
          <font>
             <Font size="18.0" />
          </font>
@@ -30,7 +30,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldNome" layoutX="45.0" layoutY="251.0" prefHeight="30.0" prefWidth="810.0" promptText="Digite seu nome completo" style="-fx-background-radius: 20; -fx-background-color: white;">
+      <TextField fx:id="textFieldNome" layoutX="45.0" layoutY="251.0" prefHeight="30.0" prefWidth="810.0" promptText="Digite o nome completo" style="-fx-background-radius: 20; -fx-background-color: white;">
          <font>
             <Font size="18.0" />
          </font>
@@ -40,7 +40,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldEndereco" layoutX="44.0" layoutY="350.0" prefHeight="30.0" prefWidth="419.0" promptText="Digite seu endereço" style="-fx-background-radius: 20; -fx-background-color: white;">
+      <TextField fx:id="textFieldEndereco" layoutX="44.0" layoutY="350.0" prefHeight="30.0" prefWidth="419.0" promptText="Digite o endereço" style="-fx-background-radius: 20; -fx-background-color: white;">
          <font>
             <Font size="18.0" />
          </font>
@@ -50,7 +50,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldCarteiraMotorista" layoutX="405.0" layoutY="156.0" prefHeight="30.0" prefWidth="447.0" promptText="Digite seu número de carteira de motorista" style="-fx-background-radius: 20; -fx-background-color: white;">
+      <TextField fx:id="textFieldCarteiraMotorista" layoutX="405.0" layoutY="156.0" prefHeight="30.0" prefWidth="447.0" promptText="Digite o número de carteira de motorista" style="-fx-background-radius: 20; -fx-background-color: white;">
          <font>
             <Font size="18.0" />
          </font>
@@ -60,7 +60,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldTelefone" layoutX="508.0" layoutY="347.0" prefHeight="30.0" prefWidth="344.0" promptText="Digite seu número de telefone" style="-fx-background-radius: 20; -fx-background-color: white;">
+      <TextField fx:id="textFieldTelefone" layoutX="508.0" layoutY="347.0" prefHeight="30.0" prefWidth="344.0" promptText="Digite o número de telefone" style="-fx-background-radius: 20; -fx-background-color: white;">
          <font>
             <Font size="18.0" />
          </font>

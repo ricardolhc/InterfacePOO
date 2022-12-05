@@ -97,29 +97,24 @@ public class ControllerMenuLocadora {
 
     private static ListaVeiculos listaVeiculos;
 
-
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    
-
     @FXML
     void adicionaCliente(ActionEvent event) {
         try {
-
-            AnchorPane anchorPaneAdicionaCliente = FXMLLoader.load(getClass().getResource("viewAdicionaCliente.fxml"));
+            AnchorPane anchorPaneAdicionaCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewAdicionaCliente.fxml"));
             rootPane.getChildren().setAll(anchorPaneAdicionaCliente);
         } catch (Exception e) {
             System.out.println(e);
         }
-        
     }
 
     @FXML
     void removeCliente(ActionEvent event) {
         try {
-            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("viewRemoveCliente.fxml"));
+            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewRemoveCliente.fxml"));
             rootPane.getChildren().setAll(anchorPaneRemoveCliente);
         } catch (Exception e) {
             System.out.println(e);
@@ -403,10 +398,8 @@ public class ControllerMenuLocadora {
 
     @FXML
     void visualizaInformacoesCliente(ActionEvent event) {
-        System.out.println("Visualiza Informacoes Cliente");
-
         try {
-            AnchorPane anchorPaneInfoCliente = FXMLLoader.load(getClass().getResource("viewInfoCliente.fxml"));
+            AnchorPane anchorPaneInfoCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewInfoCliente.fxml"));
             rootPane.getChildren().setAll(anchorPaneInfoCliente);
         } catch (Exception e) {
             System.out.println(e);
@@ -425,6 +418,14 @@ public class ControllerMenuLocadora {
 
     public void setListaClientes(ListaClientes listaClientesNova) {
         listaClientes = listaClientesNova;
+    }
+
+    public void setListaLocacoes(ListaLocacoes listaLocacoesNova) {
+        listaLocacoes = listaLocacoesNova;
+    }
+
+    public void setListaVeiculos(ListaVeiculos listaVeiculosNova) {
+        listaVeiculos = listaVeiculosNova;
     }
 
     public static ListaClientes getListaClientes() {

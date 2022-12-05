@@ -26,7 +26,7 @@ public class Cliente {
     /**
      * Atributo numeroCarteiraMotorista, do tipo int, é utilizado para identificar o numero da carteira de motorista do cliente
      */
-    private int numeroCarteiraMotorista;
+    private long numeroCarteiraMotorista;
 
 
     /**
@@ -52,7 +52,7 @@ public class Cliente {
      * @param endereco string que identifica um novo cliente 
      * @param telefone long que identifica um novo cliente
      */
-    public Cliente(String cpf, String nome, int numeroCarteiraMotorista, String endereco, long telefone){
+    public Cliente(String cpf, String nome, long numeroCarteiraMotorista, String endereco, long telefone){
         this.nome = nome;
         this.cpf = cpf;
         this.numeroCarteiraMotorista = numeroCarteiraMotorista;
@@ -94,7 +94,7 @@ public class Cliente {
      * Captura um int com o número da carteira de motorista do cliente
      * @return int com o número da carteira de motorita do cliente
      */
-    public int getNumeroCarteiraMotorista() { 
+    public long getNumeroCarteiraMotorista() { 
         return numeroCarteiraMotorista; 
     }
 
@@ -122,7 +122,8 @@ public class Cliente {
      * @return String com o nome e cpf do cliente
      */
     public String getResumo() {
-        return "Nome: " + nome + " CPF: " + cpf;
+        return "Nome: " + nome + 
+               "; CPF: " + cpf;
     }
 
     
@@ -166,7 +167,7 @@ public class Cliente {
                "; CPF: " + cpf + 
                "; Endereço: " + endereco + 
                "; Carteira de Motorista: " + numeroCarteiraMotorista + 
-               "; Telefone: " + telefone;
+               "; Telefone: " + telefone + ";";
     }
 
 }

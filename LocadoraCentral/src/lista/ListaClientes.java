@@ -25,6 +25,7 @@ public class ListaClientes implements IClientes {
         clientes = new ArrayList<Cliente>();
     }
 
+
     
     /** 
      * @param cliente parâmetro necesário para adicionar o cliente
@@ -106,7 +107,6 @@ public class ListaClientes implements IClientes {
             clientes.remove(get(CPF));
             return true;
         } catch (NullPointerException e) {
-            System.out.println("Erro: " + e.getMessage());
             return false;
         }
     }

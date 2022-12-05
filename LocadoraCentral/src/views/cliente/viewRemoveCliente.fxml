@@ -8,25 +8,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerRemoveCliente">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerRemoveCliente">
    <children>
       <Label layoutX="320.0" layoutY="24.0" prefHeight="54.0" prefWidth="279.0" text="Remover Cliente" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldCPF" layoutX="54.0" layoutY="166.0" prefHeight="39.0" prefWidth="382.0" promptText="Digite seu CPF" style="-fx-background-radius: 20; -fx-background-color: white;" text="Digite o CPF do cliente que deseja remover">
+      <TextField fx:id="textFieldCPF" layoutX="218.0" layoutY="234.0" prefHeight="46.0" prefWidth="482.0" promptText="Digite o CPF que deseja remover" style="-fx-background-radius: 35; -fx-background-color: white;">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="60.0" layoutY="139.0" text="CPF" textFill="WHITE">
+      <Label layoutX="235.0" layoutY="203.0" text="CPF" textFill="WHITE">
          <font>
-            <Font size="16.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnRemover" layoutX="280.0" layoutY="486.0" mnemonicParsing="false" onAction="#RemoverCliente" onMouseExited="#notHoverBtnRemover" onMouseMoved="#hoverBtnRemover" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 10; -fx-background-color: #2b6b2a;" text="Remover" textFill="WHITE">
+      <Button fx:id="btnRemover" layoutX="280.0" layoutY="486.0" mnemonicParsing="false" onAction="#removerCliente" onMouseExited="#notHoverBtnRemover" onMouseMoved="#hoverBtnRemover" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 10; -fx-background-color: #7d2727;" text="Remover" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

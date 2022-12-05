@@ -55,7 +55,7 @@ public class ControllerAdicionaCliente {
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("viewIndex.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/viewIndex.fxml"));
             Pane cmdPane = (Pane) fxmlLoader.load();
 
             rootPane.getChildren().clear();
@@ -67,13 +67,13 @@ public class ControllerAdicionaCliente {
 
     @FXML
     void hoverBtnVoltar(MouseEvent event) {
-        btnVoltar.setImage(new Image("pngVoltarHover.png"));
+        btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
         btnVoltar.setStyle("-fx-cursor: hand;");
     }
 
     @FXML
     void notHoverBtnVoltar(MouseEvent event) {
-        btnVoltar.setImage(new Image("pngVoltar.png"));
+        btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
     @FXML
@@ -119,7 +119,7 @@ public class ControllerAdicionaCliente {
                 String nome = textFieldNome.getText();
                 String endereco = textFieldEndereco.getText();
                 long cpfLong;
-                int cnhInt;
+                long cnhLong;
                 long telefoneLong;
 
                 cpf = cpf.replace(".", "");
@@ -129,7 +129,7 @@ public class ControllerAdicionaCliente {
                 telefone = telefone.replace(")", "");
                 telefone = telefone.replace("-", "");
 
-                cnhInt = Integer.parseInt(cnh);
+                cnhLong = Integer.parseInt(cnh);
                 telefoneLong = Long.parseLong(telefone);
                 cpfLong = Long.parseLong(cpf);
 
@@ -157,7 +157,7 @@ public class ControllerAdicionaCliente {
                         } else {
                             /* ADICIONAR CLIENTE */
                             limparCampos(null);
-                            listaClientes.add(new Cliente(cpf, nome, cnhInt, endereco, telefoneLong));
+                            listaClientes.add(new Cliente(cpf, nome, cnhLong, endereco, telefoneLong));
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("SUCESSO");
                             alert.setHeaderText(null);
@@ -171,6 +171,12 @@ public class ControllerAdicionaCliente {
                 alert.setTitle("ERRO");
                 alert.setHeaderText(null);
                 alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("ERRO");
+                alert.setHeaderText(null);
+                alert.setContentText("Preencha os campos corretamente!");
                 alert.showAndWait();
             }
         }
