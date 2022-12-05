@@ -1,6 +1,8 @@
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -10,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+
 import lista.ListaClientes;
 
 public class ControllerRemoveCliente {
@@ -39,7 +42,6 @@ public class ControllerRemoveCliente {
 
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/viewIndex.fxml"));
             Pane cmdPane = (Pane) fxmlLoader.load();

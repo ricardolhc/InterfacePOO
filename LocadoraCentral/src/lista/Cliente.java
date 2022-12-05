@@ -138,7 +138,7 @@ public class Cliente {
     /** 
      * @param numeroCarteiraMotorista int que identifica a carteira de motorista do cliente
      */
-    public void setNumeroCarteira(int numeroCarteiraMotorista) { 
+    public void setNumeroCarteira(long numeroCarteiraMotorista) { 
         this.numeroCarteiraMotorista = numeroCarteiraMotorista; 
     }
 

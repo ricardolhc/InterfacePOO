@@ -125,8 +125,8 @@ public class ControllerInfoCliente {
         tableColumnTelefoneInfoCompleta.setCellValueFactory(new PropertyValueFactory<Cliente, Long>("telefone"));
         tableColumnCarteiraMotoristaInfoCompleta.setCellValueFactory(new PropertyValueFactory<Cliente, Long>("numeroCarteiraMotorista"));
 
-        //tableColumnCpfInfoResumo.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cpf"));
-        //tableColumnNomeInfoResumo.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nome"));
+        tableColumnCpfInfoResumo.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cpf"));
+        tableColumnNomeInfoResumo.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nome"));
 
         mascaraCPF(textFieldCPF);
         listaClientes = ControllerMenuLocadora.getListaClientes();
@@ -248,6 +248,7 @@ public class ControllerInfoCliente {
                 }
                 observableListClientes = FXCollections.observableArrayList(listaClientesTable);
                 tableViewInfoCompleta.setItems(observableListClientes);
+                tableViewInfoResumo.setItems(observableListClientes);
     
             } catch (NullPointerException e) {
                 System.out.println(e.getLocalizedMessage());
@@ -301,7 +302,6 @@ public class ControllerInfoCliente {
 
                     Cliente cliente = listaClientes.get(Long.parseLong(cpf));
                     listaClientesTable.add(cliente);
-                    System.out.println(cliente);
                 }
                 
                 observableListClientes = FXCollections.observableArrayList(listaClientesTable);

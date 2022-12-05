@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerInfoCliente">
    <children>
-      <Label layoutX="291.0" layoutY="24.0" prefHeight="54.0" prefWidth="364.0" text="Informações Clientes" textFill="WHITE">
+      <Label layoutX="269.0" layoutY="24.0" prefHeight="54.0" prefWidth="388.0" text="Visualizar Informações" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -106,10 +106,10 @@
             <TableColumn fx:id="tableColumnTelefoneInfoCompleta" prefWidth="184.79998779296875" text="Telefone" />
         </columns>
       </TableView>
-      <TableView fx:id="tableViewInfoResumo" layoutX="45.0" layoutY="231.0" prefHeight="315.0" prefWidth="810.0" visible="false">
+      <TableView fx:id="tableViewInfoResumo" layoutX="45.0" layoutY="231.0" prefHeight="315.0" prefWidth="810.0" style="-fx-background-color: #b5b5b5;" visible="false">
         <columns>
-          <TableColumn fx:id="tableColumnNomeInfoResumo" prefWidth="407.2000045776367" text="CPF" />
-          <TableColumn minWidth="0.0" prefWidth="400.800048828125" text="Nome" />
+          <TableColumn fx:id="tableColumnCpfInfoResumo" minWidth="0.0" prefWidth="400.800048828125" text="CPF" />
+          <TableColumn fx:id="tableColumnNomeInfoResumo" prefWidth="407.2000045776367" text="Nome" />
         </columns>
       </TableView>
    </children>

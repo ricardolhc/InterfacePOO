@@ -3,8 +3,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -143,7 +145,12 @@ public class ControllerMenuLocadora {
 
     @FXML
     void alterarInformacoesCliente(ActionEvent event) {
-        System.out.println("Altera Informacoes Cliente");
+        try {
+            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewAlteraCliente.fxml"));
+            rootPane.getChildren().setAll(anchorPaneRemoveCliente);
+        } catch (Exception e) {
+            System.out.println(e);
+        }   
     }
 
     @FXML
@@ -206,8 +213,6 @@ public class ControllerMenuLocadora {
     void notHoverBtnClienteExpandido(MouseEvent event) {
         btnClientesFechar.setStyle("-fx-background-color: #370617;");
     }
-
-
 
     @FXML
     void hoverBtnVeiculoFechado(MouseEvent event) {

@@ -1,6 +1,8 @@
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -10,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+
 import lista.ListaClientes;
 import lista.Cliente;
 
@@ -129,7 +132,7 @@ public class ControllerAdicionaCliente {
                 telefone = telefone.replace(")", "");
                 telefone = telefone.replace("-", "");
 
-                cnhLong = Integer.parseInt(cnh);
+                cnhLong = Long.parseLong(cnh);
                 telefoneLong = Long.parseLong(telefone);
                 cpfLong = Long.parseLong(cpf);
 
