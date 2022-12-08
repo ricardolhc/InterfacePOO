@@ -103,12 +103,13 @@ public class ListaClientes implements IClientes {
      */
     @Override
     public boolean remove(long CPF) {
-        try {
-            clientes.remove(get(CPF));
-            return true;
-        } catch (NullPointerException e) {
-            return false;
+        for(Cliente cliente : clientes) {
+            if(Long.parseLong(cliente.getCpf()) == CPF) {
+                clientes.remove(cliente);
+                return true;
+            }
         }
+        throw new NullPointerException("Cliente não removido!");        
     }
 
     
@@ -118,12 +119,12 @@ public class ListaClientes implements IClientes {
      */
     @Override
     public boolean existe(long CPF) {
-        try {
-            get(CPF);
-            return true;
-        } catch (NullPointerException e) {
-            return false;
+        for(Cliente cliente : clientes) {
+            if(Long.parseLong(cliente.getCpf()) == CPF) {
+                return true;
+            }
         }
+        return false;
     }
 
     

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerMenuLocadora">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerMenuLocadora">
    <children>
       <Pane fx:id="paneMenuClientesFechado" layoutY="551.0" maxHeight="200.0" prefHeight="49.0" prefWidth="300.0" style="-fx-background-color: #370617;">
          <children>
@@ -30,12 +30,12 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnVisualizaInformacoesCliente" layoutY="106.0" mnemonicParsing="false" onAction="#visualizaInformacoesCliente" onMouseExited="#notHoverVisualizaInformacoesCliente" onMouseMoved="#hoverVisualizaInformacoesCliente" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #370617; -fx-background-radius: 0;" text="Visualizar informações" textFill="WHITE">
+            <Button fx:id="btnVisualizaInformacoesCliente" layoutY="149.0" mnemonicParsing="false" onAction="#visualizaInformacoesCliente" onMouseExited="#notHoverVisualizaInformacoesCliente" onMouseMoved="#hoverVisualizaInformacoesCliente" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #370617; -fx-background-radius: 0;" text="Visualizar informações" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnAlterarInformacoesCliente" layoutY="149.0" mnemonicParsing="false" onAction="#alterarInformacoesCliente" onMouseExited="#notHoverAlteraInformacoesCliente" onMouseMoved="#hoverAlteraInformacoesCliente" prefHeight="31.0" prefWidth="300.0" style="-fx-background-color: #370617; -fx-background-radius: 0;" text="Alterar informações" textFill="WHITE" wrapText="true">
+            <Button fx:id="btnAlterarInformacoesCliente" layoutY="106.0" mnemonicParsing="false" onAction="#alterarInformacoesCliente" onMouseExited="#notHoverAlteraInformacoesCliente" onMouseMoved="#hoverAlteraInformacoesCliente" prefHeight="31.0" prefWidth="300.0" style="-fx-background-color: #370617; -fx-background-radius: 0;" text="Alterar informações" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>
@@ -58,12 +58,12 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnVisualizaInformacoesVeiculo" layoutY="108.0" mnemonicParsing="false" onAction="#visualizaInformacoesVeiculo" onMouseExited="#notHoverVisualizaInformacoesVeiculo" onMouseMoved="#hoverVisualizaInformacoesVeiculo" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #45081d; -fx-background-radius: 0;" text="Visualizar informações" textFill="WHITE">
+            <Button fx:id="btnVisualizaInformacoesVeiculo" layoutY="152.0" mnemonicParsing="false" onAction="#visualizaInformacoesVeiculo" onMouseExited="#notHoverVisualizaInformacoesVeiculo" onMouseMoved="#hoverVisualizaInformacoesVeiculo" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #45081d; -fx-background-radius: 0;" text="Visualizar informações" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnAlteraInformacoesVeiculo" layoutY="151.0" mnemonicParsing="false" onAction="#alteraInformacoesVeiculo" onMouseExited="#notHoverAlteraInformacoesVeiculo" onMouseMoved="#hoverAlteraInformacoesVeiculo" prefHeight="36.0" prefWidth="300.0" style="-fx-background-color: #45081d; -fx-background-radius: 0;" text="Alterar informações" textFill="WHITE" wrapText="true">
+            <Button fx:id="btnAlteraInformacoesVeiculo" layoutY="109.0" mnemonicParsing="false" onAction="#alteraInformacoesVeiculo" onMouseExited="#notHoverAlteraInformacoesVeiculo" onMouseMoved="#hoverAlteraInformacoesVeiculo" prefHeight="36.0" prefWidth="300.0" style="-fx-background-color: #45081d; -fx-background-radius: 0;" text="Alterar informações" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>
@@ -96,12 +96,12 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnVisualizaInformacoesLocacao" layoutY="113.0" mnemonicParsing="false" onAction="#visualizaInformacoesLocacao" onMouseExited="#notHoverVisualizaInformacoesLocacao" onMouseMoved="#hoverVisualizaInformacoesLocacao" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27; -fx-background-radius: 0;" text="Visualizar informações" textFill="WHITE">
+            <Button fx:id="btnVisualizaInformacoesLocacao" layoutY="156.0" mnemonicParsing="false" onAction="#visualizaInformacoesLocacao" onMouseExited="#notHoverVisualizaInformacoesLocacao" onMouseMoved="#hoverVisualizaInformacoesLocacao" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27; -fx-background-radius: 0;" text="Visualizar informações" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnAlteraInformacoesLocacao" layoutY="156.0" mnemonicParsing="false" onAction="#alteraInformacoesLocacao" onMouseExited="#notHoverAlteraInformacoesLocacao" onMouseMoved="#hoverAlteraInformacoesLocacao" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27; -fx-background-radius: 0;" text="Alterar informações" textFill="WHITE" wrapText="true">
+            <Button fx:id="btnAlteraInformacoesLocacao" layoutY="113.0" mnemonicParsing="false" onAction="#alteraInformacoesLocacao" onMouseExited="#notHoverAlteraInformacoesLocacao" onMouseMoved="#hoverAlteraInformacoesLocacao" prefHeight="43.0" prefWidth="300.0" style="-fx-background-color: #5c0a27; -fx-background-radius: 0;" text="Alterar informações" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>

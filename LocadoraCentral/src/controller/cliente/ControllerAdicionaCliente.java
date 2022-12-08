@@ -1,3 +1,7 @@
+package controller.cliente;
+
+import controller.ControllerMenuLocadora;
+
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -58,7 +62,7 @@ public class ControllerAdicionaCliente {
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/viewIndex.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
             Pane cmdPane = (Pane) fxmlLoader.load();
 
             rootPane.getChildren().clear();

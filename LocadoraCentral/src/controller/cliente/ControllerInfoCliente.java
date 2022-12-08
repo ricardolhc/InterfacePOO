@@ -1,6 +1,9 @@
+package controller.cliente;
+
 
 import java.util.ArrayList;
 
+import controller.ControllerMenuLocadora;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -192,7 +195,6 @@ public class ControllerInfoCliente {
 
                 }
             } catch (NullPointerException e) {
-                System.out.println(e.getLocalizedMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERRO");
                 alert.setHeaderText(null);
@@ -251,7 +253,6 @@ public class ControllerInfoCliente {
                 tableViewInfoResumo.setItems(observableListClientes);
     
             } catch (NullPointerException e) {
-                System.out.println(e.getLocalizedMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERRO");
                 alert.setHeaderText(null);
@@ -308,7 +309,6 @@ public class ControllerInfoCliente {
                 tableViewInfoResumo.setItems(observableListClientes);
     
             } catch (NullPointerException e) {
-                System.out.println(e.getLocalizedMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERRO");
                 alert.setHeaderText(null);
@@ -434,7 +434,7 @@ public class ControllerInfoCliente {
     void voltarParaPrincipal(MouseEvent event) {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/viewIndex.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
             Pane cmdPane = (Pane) fxmlLoader.load();
 
             rootPane.getChildren().clear();
