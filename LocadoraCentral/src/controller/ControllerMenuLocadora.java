@@ -132,7 +132,12 @@ public class ControllerMenuLocadora {
 
     @FXML
     void adicionaVeiculo(ActionEvent event) {
-        System.out.println("Adiciona Veiculo");
+        try {
+            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("../views/veiculo/viewAdicionaVeiculo.fxml"));
+            rootPane.getChildren().setAll(anchorPaneRemoveCliente);
+        } catch (Exception e) {
+            System.out.println(e);
+        } 
     }
 
     @FXML

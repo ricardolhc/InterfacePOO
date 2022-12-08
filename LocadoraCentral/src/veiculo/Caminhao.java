@@ -17,7 +17,7 @@ public class Caminhao extends Veiculo {
     /**
      * O atributo cargaMaxima, do tipo double, e utilizado para indentificar a carga maxima de um caminhao
      */
-    private int cargaMaxima;
+    private double cargaMaxima;
 
     /**
      * Construtor default da classe Caminhao<br>
@@ -29,7 +29,7 @@ public class Caminhao extends Veiculo {
      * @param numeroEixos int que identifica o numero de eixos do caminhao
      * @param cargaMaxima int que identifica a carga maxima do caminhao
      */
-    public Caminhao(String placa, int ano, double diaria, int numeroEixos, int cargaMaxima){
+    public Caminhao(String placa, int ano, double diaria, int numeroEixos, double cargaMaxima){
         super(placa, ano, diaria);
         this.numeroEixos = numeroEixos;
         this.cargaMaxima = cargaMaxima;
@@ -56,7 +56,7 @@ public class Caminhao extends Veiculo {
     /** 
      * @return int que identifica a carga máxima do caminhão
      */
-    public int getCargamaxima() { 
+    public double getCargamaxima() { 
         return cargaMaxima; 
     }
 
@@ -72,7 +72,7 @@ public class Caminhao extends Veiculo {
     /** 
      * @param cargaMaxima int que identifica a carga máxima do caminhão
      */
-    public void setCargamaxima(int cargaMaxima) { 
+    public void setCargamaxima(double cargaMaxima) { 
         this.cargaMaxima = cargaMaxima; 
     }
 

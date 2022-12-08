@@ -103,13 +103,13 @@ public class ListaVeiculos implements IVeiculos {
      */
     @Override
     public boolean remove(String placa) {
-        try {
-            veiculos.remove(get(placa));
-            return true;
-        } catch (NullPointerException e) {
-            System.out.println("Erro: " + e.getMessage());
-            return false;
+        for(Veiculo veiculo : veiculos) {
+            if(veiculo.getPlaca().equals(placa)) {
+                veiculos.remove(veiculo);
+                return true;
+            }
         }
+        return false;
     }
 
     
@@ -118,13 +118,13 @@ public class ListaVeiculos implements IVeiculos {
      * @return boolean que indica se o veiculo existe
      */
     @Override
-    public boolean existe(String placa) {
-        try {
-            get(placa);
-            return true;
-        } catch (NullPointerException e) {
-            return false;
+    public boolean existe(String placa) throws NullPointerException {
+        for(Veiculo veiculo : veiculos) {
+            if(veiculo.getPlaca().equals(placa)) {
+                return true;
+            }
         }
+        return false;
     }
 
     

@@ -109,7 +109,7 @@ public class ListaClientes implements IClientes {
                 return true;
             }
         }
-        throw new NullPointerException("Cliente não removido!");        
+        return false;       
     }
 
     
