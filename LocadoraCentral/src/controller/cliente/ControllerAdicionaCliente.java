@@ -1,7 +1,6 @@
 package controller.cliente;
 
 import controller.ControllerMenuLocadora;
-
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -10,10 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -56,14 +58,13 @@ public class ControllerAdicionaCliente {
         mascaraCPF(textFieldCPF);
         mascaraCNH(textFieldCarteiraMotorista);
         mascaraTelefone(textFieldTelefone);
-        
         listaClientes = ControllerMenuLocadora.getListaClientes();
     }
 
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/viewIndex.fxml"));
             Pane cmdPane = (Pane) fxmlLoader.load();
 
             rootPane.getChildren().clear();
@@ -73,7 +74,36 @@ public class ControllerAdicionaCliente {
         }
     }
 
-    
+    @FXML
+    void hoverBtnVoltar(MouseEvent event) {
+        btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
+        btnVoltar.setStyle("-fx-cursor: hand;");
+    }
+
+    @FXML
+    void notHoverBtnVoltar(MouseEvent event) {
+        btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
+    }
+
+    @FXML
+    void hoverBtnAdicionar(MouseEvent event) {
+        btnAdicionar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnAdicionar(MouseEvent event) {
+        btnAdicionar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void hoverBtnLimpar(MouseEvent event) {
+        btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnLimpar(MouseEvent event) {
+        btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
 
     @FXML
     void adicionarCliente(ActionEvent event) {
@@ -160,37 +190,6 @@ public class ControllerAdicionaCliente {
             }
         }
 
-    }
-
-    @FXML
-    void hoverBtnVoltar(MouseEvent event) {
-        btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
-        btnVoltar.setStyle("-fx-cursor: hand;");
-    }
-
-    @FXML
-    void notHoverBtnVoltar(MouseEvent event) {
-        btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
-    }
-
-    @FXML
-    void hoverBtnAdicionar(MouseEvent event) {
-        btnAdicionar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void notHoverBtnAdicionar(MouseEvent event) {
-        btnAdicionar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnLimpar(MouseEvent event) {
-        btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void notHoverBtnLimpar(MouseEvent event) {
-        btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     public void mascaraCPF(TextField textField) {

@@ -1,5 +1,4 @@
 package controller;
-
 import java.net.URL;
 
 import java.util.ResourceBundle;
@@ -108,7 +107,7 @@ public class ControllerMenuLocadora {
     @FXML
     void adicionaCliente(ActionEvent event) {
         try {
-            AnchorPane anchorPaneAdicionaCliente = FXMLLoader.load(getClass().getResource("../views/cliente/viewAdicionaCliente.fxml"));
+            AnchorPane anchorPaneAdicionaCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewAdicionaCliente.fxml"));
             rootPane.getChildren().setAll(anchorPaneAdicionaCliente);
         } catch (Exception e) {
             System.out.println(e);
@@ -118,7 +117,7 @@ public class ControllerMenuLocadora {
     @FXML
     void removeCliente(ActionEvent event) {
         try {
-            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("../views/cliente/viewRemoveCliente.fxml"));
+            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewRemoveCliente.fxml"));
             rootPane.getChildren().setAll(anchorPaneRemoveCliente);
         } catch (Exception e) {
             System.out.println(e);
@@ -132,12 +131,7 @@ public class ControllerMenuLocadora {
 
     @FXML
     void adicionaVeiculo(ActionEvent event) {
-        try {
-            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("../views/veiculo/viewAdicionaVeiculo.fxml"));
-            rootPane.getChildren().setAll(anchorPaneRemoveCliente);
-        } catch (Exception e) {
-            System.out.println(e);
-        } 
+        System.out.println("Adiciona Veiculo");
     }
 
     @FXML
@@ -153,7 +147,7 @@ public class ControllerMenuLocadora {
     @FXML
     void alterarInformacoesCliente(ActionEvent event) {
         try {
-            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("../views/cliente/viewAlteraCliente.fxml"));
+            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewAlteraCliente.fxml"));
             rootPane.getChildren().setAll(anchorPaneRemoveCliente);
         } catch (Exception e) {
             System.out.println(e);
@@ -399,7 +393,7 @@ public class ControllerMenuLocadora {
     @FXML
     void visualizaInformacoesCliente(ActionEvent event) {
         try {
-            AnchorPane anchorPaneInfoCliente = FXMLLoader.load(getClass().getResource("../views/cliente/viewInfoCliente.fxml"));
+            AnchorPane anchorPaneInfoCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewInfoCliente.fxml"));
             rootPane.getChildren().setAll(anchorPaneInfoCliente);
         } catch (Exception e) {
             System.out.println(e);

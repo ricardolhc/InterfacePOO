@@ -118,7 +118,7 @@ public class ListaVeiculos implements IVeiculos {
      * @return boolean que indica se o veiculo existe
      */
     @Override
-    public boolean existe(String placa) throws NullPointerException {
+    public boolean existe(String placa) {
         for(Veiculo veiculo : veiculos) {
             if(veiculo.getPlaca().equals(placa)) {
                 return true;

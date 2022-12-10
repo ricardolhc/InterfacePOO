@@ -1,7 +1,6 @@
 package controller.cliente;
 
 import controller.ControllerMenuLocadora;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-
 import lista.Cliente;
 import lista.ListaClientes;
 
@@ -58,19 +56,6 @@ public class ControllerAlteraCliente {
     void initialize() {
         mascaraCPF(textFieldCPF);
         listaClientes = ControllerMenuLocadora.getListaClientes();
-    }
-
-    @FXML
-    void voltarParaPrincipal(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
-            Pane cmdPane = (Pane) fxmlLoader.load();
-
-            rootPane.getChildren().clear();
-            rootPane.getChildren().add(cmdPane);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
     }
 
     @FXML
@@ -130,7 +115,10 @@ public class ControllerAlteraCliente {
 
     }
 
-    
+    @FXML
+    void hoverBtnProcurar(MouseEvent event) {
+        btnProcurar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
 
     @FXML
     void alterarCliente(ActionEvent event) {
@@ -240,11 +228,6 @@ public class ControllerAlteraCliente {
     }
 
     @FXML
-    void hoverBtnProcurar(MouseEvent event) {
-        btnProcurar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
     void hoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
     }
@@ -258,6 +241,16 @@ public class ControllerAlteraCliente {
     @FXML
     void hoverBtnAlterar(MouseEvent event) {
         btnAlterar.setStyle("-fx-background-color: #676508;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void limparCampos(MouseEvent event) {
+        textFieldNome.clear();
+        textFieldCPF.clear();
+        textFieldCarteiraMotorista.clear();
+        textFieldTelefone.clear();
+        textFieldEndereco.clear();
+        rootPane.requestFocus();
     }
 
     @FXML
@@ -281,13 +274,16 @@ public class ControllerAlteraCliente {
     }
 
     @FXML
-    void limparCampos(MouseEvent event) {
-        textFieldNome.clear();
-        textFieldCPF.clear();
-        textFieldCarteiraMotorista.clear();
-        textFieldTelefone.clear();
-        textFieldEndereco.clear();
-        rootPane.requestFocus();
+    void voltarParaPrincipal(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/viewIndex.fxml"));
+            Pane cmdPane = (Pane) fxmlLoader.load();
+
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(cmdPane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public void mascaraCPF(TextField textField) {

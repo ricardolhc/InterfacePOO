@@ -1,6 +1,5 @@
 package controller.cliente;
 
-
 import java.util.ArrayList;
 
 import controller.ControllerMenuLocadora;
@@ -136,20 +135,6 @@ public class ControllerInfoCliente {
 
     }
 
-    @FXML
-    void voltarParaPrincipal(MouseEvent event) {
-
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
-            Pane cmdPane = (Pane) fxmlLoader.load();
-
-            rootPane.getChildren().clear();
-            rootPane.getChildren().add(cmdPane);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
 
     @FXML
     void infoCliente(ActionEvent event) {
@@ -209,6 +194,7 @@ public class ControllerInfoCliente {
 
                 }
             } catch (NullPointerException e) {
+                System.out.println(e.getLocalizedMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERRO");
                 alert.setHeaderText(null);
@@ -267,6 +253,7 @@ public class ControllerInfoCliente {
                 tableViewInfoResumo.setItems(observableListClientes);
     
             } catch (NullPointerException e) {
+                System.out.println(e.getLocalizedMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERRO");
                 alert.setHeaderText(null);
@@ -323,6 +310,7 @@ public class ControllerInfoCliente {
                 tableViewInfoResumo.setItems(observableListClientes);
     
             } catch (NullPointerException e) {
+                System.out.println(e.getLocalizedMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERRO");
                 alert.setHeaderText(null);
@@ -331,77 +319,6 @@ public class ControllerInfoCliente {
             }
         }
         mostrarEsconderInfoResumo = !mostrarEsconderInfoResumo;
-    }
-
-    
-    @FXML
-    void mostrarEsconderCampos(ActionEvent event) {
-        if (tableViewInfoCompleta.isVisible() || tableViewInfoResumo.isVisible()) {
-
-            tableViewInfoCompleta.setVisible(false);
-            tableViewInfoResumo.setVisible(false);
-
-            mostrarEsconderInfoResumo = true;
-            mostrarEsconderInfoCompleta = true;
-        }
-
-        limparCampos(null);
-        labelCPF.setVisible(mostrarEsconderInfoCliente);
-        labelNome.setVisible(mostrarEsconderInfoCliente);
-        labelEndereco.setVisible(mostrarEsconderInfoCliente);
-        labelTelefone.setVisible(mostrarEsconderInfoCliente);
-        labelCarteiraMotorista.setVisible(mostrarEsconderInfoCliente);
-
-        textFieldCPF.setVisible(mostrarEsconderInfoCliente);
-        textFieldNome.setVisible(mostrarEsconderInfoCliente);
-        textFieldEndereco.setVisible(mostrarEsconderInfoCliente);
-        textFieldTelefone.setVisible(mostrarEsconderInfoCliente);
-        textFieldCarteiraMotorista.setVisible(mostrarEsconderInfoCliente);
-
-        btnPesquisar.setVisible(mostrarEsconderInfoCliente);
-        btnLimpar.setVisible(mostrarEsconderInfoCliente);
-
-        mostrarEsconderInfoCliente = !mostrarEsconderInfoCliente;
-    }
-
-    @FXML
-    void limparCampos(MouseEvent event) {
-        textFieldCPF.clear();
-        textFieldNome.clear();
-        textFieldEndereco.clear();
-        textFieldTelefone.clear();
-        textFieldCarteiraMotorista.clear();
-        rootPane.requestFocus();
-    }
-
-    @FXML
-    void notHoverBtnInfoFullCliente(MouseEvent event) {
-        btnInfoFullCliente.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void notHoverBtnInfoResumoCliente(MouseEvent event) {
-        btnInfoResumoCliente.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void notHoverBtnLimpar(MouseEvent event) {
-        btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void notHoverBtnMostrarCampos(MouseEvent event) {
-        btnMostrarEsconderCampos.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void notHoverBtnPesquisar(MouseEvent event) {
-        btnPesquisar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void notHoverBtnVoltar(MouseEvent event) {
-        btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
     @FXML
@@ -443,6 +360,90 @@ public class ControllerInfoCliente {
     void hoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
         btnVoltar.setStyle("-fx-cursor: hand;");
+    }
+
+    @FXML
+    void limparCampos(MouseEvent event) {
+        textFieldCPF.clear();
+        textFieldNome.clear();
+        textFieldEndereco.clear();
+        textFieldTelefone.clear();
+        textFieldCarteiraMotorista.clear();
+        rootPane.requestFocus();
+    }
+
+    @FXML
+    void mostrarEsconderCampos(ActionEvent event) {
+        if (tableViewInfoCompleta.isVisible() || tableViewInfoResumo.isVisible()) {
+
+            tableViewInfoCompleta.setVisible(false);
+            tableViewInfoResumo.setVisible(false);
+
+            mostrarEsconderInfoResumo = true;
+            mostrarEsconderInfoCompleta = true;
+        }
+
+        limparCampos(null);
+        labelCPF.setVisible(mostrarEsconderInfoCliente);
+        labelNome.setVisible(mostrarEsconderInfoCliente);
+        labelEndereco.setVisible(mostrarEsconderInfoCliente);
+        labelTelefone.setVisible(mostrarEsconderInfoCliente);
+        labelCarteiraMotorista.setVisible(mostrarEsconderInfoCliente);
+
+        textFieldCPF.setVisible(mostrarEsconderInfoCliente);
+        textFieldNome.setVisible(mostrarEsconderInfoCliente);
+        textFieldEndereco.setVisible(mostrarEsconderInfoCliente);
+        textFieldTelefone.setVisible(mostrarEsconderInfoCliente);
+        textFieldCarteiraMotorista.setVisible(mostrarEsconderInfoCliente);
+
+        btnPesquisar.setVisible(mostrarEsconderInfoCliente);
+        btnLimpar.setVisible(mostrarEsconderInfoCliente);
+
+        mostrarEsconderInfoCliente = !mostrarEsconderInfoCliente;
+    }
+
+    @FXML
+    void notHoverBtnInfoFullCliente(MouseEvent event) {
+        btnInfoFullCliente.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnInfoResumoCliente(MouseEvent event) {
+        btnInfoResumoCliente.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnLimpar(MouseEvent event) {
+        btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnMostrarCampos(MouseEvent event) {
+        btnMostrarEsconderCampos.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnPesquisar(MouseEvent event) {
+        btnPesquisar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnVoltar(MouseEvent event) {
+        btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
+    }
+
+    @FXML
+    void voltarParaPrincipal(MouseEvent event) {
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/viewIndex.fxml"));
+            Pane cmdPane = (Pane) fxmlLoader.load();
+
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(cmdPane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public void mascaraCPF(TextField textField) {

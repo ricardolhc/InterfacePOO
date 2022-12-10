@@ -196,7 +196,7 @@ public class ControllerAdicionaVeiculo {
                                     limparTodosCampos(null);
                                 }
 
-                                break;
+                            break;
 
                             case "Ônibus":
                                 String wifi = choiceBoxWifiOnibus.getValue();
@@ -250,7 +250,7 @@ public class ControllerAdicionaVeiculo {
                                     limparTodosCampos(null);
                                 }
 
-                                break;
+                            break;
 
                             case "Caminhão":
                                 String cargaMaxima = textFieldCargaMaxima.getText();
@@ -280,8 +280,7 @@ public class ControllerAdicionaVeiculo {
                                     limparTodosCampos(null);
                                 }
 
-                                break;
-
+                            break;
                         }
                     } catch (NullPointerException e) {
                         Alert alert = new Alert(Alert.AlertType.ERROR);

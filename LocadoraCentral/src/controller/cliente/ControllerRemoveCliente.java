@@ -1,7 +1,6 @@
 package controller.cliente;
 
 import controller.ControllerMenuLocadora;
-
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
