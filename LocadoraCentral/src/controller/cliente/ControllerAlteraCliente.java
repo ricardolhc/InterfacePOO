@@ -1,18 +1,24 @@
 package controller.cliente;
 
 import controller.ControllerMenuLocadora;
+
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
+
 import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+
 import lista.Cliente;
 import lista.ListaClientes;
 
@@ -54,16 +60,25 @@ public class ControllerAlteraCliente {
 
     @FXML
     void initialize() {
-        mascaraCPF(textFieldCPF);
         listaClientes = ControllerMenuLocadora.getListaClientes();
+    }
+
+    @FXML
+    void voltarParaPrincipal(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
+            Pane cmdPane = (Pane) fxmlLoader.load();
+
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(cmdPane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @FXML
     void procurarCliente(ActionEvent event) {
         cpfAlterar = textFieldCPF.getText();
-
-        cpfAlterar = cpfAlterar.replace(".", "");
-        cpfAlterar = cpfAlterar.replace("-", "");
 
         if (textFieldCPF.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -116,11 +131,6 @@ public class ControllerAlteraCliente {
     }
 
     @FXML
-    void hoverBtnProcurar(MouseEvent event) {
-        btnProcurar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
     void alterarCliente(ActionEvent event) {
         if (textFieldCPF.getText().isEmpty() || textFieldCarteiraMotorista.getText().isEmpty()
                 || textFieldTelefone.getText().isEmpty() || textFieldNome.getText().isEmpty()
@@ -135,11 +145,6 @@ public class ControllerAlteraCliente {
         } else {
 
             String cpfFinal = textFieldCPF.getText();
-
-            cpfFinal = cpfFinal.replace(".", "");
-            cpfFinal = cpfFinal.replace("-", "");
-
-            System.out.println(cpfFinal + " " + cpfAlterar);
 
             if (!cpfAlterar.equals(cpfFinal)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -228,6 +233,16 @@ public class ControllerAlteraCliente {
     }
 
     @FXML
+    void limparCampos(MouseEvent event) {
+        textFieldNome.clear();
+        textFieldCPF.clear();
+        textFieldCarteiraMotorista.clear();
+        textFieldTelefone.clear();
+        textFieldEndereco.clear();
+        rootPane.requestFocus();
+    }
+
+    @FXML
     void hoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
     }
@@ -244,14 +259,11 @@ public class ControllerAlteraCliente {
     }
 
     @FXML
-    void limparCampos(MouseEvent event) {
-        textFieldNome.clear();
-        textFieldCPF.clear();
-        textFieldCarteiraMotorista.clear();
-        textFieldTelefone.clear();
-        textFieldEndereco.clear();
-        rootPane.requestFocus();
+    void hoverBtnProcurar(MouseEvent event) {
+        btnProcurar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
+
+    
 
     @FXML
     void notHoverBtnProcurar(MouseEvent event) {
@@ -273,70 +285,6 @@ public class ControllerAlteraCliente {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
-    @FXML
-    void voltarParaPrincipal(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/viewIndex.fxml"));
-            Pane cmdPane = (Pane) fxmlLoader.load();
-
-            rootPane.getChildren().clear();
-            rootPane.getChildren().add(cmdPane);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    public void mascaraCPF(TextField textField) {
-
-        textField.setOnKeyTyped((KeyEvent event) -> {
-            if ("0123456789".contains(event.getCharacter()) == false) {
-                event.consume();
-            }
-
-            if (event.getCharacter().trim().length() == 0) { // apagando
-
-                if (textField.getText().length() == 4) {
-                    textField.setText(textField.getText().substring(0, 3));
-                    textField.positionCaret(textField.getText().length());
-                }
-                if (textField.getText().length() == 8) {
-                    textField.setText(textField.getText().substring(0, 7));
-                    textField.positionCaret(textField.getText().length());
-                }
-                if (textField.getText().length() == 12) {
-                    textField.setText(textField.getText().substring(0, 11));
-                    textField.positionCaret(textField.getText().length());
-                }
-
-            } else {
-
-                if (textField.getText().length() == 14)
-                    event.consume();
-
-                if (textField.getText().length() == 3) {
-                    textField.setText(textField.getText() + ".");
-                    textField.positionCaret(textField.getText().length());
-                }
-                if (textField.getText().length() == 7) {
-                    textField.setText(textField.getText() + ".");
-                    textField.positionCaret(textField.getText().length());
-                }
-                if (textField.getText().length() == 11) {
-                    textField.setText(textField.getText() + "-");
-                    textField.positionCaret(textField.getText().length());
-                }
-
-            }
-        });
-
-        textField.setOnKeyReleased((KeyEvent evt) -> {
-
-            if (!textField.getText().matches("\\d.-*")) {
-                textField.setText(textField.getText().replaceAll("[^\\d.-]", ""));
-                textField.positionCaret(textField.getText().length());
-            }
-        });
-
-    }
+    
 
 }

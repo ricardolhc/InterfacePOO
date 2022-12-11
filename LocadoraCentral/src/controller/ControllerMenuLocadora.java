@@ -107,31 +107,31 @@ public class ControllerMenuLocadora {
     @FXML
     void adicionaCliente(ActionEvent event) {
         try {
-            AnchorPane anchorPaneAdicionaCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewAdicionaCliente.fxml"));
-            rootPane.getChildren().setAll(anchorPaneAdicionaCliente);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/cliente/viewAdicionaCliente.fxml"));
+            rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     @FXML
-    void removeCliente(ActionEvent event) {
+    void adicionaLocacao(ActionEvent event) {
         try {
-            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewRemoveCliente.fxml"));
-            rootPane.getChildren().setAll(anchorPaneRemoveCliente);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/locacao/viewAdicionaLocacao.fxml"));
+            rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
-        }   
-    }
-
-    @FXML
-    void adicionaLocacao(ActionEvent event) {
-        System.out.println("Adiciona Locacao");
+        }
     }
 
     @FXML
     void adicionaVeiculo(ActionEvent event) {
-        System.out.println("Adiciona Veiculo");
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/veiculo/viewAdicionaVeiculo.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }  
     }
 
     @FXML
@@ -141,17 +141,72 @@ public class ControllerMenuLocadora {
 
     @FXML
     void alteraInformacoesVeiculo(ActionEvent event) {
-        System.out.println("Altera Informacoes Veiculo");
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/veiculo/viewAlteraVeiculo.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @FXML
     void alterarInformacoesCliente(ActionEvent event) {
         try {
-            AnchorPane anchorPaneRemoveCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewAlteraCliente.fxml"));
-            rootPane.getChildren().setAll(anchorPaneRemoveCliente);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/cliente/viewAlteraCliente.fxml"));
+            rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
         }   
+    }
+
+    @FXML
+    void removeCliente(ActionEvent event) {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/cliente/viewRemoveCliente.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }   
+    }
+
+    @FXML
+    void removeLocacao(ActionEvent event) {
+        System.out.println("Remove Locacao");
+    }
+
+    @FXML
+    void removeVeiculo(ActionEvent event) {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/veiculo/viewRemoveVeiculo.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            System.out.println(e);
+        } 
+    }
+
+    @FXML
+    void visualizaInformacoesCliente(ActionEvent event) {
+        try {
+            AnchorPane anchorPaneInfoCliente = FXMLLoader.load(getClass().getResource("../views/cliente/viewInfoCliente.fxml"));
+            rootPane.getChildren().setAll(anchorPaneInfoCliente);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @FXML
+    void visualizaInformacoesLocacao(ActionEvent event) {
+        System.out.println("Visualiza Informacoes Locacao");
+    }
+
+    @FXML
+    void visualizaInformacoesVeiculo(ActionEvent event) {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/veiculo/viewInfoVeiculo.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }  
     }
 
     @FXML
@@ -189,8 +244,6 @@ public class ControllerMenuLocadora {
         paneMenuVeiculosExpandido.setVisible(false);
         paneMenuVeiculosFechado.setVisible(true);
     }
-
-
 
 
     @FXML
@@ -249,9 +302,6 @@ public class ControllerMenuLocadora {
         btnLocacoesFechar.setStyle("-fx-background-color: #5c0a27;");
     }
    
-
-
-
 
 
 
@@ -375,40 +425,7 @@ public class ControllerMenuLocadora {
         btnVisualizaInformacoesVeiculo.setStyle("-fx-background-color: #45081d");
     }
 
-    // @FXML
-    // void removeCliente(ActionEvent event) {
-    //     System.out.println("Remove Cliente");
-    // }
-
-    @FXML
-    void removeLocacao(ActionEvent event) {
-        System.out.println("Remove Locacao");
-    }
-
-    @FXML
-    void removeVeiculo(ActionEvent event) {
-        System.out.println("Remove Veiculo");
-    }
-
-    @FXML
-    void visualizaInformacoesCliente(ActionEvent event) {
-        try {
-            AnchorPane anchorPaneInfoCliente = FXMLLoader.load(getClass().getResource("views/cliente/viewInfoCliente.fxml"));
-            rootPane.getChildren().setAll(anchorPaneInfoCliente);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    @FXML
-    void visualizaInformacoesLocacao(ActionEvent event) {
-        System.out.println("Visualiza Informacoes Locacao");
-    }
-
-    @FXML
-    void visualizaInformacoesVeiculo(ActionEvent event) {
-        System.out.println("Visualiza Informacoes Veiculo");
-    }
+    
 
     public void setListaClientes(ListaClientes listaClientesNova) {
         listaClientes = listaClientesNova;

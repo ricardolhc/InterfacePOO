@@ -132,7 +132,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param ano do tipo int que é usado para alterar o ano do veiculo
      */
-    public void setAno(String placa, int ano) {
+    public void setAno(String placa, int ano) throws NullPointerException {
         get(placa).setAno(ano);
     }
 
@@ -141,7 +141,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param diaria do tipo double que é usado para alterar o valor da diaria do veiculo
      */
-    public void setDiaria(String placa, double diaria){
+    public void setDiaria(String placa, double diaria) throws NullPointerException {
         get(placa).setDiaria(diaria);
     }
 
@@ -150,7 +150,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param numeroPortas do tipo int que é usado para alterar o numero de portas do veiculo
      */
-    public void setNumeroPortaCarro(String placa, int numeroPortas) {
+    public void setNumeroPortaCarro(String placa, int numeroPortas) throws NullPointerException {
         Carro carro = (Carro) get(placa);
         carro.setNumeroPortas(numeroPortas);
     }
@@ -160,7 +160,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param numeroPassageiros do tipo int que é usado para alterar o numero de passageiros do veiculo
      */
-    public void setNumeroPassageiroCarro(String placa, int numeroPassageiros) {
+    public void setNumeroPassageiroCarro(String placa, int numeroPassageiros) throws NullPointerException {
         Carro carro = (Carro) get(placa);
         carro.setNumeroPassageiros(numeroPassageiros);
     }
@@ -170,9 +170,9 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param mediaKM do tipo double que é usado para alterar a media de KM do veiculo
      */
-    public void setMediaKMCarro(String placa, double mediaKM) {
+    public void setMediaKmCarro(String placa, double mediaKm) throws NullPointerException {
         Carro carro = (Carro) get(placa);
-        carro.setmediaKM(mediaKM);
+        carro.setmediaKm(mediaKm);
     }
 
     
@@ -180,7 +180,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param arcondicionado do tipo boolean que é usado para alterar o ar condicionado do veiculo
      */
-    public void setArcondicionadoCarro(String placa, boolean arcondicionado) {
+    public void setArcondicionadoCarro(String placa, boolean arcondicionado) throws NullPointerException {
         Carro carro = (Carro) get(placa);
         carro.setArcondicionado(arcondicionado);
     }
@@ -190,7 +190,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param numeroPassageiros do tipo int que é usado para alterar o numero de passageiros do veiculo
      */
-    public void setNumeroPassageiroOnibus(String placa, int numeroPassageiros) {
+    public void setNumeroPassageiroOnibus(String placa, int numeroPassageiros) throws NullPointerException {
         Onibus onibus = (Onibus) get(placa);
         onibus.setNumeroPassageiros(numeroPassageiros);
     }
@@ -200,7 +200,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param categoria do tipo String que é usado para alterar a categoria do veiculo
      */
-    public void setCategoriaOnibus(String placa, Categoria categoria) {
+    public void setCategoriaOnibus(String placa, Categoria categoria) throws NullPointerException {
         Onibus onibus = (Onibus) get(placa);
         onibus.setCategoria(categoria);
     }
@@ -210,7 +210,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param wifi do tipo boolean que é usado para alterar o wifi do veiculo
      */
-    public void setWifiOnibus(String placa, boolean wifi) {
+    public void setWifiOnibus(String placa, boolean wifi) throws NullPointerException {
         Onibus onibus = (Onibus) get(placa);
         onibus.setWifi(wifi);
     }
@@ -220,7 +220,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param arcondicionado do tipo boolean que é usado para alterar o ar condicionado do veiculo
      */
-    public void setArcondicionadoOnibus(String placa, boolean arcondicionado) {
+    public void setArcondicionadoOnibus(String placa, boolean arcondicionado) throws NullPointerException {
         Onibus onibus = (Onibus) get(placa);
         onibus.setArcondicionado(arcondicionado);
     }
@@ -230,7 +230,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param numeroEixos do tipo int que é usado para alterar o numero de eixos do veiculo
      */
-    public void setNumeroEixoCaminhao(String placa, int numeroEixos){
+    public void setNumeroEixoCaminhao(String placa, int numeroEixos) throws NullPointerException {
         Caminhao caminhao = (Caminhao) get(placa);
         caminhao.setNumeroEixos(numeroEixos);
     }
@@ -240,9 +240,9 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param cargamaxima do tipo double que é usado para alterar a carga maxima do veiculo
      */
-    public void setCargaMaximaCaminhao(String placa, int cargamaxima){
+    public void setCargaMaximaCaminhao(String placa, int cargamaxima) throws NullPointerException {
         Caminhao caminhao = (Caminhao) get(placa);
-        caminhao.setCargamaxima(cargamaxima);
+        caminhao.setCargaMaxima(cargamaxima);
     }
     
 }

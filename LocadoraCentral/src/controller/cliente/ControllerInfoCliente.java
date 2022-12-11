@@ -22,7 +22,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.layout.AnchorPane;
@@ -130,9 +129,22 @@ public class ControllerInfoCliente {
         tableColumnCpfInfoResumo.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cpf"));
         tableColumnNomeInfoResumo.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nome"));
 
-        mascaraCPF(textFieldCPF);
         listaClientes = ControllerMenuLocadora.getListaClientes();
 
+    }
+
+    @FXML
+    void voltarParaPrincipal(MouseEvent event) {
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
+            Pane cmdPane = (Pane) fxmlLoader.load();
+
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(cmdPane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
 
@@ -157,9 +169,6 @@ public class ControllerInfoCliente {
                 String nome;
                 String endereco;
                 long cpfLong;
-
-                cpf = cpf.replace(".", "");
-                cpf = cpf.replace("-", "");
 
                 cpfLong = Long.parseLong(cpf);
 
@@ -432,71 +441,6 @@ public class ControllerInfoCliente {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
-    @FXML
-    void voltarParaPrincipal(MouseEvent event) {
-
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/viewIndex.fxml"));
-            Pane cmdPane = (Pane) fxmlLoader.load();
-
-            rootPane.getChildren().clear();
-            rootPane.getChildren().add(cmdPane);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    public void mascaraCPF(TextField textField) {
-
-        textField.setOnKeyTyped((KeyEvent event) -> {
-            if ("0123456789".contains(event.getCharacter()) == false) {
-                event.consume();
-            }
-
-            if (event.getCharacter().trim().length() == 0) { // apagando
-
-                if (textField.getText().length() == 4) {
-                    textField.setText(textField.getText().substring(0, 3));
-                    textField.positionCaret(textField.getText().length());
-                }
-                if (textField.getText().length() == 8) {
-                    textField.setText(textField.getText().substring(0, 7));
-                    textField.positionCaret(textField.getText().length());
-                }
-                if (textField.getText().length() == 12) {
-                    textField.setText(textField.getText().substring(0, 11));
-                    textField.positionCaret(textField.getText().length());
-                }
-
-            } else {
-
-                if (textField.getText().length() == 14)
-                    event.consume();
-
-                if (textField.getText().length() == 3) {
-                    textField.setText(textField.getText() + ".");
-                    textField.positionCaret(textField.getText().length());
-                }
-                if (textField.getText().length() == 7) {
-                    textField.setText(textField.getText() + ".");
-                    textField.positionCaret(textField.getText().length());
-                }
-                if (textField.getText().length() == 11) {
-                    textField.setText(textField.getText() + "-");
-                    textField.positionCaret(textField.getText().length());
-                }
-
-            }
-        });
-
-        textField.setOnKeyReleased((KeyEvent evt) -> {
-
-            if (!textField.getText().matches("\\d.-*")) {
-                textField.setText(textField.getText().replaceAll("[^\\d.-]", ""));
-                textField.positionCaret(textField.getText().length());
-            }
-        });
-
-    }
+    
 
 }

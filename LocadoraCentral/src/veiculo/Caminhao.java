@@ -56,7 +56,7 @@ public class Caminhao extends Veiculo {
     /** 
      * @return int que identifica a carga máxima do caminhão
      */
-    public double getCargamaxima() { 
+    public double getCargaMaxima() { 
         return cargaMaxima; 
     }
 
@@ -72,7 +72,7 @@ public class Caminhao extends Veiculo {
     /** 
      * @param cargaMaxima int que identifica a carga máxima do caminhão
      */
-    public void setCargamaxima(double cargaMaxima) { 
+    public void setCargaMaxima(double cargaMaxima) { 
         this.cargaMaxima = cargaMaxima; 
     }
 

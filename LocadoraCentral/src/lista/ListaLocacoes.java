@@ -29,11 +29,11 @@ public class ListaLocacoes implements ILocacoes {
 
     
     /** 
-     * @param l do tipo Locacao que adiciona a locacao no arraylist
+     * @param locacao do tipo Locacao que adiciona a locacao no arraylist
      */
     @Override
-    public void add(Locacao l) {
-        locacoes.add(l);
+    public void add(Locacao locacao) {
+        locacoes.add(locacao);
     }
 
     
@@ -83,7 +83,7 @@ public class ListaLocacoes implements ILocacoes {
 
     
     /** 
-     * @param codigo do tipo int que é usado para procurar a locacao
+     * @param cpf do tipo int que é usado para procurar a locacao
      * @return boolean se a remoção foi feita com sucesso
      */
     @Override
@@ -218,6 +218,7 @@ public class ListaLocacoes implements ILocacoes {
             throw new NullPointerException("Não foi possível encontrar uma locação");
         }
     }
+
 
 
 

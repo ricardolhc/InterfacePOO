@@ -105,6 +105,19 @@ public class ControllerAdicionaVeiculo {
         listaVeiculos = ControllerMenuLocadora.getListaVeiculos();
     }
 
+    @FXML
+    void voltarParaPrincipal(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
+            Pane cmdPane = (Pane) fxmlLoader.load();
+
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(cmdPane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public void selecionaTipoVeiculo(ActionEvent event) {
         String tipoVeiculo = choiceBoxTipoVeiculo.getValue();
         if (tipoVeiculo.equals("Caminhão")) {
@@ -130,9 +143,9 @@ public class ControllerAdicionaVeiculo {
     @FXML
     void adicionarVeiculo(ActionEvent event) {
 
-        String placa = textFieldPlaca.getText();
+        String placa = textFieldPlaca.getText().toLowerCase();
 
-        // PLACA JÁ CADASTRADA
+        // PLACA NÃO CADASTRADA
         if (!listaVeiculos.existe(placa)) {
             String tipoVeiculo = choiceBoxTipoVeiculo.getValue();
 
@@ -311,19 +324,6 @@ public class ControllerAdicionaVeiculo {
             alert.showAndWait();
         }
 
-    }
-
-    @FXML
-    void voltarParaPrincipal(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
-            Pane cmdPane = (Pane) fxmlLoader.load();
-
-            rootPane.getChildren().clear();
-            rootPane.getChildren().add(cmdPane);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
     }
 
     void limparCampos() {

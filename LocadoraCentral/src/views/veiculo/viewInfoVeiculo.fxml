@@ -10,34 +10,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.cliente.ControllerInfoCliente">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.veiculo.ControllerInfoVeiculo">
    <children>
       <Label layoutX="269.0" layoutY="24.0" prefHeight="54.0" prefWidth="388.0" text="Visualizar Informações" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Button fx:id="btnPesquisar" layoutX="275.0" layoutY="509.0" mnemonicParsing="false" onAction="#infoCliente" onMouseExited="#notHoverBtnPesquisar" onMouseMoved="#hoverBtnPesquisar" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 10; -fx-background-color: #2b6b2a;" text="Pesquisar" textFill="WHITE" visible="false">
+      <Button fx:id="btnPesquisar" layoutX="275.0" layoutY="509.0" mnemonicParsing="false" onMouseExited="#notHoverBtnPesquisar" onMouseMoved="#hoverBtnPesquisar" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 10; -fx-background-color: #2b6b2a;" text="Pesquisar" textFill="WHITE" visible="false">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnLimpar" layoutX="473.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#limparCampos" onMouseExited="#notHoverBtnLimpar" onMouseMoved="#hoverBtnLimpar" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 10; -fx-background-color: #747474;" text="Limpar" textFill="WHITE" visible="false">
+      <Button fx:id="btnLimpar" layoutX="473.0" layoutY="509.0" mnemonicParsing="false" onMouseExited="#notHoverBtnLimpar" onMouseMoved="#hoverBtnLimpar" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 10; -fx-background-color: #747474;" text="Limpar" textFill="WHITE" visible="false">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
       <ImageView fx:id="btnVoltar" fitHeight="40.0" fitWidth="40.0" layoutX="33.0" layoutY="31.0" onMouseClicked="#voltarParaPrincipal" onMouseExited="#notHoverBtnVoltar" onMouseMoved="#hoverBtnVoltar">
          <image>
-            <Image url="@pngVoltar.png" />
+            <Image url="@../cliente/pngVoltar.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnInfoFullCliente" layoutX="344.0" layoutY="111.0" mnemonicParsing="false" onAction="#infoFullCliente" onMouseExited="#notHoverBtnInfoFullCliente" onMouseMoved="#hoverBtnInfoFullCliente" prefHeight="70.0" prefWidth="211.0" style="-fx-background-radius: 50; -fx-background-color: #2b6b2a;" text="Informações completas de todos os veiculos" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Button fx:id="btnInfoFullVeiculo" layoutX="344.0" layoutY="111.0" mnemonicParsing="false" onAction="#infoFullVeiculo" onMouseExited="#notHoverBtnInfoFullVeiculo" onMouseMoved="#hoverBtnInfoFullVeiculo" prefHeight="70.0" prefWidth="211.0" style="-fx-background-radius: 50; -fx-background-color: #2b6b2a;" text="Informações completas de todos os veiculos" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnInfoResumoCliente" layoutX="643.0" layoutY="111.0" mnemonicParsing="false" onAction="#infoResumoCliente" onMouseExited="#notHoverBtnInfoResumoCliente" onMouseMoved="#hoverBtnInfoResumoCliente" prefHeight="70.0" prefWidth="211.0" style="-fx-background-radius: 50; -fx-background-color: #2b6b2a;" text="Informações resumidas de todos os veiculos" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Button fx:id="btnInfoResumoVeiculo" layoutX="643.0" layoutY="111.0" mnemonicParsing="false" onAction="#infoResumoVeiculo" onMouseExited="#notHoverBtnInfoResumoVeiculo" onMouseMoved="#hoverBtnInfoResumoVeiculo" prefHeight="70.0" prefWidth="211.0" style="-fx-background-radius: 50; -fx-background-color: #2b6b2a;" text="Informações resumidas de todos os veiculos" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
@@ -97,19 +97,26 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="tableViewInfoCompleta" editable="true" layoutX="40.0" layoutY="231.0" prefHeight="315.0" prefWidth="818.0" style="-fx-background-color: #b5b5b5;" visible="false">
+      <TableView fx:id="tableViewInfoCompleta" editable="true" layoutX="42.0" layoutY="231.0" prefHeight="315.0" prefWidth="810.0" style="-fx-background-color: #b5b5b5;">
         <columns>
-          <TableColumn fx:id="tableColumnCpfInfoCompleta" prefWidth="106.40001678466797" text="CPF" />
-          <TableColumn fx:id="tableColumnNomeInfoCompleta" prefWidth="244.79995727539062" text="Nome" />
-            <TableColumn fx:id="tableColumnCarteiraMotoristaInfoCompleta" prefWidth="149.60000610351562" text="Carteira Motorista" />
-            <TableColumn fx:id="tableColumnEnderecoInfoCompleta" prefWidth="188.79998779296875" text="Endereço" />
-            <TableColumn fx:id="tableColumnTelefoneInfoCompleta" prefWidth="126.4000244140625" text="Telefone" />
+          <TableColumn fx:id="tableColumnPlacaInfoCompleta" prefWidth="86.39998626708984" text="Placa" />
+          <TableColumn fx:id="tableColumnDiariaInfoCompleta" prefWidth="75.2000732421875" text="Diária" />
+            <TableColumn fx:id="tableColumnAnoInfoCompleta" prefWidth="67.199951171875" text="Ano" />
+            <TableColumn fx:id="tableColumnPassageirosInfoCompleta" minWidth="0.0" prefWidth="89.5999755859375" text="Passageiros" />
+            <TableColumn fx:id="tableColumnPortasInfoCompleta" prefWidth="63.20001220703125" text="Portas" />
+            <TableColumn fx:id="tableColumnMediaKmInfoCompleta" prefWidth="81.60003662109375" text="MediaKm" />
+            <TableColumn fx:id="tableColumnArCondicionadoInfoCompleta" prefWidth="151.19998168945312" text="Ar-Condicionado" />
+            <TableColumn fx:id="tableColumnCategoriaInfoCompleta" prefWidth="75.99993896484375" text="Categoria" />
+            <TableColumn fx:id="tableColumnWifiInfoCompleta" prefWidth="52.0" text="Wi-fi" />
+            <TableColumn fx:id="tableColumnEixosInfoCompleta" prefWidth="45.5999755859375" text="Eixos" />
+            <TableColumn fx:id="tableColumnCargaMaximaInfoCompleta" prefWidth="173.60009765625" text="Carga Máxima" />
         </columns>
       </TableView>
       <TableView fx:id="tableViewInfoResumo" layoutX="45.0" layoutY="231.0" prefHeight="315.0" prefWidth="810.0" style="-fx-background-color: #b5b5b5;" visible="false">
         <columns>
-          <TableColumn fx:id="tableColumnCpfInfoResumo" minWidth="0.0" prefWidth="122.40001678466797" text="CPF" />
-          <TableColumn fx:id="tableColumnNomeInfoResumo" prefWidth="687.2000122070312" text="Nome" />
+          <TableColumn fx:id="tableColumnPlacafInfoResumo" minWidth="0.0" prefWidth="122.40001678466797" text="Placa" />
+          <TableColumn fx:id="tableColumnDiariaInfoResumo" prefWidth="317.6000518798828" text="Diária" />
+            <TableColumn fx:id="tableColumnAnoInfoResumo" prefWidth="445.5999755859375" text="Ano" />
         </columns>
       </TableView>
    </children>

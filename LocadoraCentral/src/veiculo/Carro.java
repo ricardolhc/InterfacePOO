@@ -20,9 +20,9 @@ public class Carro extends Veiculo {
     private int numeroPortas;
 
     /**
-     * O atributo mediaKM, do tipo double, identifica a média de quilômetros rodados por litro do carro.
+     * O atributo mediaKm, do tipo double, identifica a média de quilômetros rodados por litro do carro.
      */
-    private double mediaKM;
+    private double mediaKm;
 
     /**
      * O atributo arcondicionado, do tipo boolean, identifica se o carro possui ar condicionado.
@@ -39,14 +39,14 @@ public class Carro extends Veiculo {
      * @param diaria double que identifica a diária do carro
      * @param numeroPassageiros int que identifica o número de passageiros do carro
      * @param numeroPortas int que identifica o número de portas do carro
-     * @param mediaKM double que identifica a média de quilômetros rodados por litro do carro
+     * @param mediaKm double que identifica a média de quilômetros rodados por litro do carro
      * @param arcondicionado boolean que identifica se o carro possui ar condicionado
      */
-    public Carro (String placa, int ano, double diaria, int numeroPassageiros, int numeroPortas, double mediaKM, boolean arcondicionado){
+    public Carro (String placa, int ano, double diaria, int numeroPassageiros, int numeroPortas, double mediaKm, boolean arcondicionado){
         super(placa, ano, diaria);
         this.numeroPassageiros = numeroPassageiros;
         this.numeroPortas = numeroPortas;
-        this.mediaKM = mediaKM;
+        this.mediaKm = mediaKm;
         this.arcondicionado = arcondicionado;
     }
 
@@ -80,8 +80,8 @@ public class Carro extends Veiculo {
     /** 
      * @return double que identifica a média de KM do carro
      */
-    public double getMediakm() { 
-        return mediaKM; 
+    public double getMediaKm() { 
+        return mediaKm; 
     }
 
     
@@ -110,10 +110,10 @@ public class Carro extends Veiculo {
 
     
     /** 
-     * @param mediaKM double que identifica a média de KM do carro
+     * @param mediaKm double que identifica a média de KM do carro
      */
-    public void setmediaKM(double mediaKM) { 
-        this.mediaKM = mediaKM; 
+    public void setmediaKm(double mediaKm) { 
+        this.mediaKm = mediaKm; 
     }
     
     
@@ -138,7 +138,7 @@ public class Carro extends Veiculo {
 
         return super.toString() + "; Numero de Passageiros: " + numeroPassageiros + 
                                   "; Numero Portas: " + numeroPortas + 
-                                  "; Media km: " + mediaKM + 
+                                  "; Media km: " + mediaKm + 
                                   "; Ar-Condicionado: " + arcondicionadoStr;
     }
 
