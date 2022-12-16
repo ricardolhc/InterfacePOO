@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -16,10 +17,10 @@ import lista.ListaLocacoes;
 public class ControllerRemoveLocacao {
 
     @FXML
-    private Button btnLimparLocacao;
+    private Button btnLimpar;
 
     @FXML
-    private Button btnRemoverLocacao;
+    private Button btnRemover;
 
     @FXML
     private ImageView btnVoltarLocacao;
@@ -34,8 +35,7 @@ public class ControllerRemoveLocacao {
 
     @FXML
 
-    void initialize() {   
-
+    void initialize() {
         listaLocacao = ControllerMenuLocadora.getListaLocacoes();
     }
 
@@ -58,75 +58,70 @@ public class ControllerRemoveLocacao {
         /* VERIFICAR SE O CAMPO ESTÁ VAZIO */
 
         try {
-            String codigoUnico = textFieldLocacao.getText();
-        if(!codigoUnico.isEmpty()) {
-            if(listaLocacao.existe(codigoUnico)) {
-                if(listaLocacao.remove(codigoUnico)) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Remover Veículo");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Lócação removida com sucesso!");
-                    alert.showAndWait();
-                    limparCampos(null);
+            if (!textFieldLocacao.getText().isEmpty()) {
+                String codigoUnico = textFieldLocacao.getText();
+                int codigo = Integer.parseInt(codigoUnico);
+                if (listaLocacao.existe(codigo)) {
+                    if (listaLocacao.remove(codigo)) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Remover Veículo");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Lócação removida com sucesso!");
+                        alert.showAndWait();
+                        limparCampos(null);
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Remover Locacao");
+                        alert.setHeaderText(null);
+                        alert.setContentText("O código não foi encontrado na lista de locações!");
+                        alert.showAndWait();
+                    }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Remover Locacao");
+                    alert.setTitle("Remover locacao");
                     alert.setHeaderText(null);
                     alert.setContentText("O código não foi encontrado na lista de locações!");
                     alert.showAndWait();
                 }
+
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Remover locacao");
+                alert.setTitle("Remover Veículo");
                 alert.setHeaderText(null);
-                alert.setContentText("O código não foi encontrado na lista de locações!");
+                alert.setContentText("Código não pode ser vazio!");
                 alert.showAndWait();
             }
-            
-        } else {
+
+        } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Remover Veículo");
+            alert.setTitle("ERRO");
             alert.setHeaderText(null);
-            alert.setContentText("Código não pode ser vazio!");
+            alert.setContentText("Código de locação não pode conter letras!");
+            alert.showAndWait();
+        } catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERRO");
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
 
-            } catch (NumberFormatException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            } catch(NullPointerException e ) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            }
-        
-
-    
-
     }
-
-
 
     @FXML
     void hoverBtnLimpar(MouseEvent event) {
-        btnLimparLocacao.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
+        btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
 
     }
 
     @FXML
-    void hoverBtnRemoverLocacao(MouseEvent event) {
-         btnRemoverLocacao.setStyle("-fx-background-color: #682121;-fx-cursor: hand; -fx-background-radius: 50;");
+    void hoverBtnRemover(MouseEvent event) {
+        btnRemover.setStyle("-fx-background-color: #7d2727;-fx-cursor: hand; -fx-background-radius: 50;");
 
-       
     }
 
     @FXML
-    void hoverBtnVoltar(MouseEvent event) {
+    void hoverBtnVoltarLocacao(MouseEvent event) {
         btnVoltarLocacao.setImage(new Image("views/cliente/pngVoltarHover.png"));
         btnVoltarLocacao.setStyle("-fx-cursor: hand;");
 
@@ -134,30 +129,25 @@ public class ControllerRemoveLocacao {
 
     @FXML
     void limparCampos(MouseEvent event) {
+        textFieldLocacao.clear();
+        rootPane.requestFocus();
 
     }
 
     @FXML
     void notHoverBtnLimpar(MouseEvent event) {
-         btnLimparLocacao.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
-
+        btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML
     void notHoverBtnRemover(MouseEvent event) {
-        btnRemoverLocacao.setStyle("-fx-background-color: #7d2727;-fx-cursor: hand; -fx-background-radius: 50;");
+        btnRemover.setStyle("-fx-background-color: #7d2727;-fx-cursor: hand; -fx-background-radius: 50;");
     }
-
-    
 
     @FXML
     void notHoverBtnVoltar(MouseEvent event) {
-        btnVoltarLocacao.setImage(new Image("views/cliente/pngVoltar.png"));
+        btnVoltarLocacao.setImage(new Image("views/locacao/pngVoltar.png"));
 
     }
-
-    
-
-   
 
 }

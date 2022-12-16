@@ -171,7 +171,12 @@ public class ControllerMenuLocadora {
 
     @FXML
     void removeLocacao(ActionEvent event) {
-        System.out.println("Remove Locacao");
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/locacao/viewRemoveLocacao.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }   
     }
 
     @FXML

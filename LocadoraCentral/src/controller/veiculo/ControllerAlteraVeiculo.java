@@ -252,6 +252,12 @@ public class ControllerAlteraVeiculo {
             alert.setHeaderText(null);
             alert.setContentText("Preencha os campos corretamente!");
             alert.showAndWait();
+        } catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERRO");
+            alert.setHeaderText(null);
+            alert.setContentText("Preencha os campos corretamente!");
+            alert.showAndWait();
         }
     }
 
