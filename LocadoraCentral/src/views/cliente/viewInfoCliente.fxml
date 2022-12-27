@@ -17,12 +17,12 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Button fx:id="btnPesquisar" layoutX="275.0" layoutY="509.0" mnemonicParsing="false" onAction="#infoCliente" onMouseExited="#notHoverBtnPesquisar" onMouseMoved="#hoverBtnPesquisar" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 50; -fx-background-color: #2b6b2a;" text="Pesquisar" textFill="WHITE" visible="false">
+      <Button fx:id="btnPesquisar" layoutX="473.0" layoutY="506.0" mnemonicParsing="false" onAction="#infoCliente" onMouseExited="#notHoverBtnPesquisar" onMouseMoved="#hoverBtnPesquisar" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 50; -fx-background-color: #2b6b2a;" text="Pesquisar" textFill="WHITE" visible="false">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnLimpar" layoutX="473.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#limparCampos" onMouseExited="#notHoverBtnLimpar" onMouseMoved="#hoverBtnLimpar" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 50; -fx-background-color: #747474;" text="Limpar" textFill="WHITE" visible="false">
+      <Button fx:id="btnLimpar" layoutX="278.0" layoutY="506.0" mnemonicParsing="false" onMouseClicked="#limparCampos" onMouseExited="#notHoverBtnLimpar" onMouseMoved="#hoverBtnLimpar" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 50; -fx-background-color: #747474;" text="Limpar" textFill="WHITE" visible="false">
          <font>
             <Font size="20.0" />
          </font>

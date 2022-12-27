@@ -8,29 +8,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.locacao.ControllerRemoveLocacao">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.locacao.ControllerRemoveLocacao">
    <children>
       <Label layoutX="320.0" layoutY="24.0" prefHeight="54.0" prefWidth="308.0" text="Remover Locacao" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldLocacao" layoutX="218.0" layoutY="234.0" prefHeight="46.0" prefWidth="482.0" promptText="Digite o ID da locacao" style="-fx-background-radius: 35; -fx-background-color: white;">
+      <TextField fx:id="textFieldLocacao" layoutX="218.0" layoutY="234.0" prefHeight="46.0" prefWidth="482.0" promptText="Digite o ID da locação" style="-fx-background-radius: 35; -fx-background-color: white;">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="235.0" layoutY="203.0" text="ID Locacao" textFill="WHITE">
+      <Label layoutX="235.0" layoutY="203.0" text="ID Locação" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnRemover" layoutX="280.0" layoutY="486.0" mnemonicParsing="false" onAction="#removerLocacao" onMouseExited="#notHoverBtnRemover" onMouseMoved="#hoverBtnRemover" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 50; -fx-background-color: #7d2727;" text="Remover" textFill="WHITE">
+      <Button fx:id="btnRemover" layoutX="474.0" layoutY="486.0" mnemonicParsing="false" onAction="#removerLocacao" onMouseExited="#notHoverBtnRemover" onMouseMoved="#hoverBtnRemover" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 50; -fx-background-color: #7d2727;" text="Remover" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnLimpar" layoutX="473.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#limparCampos" onMouseExited="#notHoverBtnLimpar" onMouseMoved="#hoverBtnLimpar" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 50; -fx-background-color: #747474;" text="Limpar" textFill="WHITE">
+      <Button fx:id="btnLimpar" layoutX="281.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#limparCampos" onMouseExited="#notHoverBtnLimpar" onMouseMoved="#hoverBtnLimpar" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 50; -fx-background-color: #747474;" text="Limpar" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

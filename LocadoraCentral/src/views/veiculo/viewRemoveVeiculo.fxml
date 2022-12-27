@@ -25,12 +25,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnRemover" layoutX="280.0" layoutY="486.0" mnemonicParsing="false" onAction="#removerVeiculo" onMouseExited="#notHoverBtnRemover" onMouseMoved="#hoverBtnRemover" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 50; -fx-background-color: #7d2727;" text="Remover" textFill="WHITE">
+      <Button fx:id="btnRemover" layoutX="474.0" layoutY="486.0" mnemonicParsing="false" onAction="#removerVeiculo" onMouseExited="#notHoverBtnRemover" onMouseMoved="#hoverBtnRemover" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 50; -fx-background-color: #7d2727;" text="Remover" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnLimpar" layoutX="473.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#limparCampos" onMouseExited="#notHoverBtnLimpar" onMouseMoved="#hoverBtnLimpar" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 50; -fx-background-color: #747474;" text="Limpar" textFill="WHITE">
+      <Button fx:id="btnLimpar" layoutX="281.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#limparCampos" onMouseExited="#notHoverBtnLimpar" onMouseMoved="#hoverBtnLimpar" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 50; -fx-background-color: #747474;" text="Limpar" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
