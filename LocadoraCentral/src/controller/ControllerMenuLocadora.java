@@ -136,7 +136,12 @@ public class ControllerMenuLocadora {
 
     @FXML
     void alteraInformacoesLocacao(ActionEvent event) {
-        System.out.println("Altera Informacoes Locacao");
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/locacao/viewAlteraLocacao.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @FXML
@@ -201,7 +206,12 @@ public class ControllerMenuLocadora {
 
     @FXML
     void visualizaInformacoesLocacao(ActionEvent event) {
-        System.out.println("Visualiza Informacoes Locacao");
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/locacao/viewInfoLocacao.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @FXML

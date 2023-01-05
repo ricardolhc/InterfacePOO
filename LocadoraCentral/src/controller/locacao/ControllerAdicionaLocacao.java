@@ -55,7 +55,7 @@ public class ControllerAdicionaLocacao {
     @FXML
     private TextField textFieldPlaca;
 
-    private final String[] escolhaseguro = { "Sim", "Não"};
+    private final String[] escolhaseguro = { "Sim", "Não" };
 
     private ListaVeiculos listaVeiculos;
 
@@ -84,7 +84,6 @@ public class ControllerAdicionaLocacao {
             System.out.println(e);
         }
     }
-    
 
     @FXML
     void adicionarLocacao(ActionEvent event) {
@@ -143,13 +142,14 @@ public class ControllerAdicionaLocacao {
                 alert.setContentText("A data final não pode ser anterior a data inicial!");
                 alert.showAndWait();
             }
-
+            
             try {
                 long cpf = Long.parseLong(textFieldCPF.getText());
                 Veiculo veiculo = listaVeiculos.get(placa);
                 Cliente cliente = listaClientes.get(cpf);
 
                 listaLocacoes.add(new Locacao(seguroBoolean, dataInicialC, dataFinalC, cliente, veiculo));
+                limparCampos(null);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("SUCESSO");
                 alert.setHeaderText(null);
@@ -168,24 +168,11 @@ public class ControllerAdicionaLocacao {
                 alert.setContentText("Preencha os campos corretamente!");
                 alert.showAndWait();
             }
-
-            
-
-            
+    
         }
-
-        
     }
-
-
-
-
-
-
-
-
-
-
+        
+    
 
     @FXML
     void limparCampos(MouseEvent event) {
@@ -193,7 +180,7 @@ public class ControllerAdicionaLocacao {
         textFieldPlaca.setText("");
     }
 
-   @FXML
+    @FXML
     void hoverBtnAdicionar(MouseEvent event) {
         btnAdicionar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
@@ -223,6 +210,5 @@ public class ControllerAdicionaLocacao {
     void notHoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
-
 
 }

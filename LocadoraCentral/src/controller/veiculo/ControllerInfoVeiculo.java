@@ -359,8 +359,6 @@ public class ControllerInfoVeiculo {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
-
-
     }
 
     @FXML

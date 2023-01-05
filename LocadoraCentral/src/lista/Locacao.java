@@ -8,6 +8,7 @@
 package lista;
 
 import java.util.Calendar;
+
 import veiculo.Veiculo;
 
 public class Locacao {
@@ -206,7 +207,7 @@ public class Locacao {
                "; Data inicial: " + menorQueDezInicialDia + dataInicial.get(Calendar.DAY_OF_MONTH) + "/" + menorQueDezInicialMes + (dataInicial.get(Calendar.MONTH) + 1) + "/" + dataInicial.get(Calendar.YEAR) +
                "; Data final: " + menorQueDezFinalDia + dataFinal.get(Calendar.DAY_OF_MONTH) + "/" + menorQueDezFinalMes + (dataFinal.get(Calendar.MONTH) + 1) + "/" + dataFinal.get(Calendar.YEAR) +
                "; Veiculo: " + veiculo.getResumo() +
-               "; Cliente: " + cliente.getResumo();
-    }
+               "; Cliente: " + cliente.getResumo() + ";";
+    } 
 
 }

@@ -126,9 +126,8 @@ public class ListaLocacoes implements ILocacoes {
         }
         if(temp) {
             return conteudo;
-        } else {
-            throw new NullPointerException("O Cliente não possui locações");
         }
+        throw new NullPointerException("O Cliente não possui locações");
     }
 
     // ASSIM POR ENQUANTO
@@ -143,9 +142,9 @@ public class ListaLocacoes implements ILocacoes {
         }
         if(temp) {
             return conteudo;
-        } else {
-            throw new NullPointerException("O Veiculo não possui locações");
         }
+        throw new NullPointerException("O Veiculo não possui locações");
+        
     }
 
     public String getLocacaoByDiaMesAno(Calendar calendar) {
@@ -162,9 +161,8 @@ public class ListaLocacoes implements ILocacoes {
         }
         if(temp) {
             return conteudo;
-        } else {
-            throw new NullPointerException("Não foi possível encontrar uma locação");
         }
+        throw new NullPointerException("Não foi possível encontrar uma locação");
     }
 
     public String getLocacaoByMesAno(Calendar calendar) {
@@ -180,9 +178,9 @@ public class ListaLocacoes implements ILocacoes {
         }
         if(temp) {
             return conteudo;
-        } else {
-            throw new NullPointerException("Não foi possível encontrar uma locação");
         }
+        throw new NullPointerException("Não foi possível encontrar uma locação");
+        
     }
 
     public String getLocacaoByAno(Calendar calendar) {
@@ -197,9 +195,8 @@ public class ListaLocacoes implements ILocacoes {
         }
         if(temp) {
             return conteudo;
-        } else {
-            throw new NullPointerException("Não foi possível encontrar uma locação");
         }
+        throw new NullPointerException("Não foi possível encontrar uma locação");
     }
 
     public String getLocacaoByPeriodo(Calendar dataInicial, Calendar dataFinal) {
@@ -214,9 +211,9 @@ public class ListaLocacoes implements ILocacoes {
         }
         if(temp) {
             return conteudo;
-        } else {
-            throw new NullPointerException("Não foi possível encontrar uma locação");
         }
+        throw new NullPointerException("Não foi possível encontrar uma locação");
+        
     }
 
 
