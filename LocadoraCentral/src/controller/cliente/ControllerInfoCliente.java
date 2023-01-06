@@ -135,7 +135,6 @@ public class ControllerInfoCliente {
 
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
             Pane cmdPane = (Pane) fxmlLoader.load();

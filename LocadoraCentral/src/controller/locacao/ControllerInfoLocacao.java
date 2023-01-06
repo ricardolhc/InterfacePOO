@@ -3,8 +3,6 @@ package controller.locacao;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 
 import controller.ControllerMenuLocadora;
 import javafx.beans.property.SimpleObjectProperty;
@@ -12,17 +10,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import lista.Cliente;
 import lista.ListaLocacoes;
 
@@ -71,6 +71,8 @@ public class ControllerInfoLocacao {
     private TableView<DadosTabela> tableViewInfoCompleta;
 
     private ListaLocacoes listaLocacoes;
+
+    private boolean mostrarEsconderInfoCompleta = true;
 
     @FXML
     void initialize() {
@@ -137,7 +139,7 @@ public class ControllerInfoLocacao {
 
     @FXML
     void hoverBtnInfoFullLocacao(MouseEvent event) {
-
+        btnInfoFullLocacao.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML
@@ -147,7 +149,7 @@ public class ControllerInfoLocacao {
 
     @FXML
     void hoverBtnMostrarCampos(MouseEvent event) {
-
+        btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML
@@ -157,11 +159,21 @@ public class ControllerInfoLocacao {
 
     @FXML
     void hoverBtnVoltar(MouseEvent event) {
-
+        btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
+        btnVoltar.setStyle("-fx-cursor: hand;");
     }
 
     @FXML
     void infoFullLocacao(ActionEvent event) {
+
+        if (tableViewInfoCompleta.isVisible()) {
+
+            tableViewInfoCompleta.setVisible(true);
+        }
+
+        tableViewInfoCompleta.setVisible(mostrarEsconderInfoCompleta);
+
+
         if (tableViewInfoCompleta.isVisible()) {
             try {
                 ObservableList<DadosTabela> observableListLocacoes; 
@@ -173,9 +185,10 @@ public class ControllerInfoLocacao {
                 for (String dadosLocacao : dadosLocacoes) {
                     String[] dados = dadosLocacao.split(";");
                     String codigoLocacao = dados[0].split(": ")[1];
-                    Locacao locacao = listaLocacoes.get(Integer.parseInt(codigoLocacao));
 
+                    Locacao locacao = listaLocacoes.get(Integer.parseInt(codigoLocacao));
                     DadosTabela dadosTabela = new DadosTabela(locacao, locacao.getVeiculo(), locacao.getCliente());
+                    
                     listaDadosTabela.add(dadosTabela);
                 }
                 observableListLocacoes = FXCollections.observableArrayList(listaDadosTabela);
@@ -189,6 +202,7 @@ public class ControllerInfoLocacao {
                 alert.showAndWait();
             }
         }
+        mostrarEsconderInfoCompleta = !mostrarEsconderInfoCompleta;
     }
 
     @FXML
@@ -208,7 +222,7 @@ public class ControllerInfoLocacao {
 
     @FXML
     void notHoverBtnInfoFullLocacao(MouseEvent event) {
-
+        btnInfoFullLocacao.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML
@@ -218,7 +232,7 @@ public class ControllerInfoLocacao {
 
     @FXML
     void notHoverBtnMostrarCampos(MouseEvent event) {
-
+        btnMostrarEsconderCampos.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML
@@ -228,12 +242,20 @@ public class ControllerInfoLocacao {
 
     @FXML
     void notHoverBtnVoltar(MouseEvent event) {
-
+        btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
+            Pane cmdPane = (Pane) fxmlLoader.load();
 
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(cmdPane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
 }

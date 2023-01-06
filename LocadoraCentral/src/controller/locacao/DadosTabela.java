@@ -4,7 +4,7 @@ import lista.Cliente;
 import lista.Locacao;
 import veiculo.Veiculo;
 
-class DadosTabela {
+public class DadosTabela {
     
     private Locacao locacao;
     private Veiculo veiculo;
