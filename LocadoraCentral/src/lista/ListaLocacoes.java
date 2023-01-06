@@ -117,14 +117,14 @@ public class ListaLocacoes implements ILocacoes {
     // ASSIM POR ENQUANTO
     public String getLocacaoByCliente(Cliente cliente) {
         String conteudo = "";
-        boolean temp = false;
+        boolean flag = false;
         for(Locacao locacao : locacoes) {
             if(locacao.getCliente().equals(cliente)) {
                 conteudo += locacao.toString() + "\n";
-                temp = true;
+                flag = true;
             }
         }
-        if(temp) {
+        if(flag) {
             return conteudo;
         }
         throw new NullPointerException("O Cliente não possui locações");
@@ -133,14 +133,14 @@ public class ListaLocacoes implements ILocacoes {
     // ASSIM POR ENQUANTO
     public String getLocacaoByVeiculo(Veiculo veiculo) {
         String conteudo = "";
-        boolean temp = false;
+        boolean flag = false;
         for(Locacao locacao : locacoes) {
             if(locacao.getVeiculo().equals(veiculo)) {
                 conteudo += locacao.toString() + "\n";
-                temp = true;
+                flag = true;
             }
         }
-        if(temp) {
+        if(flag) {
             return conteudo;
         }
         throw new NullPointerException("O Veiculo não possui locações");
@@ -149,17 +149,17 @@ public class ListaLocacoes implements ILocacoes {
 
     public String getLocacaoByDiaMesAno(Calendar calendar) {
         String conteudo = "";
-        boolean temp = false;
+        boolean flag = false;
 
         for(Locacao locacao : locacoes) {
             if(locacao.getDataInicial().get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH) 
             && locacao.getDataInicial().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) 
             && locacao.getDataInicial().get(Calendar.YEAR) == calendar.get(Calendar.YEAR)) {
                 conteudo += locacao.toString() + "\n";
-                temp = true;
+                flag = true;
             }
         }
-        if(temp) {
+        if(flag) {
             return conteudo;
         }
         throw new NullPointerException("Não foi possível encontrar uma locação");
@@ -167,16 +167,16 @@ public class ListaLocacoes implements ILocacoes {
 
     public String getLocacaoByMesAno(Calendar calendar) {
         String conteudo = "";
-        boolean temp = false;
+        boolean flag = false;
 
         for(Locacao locacao : locacoes) {
             if(locacao.getDataInicial().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) 
             && locacao.getDataInicial().get(Calendar.YEAR) == calendar.get(Calendar.YEAR)) {
                 conteudo += locacao.toString() + "\n";
-                temp = true;
+                flag = true;
             }
         }
-        if(temp) {
+        if(flag) {
             return conteudo;
         }
         throw new NullPointerException("Não foi possível encontrar uma locação");
@@ -185,15 +185,15 @@ public class ListaLocacoes implements ILocacoes {
 
     public String getLocacaoByAno(Calendar calendar) {
         String conteudo = "";
-        boolean temp = false;
+        boolean flag = false;
 
         for(Locacao locacao : locacoes) {
             if(locacao.getDataInicial().get(Calendar.YEAR) == calendar.get(Calendar.YEAR)) {
                 conteudo += locacao.toString() + "\n";
-                temp = true;
+                flag = true;
             }
         }
-        if(temp) {
+        if(flag) {
             return conteudo;
         }
         throw new NullPointerException("Não foi possível encontrar uma locação");
@@ -201,15 +201,15 @@ public class ListaLocacoes implements ILocacoes {
 
     public String getLocacaoByPeriodo(Calendar dataInicial, Calendar dataFinal) {
         String conteudo = "";
-        boolean temp = false;
+        boolean flag = false;
 
         for(Locacao locacao : locacoes) {
             if(locacao.getDataInicial().after(dataInicial) && locacao.getDataFinal().before(dataFinal)) {
                 conteudo += locacao.toString() + "\n";
-                temp = true;
+                flag = true;
             }
         }
-        if(temp) {
+        if(flag) {
             return conteudo;
         }
         throw new NullPointerException("Não foi possível encontrar uma locação");

@@ -1,8 +1,7 @@
 package controller.cliente;
 
-import java.util.ArrayList;
-
 import controller.ControllerMenuLocadora;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.scene.image.Image;
@@ -30,101 +30,214 @@ import javafx.scene.layout.Pane;
 import lista.Cliente;
 import lista.ListaClientes;
 
+/**
+ * Classe responsável por controlar a tela de visualização de informações de
+ * clientes
+ * 
+ * @author Mateus, Maurício, Ricardo, Tales
+ * @since dez 2022
+ * @version 1.0
+ */
 public class ControllerInfoCliente {
 
+    /*
+     * btnInfoFullCliente usado para mostrar informações completas do cliente
+     */
     @FXML
     private Button btnInfoFullCliente;
 
+    /*
+     * btnInfoResumoCliente usado para mostrar informações resumidas do cliente
+     */
     @FXML
     private Button btnInfoResumoCliente;
 
+    /*
+     * btnLimpar usado para limpar os campos de texto
+     */
     @FXML
     private Button btnLimpar;
 
+    /*
+     * btnMostrarEsconderCampos usado para mostrar/esconder os campos de texto
+     */
     @FXML
     private Button btnMostrarEsconderCampos;
 
+    /*
+     * btnPesquisar usado para pesquisar um cliente
+     */
     @FXML
     private Button btnPesquisar;
 
+    /*
+     * btnVoltar usado para voltar para a tela principal
+     */
     @FXML
     private ImageView btnVoltar;
 
+    /*
+     * rootPane usado para mostrar a tela de informações de clientes
+     */
     @FXML
     private AnchorPane rootPane;
 
+    /*
+     * textFieldCPF usado para receber o CPF do cliente
+     */
     @FXML
     private TextField textFieldCPF;
 
+    /*
+     * textFieldNome usado para receber o nome do cliente
+     */
     @FXML
     private TextField textFieldNome;
 
+    /*
+     * textFieldEndereco usado para receber o endereço do cliente
+     */
     @FXML
     private TextField textFieldEndereco;
 
+    /*
+     * textFieldTelefone usado para receber o telefone do cliente
+     */
     @FXML
     private TextField textFieldTelefone;
 
+    /*
+     * textFieldCarteiraMotorista usado para receber o número da carteira de
+     * motorista do cliente
+     */
     @FXML
     private TextField textFieldCarteiraMotorista;
 
+    /*
+     * labelCPF usado para mostrar o texto CPF na tela
+     */
     @FXML
     private Label labelCPF;
 
+    /*
+     * labelNome usado para mostrar o texto Nome na tela
+     */
     @FXML
     private Label labelNome;
 
+    /*
+     * labelEndereco usado para mostrar o texto Endereco na tela
+     */
     @FXML
     private Label labelEndereco;
 
+    /*
+     * labelTelefone usado para mostrar o texto Telefone na tela
+     */
     @FXML
     private Label labelTelefone;
 
+    /*
+     * labelCarteiraMotorista usado para mostrar o texto Carteira de Motorista na
+     * tela
+     */
     @FXML
     private Label labelCarteiraMotorista;
 
+    /*
+     * tableViewInfoCompleta usado para mostrar as informações completas do cliente
+     * nas informações completas
+     */
     @FXML
     private TableView<Cliente> tableViewInfoCompleta;
 
+    /*
+     * tableColumnCpfInfoCompleta usado para mostrar o CPF do cliente nas
+     * informações completas
+     */
     @FXML
     private TableColumn<Cliente, String> tableColumnCpfInfoCompleta;
 
+    /*
+     * tableColumnNomeInfoCompleta usado para mostrar o nome do cliente nas
+     * informações completas
+     */
     @FXML
     private TableColumn<Cliente, String> tableColumnNomeInfoCompleta;
 
+    /*
+     * tableColumnEnderecoInfoCompleta usado para mostrar o endereço do cliente nas
+     * informações completas
+     */
     @FXML
     private TableColumn<Cliente, String> tableColumnEnderecoInfoCompleta;
 
+    /*
+     * tableColumnTelefoneInfoCompleta usado para mostrar o telefone do cliente nas
+     * informações completas
+     */
     @FXML
     private TableColumn<Cliente, Long> tableColumnTelefoneInfoCompleta;
 
+    /*
+     * tableColumnCarteiraMotoristaInfoCompleta usado para mostrar o número da
+     * carteira de motorista do cliente nas informações completas
+     */
     @FXML
     private TableColumn<Cliente, Long> tableColumnCarteiraMotoristaInfoCompleta;
 
+    /*
+     * tableViewInfoResumo usado para mostrar as informações resumidas do cliente
+     */
     @FXML
     private TableView<Cliente> tableViewInfoResumo;
 
+    /*
+     * tableColumnCpfInfoResumo usado para mostrar o CPF do cliente nas informações
+     * resumidas
+     */
     @FXML
     private TableColumn<Cliente, String> tableColumnCpfInfoResumo;
 
+    /*
+     * tableColumnNomeInfoResumo usado para mostrar o nome do cliente nas
+     * informações resumidas
+     */
     @FXML
     private TableColumn<Cliente, String> tableColumnNomeInfoResumo;
 
+    /*
+     * mostrarEsconderCampos usado para mostrar/esconder as informaçoes de um
+     * cliente
+     */
     private boolean mostrarEsconderInfoCliente = true;
 
+    /*
+     * mostrarEsconderInfoCompleta usado para mostrar/esconder a tabela com as
+     * informações completas do cliente
+     */
     private boolean mostrarEsconderInfoCompleta = true;
 
+    /*
+     * mostrarEsconderInfoResumo usado para mostrar/esconder a tabela com as
+     * informações resumidas do cliente
+     */
     private boolean mostrarEsconderInfoResumo = true;
 
     private ListaClientes listaClientes;
 
+    /*
+     * Método usado para inicializar as colunas das tabelas de informações completas
+     * e resumidas dos clientes e também para inicializar a lista de clientes
+     */
     @FXML
     void initialize() {
         tableColumnCpfInfoCompleta.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cpf"));
         tableColumnNomeInfoCompleta.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nome"));
         tableColumnEnderecoInfoCompleta.setCellValueFactory(new PropertyValueFactory<Cliente, String>("endereco"));
         tableColumnTelefoneInfoCompleta.setCellValueFactory(new PropertyValueFactory<Cliente, Long>("telefone"));
-        tableColumnCarteiraMotoristaInfoCompleta.setCellValueFactory(new PropertyValueFactory<Cliente, Long>("numeroCarteiraMotorista"));
+        tableColumnCarteiraMotoristaInfoCompleta
+                .setCellValueFactory(new PropertyValueFactory<Cliente, Long>("numeroCarteiraMotorista"));
 
         tableColumnCpfInfoResumo.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cpf"));
         tableColumnNomeInfoResumo.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nome"));
@@ -133,6 +246,11 @@ public class ControllerInfoCliente {
 
     }
 
+    /**
+     * Método usado para voltar ao menu principal
+     * 
+     * @param event evento de clicar no botão de voltar
+     */
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
         try {
@@ -146,75 +264,59 @@ public class ControllerInfoCliente {
         }
     }
 
-
+    /**
+     * Método usado para buscar as informações de um cliente utilizando o cpf
+     * 
+     * @param event evento de clicar no botão
+     */
     @FXML
     void infoCliente(ActionEvent event) {
         /* VERIFICAR SE O CAMPO ESTÁ VAZIO */
-        if (textFieldCPF.getText().isEmpty()) {
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERRO");
-            alert.setHeaderText(null);
-            alert.setContentText("Preencha todos os campos!");
-            alert.showAndWait();
+        String cpf = textFieldCPF.getText();
 
-        } else {
-
-            try {
-                String cpf = textFieldCPF.getText();
-
-                long cnh;
-                long telefone;
-                String nome;
-                String endereco;
-                long cpfLong;
-
-                cpfLong = Long.parseLong(cpf);
-
+        try {
+            if (cpf.isEmpty()) {
+                throw new NullPointerException("Campo CPF vazio");
+            } else {
                 if (cpf.length() != 11) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERRO");
-                    alert.setHeaderText(null);
-                    alert.setContentText("CPF inválido!");
-                    alert.showAndWait();
-                } else {
-
-                    /* VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO */
-                    if (!listaClientes.existe(cpfLong)) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("ERRO");
-                        alert.setHeaderText(null);
-                        alert.setContentText("CPF não existente!");
-                        alert.showAndWait();
-                    } else {
-                        Cliente cliente = listaClientes.get(cpfLong);
-
-                        nome = cliente.getNome();
-                        endereco = cliente.getEndereco();
-                        telefone = cliente.getTelefone();
-                        cnh = cliente.getNumeroCarteiraMotorista();
-
-                        textFieldNome.setText(nome);
-                        textFieldEndereco.setText(endereco);
-                        textFieldTelefone.setText(String.valueOf(telefone));
-                        textFieldCarteiraMotorista.setText(String.valueOf(cnh));
-                    }
-
+                    throw new IllegalArgumentException("CPF inválido");
                 }
-            } catch (NullPointerException e) {
-                System.out.println(e.getLocalizedMessage());
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
+
+                long cpfLong = Long.parseLong(cpf);
+
+                /* VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO */
+                if (!listaClientes.existe(cpfLong)) {
+                    throw new NullPointerException("CPF não existente!");
+                } else {
+                    Cliente cliente = listaClientes.get(cpfLong);
+
+                    long cnh = cliente.getNumeroCarteiraMotorista();
+                    long telefone = cliente.getTelefone();
+                    String nome = cliente.getNome();
+                    String endereco = cliente.getEndereco();
+
+                    textFieldNome.setText(nome);
+                    textFieldEndereco.setText(endereco);
+                    textFieldTelefone.setText(String.valueOf(telefone));
+                    textFieldCarteiraMotorista.setText(String.valueOf(cnh));
+                }
+
             }
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
+        } catch (NullPointerException | IllegalArgumentException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
+
     }
 
-
-
-
+    /**
+     * Método usado para mostrar as informações completas (cpf, nome, endereco,
+     * telefone, carteirademotorista) de todos os clientes
+     * 
+     * @param event evento de clicar no botão
+     */
     @FXML
     void infoFullCliente(ActionEvent event) {
         if (labelCPF.isVisible() || tableViewInfoResumo.isVisible()) {
@@ -240,38 +342,35 @@ public class ControllerInfoCliente {
         }
 
         tableViewInfoCompleta.setVisible(mostrarEsconderInfoCompleta);
-
-        if(tableViewInfoCompleta.isVisible()) {
-            try {
-                ObservableList<Cliente> observableListClientes;
-                ArrayList<Cliente> listaClientesTable = new ArrayList<Cliente>();
-                
-                String[] dadosClientes = listaClientes.getInfo().split("\n");
-                for (String dadosCliente : dadosClientes) {
-                    
-                    String[] dados = dadosCliente.split(";");
-
-                    String cpf = dados[1].split(": ")[1];
-
-                    Cliente cliente = listaClientes.get(Long.parseLong(cpf));
-                    listaClientesTable.add(cliente);
-                }
-                observableListClientes = FXCollections.observableArrayList(listaClientesTable);
-                tableViewInfoCompleta.setItems(observableListClientes);
-                tableViewInfoResumo.setItems(observableListClientes);
-    
-            } catch (NullPointerException e) {
-                System.out.println(e.getLocalizedMessage());
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            }
-        }
         mostrarEsconderInfoCompleta = !mostrarEsconderInfoCompleta;
+
+        if (tableViewInfoCompleta.isVisible()) {
+            ObservableList<Cliente> observableListClientes = FXCollections.observableArrayList();
+
+            try {
+                String[] dadosClientes = listaClientes.getInfo().split("\n");
+                for (String dados : dadosClientes) {
+                    String[] campos = dados.split(";");
+                    long cpf = Long.parseLong(campos[1].split(": ")[1]);
+
+                    Cliente cliente = listaClientes.get(cpf);
+                    observableListClientes.add(cliente);
+                }
+            } catch (NullPointerException e) {
+                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+            } catch (NumberFormatException e) {
+                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+            }
+            tableViewInfoCompleta.setItems(observableListClientes);
+        }
     }
 
+    /**
+     * Método usado para mostrar as informações resumidas (cpf, nome) de todos os
+     * clientes
+     * 
+     * @param event evento de clicar no botão
+     */
     @FXML
     void infoResumoCliente(ActionEvent event) {
         if (labelCPF.isVisible() || tableViewInfoCompleta.isVisible()) {
@@ -297,89 +396,35 @@ public class ControllerInfoCliente {
         }
 
         tableViewInfoResumo.setVisible(mostrarEsconderInfoResumo);
-
-        if(tableViewInfoResumo.isVisible()) {
-            try {
-                ObservableList<Cliente> observableListClientes;
-                ArrayList<Cliente> listaClientesTable = new ArrayList<Cliente>();
-                
-                String[] dadosClientes = listaClientes.getResumoInfo().split("\n");
-                for (String dadosCliente : dadosClientes) {
-                    
-                    String[] dados = dadosCliente.split(";");
-
-                    String cpf = dados[1].split(": ")[1];
-
-                    Cliente cliente = listaClientes.get(Long.parseLong(cpf));
-                    listaClientesTable.add(cliente);
-                }
-                
-                observableListClientes = FXCollections.observableArrayList(listaClientesTable);
-                tableViewInfoResumo.setItems(observableListClientes);
-    
-            } catch (NullPointerException e) {
-                System.out.println(e.getLocalizedMessage());
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            }
-        }
         mostrarEsconderInfoResumo = !mostrarEsconderInfoResumo;
+
+        if (tableViewInfoResumo.isVisible()) {
+            ObservableList<Cliente> observableListClientes = FXCollections.observableArrayList();
+
+            try {
+                String[] dadosClientes = listaClientes.getInfo().split("\n");
+                for (String dados : dadosClientes) {
+                    String[] campos = dados.split(";");
+                    long cpf = Long.parseLong(campos[1].split(": ")[1]);
+
+                    Cliente cliente = listaClientes.get(cpf);
+                    observableListClientes.add(cliente);
+                }
+
+            } catch (NullPointerException e) {
+                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+            } catch (NumberFormatException e) {
+                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+            }
+            tableViewInfoResumo.setItems(observableListClientes);
+        }
     }
 
-    @FXML
-    void hoverBtnMostrarEsconderCampo(MouseEvent event) {
-        btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void notHoverBtnEsconderMostrarCampos(MouseEvent event) {
-        btnMostrarEsconderCampos.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnInfoFullCliente(MouseEvent event) {
-        btnInfoFullCliente.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnInfoResumoCliente(MouseEvent event) {
-        btnInfoResumoCliente.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnLimpar(MouseEvent event) {
-        btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnMostrarCampos(MouseEvent event) {
-        btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnPesquisar(MouseEvent event) {
-        btnPesquisar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnVoltar(MouseEvent event) {
-        btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
-        btnVoltar.setStyle("-fx-cursor: hand;");
-    }
-
-    @FXML
-    void limparCampos(MouseEvent event) {
-        textFieldCPF.clear();
-        textFieldNome.clear();
-        textFieldEndereco.clear();
-        textFieldTelefone.clear();
-        textFieldCarteiraMotorista.clear();
-        rootPane.requestFocus();
-    }
-
+     /**
+     * Método para mostrar/esconder os campos de pesquisa
+     * 
+     * @param event evento de mostrar/esconder os campos de pesquisa
+     */
     @FXML
     void mostrarEsconderCampos(ActionEvent event) {
         if (tableViewInfoCompleta.isVisible() || tableViewInfoResumo.isVisible()) {
@@ -410,36 +455,184 @@ public class ControllerInfoCliente {
         mostrarEsconderInfoCliente = !mostrarEsconderInfoCliente;
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar/esconder os campos de
+     * pesquisa
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnMostrarEsconderCampo(MouseEvent event) {
+        btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar/esconder os campos de
+     * pesquisa
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
+    @FXML
+    void notHoverBtnEsconderMostrarCampos(MouseEvent event) {
+        btnMostrarEsconderCampos.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de todos os clientes
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnInfoFullCliente(MouseEvent event) {
+        btnInfoFullCliente.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * resumidas de todos os clientes
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnInfoResumoCliente(MouseEvent event) {
+        btnInfoResumoCliente.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de limpar os campos de texto
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnLimpar(MouseEvent event) {
+        btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar/esconder os campos de
+     * pesquisa
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnMostrarCampos(MouseEvent event) {
+        btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de pesquisar
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnPesquisar(MouseEvent event) {
+        btnPesquisar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de voltar
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnVoltar(MouseEvent event) {
+        btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
+        btnVoltar.setStyle("-fx-cursor: hand;");
+    }
+
+    /**
+     * Método para limpar os campos de texto presentes na tela
+     * 
+     * @param event evento de limpar os campos de texto presentes na tela
+     */
+    @FXML
+    void limparCampos(MouseEvent event) {
+        textFieldCPF.clear();
+        textFieldNome.clear();
+        textFieldEndereco.clear();
+        textFieldTelefone.clear();
+        textFieldCarteiraMotorista.clear();
+        rootPane.requestFocus();
+    }
+
+   
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todos os clientes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnInfoFullCliente(MouseEvent event) {
         btnInfoFullCliente.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todos os clientes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnInfoResumoCliente(MouseEvent event) {
         btnInfoResumoCliente.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de limpar os campos de texto
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar/esconder os campos de
+     * pesquisa
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnMostrarCampos(MouseEvent event) {
         btnMostrarEsconderCampos.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de pesquisar
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnPesquisar(MouseEvent event) {
         btnPesquisar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de voltar
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
-    
+    /**
+     * Método para imprimir um alerta na tela
+     * @param titulo titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
 
 }

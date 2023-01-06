@@ -26,57 +26,123 @@ import lista.ListaVeiculos;
 import lista.Locacao;
 import veiculo.Veiculo;
 
+/**
+ * Classe responsável por controlar a tela de alteração de locacoes
+ * 
+ * @author Mateus, Maurício, Ricardo, Tales
+ * @since dez 2022
+ * @version 1.0
+ */
 public class ControllerAlteraLocacao {
 
+    /**
+     * btnAlterar usado para alterar um cliente na lista de clientes
+     */
     @FXML
     private Button btnAlterar;
 
+    /**
+     * btnLimpar usado para limpar os campos da tela
+     */
     @FXML
     private Button btnLimpar;
 
+    /**
+     * btnPesquisar usado para pesquisar um cliente na lista de clientes
+     */
     @FXML
     private Button btnPesquisar;
 
+    /**
+     * btnVoltar usado para voltar para a tela principal
+     */
     @FXML
     private ImageView btnVoltar;
 
+    /**
+     * choiceSeguro usado para escolher se a locacao terá seguro ou não
+     */
     @FXML
     private ChoiceBox<String> choiceSeguro;
 
+    /**
+     * escolhaseguro string com as opções de seguro
+     */
     private final String[] escolhaseguro = { "Sim", "Não"};
 
+    /**
+     * pickerDataFinal usado para escolher a data final da locacao
+     */
     @FXML
     private DatePicker pickerDataFinal;
 
+    /**
+     * pickerDataInicial usado para escolher a data inicial da locacao
+     */
     @FXML
     private DatePicker pickerDataInicial;
 
+    /**
+     * rootPane usado para carregar a tela de adicionar locacao
+     */
     @FXML
     private AnchorPane rootPane;
 
+    /**
+     * textFieldCPF usado para receber o cpf do cliente
+     */
     @FXML
     private TextField textFieldCPF;
 
+    /**
+     * textFieldID usado para receber o id da locacao
+     */
     @FXML
     private TextField textFieldID;
 
+    /**
+     * textFieldPlaca usado para receber a placa do veiculo
+     */
     @FXML
     private TextField textFieldPlaca;
 
+    /**
+     * IDAlterar usado para receber o id da locacao a ser alterada
+     */
     private int IDAlterar;
 
+    /**
+     * listaLocacao usado para receber a lista de locacoes
+     */
     private ListaLocacoes listaLocacao;
 
+    /**
+     * listaVeiculo usado para receber a lista de veiculos
+     */
     private ListaVeiculos listaVeiculo;
 
+    /**
+     * listaClientes usado para receber a lista de clientes
+     */
     private ListaClientes listaClientes;
 
+    /**
+     * locacao usado para receber a locacao a ser alterada
+     */
     private Locacao locacao;
 
+     /**
+     * Método usado para inicializar a lista de locacoes a partir do menu principal
+     */
     void initialize() {
         listaLocacao = ControllerMenuLocadora.getListaLocacoes();
     }
 
+    /**
+     * Método usado para voltar ao menu principal
+     * 
+     * @param event evento de clicar no botão de voltar
+     */
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
         try {
@@ -90,6 +156,11 @@ public class ControllerAlteraLocacao {
         }
     }
 
+    /**
+     * Método usado para pesquisar uma locacao usando o id, na lista de locacoes
+     * 
+     * @param event evento de clicar no botão
+     */
     @FXML
     void pesquisarLocacao(ActionEvent event) {
         IDAlterar = textFieldID.getText().isEmpty() ? 0 : Integer.parseInt(textFieldID.getText());
@@ -135,6 +206,11 @@ public class ControllerAlteraLocacao {
 
     }
 
+    /**
+     * Método usado para alterar as informações placa, cpf, seguro, datainicial, datafinal de uma locacao 
+     * 
+     * @param event evento de clicar no botão
+     */
     @FXML
     void alterarLocacao(ActionEvent event) {
         if (textFieldPlaca.getText().isEmpty() || textFieldCPF.getText().isEmpty() || choiceSeguro.getValue() == null
@@ -239,22 +315,42 @@ public class ControllerAlteraLocacao {
         }
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de alterar
+     * 
+     * @param event evento hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnAlterar(MouseEvent event) {
         btnAlterar.setStyle("-fx-background-color: #676508;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de limpar
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de voltar
+     * 
+     * @param event evento hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/locacao/pngVoltarHover.png"));
         btnVoltar.setStyle("-fx-cursor: hand;");
     }
 
+    /**
+     * Método para limpar os campos de texto presentes na tela
+     * 
+     * @param event evento de limpar os campos de texto presentes na tela
+     */
     @FXML
     void limparCampos(MouseEvent event) {
         textFieldCPF.clear();
@@ -262,26 +358,51 @@ public class ControllerAlteraLocacao {
         rootPane.requestFocus();
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse do botão de alterar
+     * 
+     * @param event evento de hover ao tirar o mouse do botão
+     */
     @FXML
     void notHoverBtnAlterar(MouseEvent event) {
         btnAlterar.setStyle("-fx-background-color: #807d0a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse do botão de limpar
+     * 
+     * @param event evento de hover ao tirar o mouse do botão
+     */
     @FXML
     void notHoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse do botão de voltar
+     * 
+     * @param event evento de hover ao tirar o mouse do botão
+     */
     @FXML
     void notHoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/locacao/pngVoltar.png"));
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de pesquisar
+     * 
+     * @param event evento hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnPesquisar(MouseEvent event) {
         btnPesquisar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse do botão de procurar
+     * 
+     * @param event evento de hover ao tirar o mouse do botão
+     */
     @FXML
     void notHoverBtnPesquisar(MouseEvent event) {
         btnPesquisar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");

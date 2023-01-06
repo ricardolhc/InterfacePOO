@@ -26,43 +26,93 @@ import lista.Cliente;
 import lista.ListaClientes;
 import lista.ListaLocacoes;
 
+/**
+ * A classe ControllerAdicionaLocacao é responsável por controlar a tela de adicionar locacao
+ * 
+ * @author Mateus, Maurício, Ricardo, Tales
+ * @since dez 2022
+ * @version 1.0
+ */
 public class ControllerAdicionaLocacao {
 
+    /**
+     * btnAdicionar usado para adicionar uma locacao
+     */
     @FXML
     private Button btnAdicionar;
 
+    /**
+     * btnLimpar usado para limpar os campos
+     */
     @FXML
     private Button btnLimpar;
 
+    /**
+     * btnVoltar usado para voltar para a tela principal
+     */
     @FXML
     private ImageView btnVoltar;
 
+    /**
+     * choiceSeguro usado para escolher se a locacao terá seguro ou não
+     */
     @FXML
     private ChoiceBox<String> choiceSeguro;
 
+    /**
+     * pickerDataFinal usado para escolher a data final da locacao
+     */
     @FXML
     private DatePicker pickerDataFinal;
 
+    /**
+     * pickerDataInicial usado para escolher a data inicial da locacao
+     */
     @FXML
     private DatePicker pickerDataInicial;
 
+    /**
+     * rootPane usado para carregar a tela de adicionar locacao
+     */
     @FXML
     private AnchorPane rootPane;
 
+    /**
+     * textFieldCPF usado para receber o cpf do cliente
+     */
     @FXML
     private TextField textFieldCPF;
 
+    /**
+     * textFieldPlaca usado para receber a placa do veiculo
+     */
     @FXML
     private TextField textFieldPlaca;
 
+    /**
+     * escolhaseguro string com as opções de seguro
+     */
     private final String[] escolhaseguro = { "Sim", "Não" };
 
+    /**
+     * listaClientes usado para receber a lista de veiculos
+     */
     private ListaVeiculos listaVeiculos;
 
+    /**
+     * listaClientes usado para receber a lista de clientes
+     */
     private ListaClientes listaClientes;
 
+    /**
+     * listaClientes usado para receber a lista de locacoes
+     */
     private ListaLocacoes listaLocacoes;
 
+    /**
+     * Método usado para inicializar a lista de locacoes, veiculos e clientes a partir do menu principal
+     * e também para adicionar as opções de seguro no choicebox
+     */
     @FXML
     void initialize() {
         choiceSeguro.getItems().addAll(escolhaseguro);
@@ -72,6 +122,11 @@ public class ControllerAdicionaLocacao {
         listaClientes = ControllerMenuLocadora.getListaClientes();
     }
 
+    /**
+     * Método usado para voltar ao menu principal
+     * 
+     * @param event evento de clicar no botão
+     */
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
         try {
@@ -85,6 +140,11 @@ public class ControllerAdicionaLocacao {
         }
     }
 
+    
+    /**
+     * Método usado para adicionar uma locacao a partir da placa, cpf, seguro, datainicial, datafinal
+     * @param event evento de clicar no botão
+     */
     @FXML
     void adicionarLocacao(ActionEvent event) {
          
@@ -173,39 +233,73 @@ public class ControllerAdicionaLocacao {
     }
         
     
-
+    /**
+     * Método para limpar os campos de texto presentes na tela
+     * 
+     * @param event evento de limpar os campos de texto presentes na tela
+     */
     @FXML
     void limparCampos(MouseEvent event) {
         textFieldCPF.setText("");
         textFieldPlaca.setText("");
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de adicionar
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnAdicionar(MouseEvent event) {
         btnAdicionar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse do botão de adicionar
+     * 
+     * @param event evento de hover ao tirar o mouse do botão
+     */
     @FXML
     void notHoverBtnAdicionar(MouseEvent event) {
         btnAdicionar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de limpar
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse do botão de limpar
+     * 
+     * @param event efeito de hover ao tirar o mouse do botão
+     */
     @FXML
     void notHoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de voltar
+     * 
+     * @param event evento hover ao passar o mouse no botão de voltar
+     */
     @FXML
     void hoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
         btnVoltar.setStyle("-fx-cursor: hand;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse do botão de voltar
+     * 
+     * @param event evento de hover ao tirar o mouse do botão
+     */
     @FXML
     void notHoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
