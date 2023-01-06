@@ -126,6 +126,7 @@ public class ControllerRemoveCliente {
         btnVoltar.setStyle("-fx-cursor: hand;");
     }
 
+
     @FXML
     void limparCampos(MouseEvent event) {
         textFieldCPF.clear();

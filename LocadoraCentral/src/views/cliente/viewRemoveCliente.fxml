@@ -35,7 +35,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <ImageView fx:id="btnVoltarLocacao" fitHeight="40.0" fitWidth="40.0" layoutX="33.0" layoutY="31.0" onMouseClicked="#voltarParaPrincipal" onMouseExited="#notHoverBtnVoltar" onMouseMoved="#hoverBtnVoltar">
+      <ImageView fx:id="btnVoltar" fitHeight="40.0" fitWidth="40.0" layoutX="33.0" layoutY="31.0" onMouseClicked="#voltarParaPrincipal" onMouseExited="#notHoverBtnVoltar" onMouseMoved="#hoverBtnVoltar">
          <image>
             <Image url="@pngVoltar.png" />
          </image>
