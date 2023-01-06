@@ -1,7 +1,6 @@
 package controller.locacao;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import controller.ControllerMenuLocadora;
@@ -76,7 +75,7 @@ public class ControllerInfoLocacao {
 
     @FXML
     void initialize() {
-        
+
         tableColumnDataFinalInfoCompleta.setCellValueFactory(dadosTabela -> {
             Locacao locacao = dadosTabela.getValue().getLocacao();
             return new SimpleObjectProperty<Calendar>(locacao.getDataFinal());
@@ -84,7 +83,7 @@ public class ControllerInfoLocacao {
         tableColumnDataFinalInfoCompleta.setCellFactory(column -> {
             return new TableCell<DadosTabela, Calendar>() {
                 private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
+
                 @Override
                 protected void updateItem(Calendar item, boolean empty) {
                     super.updateItem(item, empty);
@@ -104,7 +103,7 @@ public class ControllerInfoLocacao {
         tableColumnDataInicialInfoCompleta.setCellFactory(column -> {
             return new TableCell<DadosTabela, Calendar>() {
                 private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
+
                 @Override
                 protected void updateItem(Calendar item, boolean empty) {
                     super.updateItem(item, empty);
@@ -168,31 +167,28 @@ public class ControllerInfoLocacao {
 
         if (tableViewInfoCompleta.isVisible()) {
 
-            tableViewInfoCompleta.setVisible(true);
+
+
+        
         }
 
         tableViewInfoCompleta.setVisible(mostrarEsconderInfoCompleta);
-
+        mostrarEsconderInfoCompleta = !mostrarEsconderInfoCompleta;
 
         if (tableViewInfoCompleta.isVisible()) {
-            try {
-                ObservableList<DadosTabela> observableListLocacoes; 
+            ObservableList<DadosTabela> observableListLocacoes = FXCollections.observableArrayList();
 
+            try {
                 String[] dadosLocacoes = listaLocacoes.getInfo().split("\n");
 
-                ArrayList<DadosTabela> listaDadosTabela = new ArrayList<>();
+                for (String dados : dadosLocacoes) {
+                    String[] campos = dados.split(";");
+                    int codigoLocacao = Integer.parseInt(campos[0].split(": ")[1]);
 
-                for (String dadosLocacao : dadosLocacoes) {
-                    String[] dados = dadosLocacao.split(";");
-                    String codigoLocacao = dados[0].split(": ")[1];
-
-                    Locacao locacao = listaLocacoes.get(Integer.parseInt(codigoLocacao));
+                    Locacao locacao = listaLocacoes.get(codigoLocacao);
                     DadosTabela dadosTabela = new DadosTabela(locacao, locacao.getVeiculo(), locacao.getCliente());
-                    
-                    listaDadosTabela.add(dadosTabela);
+                    observableListLocacoes.add(dadosTabela);
                 }
-                observableListLocacoes = FXCollections.observableArrayList(listaDadosTabela);
-                tableViewInfoCompleta.setItems(observableListLocacoes);
             } catch (NullPointerException e) {
                 System.out.println(e.getLocalizedMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -201,8 +197,8 @@ public class ControllerInfoLocacao {
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
             }
+            tableViewInfoCompleta.setItems(observableListLocacoes);
         }
-        mostrarEsconderInfoCompleta = !mostrarEsconderInfoCompleta;
     }
 
     @FXML
