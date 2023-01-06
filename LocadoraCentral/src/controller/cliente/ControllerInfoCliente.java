@@ -224,6 +224,9 @@ public class ControllerInfoCliente {
      */
     private boolean mostrarEsconderInfoResumo = true;
 
+    /*
+     * listaClientes usado para armazenar os clientes
+     */
     private ListaClientes listaClientes;
 
     /*

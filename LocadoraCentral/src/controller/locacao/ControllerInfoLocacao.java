@@ -28,51 +28,109 @@ import lista.ListaLocacoes;
 import lista.Locacao;
 import veiculo.Veiculo;
 
+/**
+ * Classe responsável por controlar a tela de visualização de informações de
+ * locacoes
+ * 
+ * @author Mateus, Maurício, Ricardo, Tales
+ * @since dez 2022
+ * @version 1.0
+ */
 public class ControllerInfoLocacao {
 
+    /*
+     * btnInfoFullLocacao usado para mostrar informações completas das locacoes
+     */
     @FXML
     private Button btnInfoFullLocacao;
 
+    /*
+     * btnLimpar usado para limpar os campos de texto
+     */
     @FXML
     private Button btnLimpar;
 
+    /*
+     * btnMostrarEsconderCampos usado para mostrar/esconder os campos de texto
+     */
     @FXML
     private Button btnMostrarEsconderCampos;
 
+    /*
+     * btnPesquisar usado para pesquisar um cliente
+     */
     @FXML
     private Button btnPesquisar;
 
+    /*
+     * btnVoltar usado para voltar para a tela principal
+     */
     @FXML
     private ImageView btnVoltar;
 
+    /*
+     * rootPane usado para mostrar a tela de informações de clientes
+     */
     @FXML
     private AnchorPane rootPane;
 
+    /*
+     * tableColumnCPFInfoCompleta usado para mostrar o CPF do cliente da locacao
+     */
     @FXML
     private TableColumn<DadosTabela, String> tableColumnCPFInfoCompleta;
 
+    /*
+     * tableColumnDataFinalInfoCompleta usado para mostrar a data final da locacao
+     */
     @FXML
     private TableColumn<DadosTabela, Calendar> tableColumnDataFinalInfoCompleta;
 
+    /*
+     * tableColumnDataInicialInfoCompleta usado para mostrar a data inicial da locacao
+     */
     @FXML
     private TableColumn<DadosTabela, Calendar> tableColumnDataInicialInfoCompleta;
 
+    /*
+     * tableColumnIDInfoCompleta usado para mostrar o ID da locacao
+     */
     @FXML
     private TableColumn<DadosTabela, Integer> tableColumnIDInfoCompleta;
 
+    /*
+     * tableColumnNomeInfoCompleta usado para mostrar o nome do cliente da locacao
+     */
     @FXML
     private TableColumn<DadosTabela, Boolean> tableColumnSeguroInfoCompleta;
 
+    /*
+     * tableColumnVeiculoInfoCompleta usado para mostrar o veiculo da locacao
+     */
     @FXML
     private TableColumn<DadosTabela, String> tableColumnVeiculoInfoCompleta;
 
+    /*
+     * tableViewInfoCompleta usado para mostrar as informações completas das locacoes
+     */
     @FXML
     private TableView<DadosTabela> tableViewInfoCompleta;
 
+    /*
+     * listaClientes usado para armazenar as locacoes
+     */
     private ListaLocacoes listaLocacoes;
 
+    /*
+     * mostrarEsconderInfoCompleta usado para mostrar/esconder a tabela com as
+     * informações completas das locacoes
+     */
     private boolean mostrarEsconderInfoCompleta = true;
 
+    /*
+     * Método usado para inicializar as colunas das tabelas de informações 
+     * das locacoes e também para inicializar a lista de locacoes
+     */
     @FXML
     void initialize() {
 
@@ -136,11 +194,22 @@ public class ControllerInfoLocacao {
         listaLocacoes = ControllerMenuLocadora.getListaLocacoes();
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de todas as locacoes
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnInfoFullLocacao(MouseEvent event) {
         btnInfoFullLocacao.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de limpar os campos de texto
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnLimpar(MouseEvent event) {
 
@@ -151,6 +220,11 @@ public class ControllerInfoLocacao {
         btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de pesquisar
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnPesquisar(MouseEvent event) {
 
@@ -162,6 +236,7 @@ public class ControllerInfoLocacao {
         btnVoltar.setStyle("-fx-cursor: hand;");
     }
 
+    //////////////////////////////////////FALTA ESSE////////////////////////////////
     @FXML
     void infoFullLocacao(ActionEvent event) {
 
@@ -201,46 +276,89 @@ public class ControllerInfoLocacao {
         }
     }
 
+    //////////////////////////////////////FALTA ESSE////////////////////////////////
     @FXML
     void infoLocacao(ActionEvent event) {
 
     }
 
+    /**
+     * Método para limpar os campos de texto presentes na tela
+     * 
+     * @param event evento de limpar os campos de texto presentes na tela
+     */
     @FXML
     void limparCampos(MouseEvent event) {
 
     }
 
+    /**
+     * Método para mostrar/esconder os campos de pesquisa
+     * 
+     * @param event evento de mostrar/esconder os campos de pesquisa
+     */
     @FXML
     void mostrarEsconderCampos(ActionEvent event) {
 
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnInfoFullLocacao(MouseEvent event) {
         btnInfoFullLocacao.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de limpar os campos de texto
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnLimpar(MouseEvent event) {
 
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar/esconder os campos de
+     * pesquisa
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnMostrarCampos(MouseEvent event) {
         btnMostrarEsconderCampos.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de pesquisar
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnPesquisar(MouseEvent event) {
 
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de voltar
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
+    /**
+     * Método usado para voltar ao menu principal
+     * 
+     * @param event evento de clicar no botão de voltar
+     */
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
         try {

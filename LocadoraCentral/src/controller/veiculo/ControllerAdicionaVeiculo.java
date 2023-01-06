@@ -19,79 +19,165 @@ import javafx.scene.layout.Pane;
 import lista.ListaVeiculos;
 import veiculo.*;
 
+/**
+ * A classe ControllerAdicionaLocacao é responsável por controlar a tela de adicionar veiculo
+ * 
+ * @author Mateus, Maurício, Ricardo, Tales
+ * @since dez 2022
+ * @version 1.0
+ */
 public class ControllerAdicionaVeiculo {
 
+    /**
+     * btnAdicionar usado para adicionar uma locacao
+     */
     @FXML
     private Button btnAdicionar;
 
+    /**
+     * btnLimpar usado para limpar os campos
+     */
     @FXML
     private Button btnLimpar;
 
+    /**
+     * btnVoltar usado para voltar para a tela principal
+     */
     @FXML
     private ImageView btnVoltar;
 
+    /**
+     * rootPane usado para carregar a tela de adicionar locacao
+     */
     @FXML
     private AnchorPane rootPane;
 
+    /**
+     * choiceBoxTipoVeiculo usado para selecionar o tipo de veiculo
+     */
     @FXML
     private ChoiceBox<String> choiceBoxTipoVeiculo;
 
+    /**
+     * choiceBoxArCondicionadoCarro usado para selecionar se o carro tem ar condicionado
+     */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoCarro;
 
+    /**
+     * choiceBoxCategoria usado para selecionar a categoria do onibus
+     */
     @FXML
     private ChoiceBox<String> choiceBoxCategoria;
-
+ 
+    /**
+     * choiceBoxWifiOnibus usado para selecionar se o onibus tem wifi
+     */
     @FXML
     private ChoiceBox<String> choiceBoxWifiOnibus;
 
+    /**
+     * choiceBoxArCondicionadoOnibus usado para selecionar se o onibus tem ar condicionado
+     */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoOnibus;
 
+    /**
+     * paneCaminhao usado para carregar os campos do caminhao
+     */
     @FXML
     private Pane paneCaminhao;
 
+    /**
+     * paneCarro usado para carregar os campos do carro
+     */
     @FXML
     private Pane paneCarro;
 
+    /**
+     * paneOnibus usado para carregar os campos do onibus
+     */
     @FXML
     private Pane paneOnibus;
 
+    /**
+     * textFieldAno usado para receber o ano do veiculo
+     */
     @FXML
     private TextField textFieldAno;
 
+    /**
+     * textFieldCargaMaxima usado para receber a carga maxima do caminhao
+     */
     @FXML
     private TextField textFieldCargaMaxima;
 
+    /**
+     * textFieldDiaria usado para receber o valor da diaria do veiculo
+     */
     @FXML
     private TextField textFieldDiaria;
 
+    /**
+     * textFieldMarca usado para receber media de km do veiculo
+     */
     @FXML
     private TextField textFieldMediaKm;
 
+    /**
+     * textFieldModelo usado para receber o numero de eixos do caminhao
+     */
     @FXML
     private TextField textFieldNumeroEixos;
 
+    /**
+     * textFieldNumeroPassageirosCarro usado para receber o numero de passageiros do carro
+     */
     @FXML
     private TextField textFieldNumeroPassageirosCarro;
 
+    /**
+     * textFieldNumeroPassageirosOnibus usado para receber o numero de passageiros do onibus
+     */
     @FXML
     private TextField textFieldNumeroPassageirosOnibus;
 
+    /**
+     * textFieldNumeroPortas usado para receber o numero de portas do carro
+     */
     @FXML
     private TextField textFieldNumeroPortas;
 
+    /**
+     * textFieldPlaca usado para receber a placa do veiculo
+     */
     @FXML
     private TextField textFieldPlaca;
 
+    /**
+     * tipoVeiculos usado para selecionar o tipo de veiculo
+     */
     private final String[] tipoVeiculos = { "Carro", "Ônibus", "Caminhão" };
 
+    /**
+     * escolhaBooleana usado como uma flag de verdadeiro ou falso
+     */
     private final String[] escolhaBooleana = { "Sim", "Não" };
 
+    /**
+     * tipoCategorias usado para selecionar a categoria do onibus
+     */
     private final String[] tipoCategorias = { "Leito", "Executivo", "Convencional" };
 
+    /**
+     * listaVeiculos usado para receber a lista de veiculos
+     */
     private ListaVeiculos listaVeiculos;
 
+    /**
+     * Método usado para inicializar a lista de locacoes, veiculos e clientes a partir do menu principal
+     * e também para adicionar as opções de tipo de veiculo, ar condicionado do carro e onibus, wifi do onibus, categoria do onibus no choiceBox
+     */
     @FXML
     void initialize() {
         choiceBoxTipoVeiculo.getItems().addAll(tipoVeiculos);
@@ -105,6 +191,11 @@ public class ControllerAdicionaVeiculo {
         listaVeiculos = ControllerMenuLocadora.getListaVeiculos();
     }
 
+    /**
+     * Método usado para voltar ao menu principal
+     * 
+     * @param event evento de clicar no botão
+     */
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
         try {
@@ -118,6 +209,11 @@ public class ControllerAdicionaVeiculo {
         }
     }
 
+    /**
+     * Método usado para selecionar o tipo de veiculo, que pode ser carro, onibus ou caminhao
+     * 
+     * @param event evento de clicar no botão
+     */
     public void selecionaTipoVeiculo(ActionEvent event) {
         String tipoVeiculo = choiceBoxTipoVeiculo.getValue();
         if (tipoVeiculo.equals("Caminhão")) {
@@ -140,6 +236,10 @@ public class ControllerAdicionaVeiculo {
         limparCampos();
     }
 
+    /**
+     * Método usado para adicionar um veiculo a partir da placa, tipo de veiculo, ano, diaria, marca, modelo, media de km, numero de portas, numero de passageiros do carro, numero de eixos do caminhao, numero de passageiros do onibus, ar condicionado do carro, ar condicionado do onibus, wifi do onibus, categoria do onibus
+     * @param event evento de clicar no botão
+     */
     @FXML
     void adicionarVeiculo(ActionEvent event) {
 
@@ -326,6 +426,11 @@ public class ControllerAdicionaVeiculo {
 
     }
 
+    /**
+     * Método para limpar os campos de texto presentes na tela
+     * 
+     * @param event evento de limpar os campos de texto presentes na tela
+     */
     void limparCampos() {
         textFieldCargaMaxima.setText("");
         textFieldMediaKm.setText("");
@@ -335,6 +440,11 @@ public class ControllerAdicionaVeiculo {
         textFieldNumeroPortas.setText("");
     }
 
+    /**
+     * Método para limpar todos os campos de texto presentes na tela
+     * 
+     * @param event evento de limpar os campos de texto presentes na tela
+     */
     @FXML
     void limparTodosCampos(MouseEvent event) {
         textFieldAno.setText("");
@@ -348,32 +458,62 @@ public class ControllerAdicionaVeiculo {
         textFieldPlaca.setText("");
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de limpar
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse do botão de limpar
+     * 
+     * @param event efeito de hover ao tirar o mouse do botão
+     */
     @FXML
     void notHoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de voltar
+     * 
+     * @param event evento hover ao passar o mouse no botão de voltar
+     */
     @FXML
     void hoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
         btnVoltar.setStyle("-fx-cursor: hand;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse do botão de voltar
+     * 
+     * @param event evento de hover ao tirar o mouse do botão
+     */
     @FXML
     void notHoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de adicionar
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnAdicionar(MouseEvent event) {
         btnAdicionar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse do botão de adicionar
+     * 
+     * @param event evento de hover ao tirar o mouse do botão
+     */
     @FXML
     void notHoverBtnAdicionar(MouseEvent event) {
         btnAdicionar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
