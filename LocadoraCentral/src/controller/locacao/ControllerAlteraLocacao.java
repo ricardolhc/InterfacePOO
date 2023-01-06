@@ -1,16 +1,14 @@
 package controller.locacao;
 
-import controller.ControllerMenuLocadora;
-
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
+import controller.ControllerMenuLocadora;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -21,7 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-
 import lista.Cliente;
 import lista.ListaClientes;
 import lista.ListaLocacoes;
@@ -61,10 +58,10 @@ public class ControllerAlteraLocacao {
     private TextField textFieldCPF;
 
     @FXML
-    private TextField textFieldPlaca;
+    private TextField textFieldID;
 
     @FXML
-    private TextField textFieldID;
+    private TextField textFieldPlaca;
 
     private int IDAlterar;
 
@@ -79,8 +76,7 @@ public class ControllerAlteraLocacao {
     void initialize() {
         listaLocacao = ControllerMenuLocadora.getListaLocacoes();
     }
- 
- 
+
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
         try {
@@ -94,8 +90,8 @@ public class ControllerAlteraLocacao {
         }
     }
 
-@FXML
-    void procurarLocacao(ActionEvent event) {
+    @FXML
+    void pesquisarLocacao(ActionEvent event) {
         IDAlterar = textFieldID.getText().isEmpty() ? 0 : Integer.parseInt(textFieldID.getText());
 
         if (textFieldID.getText().isEmpty()) {
@@ -242,8 +238,6 @@ public class ControllerAlteraLocacao {
             }
         }
     }
-                  
-        
 
     @FXML
     void hoverBtnAlterar(MouseEvent event) {
@@ -292,4 +286,5 @@ public class ControllerAlteraLocacao {
     void notHoverBtnPesquisar(MouseEvent event) {
         btnPesquisar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
+
 }
