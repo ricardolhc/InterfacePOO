@@ -1,13 +1,15 @@
 package controller.veiculo;
 
-import java.util.ArrayList;
-
 import controller.ControllerMenuLocadora;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -15,18 +17,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+
 import lista.ListaVeiculos;
-import veiculo.Caminhao;
-import veiculo.Carro;
-import veiculo.Categoria;
-import veiculo.Onibus;
-import veiculo.Veiculo;
+
+import veiculo.*;
 
 /**
  * Classe responsável por controlar a tela de visualização de informações de
@@ -108,85 +113,99 @@ public class ControllerInfoVeiculo {
     private AnchorPane rootPane;
 
     /*
-     * tableColumnAnoInfoCompleta usado para mostrar o ano do veiculo nas informações completas
+     * tableColumnAnoInfoCompleta usado para mostrar o ano do veiculo nas
+     * informações completas
      */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnAnoInfoCompleta;
 
     /*
-     * tableColumnAnoInfoCompleta usado para mostrar o ano do veiculo nas informações resumidas
+     * tableColumnAnoInfoCompleta usado para mostrar o ano do veiculo nas
+     * informações resumidas
      */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnAnoInfoResumo;
 
     /*
-     * tableColumnArCondicionadoInfoCompleta usado para mostrar se o veiculo tem ar condicionado nas informações completas
+     * tableColumnArCondicionadoInfoCompleta usado para mostrar se o veiculo tem ar
+     * condicionado nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Boolean> tableColumnArCondicionadoInfoCompleta;
 
     /*
-     * tableColumnCargaMaximaInfoCompleta usado para mostrar a carga maxima do caminhao nas informações completas
+     * tableColumnCargaMaximaInfoCompleta usado para mostrar a carga maxima do
+     * caminhao nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnCargaMaximaInfoCompleta;
 
     /*
-     * tableColumnCategoriaInfoCompleta usado para mostrar a categoria do onibus nas informações completas
+     * tableColumnCategoriaInfoCompleta usado para mostrar a categoria do onibus nas
+     * informações completas
      */
     @FXML
     private TableColumn<Veiculo, Categoria> tableColumnCategoriaInfoCompleta;
-    
+
     /*
-     * tableColumnDiariaInfoCompleta usado para mostrar a diaria do veiculo nas informações completas
+     * tableColumnDiariaInfoCompleta usado para mostrar a diaria do veiculo nas
+     * informações completas
      */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnDiariaInfoCompleta;
 
     /*
-     * tableColumnDiariaInfoResumo usado para mostrar a diaria do veiculo nas informações resumidas
+     * tableColumnDiariaInfoResumo usado para mostrar a diaria do veiculo nas
+     * informações resumidas
      */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnDiariaInfoResumo;
 
     /*
-     * tableColumnEixosInfoCompleta usado para mostrar a quantidade de eixos do caminhao nas informações completas
+     * tableColumnEixosInfoCompleta usado para mostrar a quantidade de eixos do
+     * caminhao nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnEixosInfoCompleta;
 
     /*
-     * tableColumnMediaKmInfoCompleta usado para mostrar a media de km do veiculo nas informações completas
+     * tableColumnMediaKmInfoCompleta usado para mostrar a media de km do veiculo
+     * nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnMediaKmInfoCompleta;
 
     /*
-     * tableColumnPassageirosInfoCompleta usado para mostrar a quantidade de passageiros do onibus nas informações completas
+     * tableColumnPassageirosInfoCompleta usado para mostrar a quantidade de
+     * passageiros do onibus nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnPassageirosInfoCompleta;
 
     /*
-     * tableColumnPlacaInfoCompleta usado para mostrar a placa do veiculo nas informações completas
+     * tableColumnPlacaInfoCompleta usado para mostrar a placa do veiculo nas
+     * informações completas
      */
     @FXML
     private TableColumn<Veiculo, String> tableColumnPlacaInfoCompleta;
 
     /*
-     * tableColumnPlacaInfoResumo usado para mostrar a placa do veiculo nas informações resumidas
+     * tableColumnPlacaInfoResumo usado para mostrar a placa do veiculo nas
+     * informações resumidas
      */
     @FXML
     private TableColumn<Veiculo, String> tableColumnPlacafInfoResumo;
 
     /*
-     * tableColumnPortasInfoCompleta usado para mostrar a quantidade de portas do veiculo nas informações completas
+     * tableColumnPortasInfoCompleta usado para mostrar a quantidade de portas do
+     * veiculo nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnPortasInfoCompleta;
 
     /*
-     * tableColumnWifiInfoCompleta usado para mostrar se o onibus tem wifi nas informações completas
+     * tableColumnWifiInfoCompleta usado para mostrar se o onibus tem wifi nas
+     * informações completas
      */
     @FXML
     private TableColumn<Veiculo, Boolean> tableColumnWifiInfoCompleta;
@@ -228,7 +247,8 @@ public class ControllerInfoVeiculo {
     private TextField textFieldTipoVeiculo;
 
     /*
-     * textFieldNumeroPassageirosCarro usado para receber a quantidade de passageiros do carro
+     * textFieldNumeroPassageirosCarro usado para receber a quantidade de
+     * passageiros do carro
      */
     @FXML
     private TextField textFieldNumeroPassageirosCarro;
@@ -258,7 +278,8 @@ public class ControllerInfoVeiculo {
     private TextField textFieldNumeroEixos;
 
     /*
-     * textFieldNumeroPassageirosOnibus usado para receber a quantidade de passageiros do onibus
+     * textFieldNumeroPassageirosOnibus usado para receber a quantidade de
+     * passageiros do onibus
      */
     @FXML
     private TextField textFieldNumeroPassageirosOnibus;
@@ -276,7 +297,8 @@ public class ControllerInfoVeiculo {
     private ChoiceBox<String> choiceBoxWifiOnibus;
 
     /*
-     * choiceBoxArCondicionadoOnibus usado para receber se o onibus tem ar condicionado
+     * choiceBoxArCondicionadoOnibus usado para receber se o onibus tem ar
+     * condicionado
      */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoOnibus;
@@ -315,22 +337,27 @@ public class ControllerInfoVeiculo {
     private final String[] tipoCategorias = { "Leito", "Executivo", "Convencional" };
 
     /**
-     * mostrarEsconderInfoVeiculo usado para mostrar ou esconder as informações do veiculo
+     * mostrarEsconderInfoVeiculo usado para mostrar ou esconder as informações do
+     * veiculo
      */
     private boolean mostrarEsconderInfoVeiculo = true;
 
     /**
-     * mostrarEsconderInfoCompleta usado para mostrar ou esconder as informações completas do veiculo
+     * mostrarEsconderInfoCompleta usado para mostrar ou esconder as informações
+     * completas do veiculo
      */
     private boolean mostrarEsconderInfoCompleta = true;
 
     /**
-     * mostrarEsconderInfoResumo usado para mostrar ou esconder as informações resumidas do veiculo
+     * mostrarEsconderInfoResumo usado para mostrar ou esconder as informações
+     * resumidas do veiculo
      */
     private boolean mostrarEsconderInfoResumo = true;
 
     /**
-     * Método usado para inicializar as colunas placa, ano, diaria, categoria, mediaKm, cargaMaxima, eixos, passageiros, portas, wifi e arCondicionado da tabela
+     * Método usado para inicializar as colunas placa, ano, diaria, categoria,
+     * mediaKm, cargaMaxima, eixos, passageiros, portas, wifi e arCondicionado da
+     * tabela
      * e também para inicializar a lista de locacoes
      */
     @FXML
@@ -341,11 +368,14 @@ public class ControllerInfoVeiculo {
 
         tableColumnCategoriaInfoCompleta.setCellValueFactory(new PropertyValueFactory<Veiculo, Categoria>("categoria"));
         tableColumnMediaKmInfoCompleta.setCellValueFactory(new PropertyValueFactory<Veiculo, Double>("mediaKm"));
-        tableColumnCargaMaximaInfoCompleta.setCellValueFactory(new PropertyValueFactory<Veiculo, Double>("cargaMaxima"));
+        tableColumnCargaMaximaInfoCompleta
+                .setCellValueFactory(new PropertyValueFactory<Veiculo, Double>("cargaMaxima"));
         tableColumnEixosInfoCompleta.setCellValueFactory(new PropertyValueFactory<Veiculo, Integer>("numeroEixos"));
-        tableColumnPassageirosInfoCompleta.setCellValueFactory(new PropertyValueFactory<Veiculo, Integer>("numeroPassageiros"));
+        tableColumnPassageirosInfoCompleta
+                .setCellValueFactory(new PropertyValueFactory<Veiculo, Integer>("numeroPassageiros"));
         tableColumnPortasInfoCompleta.setCellValueFactory(new PropertyValueFactory<Veiculo, Integer>("numeroPortas"));
-        tableColumnArCondicionadoInfoCompleta.setCellValueFactory(new PropertyValueFactory<Veiculo, Boolean>("arcondicionado"));
+        tableColumnArCondicionadoInfoCompleta
+                .setCellValueFactory(new PropertyValueFactory<Veiculo, Boolean>("arcondicionado"));
         tableColumnWifiInfoCompleta.setCellValueFactory(new PropertyValueFactory<Veiculo, Boolean>("wifi"));
 
         tableColumnPlacafInfoResumo.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("placa"));
@@ -390,107 +420,96 @@ public class ControllerInfoVeiculo {
 
         try {
 
-            if(!placa.isEmpty()) {
-                if(listaVeiculos.existe(placa)) {
-                    Veiculo veiculo = listaVeiculos.get(placa);
+            if (!placa.isEmpty()) {
+                throw new NullPointerException("Preencha o campo placa!");
+            }
+            if (!listaVeiculos.existe(placa)) {
+                throw new NullPointerException("Veículo não encontrado!");
+            }
 
-                    if(veiculo instanceof Carro) {
-                        Carro carro = (Carro) veiculo;
+            Veiculo veiculo = listaVeiculos.get(placa);
 
-                        String arCondicionado;
+            if (veiculo instanceof Carro) {
+                Carro carro = (Carro) veiculo;
 
-                        if(carro.getArcondicionado() == true) {
-                            arCondicionado = "Sim";
-                        } else {
-                            arCondicionado = "Não";
-                        }
+                String arCondicionado;
 
-                        paneCaminhao.setVisible(false);
-                        paneOnibus.setVisible(false);
-                        paneCarro.setVisible(true);
-
-                        textFieldAno.setText(String.valueOf(carro.getAno()));
-                        textFieldDiaria.setText(String.valueOf(carro.getDiaria()));
-                        textFieldNumeroPassageirosCarro.setText(String.valueOf(carro.getNumeroPassageiros()));
-                        textFieldNumeroPortas.setText(String.valueOf(carro.getNumeroPortas()));
-                        textFieldMediaKm.setText(String.valueOf(carro.getMediaKm()));
-                        choiceBoxArCondicionadoCarro.setValue(arCondicionado);
-                        textFieldTipoVeiculo.setText("Carro");
-
-                    } else if(veiculo instanceof Caminhao) {
-                        Caminhao caminhao = (Caminhao) veiculo;
-
-                        paneCarro.setVisible(false);
-                        paneOnibus.setVisible(false);
-                        paneCaminhao.setVisible(true);
-
-                        textFieldAno.setText(String.valueOf(caminhao.getAno()));
-                        textFieldDiaria.setText(String.valueOf(caminhao.getDiaria()));
-                        textFieldNumeroEixos.setText(String.valueOf(caminhao.getNumeroEixos()));
-                        textFieldCargaMaxima.setText(String.valueOf(caminhao.getCargaMaxima()));
-                        textFieldTipoVeiculo.setText("Caminhão");
-
-                    } else if(veiculo instanceof Onibus) {
-                        Onibus onibus = (Onibus) veiculo;
-
-                        String wifi;
-                        String arCondicionado;
-                        String categoria;
-
-                        if(onibus.getWifi() == true) {
-                            wifi = "Sim";
-                        } else {
-                            wifi = "Não";
-                        }
-
-                        if(onibus.getArcondicionado() == true) {
-                            arCondicionado = "Sim";
-                        } else {
-                            arCondicionado = "Não";
-                        }
-
-                        if (onibus.getCategoria() == Categoria.LEITO) {
-                            categoria = "Leito";
-                        } else if (onibus.getCategoria() == Categoria.EXECUTIVO) {
-                            categoria = "Executivo";
-                        } else {
-                            categoria = "Convencional";
-                        }
-
-                        paneCarro.setVisible(false);
-                        paneCaminhao.setVisible(false);
-                        paneOnibus.setVisible(true);
-
-                        textFieldAno.setText(String.valueOf(onibus.getAno()));
-                        textFieldDiaria.setText(String.valueOf(onibus.getDiaria()));
-                        textFieldNumeroPassageirosOnibus.setText(String.valueOf(onibus.getNumeroPassageiros()));
-                        textFieldTipoVeiculo.setText("Ônibus");
-
-                        choiceBoxCategoria.setValue(categoria);
-                        choiceBoxWifiOnibus.setValue(wifi);
-                        choiceBoxArCondicionadoOnibus.setValue(arCondicionado);
-                    }
+                if (carro.getArcondicionado() == true) {
+                    arCondicionado = "Sim";
+                } else {
+                    arCondicionado = "Não";
                 }
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setHeaderText(null);
-                alert.setContentText("Preencha o campo placa!");
-                alert.showAndWait();
+
+                paneCaminhao.setVisible(false);
+                paneOnibus.setVisible(false);
+                paneCarro.setVisible(true);
+
+                textFieldAno.setText(String.valueOf(carro.getAno()));
+                textFieldDiaria.setText(String.valueOf(carro.getDiaria()));
+                textFieldNumeroPassageirosCarro.setText(String.valueOf(carro.getNumeroPassageiros()));
+                textFieldNumeroPortas.setText(String.valueOf(carro.getNumeroPortas()));
+                textFieldMediaKm.setText(String.valueOf(carro.getMediaKm()));
+                choiceBoxArCondicionadoCarro.setValue(arCondicionado);
+                textFieldTipoVeiculo.setText("Carro");
+
+            } else if (veiculo instanceof Caminhao) {
+                Caminhao caminhao = (Caminhao) veiculo;
+
+                paneCarro.setVisible(false);
+                paneOnibus.setVisible(false);
+                paneCaminhao.setVisible(true);
+
+                textFieldAno.setText(String.valueOf(caminhao.getAno()));
+                textFieldDiaria.setText(String.valueOf(caminhao.getDiaria()));
+                textFieldNumeroEixos.setText(String.valueOf(caminhao.getNumeroEixos()));
+                textFieldCargaMaxima.setText(String.valueOf(caminhao.getCargaMaxima()));
+                textFieldTipoVeiculo.setText("Caminhão");
+
+            } else if (veiculo instanceof Onibus) {
+                Onibus onibus = (Onibus) veiculo;
+
+                String wifi;
+                String arCondicionado;
+                String categoria;
+
+                if (onibus.getWifi() == true) {
+                    wifi = "Sim";
+                } else {
+                    wifi = "Não";
+                }
+
+                if (onibus.getArcondicionado() == true) {
+                    arCondicionado = "Sim";
+                } else {
+                    arCondicionado = "Não";
+                }
+
+                if (onibus.getCategoria() == Categoria.LEITO) {
+                    categoria = "Leito";
+                } else if (onibus.getCategoria() == Categoria.EXECUTIVO) {
+                    categoria = "Executivo";
+                } else {
+                    categoria = "Convencional";
+                }
+
+                paneCarro.setVisible(false);
+                paneCaminhao.setVisible(false);
+                paneOnibus.setVisible(true);
+
+                textFieldAno.setText(String.valueOf(onibus.getAno()));
+                textFieldDiaria.setText(String.valueOf(onibus.getDiaria()));
+                textFieldNumeroPassageirosOnibus.setText(String.valueOf(onibus.getNumeroPassageiros()));
+                textFieldTipoVeiculo.setText("Ônibus");
+
+                choiceBoxCategoria.setValue(categoria);
+                choiceBoxWifiOnibus.setValue(wifi);
+                choiceBoxArCondicionadoOnibus.setValue(arCondicionado);
             }
 
         } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro");
-            alert.setHeaderText(null);
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
         } catch (NullPointerException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro");
-            alert.setHeaderText(null);
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
     }
 
@@ -501,7 +520,7 @@ public class ControllerInfoVeiculo {
      */
     @FXML
     void infoFullVeiculo(ActionEvent event) {
-        if(textFieldPlaca.isVisible() || tableViewInfoResumo.isVisible()) {
+        if (textFieldPlaca.isVisible() || tableViewInfoResumo.isVisible()) {
             textFieldPlaca.setVisible(false);
             textFieldDiaria.setVisible(false);
             textFieldAno.setVisible(false);
@@ -526,35 +545,25 @@ public class ControllerInfoVeiculo {
         }
 
         tableViewInfoCompleta.setVisible(mostrarEsconderInfoCompleta);
+        mostrarEsconderInfoCompleta = !mostrarEsconderInfoCompleta;
 
-        if(tableViewInfoCompleta.isVisible()) {
+        if (tableViewInfoCompleta.isVisible()) {
+            ObservableList<Veiculo> observableListVeiculos = FXCollections.observableArrayList();
             try {
-                ObservableList<Veiculo> observableListVeiculos;
-                ArrayList<Veiculo> listaVeiculosTable = new ArrayList<Veiculo>();
-                
                 String[] dadosVeiculos = listaVeiculos.getInfo().split("\n");
-                for (String dadosVeiculo : dadosVeiculos) {
-                    String[] dados = dadosVeiculo.split(";");
-                    String placa = dados[0].split(": ")[1];
+                for (String dados : dadosVeiculos) {
+                    String[] campos = dados.split(";");
+                    String placa = campos[0].split(": ")[1];
 
                     Veiculo veiculo = listaVeiculos.get(placa);
-                    listaVeiculosTable.add(veiculo);
+                    observableListVeiculos.add(veiculo);
                 }
-                observableListVeiculos = FXCollections.observableArrayList(listaVeiculosTable);
-                tableViewInfoCompleta.setItems(observableListVeiculos);
-                tableViewInfoResumo.setItems(observableListVeiculos);
-    
             } catch (NullPointerException e) {
-                System.out.println(e.getLocalizedMessage());
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
+                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
             }
+            tableViewInfoCompleta.setItems(observableListVeiculos);
         }
 
-        mostrarEsconderInfoCompleta = !mostrarEsconderInfoCompleta;
     }
 
     /**
@@ -565,7 +574,7 @@ public class ControllerInfoVeiculo {
     @FXML
     void infoResumoVeiculo(ActionEvent event) {
 
-        if(textFieldPlaca.isVisible() || tableViewInfoCompleta.isVisible()) {
+        if (textFieldPlaca.isVisible() || tableViewInfoCompleta.isVisible()) {
             textFieldPlaca.setVisible(false);
             textFieldDiaria.setVisible(false);
             textFieldAno.setVisible(false);
@@ -590,36 +599,25 @@ public class ControllerInfoVeiculo {
         }
 
         tableViewInfoResumo.setVisible(mostrarEsconderInfoResumo);
+        mostrarEsconderInfoResumo = !mostrarEsconderInfoResumo;
 
-        if(tableViewInfoResumo.isVisible()) {
+        if (tableViewInfoResumo.isVisible()) {
+            ObservableList<Veiculo> observableListVeiculos = FXCollections.observableArrayList();
             try {
-                ObservableList<Veiculo> observableListVeiculos;
-                ArrayList<Veiculo> listaVeiculosTable = new ArrayList<Veiculo>();
-                
                 String[] dadosVeiculos = listaVeiculos.getResumoInfo().split("\n");
-                for (String dadosVeiculo : dadosVeiculos) {
-                    
-                    String[] dados = dadosVeiculo.split(";");
-                    String placa = dados[0].split(": ")[1];
+                for (String dados : dadosVeiculos) {
+                    String[] campos = dados.split(";");
+                    String placa = campos[0].split(": ")[1];
 
                     Veiculo veiculo = listaVeiculos.get(placa);
-                    listaVeiculosTable.add(veiculo);
+                    observableListVeiculos.add(veiculo);
                 }
-                observableListVeiculos = FXCollections.observableArrayList(listaVeiculosTable);
-                tableViewInfoResumo.setItems(observableListVeiculos);
-                tableViewInfoResumo.setItems(observableListVeiculos);
-    
             } catch (NullPointerException e) {
-                System.out.println(e.getLocalizedMessage());
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
+                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
             }
+            tableViewInfoResumo.setItems(observableListVeiculos);
         }
 
-        mostrarEsconderInfoResumo = !mostrarEsconderInfoResumo;
     }
 
     /**
@@ -629,7 +627,6 @@ public class ControllerInfoVeiculo {
      */
     @FXML
     void limparCampos(MouseEvent event) {
-        
         textFieldAno.setText("");
         textFieldPlaca.setText("");
         textFieldDiaria.setText("");
@@ -640,7 +637,7 @@ public class ControllerInfoVeiculo {
         textFieldNumeroPortas.setText("");
         textFieldNumeroPassageirosCarro.setText("");
         textFieldMediaKm.setText("");
-        
+
         paneCaminhao.setVisible(false);
         paneCarro.setVisible(false);
         paneOnibus.setVisible(false);
@@ -654,7 +651,7 @@ public class ControllerInfoVeiculo {
     @FXML
     void mostrarEsconderCampos(ActionEvent event) {
 
-        if(tableViewInfoCompleta.isVisible() || tableViewInfoResumo.isVisible()) {
+        if (tableViewInfoCompleta.isVisible() || tableViewInfoResumo.isVisible()) {
             tableViewInfoCompleta.setVisible(false);
             tableViewInfoResumo.setVisible(false);
 
@@ -807,6 +804,21 @@ public class ControllerInfoVeiculo {
     void hoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
         btnVoltar.setStyle("-fx-cursor: hand;");
-    }    
+    }
+
+    /**
+     * Método para imprimir um alerta na tela
+     * 
+     * @param titulo   titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo     tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
 
 }

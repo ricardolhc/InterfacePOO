@@ -281,31 +281,30 @@ public class ControllerInfoCliente {
         try {
             if (cpf.isEmpty()) {
                 throw new NullPointerException("Campo CPF vazio");
-            } else {
-                if (cpf.length() != 11) {
-                    throw new IllegalArgumentException("CPF inválido");
-                }
-
-                long cpfLong = Long.parseLong(cpf);
-
-                /* VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO */
-                if (!listaClientes.existe(cpfLong)) {
-                    throw new NullPointerException("CPF não existente!");
-                } else {
-                    Cliente cliente = listaClientes.get(cpfLong);
-
-                    long cnh = cliente.getNumeroCarteiraMotorista();
-                    long telefone = cliente.getTelefone();
-                    String nome = cliente.getNome();
-                    String endereco = cliente.getEndereco();
-
-                    textFieldNome.setText(nome);
-                    textFieldEndereco.setText(endereco);
-                    textFieldTelefone.setText(String.valueOf(telefone));
-                    textFieldCarteiraMotorista.setText(String.valueOf(cnh));
-                }
-
             }
+            if (cpf.length() != 11) {
+                throw new IllegalArgumentException("CPF inválido");
+            }
+
+            long cpfLong = Long.parseLong(cpf);
+
+            /* VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO */
+            if (!listaClientes.existe(cpfLong)) {
+                throw new NullPointerException("CPF não existente!");
+            } else {
+                Cliente cliente = listaClientes.get(cpfLong);
+
+                long cnh = cliente.getNumeroCarteiraMotorista();
+                long telefone = cliente.getTelefone();
+                String nome = cliente.getNome();
+                String endereco = cliente.getEndereco();
+
+                textFieldNome.setText(nome);
+                textFieldEndereco.setText(endereco);
+                textFieldTelefone.setText(String.valueOf(telefone));
+                textFieldCarteiraMotorista.setText(String.valueOf(cnh));
+            }
+
         } catch (NumberFormatException e) {
             alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
         } catch (NullPointerException | IllegalArgumentException e) {
@@ -423,7 +422,7 @@ public class ControllerInfoCliente {
         }
     }
 
-     /**
+    /**
      * Método para mostrar/esconder os campos de pesquisa
      * 
      * @param event evento de mostrar/esconder os campos de pesquisa
@@ -559,8 +558,6 @@ public class ControllerInfoCliente {
         rootPane.requestFocus();
     }
 
-   
-
     /**
      * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
      * resumidas de todos os clientes
@@ -626,9 +623,10 @@ public class ControllerInfoCliente {
 
     /**
      * Método para imprimir um alerta na tela
-     * @param titulo titulo do alerta
+     * 
+     * @param titulo   titulo do alerta
      * @param mensagem mensagem do alerta
-     * @param tipo tipo do alerta
+     * @param tipo     tipo do alerta
      */
     void alertInterface(String titulo, String mensagem, AlertType tipo) {
         Alert alert = new Alert(tipo);
