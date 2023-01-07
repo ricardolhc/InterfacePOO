@@ -1,7 +1,11 @@
 package controller.cliente;
 
 import controller.ControllerMenuLocadora;
-
+import exceptions.cliente.CPFNotFoundException;
+import exceptions.cliente.ClienteNotFoundException;
+import exceptions.cliente.InvalidCPFException;
+import exceptions.cliente.InvalidTelefoneException;
+import exceptions.geral.EmptyFieldException;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -140,17 +144,17 @@ public class ControllerAlteraCliente {
 
         try {
             if (cpfAlterar.isEmpty()) {
-                throw new NullPointerException("Campo CPF vazio");
+                throw new EmptyFieldException("Campo CPF vazio");
             }
 
             /* POSSIVEL NUMBERFORMATEXCEPTION */
             long cpfLong = Long.parseLong(cpfAlterar);
 
             if (cpfAlterar.length() != 11) {
-                throw new IllegalArgumentException("CPF inválido");
+                throw new InvalidCPFException("CPF inválido");
             }
             if (!listaClientes.existe(cpfLong)) {
-                throw new NullPointerException("Cliente não encontrado");
+                throw new ClienteNotFoundException("Cliente não encontrado");
             } else {
                 Cliente cliente = listaClientes.get(cpfLong);
 
@@ -165,9 +169,7 @@ public class ControllerAlteraCliente {
                 textFieldCarteiraMotorista.setText(String.valueOf(cnh));
             }
 
-        } catch (NumberFormatException e) {
-            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
-        } catch (NullPointerException | IllegalArgumentException e) {
+        } catch (InvalidCPFException | ClienteNotFoundException | EmptyFieldException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
 
@@ -195,7 +197,7 @@ public class ControllerAlteraCliente {
 
         try {
             if (cpf.isEmpty() || cnh.isEmpty() || telefone.isEmpty() || nome.isEmpty() || endereco.isEmpty()) {
-                throw new NullPointerException("Preencha todos os campos");
+                throw new EmptyFieldException("Preencha todos os campos");
             }
             if (!cpfAlterar.equals(cpfFinal)) {
                 throw new IllegalArgumentException("CPF não pode ser alterado sem pressionar o botão procurar!");
@@ -207,13 +209,13 @@ public class ControllerAlteraCliente {
             cpfLong = Long.parseLong(cpf);
 
             if (cpf.length() != 11) {
-                throw new IllegalArgumentException("CPF inválido");
+                throw new InvalidCPFException("CPF inválido");
             }
             if (telefone.length() != 11 && telefone.length() != 10) {
-                throw new IllegalArgumentException("Telefone inválido");
+                throw new InvalidTelefoneException("Telefone inválido");
             }
             if (!listaClientes.existe(cpfLong)) {
-                throw new NullPointerException("CPF não existente!");
+                throw new CPFNotFoundException("CPF não existente!");
             } else {
 
                 /* ADICIONA CLIENTE */
@@ -229,9 +231,7 @@ public class ControllerAlteraCliente {
                 alertInterface("SUCESSO", "Cliente alterado com sucesso!", AlertType.INFORMATION);
             }
 
-        } catch (NumberFormatException e) {
-            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
-        } catch (NullPointerException | IllegalArgumentException e) {
+        } catch (InvalidCPFException | CPFNotFoundException | EmptyFieldException | InvalidTelefoneException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
 

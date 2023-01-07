@@ -1,12 +1,16 @@
 package controller.locacao;
 
 import controller.ControllerMenuLocadora;
+import exceptions.geral.EmptyFieldException;
+import exceptions.locacao.IDNotFoundException;
+import exceptions.locacao.RemoveLocacaoException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -94,53 +98,26 @@ public class ControllerRemoveLocacao {
 
         /* VERIFICAR SE O CAMPO ESTÁ VAZIO */
 
-        try {
-            if (!textFieldLocacao.getText().isEmpty()) {
-                String codigoUnico = textFieldLocacao.getText();
-                int codigo = Integer.parseInt(codigoUnico);
-                if (listaLocacao.existe(codigo)) {
-                    if (listaLocacao.remove(codigo)) {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Remover Veículo");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Lócação removida com sucesso!");
-                        alert.showAndWait();
-                        limparCampos(null);
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Remover Locacao");
-                        alert.setHeaderText(null);
-                        alert.setContentText("O código não foi encontrado na lista de locações!");
-                        alert.showAndWait();
-                    }
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Remover locacao");
-                    alert.setHeaderText(null);
-                    alert.setContentText("O código não foi encontrado na lista de locações!");
-                    alert.showAndWait();
-                }
+        String codigoUnico = textFieldLocacao.getText();
 
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Remover Veículo");
-                alert.setHeaderText(null);
-                alert.setContentText("Código não pode ser vazio!");
-                alert.showAndWait();
+        try {
+            if (codigoUnico.isEmpty()) {
+                throw new EmptyFieldException("Campo código vazio!");
             }
 
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERRO");
-            alert.setHeaderText(null);
-            alert.setContentText("Código de locação não pode conter letras!");
-            alert.showAndWait();
-        } catch (NullPointerException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERRO");
-            alert.setHeaderText(null);
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            int codigo = Integer.parseInt(codigoUnico);
+
+            if (!listaLocacao.existe(codigo)) {
+                throw new IDNotFoundException("ID não encontrado!");
+            } 
+            if (!listaLocacao.remove(codigo)){
+                throw new RemoveLocacaoException("Erro ao remover locação!");
+            } else {
+                alertInterface("SUCESSO", "Locação removida com sucesso!", AlertType.INFORMATION);
+                limparCampos(null);
+            }
+        } catch (NumberFormatException | EmptyFieldException | IDNotFoundException | RemoveLocacaoException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
 
     }
@@ -222,4 +199,17 @@ public class ControllerRemoveLocacao {
 
     }
 
+    /**
+     * Método para imprimir um alerta na tela
+     * @param titulo titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
 }

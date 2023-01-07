@@ -1,7 +1,8 @@
 package controller.veiculo;
 
 import controller.ControllerMenuLocadora;
-
+import exceptions.geral.EmptyFieldException;
+import exceptions.veiculo.PlacaNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -421,10 +422,10 @@ public class ControllerInfoVeiculo {
         try {
 
             if (!placa.isEmpty()) {
-                throw new NullPointerException("Preencha o campo placa!");
+                throw new EmptyFieldException("Preencha o campo placa!");
             }
             if (!listaVeiculos.existe(placa)) {
-                throw new NullPointerException("Veículo não encontrado!");
+                throw new PlacaNotFoundException("Veículo não encontrado!");
             }
 
             Veiculo veiculo = listaVeiculos.get(placa);
@@ -506,11 +507,9 @@ public class ControllerInfoVeiculo {
                 choiceBoxArCondicionadoOnibus.setValue(arCondicionado);
             }
 
-        } catch (NumberFormatException e) {
-            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | EmptyFieldException | PlacaNotFoundException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
-        }
+        } 
     }
 
     /**

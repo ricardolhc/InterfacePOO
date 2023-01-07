@@ -1,7 +1,9 @@
 package controller.veiculo;
 
 import controller.ControllerMenuLocadora;
-
+import exceptions.geral.EmptyFieldException;
+import exceptions.veiculo.InvalidVeiculoException;
+import exceptions.veiculo.PlacaAlreadyAdd;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -264,19 +266,19 @@ public class ControllerAdicionaVeiculo {
         try {
 
             if (placa.isEmpty() || ano.isEmpty() || diaria.isEmpty()) {
-                throw new NullPointerException("Preencha todos os campos!");
+                throw new EmptyFieldException("Preencha todos os campos!");
             }
 
-            // PLACA NÃO CADASTRADA
+            // PLACA JÁ CADASTRADA
             if (listaVeiculos.existe(placa)) {
-                throw new IllegalArgumentException("Placa já cadastrada!");
+                throw new PlacaAlreadyAdd("Placa já cadastrada!");
             }
 
             String tipoVeiculo = choiceBoxTipoVeiculo.getValue();
 
             // VEICULO ESCOLHIDO
             if (tipoVeiculo == null) {
-                throw new NullPointerException("Escolha um veículo!");
+                throw new InvalidVeiculoException("Escolha um veículo!");
             }
 
             /* POSSIVEL NUMBERFORMATEXCEPTION */
@@ -292,7 +294,7 @@ public class ControllerAdicionaVeiculo {
                     String mediaKm = textFieldMediaKm.getText();
 
                     if (arCondicionado == null || numeroPortas.isEmpty() || numeroPassageiros.isEmpty() || mediaKm.isEmpty()) {
-                        throw new NullPointerException("Preencha todos os campos!");
+                        throw new EmptyFieldException("Preencha todos os campos!");
                     } else {
                         boolean arCondicionadoBoolean = false;
                         int numeroPortasInt = Integer.parseInt(numeroPortas);
@@ -309,7 +311,6 @@ public class ControllerAdicionaVeiculo {
                         listaVeiculos.add(carro);
 
                         alertInterface("SUCESSO", "Carro adicionado com sucesso!", AlertType.INFORMATION);
-
                         limparTodosCampos(null);
                     }
                     break;
@@ -320,7 +321,7 @@ public class ControllerAdicionaVeiculo {
                     String numeroPassageirosOnibus = textFieldNumeroPassageirosOnibus.getText();
 
                     if (wifi == null || arCondicionadoOnibus == null || numeroPassageirosOnibus.isEmpty()) {
-                        throw new NullPointerException("Preencha todos os campos!");
+                        throw new EmptyFieldException("Preencha todos os campos!");
                     } else {
 
                         boolean wifiBoolean = false;
@@ -362,7 +363,7 @@ public class ControllerAdicionaVeiculo {
                     String numeroEixos = textFieldNumeroEixos.getText();
 
                     if (cargaMaxima.isEmpty() || numeroEixos.isEmpty()) {
-                        throw new NullPointerException("Preencha todos os campos!");
+                        throw new EmptyFieldException("Preencha todos os campos!");
                     } else {
                         double cargaMaximaDouble = Double.parseDouble(cargaMaxima);
                         int numeroEixosInt = Integer.parseInt(numeroEixos);
@@ -371,15 +372,12 @@ public class ControllerAdicionaVeiculo {
                         listaVeiculos.add(caminhao);
 
                         alertInterface("SUCESSO", "Caminhão adicionado com sucesso!", AlertType.INFORMATION);
-
                         limparTodosCampos(null);
                     }
                     break;
             }
 
-        } catch (NumberFormatException e) {
-            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
-        } catch (NullPointerException | IllegalArgumentException e) {
+        } catch (NumberFormatException | EmptyFieldException | PlacaAlreadyAdd | InvalidVeiculoException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
 

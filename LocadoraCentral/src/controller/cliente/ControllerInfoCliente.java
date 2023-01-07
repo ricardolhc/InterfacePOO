@@ -1,7 +1,9 @@
 package controller.cliente;
 
 import controller.ControllerMenuLocadora;
-
+import exceptions.cliente.CPFNotFoundException;
+import exceptions.cliente.InvalidCPFException;
+import exceptions.geral.EmptyFieldException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -280,17 +282,17 @@ public class ControllerInfoCliente {
 
         try {
             if (cpf.isEmpty()) {
-                throw new NullPointerException("Campo CPF vazio");
+                throw new EmptyFieldException("Campo CPF vazio");
             }
             if (cpf.length() != 11) {
-                throw new IllegalArgumentException("CPF inválido");
+                throw new InvalidCPFException("CPF inválido");
             }
 
             long cpfLong = Long.parseLong(cpf);
 
             /* VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO */
             if (!listaClientes.existe(cpfLong)) {
-                throw new NullPointerException("CPF não existente!");
+                throw new CPFNotFoundException("CPF não existente!");
             } else {
                 Cliente cliente = listaClientes.get(cpfLong);
 
@@ -305,10 +307,8 @@ public class ControllerInfoCliente {
                 textFieldCarteiraMotorista.setText(String.valueOf(cnh));
             }
 
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | EmptyFieldException | InvalidCPFException | CPFNotFoundException e) {
             alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
-        } catch (NullPointerException | IllegalArgumentException e) {
-            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
 
     }
@@ -358,7 +358,7 @@ public class ControllerInfoCliente {
                     Cliente cliente = listaClientes.get(cpf);
                     observableListClientes.add(cliente);
                 }
-            } catch (NullPointerException e) {
+            } catch (EmptyFieldException e) {
                 alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
             } catch (NumberFormatException e) {
                 alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
@@ -413,7 +413,7 @@ public class ControllerInfoCliente {
                     observableListClientes.add(cliente);
                 }
 
-            } catch (NullPointerException e) {
+            } catch (EmptyFieldException e) {
                 alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
             } catch (NumberFormatException e) {
                 alertInterface("ERRO", e.getMessage(), AlertType.ERROR);

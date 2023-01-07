@@ -6,6 +6,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 import controller.ControllerMenuLocadora;
+import exceptions.cliente.CPFNotFoundException;
+import exceptions.cliente.InvalidCPFException;
+import exceptions.geral.EmptyFieldException;
+import exceptions.locacao.DateDifferenceException;
+import exceptions.locacao.IDNotFoundException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -165,45 +171,18 @@ public class ControllerAlteraLocacao {
     void pesquisarLocacao(ActionEvent event) {
         IDAlterar = textFieldID.getText().isEmpty() ? 0 : Integer.parseInt(textFieldID.getText());
 
-        if (textFieldID.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERRO");
-            alert.setHeaderText(null);
-            alert.setContentText("Preencha todos os campos!");
-            alert.showAndWait();
-        } else {
-
-            try {
-                if (listaLocacao.existe((IDAlterar))) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERRO");
-                    alert.setHeaderText(null);
-                    alert.setContentText("ID não encontrado!");
-                    alert.showAndWait();
-                    
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("ERRO");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Cliente não encontrado!");
-                        alert.showAndWait();
-                    }
-
-            } catch (NullPointerException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            } catch (NumberFormatException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText("Preencha os campos corretamente!");
-                alert.showAndWait();
+        try {
+            if (textFieldID.getText().isEmpty()) {
+                throw new EmptyFieldException("Campo ID vazio!");
             }
-        }
 
+            if (!listaLocacao.existe((IDAlterar))) {
+                throw new IDNotFoundException("ID não encontrado!");
+            }
+
+        } catch (EmptyFieldException | IDNotFoundException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+        }
     }
 
     /**
@@ -213,105 +192,74 @@ public class ControllerAlteraLocacao {
      */
     @FXML
     void alterarLocacao(ActionEvent event) {
-        if (textFieldPlaca.getText().isEmpty() || textFieldCPF.getText().isEmpty() || choiceSeguro.getValue() == null
-                || pickerDataInicial.getValue() == null || pickerDataFinal.getValue() == null) {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERRO");
-            alert.setHeaderText(null);
-            alert.setContentText("Preencha todos os campos!");
-            alert.showAndWait();
-
-        } else {
+        
+        try {
+            if (textFieldPlaca.getText().isEmpty() || textFieldCPF.getText().isEmpty() || choiceSeguro.getValue() == null
+                    || pickerDataInicial.getValue() == null || pickerDataFinal.getValue() == null) {
+            throw new EmptyFieldException("Preencha todos os campos!");
+            } 
 
             if (pickerDataInicial.getValue().isAfter(pickerDataFinal.getValue())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText("Data final menor que a inicial!");
-                alert.showAndWait();
-            } else {
-                LocalDate dataInicial = pickerDataInicial.getValue();
-                LocalDate dataFinal = pickerDataFinal.getValue();
-
-                Date date = Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                Date date2 = Date.from(dataFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        
-                Calendar dataInicialC = Calendar.getInstance();
-                dataInicialC.setTime(date);
-                System.out.println("\nConversion of LocalDate to java.util.Calendar is :- \n"
-                    + dataInicialC.get(Calendar.DAY_OF_MONTH) + dataInicialC.get(Calendar.MONTH) + dataInicialC.get(Calendar.YEAR));
-
-                Calendar dataFinalC = Calendar.getInstance();
-                dataFinalC.setTime(date2);
-                System.out.println("\nConversion of LocalDate to java.util.Calendar is :- \n"
-                    + dataFinalC.get(Calendar.DAY_OF_MONTH) + dataFinalC.get(Calendar.MONTH) + dataFinalC.get(Calendar.YEAR));
-
-                try {
-                    String placa = textFieldPlaca.getText();
-                    String cpf = textFieldCPF.getText();
-                    String escolhaseguro = choiceSeguro.getValue();
-                    Long cpfLong;
-
-                    boolean seguroBoolean = false;
-                    int codigoFinal = locacao.getCodigo();
-                    cpfLong = Long.parseLong(cpf);                    
-
-                    if (escolhaseguro.equals("Sim")) {
-                        seguroBoolean = true;
-                        } else {
-                        seguroBoolean = false;
-                    }
-                    if (cpf.length() != 11) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("ERRO");
-                        alert.setHeaderText(null);
-                        alert.setContentText("CPF inválido!");
-                        alert.showAndWait();
-                    } else {
-                        if (!listaClientes.existe(cpfLong)) {
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("ERRO");
-                            alert.setHeaderText(null);
-                            alert.setContentText("CPF não existente!");
-                            alert.showAndWait();
-                        } else {
-                            /* alterar locacao */
-                            
-                            Locacao locacao = listaLocacao.get(codigoFinal);
-                            Cliente Cliente = listaClientes.get(cpfLong);
-                            Veiculo Veiculo = listaVeiculo.get(placa);
-
-                            locacao.setSeguro(seguroBoolean);
-                            locacao.setDataInicial(dataInicialC);
-                            locacao.setDataFinal(dataFinalC);
-                            locacao.setCliente(Cliente); 
-                            locacao.setVeiculo(Veiculo);
-
-                            limparCampos(null);
-
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                            alert.setTitle("SUCESSO");
-                            alert.setHeaderText(null);
-                            alert.setContentText("Locação alterada com sucesso!");
-                            alert.showAndWait();
-                        }
-                    }
-
-                } catch (NullPointerException e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERRO");
-                    alert.setHeaderText(null);
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                } catch (NumberFormatException e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERRO");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Preencha os campos corretamente!");
-                    alert.showAndWait();
-                }
+                throw new DateDifferenceException("Data final deve ser maior que a data inicial!");
             }
+
+            LocalDate dataInicial = pickerDataInicial.getValue();
+            LocalDate dataFinal = pickerDataFinal.getValue();
+
+            Date date = Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            Date date2 = Date.from(dataFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+            Calendar dataInicialC = Calendar.getInstance();
+            dataInicialC.setTime(date);
+            System.out.println("\nConversion of LocalDate to java.util.Calendar is :- \n"
+                + dataInicialC.get(Calendar.DAY_OF_MONTH) + dataInicialC.get(Calendar.MONTH) + dataInicialC.get(Calendar.YEAR));
+
+            Calendar dataFinalC = Calendar.getInstance();
+            dataFinalC.setTime(date2);
+            System.out.println("\nConversion of LocalDate to java.util.Calendar is :- \n"
+                + dataFinalC.get(Calendar.DAY_OF_MONTH) + dataFinalC.get(Calendar.MONTH) + dataFinalC.get(Calendar.YEAR));
+
+            
+            String placa = textFieldPlaca.getText();
+            String cpf = textFieldCPF.getText();
+            String escolhaseguro = choiceSeguro.getValue();
+            Long cpfLong;
+
+            boolean seguroBoolean = false;
+            int codigoFinal = locacao.getCodigo();
+            cpfLong = Long.parseLong(cpf);                    
+
+            if (escolhaseguro.equals("Sim")) {
+                seguroBoolean = true;
+                } else {
+                seguroBoolean = false;
+            }
+
+            if (cpf.length() != 11) {
+                throw new InvalidCPFException("CPF inválido!");
+            }
+
+            if (!listaClientes.existe(cpfLong)) {
+                throw new CPFNotFoundException("CPF não encontrado!");
+            } else {
+                /* alterar locacao */
+                
+                Locacao locacao = listaLocacao.get(codigoFinal);
+                Cliente Cliente = listaClientes.get(cpfLong);
+                Veiculo Veiculo = listaVeiculo.get(placa);
+
+                locacao.setSeguro(seguroBoolean);
+                locacao.setDataInicial(dataInicialC);
+                locacao.setDataFinal(dataFinalC);
+                locacao.setCliente(Cliente); 
+                locacao.setVeiculo(Veiculo);
+
+                limparCampos(null);
+
+                alertInterface("SUCESSO", "Locação alterada com sucesso!", AlertType.INFORMATION);
+            }
+        } catch (InvalidCPFException | CPFNotFoundException | EmptyFieldException | DateDifferenceException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
     }
 
@@ -408,4 +356,17 @@ public class ControllerAlteraLocacao {
         btnPesquisar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Método para imprimir um alerta na tela
+     * @param titulo titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
 }

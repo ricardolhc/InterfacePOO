@@ -1,6 +1,10 @@
 package controller.cliente;
 
 import controller.ControllerMenuLocadora;
+import exceptions.cliente.CPFAlreadyAdd;
+import exceptions.cliente.InvalidCPFException;
+import exceptions.cliente.InvalidTelefoneException;
+import exceptions.geral.EmptyFieldException;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -137,7 +141,7 @@ public class ControllerAdicionaCliente {
         try {
             /* VERIFICAR SE O CAMPO ESTÁ VAZIO */
             if (cpf.isEmpty() || cnh.isEmpty() || telefone.isEmpty() || nome.isEmpty() || endereco.isEmpty()) {
-                throw new NullPointerException("Preencha todos os campos!");
+                throw new EmptyFieldException("Preencha todos os campos!");
             }
 
             /* POSSÍVEL NUMBERFORMATEXCEPTION */
@@ -146,14 +150,14 @@ public class ControllerAdicionaCliente {
             cpfLong = Long.parseLong(cpf);
 
             if (cpf.length() != 11) {
-                throw new IllegalArgumentException("CPF inválido!");
+                throw new InvalidCPFException("CPF inválido!");
             }
             if (telefone.length() != 11 && telefone.length() != 10) {
-                throw new IllegalArgumentException("Telefone inválido!");
+                throw new InvalidTelefoneException("Telefone inválido!");
             }
             /* VERIFICAR SE O CPF ESTÁ CADASTRADO */
             if (listaClientes.existe(cpfLong)) {
-                throw new IllegalArgumentException("CPF já cadastrado!");
+                throw new CPFAlreadyAdd("CPF já cadastrado!");
             } else {
                 /* ADICIONA CLIENTE */
                 listaClientes.add(new Cliente(cpf, nome, cnhLong, endereco, telefoneLong));
@@ -162,11 +166,9 @@ public class ControllerAdicionaCliente {
 
                 alertInterface("SUCESSO", "Cliente adicionado com sucesso!", AlertType.INFORMATION);
             }
-        } catch (NumberFormatException e) {
-            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
-        } catch (NullPointerException | IllegalArgumentException e) {
+        } catch (EmptyFieldException | InvalidCPFException | InvalidTelefoneException | CPFAlreadyAdd e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
-        }   
+        }
     }
 
     /**

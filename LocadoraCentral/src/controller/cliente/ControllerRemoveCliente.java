@@ -1,6 +1,11 @@
 package controller.cliente;
 
 import controller.ControllerMenuLocadora;
+import exceptions.cliente.CPFNotFoundException;
+import exceptions.cliente.ClienteNotFoundException;
+import exceptions.cliente.InvalidCPFException;
+import exceptions.cliente.RemoveClientException;
+import exceptions.geral.EmptyFieldException;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -101,28 +106,26 @@ public class ControllerRemoveCliente {
         try {
             /* VERIFICAR SE O CAMPO ESTÁ VAZIO */
             if (cpf.isEmpty()) {
-                throw new NullPointerException("Campo cpf vazio");
+                throw new EmptyFieldException("Campo cpf vazio");
             }
 
             long cpfLong = Long.parseLong(cpf);
 
             if (cpf.length() != 11) {
-                throw new IllegalArgumentException("CPF inválido");
+                throw new InvalidCPFException("CPF inválido");
             }
 
             /* VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO */
             if (!listaClientes.existe(cpfLong)) {
-                throw new NullPointerException("CPF não existente");
+                throw new CPFNotFoundException("CPF não existente");
             }
             if (!listaClientes.remove(cpfLong)) {
-                throw new NullPointerException("Erro ao remover cliente");
+                throw new RemoveClientException("Erro ao remover cliente");
             } else {
                 alertInterface("SUCESSO", "Cliente removido com sucesso!", AlertType.INFORMATION);
                 limparCampos(null);
             }
-        } catch (NumberFormatException e) {
-            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
-        } catch (NullPointerException | IllegalArgumentException e) {
+        } catch (NumberFormatException | EmptyFieldException | InvalidCPFException | CPFNotFoundException | RemoveClientException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
 

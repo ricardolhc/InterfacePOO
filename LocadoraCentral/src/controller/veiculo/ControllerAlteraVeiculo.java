@@ -1,7 +1,8 @@
 package controller.veiculo;
 
 import controller.ControllerMenuLocadora;
-
+import exceptions.geral.EmptyFieldException;
+import exceptions.veiculo.PlacaNotFoundException;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -234,10 +235,10 @@ public class ControllerAlteraVeiculo {
 
         try {
             if (placaFinal.isEmpty()) {
-                throw new NullPointerException("Digite a placa do veículo");
+                throw new EmptyFieldException("Digite a placa do veículo");
             }
             if (!listaVeiculos.existe(placaFinal)) {
-                throw new NullPointerException("Veículo não existente!");
+                throw new PlacaNotFoundException("Veículo não existente!");
             } else {
                 if (!placaFinal.equals(placaAlterar)) {
                     throw new IllegalArgumentException("Placa trocada originalmente!");
@@ -258,7 +259,7 @@ public class ControllerAlteraVeiculo {
 
                     if (numeroPassageiros.isEmpty() || numeroPortas.isEmpty() || mediaKm.isEmpty()
                             || arCondicionado == null) {
-                        throw new NullPointerException("Preencha todos os campos!");
+                        throw new EmptyFieldException("Preencha todos os campos!");
                     }
                     carro.setNumeroPassageiros(Integer.parseInt(numeroPassageiros));
                     carro.setNumeroPortas(Integer.parseInt(numeroPortas));
@@ -279,7 +280,7 @@ public class ControllerAlteraVeiculo {
 
                     if (numeroPassageiros.isEmpty() || wifi == null || categoria == null
                             || arcondicionado == null) {
-                        throw new NullPointerException("Preencha todos os campos!");
+                        throw new EmptyFieldException("Preencha todos os campos!");
                     }
 
                     onibus.setNumeroPassageiros(Integer.parseInt(numeroPassageiros));
@@ -298,7 +299,7 @@ public class ControllerAlteraVeiculo {
                     String numeroEixos = textFieldNumeroEixos.getText();
 
                     if (cargaMaxima.isEmpty() || numeroEixos.isEmpty()) {
-                        throw new NullPointerException("Preencha todos os campos!");
+                        throw new EmptyFieldException("Preencha todos os campos!");
                     }
                     caminhao.setCargaMaxima(Double.parseDouble(cargaMaxima));
                     caminhao.setNumeroEixos(Integer.parseInt(numeroEixos));
@@ -314,9 +315,7 @@ public class ControllerAlteraVeiculo {
                 textFieldTipoVeiculo.setText("");
 
             }
-        } catch (NumberFormatException e) {
-            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
-        } catch (NullPointerException | IllegalArgumentException e) {
+        } catch (NumberFormatException | EmptyFieldException | PlacaNotFoundException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
     }
@@ -334,10 +333,10 @@ public class ControllerAlteraVeiculo {
         try {
 
             if (placaAlterar.isEmpty()) {
-                throw new NullPointerException("Preencha a placa do veículo!");
+                throw new EmptyFieldException("Preencha a placa do veículo!");
             }
             if (!listaVeiculos.existe(placaAlterar)) {
-                throw new NullPointerException("Veículo não existente");
+                throw new PlacaNotFoundException("Veículo não existente");
             }
 
             Veiculo veiculo = listaVeiculos.get(placaAlterar);
@@ -416,11 +415,9 @@ public class ControllerAlteraVeiculo {
                 paneOnibus.setVisible(false);
                 paneCaminhao.setVisible(true);
             }
-        } catch (NumberFormatException e) {
-            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
-        } catch (NullPointerException | IllegalArgumentException e) {
+        } catch (NumberFormatException | EmptyFieldException | PlacaNotFoundException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
-        }
+        } 
 
     }
 

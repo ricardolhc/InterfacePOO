@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import controller.ControllerMenuLocadora;
+import exceptions.geral.EmptyFieldException;
+import exceptions.locacao.DateDifferenceException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -152,24 +155,17 @@ public class ControllerAdicionaLocacao {
 
         String placa = textFieldPlaca.getText();
         
-
-        // INFORMAÇÕES BÁSICAS NÃO PREENCHIDAS
-        if (textFieldPlaca.getText().isEmpty() || textFieldCPF.getText().isEmpty() || choiceSeguro.getValue() == null
-                || pickerDataInicial.getValue() == null || pickerDataFinal.getValue() == null) {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERRO");
-            alert.setHeaderText(null);
-            alert.setContentText("Preencha todos os campos!");
-            alert.showAndWait();
-
-        } else { 
+        try {
+            // INFORMAÇÕES BÁSICAS NÃO PREENCHIDAS
+            if (textFieldPlaca.getText().isEmpty() || textFieldCPF.getText().isEmpty() || choiceSeguro.getValue() == null
+                    || pickerDataInicial.getValue() == null || pickerDataFinal.getValue() == null) {
+                throw new EmptyFieldException("Preencha todos os campos!");
+            }
 
             LocalDate dataInicial = pickerDataInicial.getValue();
             LocalDate dataFinal = pickerDataFinal.getValue();
 
             
-
             Date date = Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant());
             Date date2 = Date.from(dataFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
     
@@ -196,41 +192,23 @@ public class ControllerAdicionaLocacao {
             }
 
             if (diferencaDias < 0) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText("A data final não pode ser anterior a data inicial!");
-                alert.showAndWait();
-            }
-            
-            try {
+                throw new DateDifferenceException("Data final deve ser maior que a data inicial!");
+            } else {
                 long cpf = Long.parseLong(textFieldCPF.getText());
                 Veiculo veiculo = listaVeiculos.get(placa);
                 Cliente cliente = listaClientes.get(cpf);
 
                 listaLocacoes.add(new Locacao(seguroBoolean, dataInicialC, dataFinalC, cliente, veiculo));
                 limparCampos(null);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("SUCESSO");
-                alert.setHeaderText(null);
-                alert.setContentText("Locação cadastrada com sucesso!");
-                alert.showAndWait();
-            } catch (NullPointerException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            } catch (NumberFormatException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText("Preencha os campos corretamente!");
-                alert.showAndWait();
+
+                alertInterface("SUCESSO", "Locação adicionada com sucesso!", AlertType.INFORMATION);
             }
-    
-        }
+            
+            } catch (EmptyFieldException | DateDifferenceException e) {
+                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+            } 
     }
+
         
     
     /**
@@ -305,4 +283,17 @@ public class ControllerAdicionaLocacao {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
+    /**
+     * Método para imprimir um alerta na tela
+     * @param titulo titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
 }
