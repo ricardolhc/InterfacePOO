@@ -215,6 +215,12 @@ public class ControllerInfoLocacao {
 
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar/esconder os campos de
+     * texto
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnMostrarCampos(MouseEvent event) {
         btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");

@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -56,13 +57,15 @@ public class ControllerAlteraVeiculo {
     private ImageView btnVoltar;
 
     /**
-     * choiceBoxArCondicionadoCarro usado para selecionar se o carro tem ar condicionado
+     * choiceBoxArCondicionadoCarro usado para selecionar se o carro tem ar
+     * condicionado
      */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoCarro;
 
     /**
-     * choiceBoxArCondicionadoOnibus usado para selecionar se o onibus tem ar condicionado
+     * choiceBoxArCondicionadoOnibus usado para selecionar se o onibus tem ar
+     * condicionado
      */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoOnibus;
@@ -134,13 +137,15 @@ public class ControllerAlteraVeiculo {
     private TextField textFieldNumeroEixos;
 
     /**
-     * textFieldNumeroPassageirosCarro usado para receber o numero de passageiros do carro
+     * textFieldNumeroPassageirosCarro usado para receber o numero de passageiros do
+     * carro
      */
     @FXML
     private TextField textFieldNumeroPassageirosCarro;
 
     /**
-     * textFieldNumeroPassageirosOnibus usado para receber o numero de passageiros do onibus
+     * textFieldNumeroPassageirosOnibus usado para receber o numero de passageiros
+     * do onibus
      */
     @FXML
     private TextField textFieldNumeroPassageirosOnibus;
@@ -184,8 +189,10 @@ public class ControllerAlteraVeiculo {
     private ListaVeiculos listaVeiculos;
 
     /**
-     * Método usado para inicializar a lista de locacoes, veiculos e clientes a partir do menu principal
-     * e também para adicionar ar condicionado do carro e onibus, wifi do onibus, categoria do onibus no choiceBox
+     * Método usado para inicializar a lista de locacoes, veiculos e clientes a
+     * partir do menu principal
+     * e também para adicionar ar condicionado do carro e onibus, wifi do onibus,
+     * categoria do onibus no choiceBox
      */
     @FXML
     void initialize() {
@@ -216,7 +223,8 @@ public class ControllerAlteraVeiculo {
     }
 
     /**
-     * Método usado para alterar as informações ano, diaria, media de km, numero de eixos, numero de passageiros, numero de portas, placa, tipo do veiculo 
+     * Método usado para alterar as informações ano, diaria, media de km, numero de
+     * eixos, numero de passageiros, numero de portas, placa, tipo do veiculo
      * 
      * @param event evento de clicar no botão
      */
@@ -225,247 +233,194 @@ public class ControllerAlteraVeiculo {
         String placaFinal = textFieldPlaca.getText().toLowerCase();
 
         try {
-            if(!placaFinal.isEmpty()) {
-                if (listaVeiculos.existe(placaFinal)) {
-                    if (placaFinal.equals(placaAlterar)) {
-                    
-                        Veiculo veiculo = listaVeiculos.get(placaFinal);
-
-                        String ano = textFieldAno.getText();
-                        String diaria = textFieldDiaria.getText();
-
-                        if (veiculo instanceof Carro) {
-                            Carro carro = (Carro) veiculo;
-
-                            String numeroPassageiros = textFieldNumeroPassageirosCarro.getText();
-                            String numeroPortas = textFieldNumeroPortas.getText();
-                            String mediaKm = textFieldMediaKm.getText();
-                            String arCondicionado = choiceBoxArCondicionadoCarro.getValue();
-
-                            if (numeroPassageiros.isEmpty() || numeroPortas.isEmpty() || mediaKm.isEmpty()
-                                    || arCondicionado.isEmpty()) {
-                                Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("ERRO");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Preencha todos os campos!");
-                                alert.showAndWait();
-                            } else {
-                                carro.setNumeroPassageiros(Integer.parseInt(numeroPassageiros));
-                                carro.setNumeroPortas(Integer.parseInt(numeroPortas));
-                                carro.setmediaKm(Double.parseDouble(mediaKm));
-                                carro.setArcondicionado(arCondicionado.equals("Sim") ? true : false);
-                                
-                                veiculo.setAno(Integer.parseInt(ano));
-                                veiculo.setDiaria(Double.parseDouble(diaria));
-
-                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                alert.setTitle("SUCESSO");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Veiculo alterado com sucesso!");
-                                alert.showAndWait();
-                            }
-
-                        } else if (veiculo instanceof Onibus) {
-                            Onibus onibus = (Onibus) veiculo;
-
-                            String numeroPassageiros = textFieldNumeroPassageirosOnibus.getText();
-                            String wifi = choiceBoxWifiOnibus.getValue();
-                            String categoria = choiceBoxCategoria.getValue();
-
-                            if (numeroPassageiros.isEmpty() || wifi.isEmpty() || categoria.isEmpty()) {
-                                Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("ERRO");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Preencha todos os campos!");
-                                alert.showAndWait();
-                            } else {
-                                onibus.setNumeroPassageiros(Integer.parseInt(numeroPassageiros));
-                                onibus.setWifi(wifi.equals("Sim") ? true : false);
-                                onibus.setCategoria(Categoria.valueOf(categoria.toUpperCase()));
-
-                                veiculo.setAno(Integer.parseInt(ano));
-                                veiculo.setDiaria(Double.parseDouble(diaria));
-
-                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                alert.setTitle("SUCESSO");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Veiculo alterado com sucesso!");
-                                alert.showAndWait();
-                            }
-                        } else if (veiculo instanceof Caminhao) {
-                            Caminhao caminhao = (Caminhao) veiculo;
-
-                            String cargaMaxima = textFieldCargaMaxima.getText();
-                            String numeroEixos = textFieldNumeroEixos.getText();
-
-                            if (cargaMaxima.isEmpty() || numeroEixos.isEmpty()) {
-                                Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("ERRO");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Preencha todos os campos!");
-                                alert.showAndWait();
-                            } else {
-                                caminhao.setCargaMaxima(Double.parseDouble(cargaMaxima));
-                                caminhao.setNumeroEixos(Integer.parseInt(numeroEixos));
-
-                                veiculo.setAno(Integer.parseInt(ano));
-                                veiculo.setDiaria(Double.parseDouble(diaria));
-
-                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                alert.setTitle("SUCESSO");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Veiculo alterado com sucesso!");
-                                alert.showAndWait();
-                            }
-                        }
-
-                        paneCaminhao.setVisible(false);
-                        paneCarro.setVisible(false);
-                        paneOnibus.setVisible(false);
-                        textFieldTipoVeiculo.setText("");
-
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("ERRO");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Placa trocada originalmente!");
-                        alert.showAndWait();
-                    }
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERRO");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Veiculo não existente!");
-                    alert.showAndWait();
-                }
+            if (placaFinal.isEmpty()) {
+                throw new NullPointerException("Digite a placa do veículo");
+            }
+            if (!listaVeiculos.existe(placaFinal)) {
+                throw new NullPointerException("Veículo não existente!");
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText("Digite a placa do veículo!");
-                alert.showAndWait();
+                if (!placaFinal.equals(placaAlterar)) {
+                    throw new IllegalArgumentException("Placa trocada originalmente!");
+                }
+
+                Veiculo veiculo = listaVeiculos.get(placaFinal);
+
+                String ano = textFieldAno.getText();
+                String diaria = textFieldDiaria.getText();
+
+                if (veiculo instanceof Carro) {
+                    Carro carro = (Carro) veiculo;
+
+                    String numeroPassageiros = textFieldNumeroPassageirosCarro.getText();
+                    String numeroPortas = textFieldNumeroPortas.getText();
+                    String mediaKm = textFieldMediaKm.getText();
+                    String arCondicionado = choiceBoxArCondicionadoCarro.getValue();
+
+                    if (numeroPassageiros.isEmpty() || numeroPortas.isEmpty() || mediaKm.isEmpty()
+                            || arCondicionado == null) {
+                        throw new NullPointerException("Preencha todos os campos!");
+                    }
+                    carro.setNumeroPassageiros(Integer.parseInt(numeroPassageiros));
+                    carro.setNumeroPortas(Integer.parseInt(numeroPortas));
+                    carro.setmediaKm(Double.parseDouble(mediaKm));
+                    carro.setArcondicionado(arCondicionado.equals("Sim") ? true : false);
+
+                    veiculo.setAno(Integer.parseInt(ano));
+                    veiculo.setDiaria(Double.parseDouble(diaria));
+
+                    alertInterface("SUCESSO", "Veículo alterado com sucesso!", AlertType.INFORMATION);
+                } else if (veiculo instanceof Onibus) {
+                    Onibus onibus = (Onibus) veiculo;
+
+                    String numeroPassageiros = textFieldNumeroPassageirosOnibus.getText();
+                    String wifi = choiceBoxWifiOnibus.getValue();
+                    String categoria = choiceBoxCategoria.getValue();
+                    String arcondicionado = choiceBoxArCondicionadoOnibus.getValue();
+
+                    if (numeroPassageiros.isEmpty() || wifi == null || categoria == null
+                            || arcondicionado == null) {
+                        throw new NullPointerException("Preencha todos os campos!");
+                    }
+
+                    onibus.setNumeroPassageiros(Integer.parseInt(numeroPassageiros));
+                    onibus.setWifi(wifi.equals("Sim") ? true : false);
+                    onibus.setCategoria(Categoria.valueOf(categoria.toUpperCase()));
+                    onibus.setArcondicionado(arcondicionado.equals("Sim") ? true : false);
+
+                    veiculo.setAno(Integer.parseInt(ano));
+                    veiculo.setDiaria(Double.parseDouble(diaria));
+
+                    alertInterface("SUCESSO", "Veículo alterado com sucesso!", AlertType.INFORMATION);
+                } else if (veiculo instanceof Caminhao) {
+                    Caminhao caminhao = (Caminhao) veiculo;
+
+                    String cargaMaxima = textFieldCargaMaxima.getText();
+                    String numeroEixos = textFieldNumeroEixos.getText();
+
+                    if (cargaMaxima.isEmpty() || numeroEixos.isEmpty()) {
+                        throw new NullPointerException("Preencha todos os campos!");
+                    }
+                    caminhao.setCargaMaxima(Double.parseDouble(cargaMaxima));
+                    caminhao.setNumeroEixos(Integer.parseInt(numeroEixos));
+
+                    veiculo.setAno(Integer.parseInt(ano));
+                    veiculo.setDiaria(Double.parseDouble(diaria));
+
+                    alertInterface("SUCESSO", "Veículo alterado com sucesso!", AlertType.INFORMATION);
+                }
+                paneCaminhao.setVisible(false);
+                paneCarro.setVisible(false);
+                paneOnibus.setVisible(false);
+                textFieldTipoVeiculo.setText("");
+
             }
         } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERRO");
-            alert.setHeaderText(null);
-            alert.setContentText("Preencha os campos corretamente!");
-            alert.showAndWait();
-        } catch (NullPointerException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERRO");
-            alert.setHeaderText(null);
-            alert.setContentText("Preencha os campos corretamente!");
-            alert.showAndWait();
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
+        } catch (NullPointerException | IllegalArgumentException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
     }
 
     /**
-      * Método usado para pesquisar um veiculo usando a placa
+     * Método usado para pesquisar um veiculo usando a placa
      * 
      * @param event evento de clicar no botão
      */
     @FXML
     void procurarVeiculo(ActionEvent event) {
 
-        String placa = textFieldPlaca.getText().toLowerCase();
-        placaAlterar = placa;
+        placaAlterar = textFieldPlaca.getText();
 
-        if (!placa.isEmpty()) {
-            if (listaVeiculos.existe(placa)) {
+        try {
 
-                Veiculo veiculo = listaVeiculos.get(placa);
-    
-                String ano = String.valueOf(veiculo.getAno());
-                String diaria = String.valueOf(veiculo.getDiaria());
-    
-                textFieldAno.setText(ano);
-                textFieldDiaria.setText(diaria);
-    
-                if (veiculo instanceof Carro) {
-                    Carro carro = (Carro) veiculo;
-    
-                    String numeroPassageiros = String.valueOf(carro.getNumeroPassageiros());
-                    String numeroPortas = String.valueOf(carro.getNumeroPortas());
-                    String mediaKm = String.valueOf(carro.getMediaKm());
-                    String arCondicionado;
-    
-                    if (carro.getArcondicionado() == true) {
-                        arCondicionado = "Sim";
-                    } else {
-                        arCondicionado = "Não";
-                    }
-    
-                    textFieldTipoVeiculo.setText("Carro");
-                    textFieldNumeroPassageirosCarro.setText(numeroPassageiros);
-                    textFieldNumeroPortas.setText(numeroPortas);
-                    textFieldMediaKm.setText(mediaKm);
-                    choiceBoxArCondicionadoCarro.setValue(arCondicionado);
-    
-                    paneCarro.setVisible(true);
-                    paneOnibus.setVisible(false);
-                    paneCaminhao.setVisible(false);
-                } else if (veiculo instanceof Onibus) {
-                    Onibus onibus = (Onibus) veiculo;
-    
-                    String numeroPassageiros = String.valueOf(onibus.getNumeroPassageiros());
-                    String wifi = onibus.getWifi() ? "Sim" : "Não";
-                    String categoria;
-                    String arCondicionado;
-    
-                    if (onibus.getArcondicionado() == true) {
-                        arCondicionado = "Sim";
-                    } else {
-                        arCondicionado = "Não";
-                    }
-    
-                    if (onibus.getCategoria() == Categoria.LEITO) {
-                        categoria = "Leito";
-                    } else if (onibus.getCategoria() == Categoria.EXECUTIVO) {
-                        categoria = "Executivo";
-                    } else {
-                        categoria = "Convencional";
-                    }
-    
-                    textFieldTipoVeiculo.setText("Ônibus");
-                    textFieldNumeroPassageirosOnibus.setText(numeroPassageiros);
-                    choiceBoxWifiOnibus.setValue(wifi);
-                    choiceBoxArCondicionadoOnibus.setValue(arCondicionado);
-                    choiceBoxCategoria.setValue(categoria);
-    
-                    paneCarro.setVisible(false);
-                    paneOnibus.setVisible(true);
-                    paneCaminhao.setVisible(false);
-                } else if (veiculo instanceof Caminhao) {
-                    Caminhao caminhao = (Caminhao) veiculo;
-    
-                    String cargaMaxima = String.valueOf(caminhao.getCargaMaxima());
-                    String numeroEixos = String.valueOf(caminhao.getNumeroEixos());
-    
-                    textFieldTipoVeiculo.setText("Caminhão");
-                    textFieldCargaMaxima.setText(cargaMaxima);
-                    textFieldNumeroEixos.setText(numeroEixos);
-    
-                    paneCarro.setVisible(false);
-                    paneOnibus.setVisible(false);
-                    paneCaminhao.setVisible(true);
-                }
-    
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText("Veiculo não existente!");
-                alert.showAndWait();
+            if (placaAlterar.isEmpty()) {
+                throw new NullPointerException("Preencha a placa do veículo!");
             }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERRO");
-            alert.setHeaderText(null);
-            alert.setContentText("Digite a placa do veículo!");
-            alert.showAndWait();
+            if (!listaVeiculos.existe(placaAlterar)) {
+                throw new NullPointerException("Veículo não existente");
+            }
+
+            Veiculo veiculo = listaVeiculos.get(placaAlterar);
+
+            String ano = String.valueOf(veiculo.getAno());
+            String diaria = String.valueOf(veiculo.getDiaria());
+
+            textFieldAno.setText(ano);
+            textFieldDiaria.setText(diaria);
+
+            if (veiculo instanceof Carro) {
+                Carro carro = (Carro) veiculo;
+
+                String numeroPassageiros = String.valueOf(carro.getNumeroPassageiros());
+                String numeroPortas = String.valueOf(carro.getNumeroPortas());
+                String mediaKm = String.valueOf(carro.getMediaKm());
+                String arCondicionado;
+
+                if (carro.getArcondicionado() == true) {
+                    arCondicionado = "Sim";
+                } else {
+                    arCondicionado = "Não";
+                }
+
+                textFieldTipoVeiculo.setText("Carro");
+                textFieldNumeroPassageirosCarro.setText(numeroPassageiros);
+                textFieldNumeroPortas.setText(numeroPortas);
+                textFieldMediaKm.setText(mediaKm);
+                choiceBoxArCondicionadoCarro.setValue(arCondicionado);
+
+                paneCarro.setVisible(true);
+                paneOnibus.setVisible(false);
+                paneCaminhao.setVisible(false);
+            } else if (veiculo instanceof Onibus) {
+                Onibus onibus = (Onibus) veiculo;
+
+                String numeroPassageiros = String.valueOf(onibus.getNumeroPassageiros());
+                String wifi = onibus.getWifi() ? "Sim" : "Não";
+                String categoria;
+                String arCondicionado;
+
+                if (onibus.getArcondicionado() == true) {
+                    arCondicionado = "Sim";
+                } else {
+                    arCondicionado = "Não";
+                }
+
+                if (onibus.getCategoria() == Categoria.LEITO) {
+                    categoria = "Leito";
+                } else if (onibus.getCategoria() == Categoria.EXECUTIVO) {
+                    categoria = "Executivo";
+                } else {
+                    categoria = "Convencional";
+                }
+
+                textFieldTipoVeiculo.setText("Ônibus");
+                textFieldNumeroPassageirosOnibus.setText(numeroPassageiros);
+                choiceBoxWifiOnibus.setValue(wifi);
+                choiceBoxArCondicionadoOnibus.setValue(arCondicionado);
+                choiceBoxCategoria.setValue(categoria);
+
+                paneCarro.setVisible(false);
+                paneOnibus.setVisible(true);
+                paneCaminhao.setVisible(false);
+            } else if (veiculo instanceof Caminhao) {
+                Caminhao caminhao = (Caminhao) veiculo;
+
+                String cargaMaxima = String.valueOf(caminhao.getCargaMaxima());
+                String numeroEixos = String.valueOf(caminhao.getNumeroEixos());
+
+                textFieldTipoVeiculo.setText("Caminhão");
+                textFieldCargaMaxima.setText(cargaMaxima);
+                textFieldNumeroEixos.setText(numeroEixos);
+
+                paneCarro.setVisible(false);
+                paneOnibus.setVisible(false);
+                paneCaminhao.setVisible(true);
+            }
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
+        } catch (NullPointerException | IllegalArgumentException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
-       
 
     }
 
@@ -566,6 +521,21 @@ public class ControllerAlteraVeiculo {
     @FXML
     void notHoverBtnAlterar(MouseEvent event) {
         btnAlterar.setStyle("-fx-background-color: #807d0a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Método para imprimir um alerta na tela
+     * 
+     * @param titulo   titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo     tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 
 }

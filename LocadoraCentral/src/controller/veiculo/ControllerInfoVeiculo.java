@@ -28,152 +28,311 @@ import veiculo.Categoria;
 import veiculo.Onibus;
 import veiculo.Veiculo;
 
+/**
+ * Classe responsável por controlar a tela de visualização de informações de
+ * veiculos
+ * 
+ * @author Mateus, Maurício, Ricardo, Tales
+ * @since dez 2022
+ * @version 1.0
+ */
 public class ControllerInfoVeiculo {
 
+    /*
+     * btnInfoFullVeiculo usado para mostrar informações completas dos veiculos
+     */
     @FXML
     private Button btnInfoFullVeiculo;
 
+    /*
+     * btnInfoResumoVeiculo usado para mostrar informações resumidas dos veiculos
+     */
     @FXML
     private Button btnInfoResumoVeiculo;
 
+    /*
+     * btnLimpar usado para limpar os campos de texto
+     */
     @FXML
     private Button btnLimpar;
 
+    /*
+     * btnMostrarEsconderCampos usado para mostrar/esconder os campos de texto
+     */
     @FXML
     private Button btnMostrarEsconderCampos;
 
+    /*
+     * btnPesquisar usado para pesquisar um cliente
+     */
     @FXML
     private Button btnPesquisar;
 
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoCarro;
 
+    /*
+     * btnVoltar usado para voltar para a tela principal
+     */
     @FXML
     private ImageView btnVoltar;
 
+    /*
+     * labelPlaca usado para mostrar o texto Placa na tela
+     */
     @FXML
     private Label labelPlaca;
 
+    /*
+     * labelAno usado para mostrar o texto Ano na tela
+     */
     @FXML
     private Label labelAno;
 
+    /*
+     * labelDiaria usado para mostrar o texto Diaria na tela
+     */
     @FXML
     private Label labelDiaria;
 
+    /*
+     * labelTipoVeiculo usado para mostrar o texto Tipo de Veiculo na tela
+     */
     @FXML
     private Label labelTipoVeiculo;
 
+    /*
+     * rootPane usado para mostrar a tela de informações de clientes
+     */
     @FXML
     private AnchorPane rootPane;
 
+    /*
+     * tableColumnAnoInfoCompleta usado para mostrar o ano do veiculo nas informações completas
+     */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnAnoInfoCompleta;
 
+    /*
+     * tableColumnAnoInfoCompleta usado para mostrar o ano do veiculo nas informações resumidas
+     */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnAnoInfoResumo;
 
+    /*
+     * tableColumnArCondicionadoInfoCompleta usado para mostrar se o veiculo tem ar condicionado nas informações completas
+     */
     @FXML
     private TableColumn<Veiculo, Boolean> tableColumnArCondicionadoInfoCompleta;
 
+    /*
+     * tableColumnCargaMaximaInfoCompleta usado para mostrar a carga maxima do caminhao nas informações completas
+     */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnCargaMaximaInfoCompleta;
 
+    /*
+     * tableColumnCategoriaInfoCompleta usado para mostrar a categoria do onibus nas informações completas
+     */
     @FXML
     private TableColumn<Veiculo, Categoria> tableColumnCategoriaInfoCompleta;
-
+    
+    /*
+     * tableColumnDiariaInfoCompleta usado para mostrar a diaria do veiculo nas informações completas
+     */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnDiariaInfoCompleta;
 
+    /*
+     * tableColumnDiariaInfoResumo usado para mostrar a diaria do veiculo nas informações resumidas
+     */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnDiariaInfoResumo;
 
+    /*
+     * tableColumnEixosInfoCompleta usado para mostrar a quantidade de eixos do caminhao nas informações completas
+     */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnEixosInfoCompleta;
 
+    /*
+     * tableColumnMediaKmInfoCompleta usado para mostrar a media de km do veiculo nas informações completas
+     */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnMediaKmInfoCompleta;
 
+    /*
+     * tableColumnPassageirosInfoCompleta usado para mostrar a quantidade de passageiros do onibus nas informações completas
+     */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnPassageirosInfoCompleta;
 
+    /*
+     * tableColumnPlacaInfoCompleta usado para mostrar a placa do veiculo nas informações completas
+     */
     @FXML
     private TableColumn<Veiculo, String> tableColumnPlacaInfoCompleta;
 
+    /*
+     * tableColumnPlacaInfoResumo usado para mostrar a placa do veiculo nas informações resumidas
+     */
     @FXML
     private TableColumn<Veiculo, String> tableColumnPlacafInfoResumo;
 
+    /*
+     * tableColumnPortasInfoCompleta usado para mostrar a quantidade de portas do veiculo nas informações completas
+     */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnPortasInfoCompleta;
 
+    /*
+     * tableColumnWifiInfoCompleta usado para mostrar se o onibus tem wifi nas informações completas
+     */
     @FXML
     private TableColumn<Veiculo, Boolean> tableColumnWifiInfoCompleta;
 
+    /*
+     * tableViewInfoCompleta usado para mostrar as informações completas do veiculo
+     */
     @FXML
     private TableView<Veiculo> tableViewInfoCompleta;
 
+    /*
+     * tableViewInfoResumo usado para mostrar as informações resumidas do veiculo
+     */
     @FXML
     private TableView<Veiculo> tableViewInfoResumo;
 
+    /*
+     * textFieldAno usado para receber a placa do veiculo
+     */
     @FXML
     private TextField textFieldPlaca;
 
+    /*
+     * textFieldAno usado para receber o ano do veiculo
+     */
     @FXML
     private TextField textFieldAno;
 
+    /*
+     * textFieldDiaria usado para receber a diaria do veiculo
+     */
     @FXML
     private TextField textFieldDiaria;
 
+    /*
+     * textFieldTipoVeiculo usado para receber o tipo de veiculo
+     */
     @FXML
     private TextField textFieldTipoVeiculo;
 
+    /*
+     * textFieldNumeroPassageirosCarro usado para receber a quantidade de passageiros do carro
+     */
     @FXML
     private TextField textFieldNumeroPassageirosCarro;
 
+    /*
+     * textFieldMediaKm usado para receber a media de km do veiculo
+     */
     @FXML
     private TextField textFieldMediaKm;
 
+    /*
+     * textFieldNumeroPortas usado para receber a quantidade de portas do veiculo
+     */
     @FXML
     private TextField textFieldNumeroPortas;
 
+    /*
+     * textFieldCargaMaxima usado para receber a carga maxima do caminhao
+     */
     @FXML
     private TextField textFieldCargaMaxima;
-    
+
+    /*
+     * textFieldNumeroEixos usado para receber a quantidade de eixos do caminhao
+     */
     @FXML
     private TextField textFieldNumeroEixos;
 
+    /*
+     * textFieldNumeroPassageirosOnibus usado para receber a quantidade de passageiros do onibus
+     */
     @FXML
     private TextField textFieldNumeroPassageirosOnibus;
 
+    /*
+     * choiceBoxCategoria usado para receber a categoria do onibus
+     */
     @FXML
     private ChoiceBox<String> choiceBoxCategoria;
 
+    /*
+     * choiceBoxWifiOnibus usado para receber se o onibus tem wifi
+     */
     @FXML
     private ChoiceBox<String> choiceBoxWifiOnibus;
 
+    /*
+     * choiceBoxArCondicionadoOnibus usado para receber se o onibus tem ar condicionado
+     */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoOnibus;
 
+    /**
+     * paneCaminhao usado para carregar os campos do caminhao
+     */
     @FXML
     private Pane paneCaminhao;
 
+    /**
+     * paneCarro usado para carregar os campos do carro
+     */
     @FXML
     private Pane paneCarro;
 
+    /**
+     * paneOnibus usado para carregar os campos do onibus
+     */
     @FXML
     private Pane paneOnibus;
 
+    /**
+     * listaVeiculos usado para receber a lista de veiculos
+     */
     private ListaVeiculos listaVeiculos;
 
+    /**
+     * escolhaBooleana usado como uma flag de verdadeiro ou falso
+     */
     private final String[] escolhaBooleana = { "Sim", "Não" };
 
+    /**
+     * tipoCategorias usado para selecionar a categoria do onibus
+     */
     private final String[] tipoCategorias = { "Leito", "Executivo", "Convencional" };
 
+    /**
+     * mostrarEsconderInfoVeiculo usado para mostrar ou esconder as informações do veiculo
+     */
     private boolean mostrarEsconderInfoVeiculo = true;
 
+    /**
+     * mostrarEsconderInfoCompleta usado para mostrar ou esconder as informações completas do veiculo
+     */
     private boolean mostrarEsconderInfoCompleta = true;
 
+    /**
+     * mostrarEsconderInfoResumo usado para mostrar ou esconder as informações resumidas do veiculo
+     */
     private boolean mostrarEsconderInfoResumo = true;
 
+    /**
+     * Método usado para inicializar as colunas placa, ano, diaria, categoria, mediaKm, cargaMaxima, eixos, passageiros, portas, wifi e arCondicionado da tabela
+     * e também para inicializar a lista de locacoes
+     */
     @FXML
     void initialize() {
         tableColumnPlacaInfoCompleta.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("placa"));
@@ -201,6 +360,11 @@ public class ControllerInfoVeiculo {
         listaVeiculos = ControllerMenuLocadora.getListaVeiculos();
     }
 
+    /**
+     * Método usado para voltar ao menu principal
+     * 
+     * @param event evento de clicar no botão
+     */
     @FXML
     void voltarParaPrincipal(MouseEvent event) {
         try {
@@ -214,42 +378,11 @@ public class ControllerInfoVeiculo {
         }
     }
 
-    @FXML
-    void hoverBtnInfoFullVeiculo(MouseEvent event) {
-        btnInfoFullVeiculo.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnInfoResumoVeiculo(MouseEvent event) {
-        btnInfoResumoVeiculo.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void notHoverBtnInfoResumoVeiculo(MouseEvent event) {
-        btnInfoResumoVeiculo.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnLimpar(MouseEvent event) {
-        btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnMostrarCampos(MouseEvent event) {
-        btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnPesquisar(MouseEvent event) {
-        btnPesquisar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    @FXML
-    void hoverBtnVoltar(MouseEvent event) {
-        btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
-        btnVoltar.setStyle("-fx-cursor: hand;");
-    }
-
+    /**
+     * Método usado para mostrar as informações do veiculo pela placa
+     * 
+     * @param event evento de clicar no botão
+     */
     @FXML
     void infoVeiculo(ActionEvent event) {
 
@@ -361,9 +494,13 @@ public class ControllerInfoVeiculo {
         }
     }
 
+    /**
+     * Método usado para mostrar as informações completas do veiculo pela placa
+     * 
+     * @param event evento de clicar no botão
+     */
     @FXML
     void infoFullVeiculo(ActionEvent event) {
-
         if(textFieldPlaca.isVisible() || tableViewInfoResumo.isVisible()) {
             textFieldPlaca.setVisible(false);
             textFieldDiaria.setVisible(false);
@@ -420,6 +557,11 @@ public class ControllerInfoVeiculo {
         mostrarEsconderInfoCompleta = !mostrarEsconderInfoCompleta;
     }
 
+    /**
+     * Método usado para mostrar as informações resumidas do veiculo pela placa
+     * 
+     * @param event evento de clicar no botão
+     */
     @FXML
     void infoResumoVeiculo(ActionEvent event) {
 
@@ -480,6 +622,11 @@ public class ControllerInfoVeiculo {
         mostrarEsconderInfoResumo = !mostrarEsconderInfoResumo;
     }
 
+    /**
+     * Método para limpar os campos de texto presentes na tela
+     * 
+     * @param event evento de limpar os campos de texto presentes na tela
+     */
     @FXML
     void limparCampos(MouseEvent event) {
         
@@ -497,11 +644,13 @@ public class ControllerInfoVeiculo {
         paneCaminhao.setVisible(false);
         paneCarro.setVisible(false);
         paneOnibus.setVisible(false);
-
-
-
     }
 
+    /**
+     * Método para mostrar/esconder os campos de texto presentes na tela
+     * 
+     * @param event evento de mostrar/esconder os campos de texto
+     */
     @FXML
     void mostrarEsconderCampos(ActionEvent event) {
 
@@ -533,32 +682,131 @@ public class ControllerInfoVeiculo {
         mostrarEsconderInfoVeiculo = !mostrarEsconderInfoVeiculo;
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * completas de todos os veículos
+     * 
+     * @param event evento de hover ao tirar o mouse do botão
+     */
     @FXML
     void notHoverBtnInfoFullVeiculo(MouseEvent event) {
         btnInfoFullVeiculo.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
-
+    /**
+     * Efeito de hover ao tirar o mouse no botão de limpar os campos de texto
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar/esconder os campos de
+     * pesquisa
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnMostrarCampos(MouseEvent event) {
         btnMostrarEsconderCampos.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de pesquisar
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnPesquisar(MouseEvent event) {
         btnPesquisar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao tirar o mouse no botão de voltar
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
-    
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de todos os veículos
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnInfoFullVeiculo(MouseEvent event) {
+        btnInfoFullVeiculo.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * resumidas de todos os veículos
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnInfoResumoVeiculo(MouseEvent event) {
+        btnInfoResumoVeiculo.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todos os veículos
+     * 
+     * @param event evento de hover ao tirar o mouse do botão
+     */
+    @FXML
+    void notHoverBtnInfoResumoVeiculo(MouseEvent event) {
+        btnInfoResumoVeiculo.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de limpar os campos de texto
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnLimpar(MouseEvent event) {
+        btnLimpar.setStyle("-fx-background-color: #686868;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar/esconder os campos de
+     * texto
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnMostrarCampos(MouseEvent event) {
+        btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de pesquisar
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
+    @FXML
+    void hoverBtnPesquisar(MouseEvent event) {
+        btnPesquisar.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de voltar
+     * 
+     * @param event evento hover ao passar o mouse no botão de voltar
+     */
+    @FXML
+    void hoverBtnVoltar(MouseEvent event) {
+        btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
+        btnVoltar.setStyle("-fx-cursor: hand;");
+    }    
 
 }

@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -41,46 +42,31 @@ public class ControllerRemoveVeiculo {
         listaVeiculos = ControllerMenuLocadora.getListaVeiculos();
     }
 
-
-    
     @FXML
     void removerVeiculo(ActionEvent event) {
-
         String placa = textFieldPlaca.getText();
 
         // PREENCHIDO CORRETAMENTE O CAMPO
-        if(!placa.isEmpty()) {
-            if(listaVeiculos.existe(placa)) {
-                if(listaVeiculos.remove(placa)) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Remover Veículo");
-                    alert.setHeaderText(null);
-                    alert.setContentText("O veículo foi removido com sucesso!");
-                    alert.showAndWait();
-                    limparCampos(null);
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Remover Veículo");
-                    alert.setHeaderText(null);
-                    alert.setContentText("O veículo não foi encontrado na lista de veículos!");
-                    alert.showAndWait();
-                }
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Remover Veículo");
-                alert.setHeaderText(null);
-                alert.setContentText("O veículo não foi encontrado na lista de veículos!");
-                alert.showAndWait();
+        try {
+            if (placa.isEmpty()) {
+                throw new NullPointerException("O campo de placa está vazio!");
             }
-            
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Remover Veículo");
-            alert.setHeaderText(null);
-            alert.setContentText("O campo de placa está vazio!");
-            alert.showAndWait();
-        }
+            if (!listaVeiculos.existe(placa)) {
+                throw new NullPointerException("O veículo não foi encontrado na lista de veículos!");
+            } else {
+                if (!listaVeiculos.remove(placa)) {
+                    throw new NullPointerException("O veículo não foi encontrado na lista de veículos!");            
+                } else {
+                    alertInterface("SUCESSO", "O veículo foi removido com sucesso!", AlertType.INFORMATION);
 
+                    limparCampos(null);
+                }
+            }
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
+        } catch (NullPointerException | IllegalArgumentException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+        }
     }
 
     @FXML
@@ -96,15 +82,10 @@ public class ControllerRemoveVeiculo {
         }
     }
 
-    
-
     @FXML
     void limparCampos(MouseEvent event) {
         textFieldPlaca.setText("");
     }
-
-
-
 
     @FXML
     void hoverBtnLimpar(MouseEvent event) {
@@ -115,7 +96,6 @@ public class ControllerRemoveVeiculo {
     void notHoverBtnLimpar(MouseEvent event) {
         btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
     }
-
 
     @FXML
     void hoverBtnVoltar(MouseEvent event) {
@@ -136,6 +116,21 @@ public class ControllerRemoveVeiculo {
     @FXML
     void notHoverBtnRemover(MouseEvent event) {
         btnRemover.setStyle("-fx-background-color: #7d2727;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Método para imprimir um alerta na tela
+     * 
+     * @param titulo   titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo     tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 
 }

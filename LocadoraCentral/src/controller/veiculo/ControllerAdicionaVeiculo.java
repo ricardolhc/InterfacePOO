@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,7 +21,8 @@ import lista.ListaVeiculos;
 import veiculo.*;
 
 /**
- * A classe ControllerAdicionaLocacao é responsável por controlar a tela de adicionar veiculo
+ * A classe ControllerAdicionaLocacao é responsável por controlar a tela de
+ * adicionar veiculo
  * 
  * @author Mateus, Maurício, Ricardo, Tales
  * @since dez 2022
@@ -59,7 +61,8 @@ public class ControllerAdicionaVeiculo {
     private ChoiceBox<String> choiceBoxTipoVeiculo;
 
     /**
-     * choiceBoxArCondicionadoCarro usado para selecionar se o carro tem ar condicionado
+     * choiceBoxArCondicionadoCarro usado para selecionar se o carro tem ar
+     * condicionado
      */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoCarro;
@@ -69,7 +72,7 @@ public class ControllerAdicionaVeiculo {
      */
     @FXML
     private ChoiceBox<String> choiceBoxCategoria;
- 
+
     /**
      * choiceBoxWifiOnibus usado para selecionar se o onibus tem wifi
      */
@@ -77,7 +80,8 @@ public class ControllerAdicionaVeiculo {
     private ChoiceBox<String> choiceBoxWifiOnibus;
 
     /**
-     * choiceBoxArCondicionadoOnibus usado para selecionar se o onibus tem ar condicionado
+     * choiceBoxArCondicionadoOnibus usado para selecionar se o onibus tem ar
+     * condicionado
      */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoOnibus;
@@ -131,13 +135,15 @@ public class ControllerAdicionaVeiculo {
     private TextField textFieldNumeroEixos;
 
     /**
-     * textFieldNumeroPassageirosCarro usado para receber o numero de passageiros do carro
+     * textFieldNumeroPassageirosCarro usado para receber o numero de passageiros do
+     * carro
      */
     @FXML
     private TextField textFieldNumeroPassageirosCarro;
 
     /**
-     * textFieldNumeroPassageirosOnibus usado para receber o numero de passageiros do onibus
+     * textFieldNumeroPassageirosOnibus usado para receber o numero de passageiros
+     * do onibus
      */
     @FXML
     private TextField textFieldNumeroPassageirosOnibus;
@@ -175,8 +181,10 @@ public class ControllerAdicionaVeiculo {
     private ListaVeiculos listaVeiculos;
 
     /**
-     * Método usado para inicializar a lista de locacoes, veiculos e clientes a partir do menu principal
-     * e também para adicionar as opções de tipo de veiculo, ar condicionado do carro e onibus, wifi do onibus, categoria do onibus no choiceBox
+     * Método usado para inicializar a lista de locacoes, veiculos e clientes a
+     * partir do menu principal
+     * e também para adicionar as opções de tipo de veiculo, ar condicionado do
+     * carro e onibus, wifi do onibus, categoria do onibus no choiceBox
      */
     @FXML
     void initialize() {
@@ -210,7 +218,8 @@ public class ControllerAdicionaVeiculo {
     }
 
     /**
-     * Método usado para selecionar o tipo de veiculo, que pode ser carro, onibus ou caminhao
+     * Método usado para selecionar o tipo de veiculo, que pode ser carro, onibus ou
+     * caminhao
      * 
      * @param event evento de clicar no botão
      */
@@ -237,191 +246,141 @@ public class ControllerAdicionaVeiculo {
     }
 
     /**
-     * Método usado para adicionar um veiculo a partir da placa, tipo de veiculo, ano, diaria, marca, modelo, media de km, numero de portas, numero de passageiros do carro, numero de eixos do caminhao, numero de passageiros do onibus, ar condicionado do carro, ar condicionado do onibus, wifi do onibus, categoria do onibus
+     * Método usado para adicionar um veiculo a partir da placa, tipo de veiculo,
+     * ano, diaria, marca, modelo, media de km, numero de portas, numero de
+     * passageiros do carro, numero de eixos do caminhao, numero de passageiros do
+     * onibus, ar condicionado do carro, ar condicionado do onibus, wifi do onibus,
+     * categoria do onibus
+     * 
      * @param event evento de clicar no botão
      */
     @FXML
     void adicionarVeiculo(ActionEvent event) {
 
         String placa = textFieldPlaca.getText().toLowerCase();
+        String ano = textFieldAno.getText();
+        String diaria = textFieldDiaria.getText();
 
-        // PLACA NÃO CADASTRADA
-        if (!listaVeiculos.existe(placa)) {
+        try {
+
+            if (placa.isEmpty() || ano.isEmpty() || diaria.isEmpty()) {
+                throw new NullPointerException("Preencha todos os campos!");
+            }
+
+            // PLACA NÃO CADASTRADA
+            if (listaVeiculos.existe(placa)) {
+                throw new IllegalArgumentException("Placa já cadastrada!");
+            }
+
             String tipoVeiculo = choiceBoxTipoVeiculo.getValue();
 
             // VEICULO ESCOLHIDO
-            if (tipoVeiculo != null) {
-
-                String ano = textFieldAno.getText();
-                String diaria = textFieldDiaria.getText();
-
-                // INFORMAÇÕES BÁSICAS NÃO PREENCHIDAS
-                if (placa.isEmpty() || ano.isEmpty() || diaria.isEmpty()) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERRO");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Preencha todos os campos!");
-                    alert.showAndWait();
-                } else {
-
-                    try {
-                        int anoInt = Integer.parseInt(ano);
-                        double diariaDouble = Double.parseDouble(diaria);
-
-                        switch (tipoVeiculo) {
-
-                            case "Carro":
-                                String arCondicionado = choiceBoxArCondicionadoCarro.getValue();
-                                String numeroPortas = textFieldNumeroPortas.getText();
-                                String numeroPassageiros = textFieldNumeroPassageirosCarro.getText();
-                                String mediaKm = textFieldMediaKm.getText();
-
-                                if (arCondicionado.isEmpty() || numeroPortas.isEmpty() || numeroPassageiros.isEmpty()
-                                        || mediaKm.isEmpty()) {
-                                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                                    alert.setTitle("ERRO");
-                                    alert.setHeaderText(null);
-                                    alert.setContentText("Preencha todos os campos!");
-                                    alert.showAndWait();
-                                } else {
-
-                                    boolean arCondicionadoBoolean = false;
-                                    int numeroPortasInt = Integer.parseInt(numeroPortas);
-                                    int numeroPassageirosInt = Integer.parseInt(numeroPassageiros);
-                                    double mediaKmDouble = Double.parseDouble(mediaKm);
-
-                                    if (arCondicionado.equals("Sim")) {
-                                        arCondicionadoBoolean = true;
-                                    } else {
-                                        arCondicionadoBoolean = false;
-                                    }
-
-                                    Veiculo carro = new Carro(placa, anoInt, diariaDouble, numeroPassageirosInt,
-                                            numeroPortasInt, mediaKmDouble, arCondicionadoBoolean);
-                                    listaVeiculos.add(carro);
-
-                                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                    alert.setTitle("SUCESSO");
-                                    alert.setHeaderText(null);
-                                    alert.setContentText("Carro adicionado com sucesso!");
-                                    alert.showAndWait();
-
-                                    limparTodosCampos(null);
-                                }
-
-                            break;
-
-                            case "Ônibus":
-                                String wifi = choiceBoxWifiOnibus.getValue();
-                                String arCondicionadoOnibus = choiceBoxArCondicionadoOnibus.getValue();
-                                String numeroPassageirosOnibus = textFieldNumeroPassageirosOnibus.getText();
-
-                                if (wifi.isEmpty() || arCondicionadoOnibus.isEmpty()
-                                        || numeroPassageirosOnibus.isEmpty()) {
-                                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                                    alert.setTitle("ERRO");
-                                    alert.setHeaderText(null);
-                                    alert.setContentText("Preencha todos os campos!");
-                                    alert.showAndWait();
-                                } else {
-
-                                    boolean wifiBoolean = false;
-                                    boolean arCondicionadoOnibusBoolean = false;
-                                    int numeroPassageirosOnibusInt = Integer.parseInt(numeroPassageirosOnibus);
-                                    Categoria categoria;
-
-                                    if (wifi.equals("Sim")) {
-                                        wifiBoolean = true;
-                                    } else {
-                                        wifiBoolean = false;
-                                    }
-
-                                    if (arCondicionadoOnibus.equals("Sim")) {
-                                        arCondicionadoOnibusBoolean = true;
-                                    } else {
-                                        arCondicionadoOnibusBoolean = false;
-                                    }
-
-                                    if (choiceBoxCategoria.getValue().equals("Executivo")) {
-                                        categoria = Categoria.EXECUTIVO;
-                                    } else if (choiceBoxCategoria.getValue().equals("Leito")) {
-                                        categoria = Categoria.LEITO;
-                                    } else {
-                                        categoria = Categoria.CONVENCIONAL;
-                                    }
-
-                                    Veiculo onibus = new Onibus(placa, anoInt, diariaDouble, numeroPassageirosOnibusInt,
-                                            categoria, wifiBoolean, arCondicionadoOnibusBoolean);
-                                    listaVeiculos.add(onibus);
-
-                                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                    alert.setTitle("SUCESSO");
-                                    alert.setHeaderText(null);
-                                    alert.setContentText("Ônibus adicionado com sucesso!");
-                                    alert.showAndWait();
-
-                                    limparTodosCampos(null);
-                                }
-
-                            break;
-
-                            case "Caminhão":
-                                String cargaMaxima = textFieldCargaMaxima.getText();
-                                String numeroEixos = textFieldNumeroEixos.getText();
-
-                                if (cargaMaxima.isEmpty() || numeroEixos.isEmpty()) {
-                                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                                    alert.setTitle("ERRO");
-                                    alert.setHeaderText(null);
-                                    alert.setContentText("Preencha todos os campos!");
-                                    alert.showAndWait();
-                                } else {
-
-                                    double cargaMaximaDouble = Double.parseDouble(cargaMaxima);
-                                    int numeroEixosInt = Integer.parseInt(numeroEixos);
-
-                                    Veiculo caminhao = new Caminhao(placa, anoInt, diariaDouble, numeroEixosInt,
-                                            cargaMaximaDouble);
-                                    listaVeiculos.add(caminhao);
-
-                                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                    alert.setTitle("SUCESSO");
-                                    alert.setHeaderText(null);
-                                    alert.setContentText("Caminhão adicionado com sucesso!");
-                                    alert.showAndWait();
-
-                                    limparTodosCampos(null);
-                                }
-
-                            break;
-                        }
-                    } catch (NullPointerException e) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("ERRO");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Escolha um veículo!");
-                        alert.showAndWait();
-                    } catch (NumberFormatException e) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("ERRO");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Preencha os campos corretamente!");
-                        alert.showAndWait();
-                    }
-                }
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText("Escolha um veículo!");
-                alert.showAndWait();
+            if (tipoVeiculo == null) {
+                throw new NullPointerException("Escolha um veículo!");
             }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERRO");
-            alert.setHeaderText(null);
-            alert.setContentText("Placa já existente!");
-            alert.showAndWait();
+
+            /* POSSIVEL NUMBERFORMATEXCEPTION */
+            int anoInt = Integer.parseInt(ano);
+            double diariaDouble = Double.parseDouble(diaria);
+
+            switch (tipoVeiculo) {
+
+                case "Carro":
+                    String arCondicionado = choiceBoxArCondicionadoCarro.getValue();
+                    String numeroPortas = textFieldNumeroPortas.getText();
+                    String numeroPassageiros = textFieldNumeroPassageirosCarro.getText();
+                    String mediaKm = textFieldMediaKm.getText();
+
+                    if (arCondicionado == null || numeroPortas.isEmpty() || numeroPassageiros.isEmpty() || mediaKm.isEmpty()) {
+                        throw new NullPointerException("Preencha todos os campos!");
+                    } else {
+                        boolean arCondicionadoBoolean = false;
+                        int numeroPortasInt = Integer.parseInt(numeroPortas);
+                        int numeroPassageirosInt = Integer.parseInt(numeroPassageiros);
+                        double mediaKmDouble = Double.parseDouble(mediaKm);
+
+                        if (arCondicionado.equals("Sim")) {
+                            arCondicionadoBoolean = true;
+                        } else {
+                            arCondicionadoBoolean = false;
+                        }
+
+                        Veiculo carro = new Carro(placa, anoInt, diariaDouble, numeroPassageirosInt, numeroPortasInt, mediaKmDouble, arCondicionadoBoolean);
+                        listaVeiculos.add(carro);
+
+                        alertInterface("SUCESSO", "Carro adicionado com sucesso!", AlertType.INFORMATION);
+
+                        limparTodosCampos(null);
+                    }
+                    break;
+
+                case "Ônibus":
+                    String wifi = choiceBoxWifiOnibus.getValue();
+                    String arCondicionadoOnibus = choiceBoxArCondicionadoOnibus.getValue();
+                    String numeroPassageirosOnibus = textFieldNumeroPassageirosOnibus.getText();
+
+                    if (wifi == null || arCondicionadoOnibus == null || numeroPassageirosOnibus.isEmpty()) {
+                        throw new NullPointerException("Preencha todos os campos!");
+                    } else {
+
+                        boolean wifiBoolean = false;
+                        boolean arCondicionadoOnibusBoolean = false;
+                        int numeroPassageirosOnibusInt = Integer.parseInt(numeroPassageirosOnibus);
+                        Categoria categoria;
+
+                        if (wifi.equals("Sim")) {
+                            wifiBoolean = true;
+                        } else {
+                            wifiBoolean = false;
+                        }
+
+                        if (arCondicionadoOnibus.equals("Sim")) {
+                            arCondicionadoOnibusBoolean = true;
+                        } else {
+                            arCondicionadoOnibusBoolean = false;
+                        }
+
+                        if (choiceBoxCategoria.getValue().equals("Executivo")) {
+                            categoria = Categoria.EXECUTIVO;
+                        } else if (choiceBoxCategoria.getValue().equals("Leito")) {
+                            categoria = Categoria.LEITO;
+                        } else {
+                            categoria = Categoria.CONVENCIONAL;
+                        }
+
+                        Veiculo onibus = new Onibus(placa, anoInt, diariaDouble, numeroPassageirosOnibusInt, categoria, wifiBoolean, arCondicionadoOnibusBoolean);
+                        listaVeiculos.add(onibus);
+
+                        alertInterface("SUCESSO", "Ônibus adicionado com sucesso!", AlertType.INFORMATION);
+
+                        limparTodosCampos(null);
+                    }
+                    break;
+
+                case "Caminhão":
+                    String cargaMaxima = textFieldCargaMaxima.getText();
+                    String numeroEixos = textFieldNumeroEixos.getText();
+
+                    if (cargaMaxima.isEmpty() || numeroEixos.isEmpty()) {
+                        throw new NullPointerException("Preencha todos os campos!");
+                    } else {
+                        double cargaMaximaDouble = Double.parseDouble(cargaMaxima);
+                        int numeroEixosInt = Integer.parseInt(numeroEixos);
+
+                        Veiculo caminhao = new Caminhao(placa, anoInt, diariaDouble, numeroEixosInt, cargaMaximaDouble);
+                        listaVeiculos.add(caminhao);
+
+                        alertInterface("SUCESSO", "Caminhão adicionado com sucesso!", AlertType.INFORMATION);
+
+                        limparTodosCampos(null);
+                    }
+                    break;
+            }
+
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
+        } catch (NullPointerException | IllegalArgumentException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
 
     }
@@ -517,6 +476,21 @@ public class ControllerAdicionaVeiculo {
     @FXML
     void notHoverBtnAdicionar(MouseEvent event) {
         btnAdicionar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    /**
+     * Método para imprimir um alerta na tela
+     * 
+     * @param titulo   titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo     tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 
 }
