@@ -114,14 +114,12 @@ public class ControllerRemoveCliente {
             if (!listaClientes.existe(cpfLong)) {
                 throw new NullPointerException("CPF não existente");
             }
-            if (listaClientes.remove(cpfLong)) {
-                alertInterface("SUCESSO", "Cliente removido com sucesso!", AlertType.INFORMATION);
-            } else {
+            if (!listaClientes.remove(cpfLong)) {
                 throw new NullPointerException("Erro ao remover cliente");
+            } else {
+                alertInterface("SUCESSO", "Cliente removido com sucesso!", AlertType.INFORMATION);
+                limparCampos(null);
             }
-            
-            limparCampos(null);
-
         } catch (NumberFormatException e) {
             alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
         } catch (NullPointerException | IllegalArgumentException e) {
