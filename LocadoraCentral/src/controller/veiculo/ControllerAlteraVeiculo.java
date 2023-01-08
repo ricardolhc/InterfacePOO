@@ -427,6 +427,21 @@ public class ControllerAlteraVeiculo {
     }
 
     /**
+     * Método para imprimir um alerta na tela
+     * 
+     * @param titulo   titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo     tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+
+    /**
      * Método para limpar os campos de texto presentes na tela
      * 
      * @param event evento de limpar os campos de texto presentes na tela
@@ -525,19 +540,6 @@ public class ControllerAlteraVeiculo {
         btnAlterar.setStyle("-fx-background-color: #807d0a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
-    /**
-     * Método para imprimir um alerta na tela
-     * 
-     * @param titulo   titulo do alerta
-     * @param mensagem mensagem do alerta
-     * @param tipo     tipo do alerta
-     */
-    void alertInterface(String titulo, String mensagem, AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
-    }
+    
 
 }

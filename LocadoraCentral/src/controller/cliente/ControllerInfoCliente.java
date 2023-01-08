@@ -462,6 +462,36 @@ public class ControllerInfoCliente {
     }
 
     /**
+     * Método para limpar os campos de texto presentes na tela
+     * 
+     * @param event evento de limpar os campos de texto presentes na tela
+     */
+    @FXML
+    void limparCampos(MouseEvent event) {
+        textFieldCPF.clear();
+        textFieldNome.clear();
+        textFieldEndereco.clear();
+        textFieldTelefone.clear();
+        textFieldCarteiraMotorista.clear();
+        rootPane.requestFocus();
+    }
+
+    /**
+     * Método para imprimir um alerta na tela
+     * 
+     * @param titulo   titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo     tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+
+    /**
      * Efeito de hover ao passar o mouse no botão de mostrar/esconder os campos de
      * pesquisa
      * 
@@ -548,21 +578,6 @@ public class ControllerInfoCliente {
     }
 
     /**
-     * Método para limpar os campos de texto presentes na tela
-     * 
-     * @param event evento de limpar os campos de texto presentes na tela
-     */
-    @FXML
-    void limparCampos(MouseEvent event) {
-        textFieldCPF.clear();
-        textFieldNome.clear();
-        textFieldEndereco.clear();
-        textFieldTelefone.clear();
-        textFieldCarteiraMotorista.clear();
-        rootPane.requestFocus();
-    }
-
-    /**
      * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
      * resumidas de todos os clientes
      * 
@@ -625,19 +640,6 @@ public class ControllerInfoCliente {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
-    /**
-     * Método para imprimir um alerta na tela
-     * 
-     * @param titulo   titulo do alerta
-     * @param mensagem mensagem do alerta
-     * @param tipo     tipo do alerta
-     */
-    void alertInterface(String titulo, String mensagem, AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
-    }
+    
 
 }

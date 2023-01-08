@@ -14,17 +14,17 @@ import veiculo.Veiculo;
 public class DadosTabela {
     
     /**
-     * FALTA ESSE AQUI
+     * locacao para receber a locação que será exibida na tabela
      */
     private Locacao locacao;
 
     /**
-     *  FALTA ESSE AQUI
+     * veiculo para receber o veículo que será exibido na tabela
      */
     private Veiculo veiculo;
  
     /**
-     * FALTA ESSE AQUI
+     * cliente para receber o cliente que será exibido na tabela
      */
     private Cliente cliente;
 

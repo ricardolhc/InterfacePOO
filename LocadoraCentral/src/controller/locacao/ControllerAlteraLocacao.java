@@ -302,6 +302,34 @@ public class ControllerAlteraLocacao {
     }
 
     /**
+     * Método para imprimir um alerta na tela
+     * 
+     * @param titulo   titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo     tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+
+    /**
+     * Método para limpar os campos de texto presentes na tela
+     * 
+     * @param event evento de limpar os campos de texto presentes na tela
+     */
+    @FXML
+    void limparCampos(MouseEvent event) {
+        textFieldID.clear();
+        textFieldCPF.clear();
+        textFieldPlaca.clear();
+        rootPane.requestFocus();
+    }
+
+    /**
      * Efeito de hover ao passar o mouse no botão de alterar
      * 
      * @param event evento hover ao passar o mouse no botão
@@ -330,19 +358,6 @@ public class ControllerAlteraLocacao {
     void hoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/locacao/pngVoltarHover.png"));
         btnVoltar.setStyle("-fx-cursor: hand;");
-    }
-
-    /**
-     * Método para limpar os campos de texto presentes na tela
-     * 
-     * @param event evento de limpar os campos de texto presentes na tela
-     */
-    @FXML
-    void limparCampos(MouseEvent event) {
-        textFieldID.clear();
-        textFieldCPF.clear();
-        textFieldPlaca.clear();
-        rootPane.requestFocus();
     }
 
     /**
@@ -395,18 +410,5 @@ public class ControllerAlteraLocacao {
         btnPesquisar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
-    /**
-     * Método para imprimir um alerta na tela
-     * 
-     * @param titulo   titulo do alerta
-     * @param mensagem mensagem do alerta
-     * @param tipo     tipo do alerta
-     */
-    void alertInterface(String titulo, String mensagem, AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
-    }
+    
 }

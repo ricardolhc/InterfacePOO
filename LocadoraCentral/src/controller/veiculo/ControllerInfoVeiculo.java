@@ -622,6 +622,21 @@ public class ControllerInfoVeiculo {
     }
 
     /**
+     * Método para imprimir um alerta na tela
+     * 
+     * @param titulo   titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo     tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+
+    /**
      * Método para limpar os campos de texto presentes na tela
      * 
      * @param event evento de limpar os campos de texto presentes na tela
@@ -805,21 +820,6 @@ public class ControllerInfoVeiculo {
     void hoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
         btnVoltar.setStyle("-fx-cursor: hand;");
-    }
-
-    /**
-     * Método para imprimir um alerta na tela
-     * 
-     * @param titulo   titulo do alerta
-     * @param mensagem mensagem do alerta
-     * @param tipo     tipo do alerta
-     */
-    void alertInterface(String titulo, String mensagem, AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 
 }

@@ -1,9 +1,18 @@
 package controller.locacao;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
+import java.util.Date;
 
 import controller.ControllerMenuLocadora;
+import exceptions.cliente.ClienteNotFoundException;
+import exceptions.geral.EmptyFieldException;
+import exceptions.locacao.DateDifferenceException;
+import exceptions.locacao.LocacaoNotFoundException;
+import exceptions.veiculo.VeiculoNotFoundException;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,9 +21,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,8 +36,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import lista.Cliente;
+import lista.ListaClientes;
 import lista.ListaLocacoes;
-
+import lista.ListaVeiculos;
 import lista.Locacao;
 import veiculo.Veiculo;
 
@@ -57,11 +70,55 @@ public class ControllerInfoLocacao {
     @FXML
     private Button btnMostrarEsconderCampos;
 
+    @FXML
+    private Button btnPesquisaID;
+
+    @FXML
+    private Button btnPesquisaCPF;
+
+    @FXML
+    private Button btnPesquisaPlaca;
+
+    @FXML
+    private Button btnPesquisaData;
+
+    @FXML
+    private Button btnPesquisaPeriodo;
+
+    @FXML
+    private Button btnPesquisarLocacaoID;
+
+    @FXML
+    private Button btnPesquisarLocacaoCPF;
+
+    @FXML
+    private Button btnPesquisarLocacaoPlaca;
+
+    @FXML
+    private Button btnPesquisarLocacaoData;
+
+    @FXML
+    private Button btnPesquisarLocacaoPeriodo;
+
     /*
      * btnPesquisar usado para pesquisar um cliente
      */
     @FXML
-    private Button btnPesquisar;
+    private Button mostrarPesquisaCPF;
+
+    /*
+     * btnMostrarPesquisaPeriodo usado para mostrar/esconder o campo de pesquisa por
+     * periodo
+     */
+    @FXML
+    private Button btnMostrarPesquisaPeriodo;
+
+    /*
+     * btnMostrarPesquisaData usado para mostrar/esconder o campo de pesquisa por
+     * data
+     */
+    @FXML
+    private Button btnPesquisarPlaca;
 
     /*
      * btnVoltar usado para voltar para a tela principal
@@ -88,7 +145,8 @@ public class ControllerInfoLocacao {
     private TableColumn<DadosTabela, Calendar> tableColumnDataFinalInfoCompleta;
 
     /*
-     * tableColumnDataInicialInfoCompleta usado para mostrar a data inicial da locacao
+     * tableColumnDataInicialInfoCompleta usado para mostrar a data inicial da
+     * locacao
      */
     @FXML
     private TableColumn<DadosTabela, Calendar> tableColumnDataInicialInfoCompleta;
@@ -112,21 +170,112 @@ public class ControllerInfoLocacao {
     private TableColumn<DadosTabela, String> tableColumnVeiculoInfoCompleta;
 
     /*
-     * tableViewInfoCompleta usado para mostrar as informações completas das locacoes
+     * tableViewInfoCompleta usado para mostrar as informações completas das
+     * locacoes
      */
     @FXML
     private TableView<DadosTabela> tableViewInfoCompleta;
+
+    @FXML
+    private TableColumn<DadosTabela, String> tableColumnCPFInfo;
+
+    @FXML
+    private TableColumn<DadosTabela, Calendar> tableColumnDataFinalInfo;
+
+    @FXML
+    private TableColumn<DadosTabela, Calendar> tableColumnDataInicialInfo;
+
+    @FXML
+    private TableColumn<DadosTabela, Integer> tableColumnIDInfo;
+
+    @FXML
+    private TableColumn<DadosTabela, Boolean> tableColumnSeguroInfo;
+
+    @FXML
+    private TableColumn<DadosTabela, String> tableColumnVeiculoInfo;
+
+    @FXML
+    private TableView<DadosTabela> tableViewInfoLocacao;
+
+    @FXML
+    private Pane paneInfoLocacao;
+
+    @FXML
+    private Pane paneIDLocacao;
+
+    @FXML
+    private Pane paneCPFLocacao;
+
+    @FXML
+    private Pane panePlacaLocacao;
+
+    @FXML
+    private Pane paneDataLocacao;
+
+    @FXML
+    private Pane panePeriodoLocacao;
+
+    @FXML
+    private TextField textFieldIDLocacao;
+
+    @FXML
+    private TextField textFieldCPFLocacao;
+
+    @FXML
+    private TextField textFieldPlacaLocacao;
+
+    @FXML
+    private TextField textFieldCPF;
+
+    @FXML
+    private TextField textFieldPlaca;
+
+    @FXML
+    private DatePicker pickerDataInicial;
+
+    @FXML
+    private DatePicker pickerDataFinal;
+
+    @FXML
+    private ChoiceBox<String> choiceSeguro;
+
+    @FXML
+    private DatePicker datePickerDataLocacao;
+
+    @FXML
+    private DatePicker datePickerDataInicialLocacao;
+
+    @FXML
+    private DatePicker datePickerDataFinalLocacao;
 
     /*
      * listaClientes usado para armazenar as locacoes
      */
     private ListaLocacoes listaLocacoes;
 
+    private ListaClientes listaClientes;
+
+    private ListaVeiculos listaVeiculos;
+
     /*
      * mostrarEsconderInfoCompleta usado para mostrar/esconder a tabela com as
      * informações completas das locacoes
      */
     private boolean mostrarEsconderInfoCompleta = true;
+
+    private boolean mostrarEsconderInfoLocacao = true;
+
+    private boolean mostrarEsconderInfoLocacaoID = true;
+
+    private boolean mostrarEsconderInfoLocacaoCPF = true;
+
+    private boolean mostrarEsconderInfoLocacaoPlaca = true;
+
+    private boolean mostrarEsconderInfoLocacaoData = true;
+
+    private boolean mostrarEsconderInfoLocacaoPeriodo = true;
+
+    private final String[] escolhaseguro = { "Sim", "Não" };
 
     /**
      * Método usado para voltar ao menu principal
@@ -148,11 +297,13 @@ public class ControllerInfoLocacao {
     }
 
     /*
-     * Método usado para inicializar as colunas das tabelas de informações 
+     * Método usado para inicializar as colunas das tabelas de informações
      * das locacoes e também para inicializar a lista de locacoes
      */
     @FXML
     void initialize() {
+
+        choiceSeguro.getItems().addAll(escolhaseguro);
 
         tableColumnDataFinalInfoCompleta.setCellValueFactory(dadosTabela -> {
             Locacao locacao = dadosTabela.getValue().getLocacao();
@@ -211,7 +362,501 @@ public class ControllerInfoLocacao {
             return new SimpleObjectProperty<String>(cliente.getCpf());
         });
 
+        tableColumnDataFinalInfo.setCellValueFactory(dadosTabela -> {
+            Locacao locacao = dadosTabela.getValue().getLocacao();
+            return new SimpleObjectProperty<Calendar>(locacao.getDataFinal());
+        });
+        tableColumnDataFinalInfo.setCellFactory(column -> {
+            return new TableCell<DadosTabela, Calendar>() {
+                private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+                @Override
+                protected void updateItem(Calendar item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {
+                        setText(sdf.format(item.getTime()));
+                    }
+                }
+            };
+        });
+
+        tableColumnDataInicialInfo.setCellValueFactory(dadosTabela -> {
+            Locacao locacao = dadosTabela.getValue().getLocacao();
+            return new SimpleObjectProperty<Calendar>(locacao.getDataInicial());
+        });
+        tableColumnDataInicialInfo.setCellFactory(column -> {
+            return new TableCell<DadosTabela, Calendar>() {
+                private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+                @Override
+                protected void updateItem(Calendar item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {
+                        setText(sdf.format(item.getTime()));
+                    }
+                }
+            };
+        });
+        tableColumnIDInfo.setCellValueFactory(dadosTabela -> {
+            Locacao locacao = dadosTabela.getValue().getLocacao();
+            return new SimpleObjectProperty<Integer>(locacao.getCodigo());
+        });
+        tableColumnSeguroInfo.setCellValueFactory(dadosTabela -> {
+            Locacao locacao = dadosTabela.getValue().getLocacao();
+            return new SimpleObjectProperty<Boolean>(locacao.getSeguro());
+        });
+
+        tableColumnVeiculoInfo.setCellValueFactory(dadosTabela -> {
+            Veiculo veiculo = dadosTabela.getValue().getVeiculo();
+            return new SimpleObjectProperty<String>(veiculo.getPlaca());
+        });
+        tableColumnCPFInfo.setCellValueFactory(dadosTabela -> {
+            Cliente cliente = dadosTabela.getValue().getCliente();
+            return new SimpleObjectProperty<String>(cliente.getCpf());
+        });
+
         listaLocacoes = ControllerMenuLocadora.getListaLocacoes();
+        listaClientes = ControllerMenuLocadora.getListaClientes();
+        listaVeiculos = ControllerMenuLocadora.getListaVeiculos();
+    }
+
+    ////////////////////////////////////// FALTA
+    ////////////////////////////////////// ESSE////////////////////////////////
+    @FXML
+    void infoFullLocacao(ActionEvent event) {
+
+        if(tableViewInfoLocacao.isVisible()) {
+            tableViewInfoLocacao.setVisible(false);
+        }
+
+        if (paneInfoLocacao.isVisible() || paneIDLocacao.isVisible() || paneCPFLocacao.isVisible()
+                || panePlacaLocacao.isVisible() || paneDataLocacao.isVisible() || panePeriodoLocacao.isVisible()) {
+            paneInfoLocacao.setVisible(false);
+            paneIDLocacao.setVisible(false);
+            paneCPFLocacao.setVisible(false);
+            panePlacaLocacao.setVisible(false);
+            paneDataLocacao.setVisible(false);
+            panePeriodoLocacao.setVisible(false);
+
+            mostrarEsconderInfoLocacao = true;
+            mostrarEsconderInfoLocacaoID = true;
+            mostrarEsconderInfoLocacaoCPF = true;
+            mostrarEsconderInfoLocacaoPlaca = true;
+            mostrarEsconderInfoLocacaoData = true;
+            mostrarEsconderInfoLocacaoPeriodo = true;
+        }
+
+        tableViewInfoCompleta.setVisible(mostrarEsconderInfoCompleta);
+        mostrarEsconderInfoCompleta = !mostrarEsconderInfoCompleta;
+
+        if (tableViewInfoCompleta.isVisible()) {
+            ObservableList<DadosTabela> observableListLocacoes = FXCollections.observableArrayList();
+            try {
+                String[] dadosLocacoes = listaLocacoes.getInfo().split("\n");
+
+                for (String dados : dadosLocacoes) {
+                    String[] campos = dados.split(";");
+                    int codigoLocacao = Integer.parseInt(campos[0].split(": ")[1]);
+
+                    Locacao locacao = listaLocacoes.get(codigoLocacao);
+                    DadosTabela dadosTabela = new DadosTabela(locacao, locacao.getVeiculo(), locacao.getCliente());
+                    observableListLocacoes.add(dadosTabela);
+                }
+            } catch (NumberFormatException e) {
+                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+            } catch (NullPointerException e) {
+                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+            }
+            tableViewInfoCompleta.setItems(observableListLocacoes);
+        }
+    }
+
+    /**
+     * Método para mostrar/esconder os campos de pesquisa
+     * 
+     * @param event evento de mostrar/esconder os campos de pesquisa
+     */
+    @FXML
+    void mostrarEsconderCampos(ActionEvent event) {
+
+        if(tableViewInfoLocacao.isVisible()) {
+            tableViewInfoLocacao.setVisible(false);
+        }
+        if (tableViewInfoCompleta.isVisible() || paneIDLocacao.isVisible() || paneCPFLocacao.isVisible()
+                || panePlacaLocacao.isVisible() || paneDataLocacao.isVisible() || panePeriodoLocacao.isVisible()) {
+            tableViewInfoCompleta.setVisible(false);
+            paneIDLocacao.setVisible(false);
+            paneCPFLocacao.setVisible(false);
+            panePlacaLocacao.setVisible(false);
+            paneDataLocacao.setVisible(false);
+            panePeriodoLocacao.setVisible(false);
+
+            mostrarEsconderInfoCompleta = true;
+            mostrarEsconderInfoLocacaoID = true;
+            mostrarEsconderInfoLocacaoCPF = true;
+            mostrarEsconderInfoLocacaoPlaca = true;
+            mostrarEsconderInfoLocacaoData = true;
+            mostrarEsconderInfoLocacaoPeriodo = true;
+        }
+
+        paneInfoLocacao.setVisible(mostrarEsconderInfoLocacao);
+        mostrarEsconderInfoLocacao = !mostrarEsconderInfoLocacao;
+    }
+
+    @FXML
+    void mostrarPesquisaID(ActionEvent event) {
+
+        if(tableViewInfoLocacao.isVisible()) {
+            tableViewInfoLocacao.setVisible(false);
+        }
+
+        if (paneCPFLocacao.isVisible() || panePlacaLocacao.isVisible() || paneDataLocacao.isVisible()
+                || panePeriodoLocacao.isVisible()) {
+            paneCPFLocacao.setVisible(false);
+            panePlacaLocacao.setVisible(false);
+            paneDataLocacao.setVisible(false);
+            panePeriodoLocacao.setVisible(false);
+
+            mostrarEsconderInfoLocacaoCPF = true;
+            mostrarEsconderInfoLocacaoPlaca = true;
+            mostrarEsconderInfoLocacaoData = true;
+            mostrarEsconderInfoLocacaoPeriodo = true;
+        }
+
+        paneIDLocacao.setVisible(mostrarEsconderInfoLocacaoID);
+        mostrarEsconderInfoLocacaoID = !mostrarEsconderInfoLocacaoID;
+    }
+
+    @FXML
+    void mostrarPesquisaCPF(ActionEvent event) {
+
+        if(tableViewInfoLocacao.isVisible()) {
+            tableViewInfoLocacao.setVisible(false);
+        }
+
+        if (paneIDLocacao.isVisible() || panePlacaLocacao.isVisible() || paneDataLocacao.isVisible()
+                || panePeriodoLocacao.isVisible()) {
+            paneIDLocacao.setVisible(false);
+            panePlacaLocacao.setVisible(false);
+            paneDataLocacao.setVisible(false);
+            panePeriodoLocacao.setVisible(false);
+
+            mostrarEsconderInfoLocacaoID = true;
+            mostrarEsconderInfoLocacaoPlaca = true;
+            mostrarEsconderInfoLocacaoData = true;
+            mostrarEsconderInfoLocacaoPeriodo = true;
+        }
+
+        paneCPFLocacao.setVisible(mostrarEsconderInfoLocacaoCPF);
+        mostrarEsconderInfoLocacaoCPF = !mostrarEsconderInfoLocacaoCPF;
+    }
+
+    @FXML
+    void mostrarPesquisaPlaca(ActionEvent event) {
+
+        if(tableViewInfoLocacao.isVisible()) {
+            tableViewInfoLocacao.setVisible(false);
+        }
+
+        if (paneIDLocacao.isVisible() || paneCPFLocacao.isVisible() || paneDataLocacao.isVisible()
+                || panePeriodoLocacao.isVisible()) {
+            paneIDLocacao.setVisible(false);
+            paneCPFLocacao.setVisible(false);
+            paneDataLocacao.setVisible(false);
+            panePeriodoLocacao.setVisible(false);
+
+            mostrarEsconderInfoLocacaoID = true;
+            mostrarEsconderInfoLocacaoCPF = true;
+            mostrarEsconderInfoLocacaoData = true;
+            mostrarEsconderInfoLocacaoPeriodo = true;
+        }
+
+        panePlacaLocacao.setVisible(mostrarEsconderInfoLocacaoPlaca);
+        mostrarEsconderInfoLocacaoPlaca = !mostrarEsconderInfoLocacaoPlaca;
+    }
+
+    @FXML
+    void mostrarPesquisaData(ActionEvent event) {
+
+        if(tableViewInfoLocacao.isVisible()) {
+            tableViewInfoLocacao.setVisible(false);
+        }
+
+        if (paneIDLocacao.isVisible() || paneCPFLocacao.isVisible() || panePlacaLocacao.isVisible()
+                || panePeriodoLocacao.isVisible()) {
+            paneIDLocacao.setVisible(false);
+            paneCPFLocacao.setVisible(false);
+            panePlacaLocacao.setVisible(false);
+            panePeriodoLocacao.setVisible(false);
+
+            mostrarEsconderInfoLocacaoID = true;
+            mostrarEsconderInfoLocacaoCPF = true;
+            mostrarEsconderInfoLocacaoPlaca = true;
+            mostrarEsconderInfoLocacaoPeriodo = true;
+        }
+
+        paneDataLocacao.setVisible(mostrarEsconderInfoLocacaoData);
+        mostrarEsconderInfoLocacaoData = !mostrarEsconderInfoLocacaoData;
+    }
+
+    @FXML
+    void mostrarPesquisaPeriodo(ActionEvent event) {
+
+        if(tableViewInfoLocacao.isVisible()) {
+            tableViewInfoLocacao.setVisible(false);
+        }
+
+        if (paneIDLocacao.isVisible() || paneCPFLocacao.isVisible() || panePlacaLocacao.isVisible()
+                || paneDataLocacao.isVisible()) {
+            paneIDLocacao.setVisible(false);
+            paneCPFLocacao.setVisible(false);
+            panePlacaLocacao.setVisible(false);
+            paneDataLocacao.setVisible(false);
+
+            mostrarEsconderInfoLocacaoID = true;
+            mostrarEsconderInfoLocacaoCPF = true;
+            mostrarEsconderInfoLocacaoPlaca = true;
+            mostrarEsconderInfoLocacaoData = true;
+        }
+
+        panePeriodoLocacao.setVisible(mostrarEsconderInfoLocacaoPeriodo);
+        mostrarEsconderInfoLocacaoPeriodo = !mostrarEsconderInfoLocacaoPeriodo;
+    }
+
+    @FXML
+    void pesquisarLocacaoID(ActionEvent event) {
+        String id = textFieldIDLocacao.getText();
+
+        try {
+            if (id.isEmpty()) {
+                throw new EmptyFieldException("Preencha o campo ID");
+            }
+
+            int codigoLocacao = Integer.parseInt(id);
+
+            if (!listaLocacoes.existe(codigoLocacao)) {
+                throw new LocacaoNotFoundException("Locação não encontrada");
+            }
+
+            Locacao locacao = listaLocacoes.get(codigoLocacao);
+            String seguro = locacao.getSeguro() ? "Sim" : "Não";
+            String cpf = locacao.getCliente().getCpf();
+            String placa = locacao.getVeiculo().getPlaca();
+
+            Calendar dataInicial = locacao.getDataInicial();
+            Calendar dataFinal = locacao.getDataFinal();
+
+            Instant instantInicial = dataInicial.toInstant();
+            Instant instantFinal = dataFinal.toInstant();
+
+            LocalDate localDateInicial = instantInicial.atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate localDateFinal = instantFinal.atZone(ZoneId.systemDefault()).toLocalDate();
+
+            textFieldCPF.setText(cpf);
+            textFieldPlaca.setText(placa);
+            pickerDataInicial.setValue(localDateInicial);
+            pickerDataFinal.setValue(localDateFinal);
+            choiceSeguro.setValue(seguro);
+
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha o campo corretamente!", AlertType.ERROR);
+        } catch (EmptyFieldException | LocacaoNotFoundException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+        }
+    }
+
+    @FXML
+    void pesquisarLocacaoCPF(ActionEvent event) {
+
+        String cpf = textFieldCPFLocacao.getText();
+
+        ObservableList<DadosTabela> observableListLocacoes = FXCollections.observableArrayList();
+
+        Cliente cliente;
+
+        try {
+
+            long cpfLong = Long.parseLong(cpf);
+
+            if (cpf.isEmpty()) {
+                throw new EmptyFieldException("Preencha o campo CPF");
+            }
+
+            if (!listaClientes.existe(cpfLong)) {
+                throw new ClienteNotFoundException("Cliente não encontrado");
+            }
+
+            cliente = listaClientes.get(cpfLong);
+
+            String[] dadosLocacoes = listaLocacoes.getLocacoesByCliente(cliente).split("\n");
+
+            for (String dados : dadosLocacoes) {
+                String[] campos = dados.split(";");
+                int codigoLocacao = Integer.parseInt(campos[0].split(": ")[1]);
+
+                Locacao locacao = listaLocacoes.get(codigoLocacao);
+                DadosTabela dadosTabela = new DadosTabela(locacao, locacao.getVeiculo(), locacao.getCliente());
+                observableListLocacoes.add(dadosTabela);
+            }
+            tableViewInfoLocacao.setVisible(true);
+            tableViewInfoLocacao.setItems(observableListLocacoes);
+
+            paneCPFLocacao.setVisible(false);
+            mostrarEsconderInfoLocacaoCPF = true;
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha o campo corretamente!", AlertType.ERROR);
+        } catch (EmptyFieldException | ClienteNotFoundException | LocacaoNotFoundException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+        }
+    }
+
+    @FXML
+    void pesquisarLocacaoPlaca(ActionEvent event) {
+
+        String placa = textFieldPlacaLocacao.getText();
+
+        ObservableList<DadosTabela> observableListLocacoes = FXCollections.observableArrayList();
+
+        Veiculo veiculo;
+
+        try {
+            if (placa.isEmpty()) {
+                throw new EmptyFieldException("Preencha o campo placa");
+            }
+
+            if (!listaVeiculos.existe(placa)) {
+                throw new VeiculoNotFoundException("Veiculo não encontrado");
+            }
+
+            veiculo = listaVeiculos.get(placa);
+
+            String[] dadosLocacoes = listaLocacoes.getLocacoesByVeiculo(veiculo).split("\n");
+
+            for (String dados : dadosLocacoes) {
+                String[] campos = dados.split(";");
+                int codigoLocacao = Integer.parseInt(campos[0].split(": ")[1]);
+
+                Locacao locacao = listaLocacoes.get(codigoLocacao);
+                DadosTabela dadosTabela = new DadosTabela(locacao, locacao.getVeiculo(), locacao.getCliente());
+                observableListLocacoes.add(dadosTabela);
+            }
+            tableViewInfoLocacao.setVisible(true);
+            tableViewInfoLocacao.setItems(observableListLocacoes);
+
+            panePlacaLocacao.setVisible(false);
+            mostrarEsconderInfoLocacaoPlaca = true;
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha o campo corretamente!", AlertType.ERROR);
+        } catch (EmptyFieldException | VeiculoNotFoundException | LocacaoNotFoundException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+        }
+        
+    }
+
+    @FXML
+    void pesquisarLocacaoData(ActionEvent event) {
+        
+        ObservableList<DadosTabela> observableListLocacoes = FXCollections.observableArrayList();
+        try {
+
+            if (datePickerDataLocacao.getValue() == null) {
+                throw new EmptyFieldException("Selecione uma data!");
+            }
+
+            LocalDate data = datePickerDataLocacao.getValue();
+            Date date = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+            Calendar dataCalendar = Calendar.getInstance();
+            dataCalendar.setTime(date);
+
+            String[] dadosLocacoes = listaLocacoes.getLocacoesByDiaMesAno(dataCalendar).split("\n");
+
+            for (String dados : dadosLocacoes) {
+                String[] campos = dados.split(";");
+                int codigoLocacao = Integer.parseInt(campos[0].split(": ")[1]);
+
+                Locacao locacao = listaLocacoes.get(codigoLocacao);
+                DadosTabela dadosTabela = new DadosTabela(locacao, locacao.getVeiculo(), locacao.getCliente());
+                observableListLocacoes.add(dadosTabela);
+            }
+            paneDataLocacao.setVisible(false);
+            mostrarEsconderInfoLocacaoData = true;
+
+            tableViewInfoLocacao.setVisible(true);
+            tableViewInfoLocacao.setItems(observableListLocacoes);
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha o campo corretamente!", AlertType.ERROR);
+        } catch (EmptyFieldException | LocacaoNotFoundException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+        }
+    }
+
+    @FXML
+    void pesquisarLocacaoPeriodo(ActionEvent event) {
+        ObservableList<DadosTabela> observableListLocacoes = FXCollections.observableArrayList();
+        try {
+
+            if (datePickerDataInicialLocacao.getValue() == null) {
+                throw new EmptyFieldException("Selecione a data inicial!");
+            }
+
+            if (datePickerDataFinalLocacao.getValue() == null) {
+                throw new EmptyFieldException("Selecione a data final!");
+            }
+
+            LocalDate dataInicial = datePickerDataInicialLocacao.getValue();
+            Date dateInicial = Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            Calendar dataInicialCalendar = Calendar.getInstance();
+            dataInicialCalendar.setTime(dateInicial);
+
+            LocalDate dataFinal = datePickerDataFinalLocacao.getValue();
+            Date dateFinal = Date.from(dataFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            Calendar dataFinalCalendar = Calendar.getInstance();
+            dataFinalCalendar.setTime(dateFinal);
+
+            if (dataInicialCalendar.after(dataFinalCalendar)) {
+                throw new DateDifferenceException("Data inicial maior que a data final!");
+            }
+
+            String[] dadosLocacoes = listaLocacoes.getLocacoesByPeriodo(dataInicialCalendar, dataFinalCalendar).split("\n");
+
+            for (String dados : dadosLocacoes) {
+                String[] campos = dados.split(";");
+                int codigoLocacao = Integer.parseInt(campos[0].split(": ")[1]);
+
+                Locacao locacao = listaLocacoes.get(codigoLocacao);
+                DadosTabela dadosTabela = new DadosTabela(locacao, locacao.getVeiculo(), locacao.getCliente());
+                observableListLocacoes.add(dadosTabela);
+            }
+            panePeriodoLocacao.setVisible(false);
+            mostrarEsconderInfoLocacaoPeriodo = true;
+
+            tableViewInfoLocacao.setVisible(true);
+            tableViewInfoLocacao.setItems(observableListLocacoes);
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha o campo corretamente!", AlertType.ERROR);
+        } catch (EmptyFieldException | LocacaoNotFoundException | DateDifferenceException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+        }
+    }
+
+    /**
+     * Método para imprimir um alerta na tela
+     * 
+     * @param titulo   titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo     tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 
     /**
@@ -225,35 +870,30 @@ public class ControllerInfoLocacao {
         btnInfoFullLocacao.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
-    /**
-     * Efeito de hover ao passar o mouse no botão de limpar os campos de texto
-     * 
-     * @param event evento de hover ao passar o mouse no botão
-     */
     @FXML
-    void hoverBtnLimpar(MouseEvent event) {
-
+    void hoverBtnPesquisarLocacaoID(MouseEvent event) {
+        btnPesquisarLocacaoID.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
-    /**
-     * Efeito de hover ao passar o mouse no botão de mostrar/esconder os campos de
-     * texto
-     * 
-     * @param event evento de hover ao passar o mouse no botão
-     */
     @FXML
-    void hoverBtnMostrarCampos(MouseEvent event) {
-        btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    void hoverBtnPesquisarLocacaoCPF(MouseEvent event) {
+        btnPesquisarLocacaoCPF.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
-    /**
-     * Efeito de hover ao passar o mouse no botão de pesquisar
-     * 
-     * @param event evento de hover ao passar o mouse no botão
-     */
     @FXML
-    void hoverBtnPesquisar(MouseEvent event) {
+    void hoverBtnPesquisarLocacaoPlaca(MouseEvent event) {
+        btnPesquisarLocacaoPlaca.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
 
+    @FXML
+    void hoverBtnPesquisarLocacaoData(MouseEvent event) {
+        btnPesquisarLocacaoData.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void hoverBtnPesquisarLocacaoPeriodo(MouseEvent event) {
+        btnPesquisarLocacaoPeriodo
+                .setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     @FXML
@@ -262,70 +902,38 @@ public class ControllerInfoLocacao {
         btnVoltar.setStyle("-fx-cursor: hand;");
     }
 
-    //////////////////////////////////////FALTA ESSE////////////////////////////////
     @FXML
-    void infoFullLocacao(ActionEvent event) {
-
-        if (tableViewInfoCompleta.isVisible()) {
-
-
-
-        
-        }
-
-        tableViewInfoCompleta.setVisible(mostrarEsconderInfoCompleta);
-        mostrarEsconderInfoCompleta = !mostrarEsconderInfoCompleta;
-
-        if (tableViewInfoCompleta.isVisible()) {
-            ObservableList<DadosTabela> observableListLocacoes = FXCollections.observableArrayList();
-
-            try {
-                String[] dadosLocacoes = listaLocacoes.getInfo().split("\n");
-
-                for (String dados : dadosLocacoes) {
-                    String[] campos = dados.split(";");
-                    int codigoLocacao = Integer.parseInt(campos[0].split(": ")[1]);
-
-                    Locacao locacao = listaLocacoes.get(codigoLocacao);
-                    DadosTabela dadosTabela = new DadosTabela(locacao, locacao.getVeiculo(), locacao.getCliente());
-                    observableListLocacoes.add(dadosTabela);
-                }
-            } catch (NullPointerException e) {
-                System.out.println(e.getLocalizedMessage());
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERRO");
-                alert.setHeaderText(null);
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            }
-            tableViewInfoCompleta.setItems(observableListLocacoes);
-        }
+    void hoverBtnMostrarEsconderCampos(MouseEvent event) {
+        btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
-    //////////////////////////////////////FALTA ESSE////////////////////////////////
     @FXML
-    void infoLocacao(ActionEvent event) {
+    void hoverBtnMostrarPesquisaID(MouseEvent event) {
+        btnPesquisaID.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
 
     }
 
-    /**
-     * Método para limpar os campos de texto presentes na tela
-     * 
-     * @param event evento de limpar os campos de texto presentes na tela
-     */
     @FXML
-    void limparCampos(MouseEvent event) {
+    void hoverBtnMostrarPesquisaCPF(MouseEvent event) {
+        btnPesquisaCPF.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
 
     }
 
-    /**
-     * Método para mostrar/esconder os campos de pesquisa
-     * 
-     * @param event evento de mostrar/esconder os campos de pesquisa
-     */
     @FXML
-    void mostrarEsconderCampos(ActionEvent event) {
+    void hoverBtnMostrarPesquisaPlaca(MouseEvent event) {
+        btnPesquisaPlaca.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
 
+    }
+
+    @FXML
+    void hoverBtnMostrarPesquisaData(MouseEvent event) {
+        btnPesquisaData
+                .setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void hoverBtnMostrarPesquisaPeriodo(MouseEvent event) {
+        btnPesquisaPeriodo.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
     /**
@@ -340,34 +948,19 @@ public class ControllerInfoLocacao {
     }
 
     /**
-     * Efeito de hover ao tirar o mouse no botão de limpar os campos de texto
-     * 
-     * @param event evento de hover ao tirar o mouse no botão
-     */
-    @FXML
-    void notHoverBtnLimpar(MouseEvent event) {
-
-    }
-
-    /**
      * Efeito de hover ao tirar o mouse no botão de mostrar/esconder os campos de
      * pesquisa
      * 
      * @param event evento de hover ao tirar o mouse no botão
      */
+
+    /**
+     * Esse aqui de baixo acho que pode tirar era como estava o nome antigo depois
+     * que eu mudei "btnMostrarEsconderCampos"
+     */
     @FXML
     void notHoverBtnMostrarCampos(MouseEvent event) {
         btnMostrarEsconderCampos.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    /**
-     * Efeito de hover ao tirar o mouse no botão de pesquisar
-     * 
-     * @param event evento de hover ao tirar o mouse no botão
-     */
-    @FXML
-    void notHoverBtnPesquisar(MouseEvent event) {
-
     }
 
     /**
@@ -380,18 +973,63 @@ public class ControllerInfoLocacao {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
-    /**
-     * Método para imprimir um alerta na tela
-     * @param titulo titulo do alerta
-     * @param mensagem mensagem do alerta
-     * @param tipo tipo do alerta
-     */
-    void alertInterface(String titulo, String mensagem, AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
+    @FXML
+    void notHoverBtnMostrarEsconderCampos(MouseEvent event) {
+        btnMostrarEsconderCampos.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnMostrarPesquisaID(MouseEvent event) {
+        btnPesquisaID.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnMostrarPesquisaCPF(MouseEvent event) {
+        btnPesquisaCPF.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnMostrarPesquisaPlaca(MouseEvent event) {
+        btnPesquisaPlaca.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnMostrarPesquisaData(MouseEvent event) {
+        btnPesquisaData.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnMostrarPesquisaPeriodo(MouseEvent event) {
+        btnPesquisaPeriodo.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnPesquisarLocacaoID(MouseEvent event) {
+        btnPesquisarLocacaoID.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+
+    }
+
+    @FXML
+    void notHoverBtnPesquisarLocacaoCPF(MouseEvent event) {
+        btnPesquisarLocacaoCPF.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+
+    }
+
+    @FXML
+    void notHoverBtnPesquisarLocacaoPlaca(MouseEvent event) {
+        btnPesquisarLocacaoPlaca.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+    }
+
+    @FXML
+    void notHoverBtnPesquisarLocacaoData(MouseEvent event) {
+        btnPesquisarLocacaoData.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
+
+    }
+
+    @FXML
+    void notHoverBtnPesquisarLocacaoPeriodo(MouseEvent event) {
+        btnPesquisarLocacaoPeriodo
+                .setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
 }

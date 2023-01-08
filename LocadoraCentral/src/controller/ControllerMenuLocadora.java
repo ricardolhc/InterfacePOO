@@ -185,16 +185,19 @@ public class ControllerMenuLocadora {
 
     /*
      * listaClientes usado para receber a lista de clientes
+     * o static foi usado para que a lista seja compartilhada entre as telas
      */
     private static ListaClientes listaClientes;
 
     /*
      * listaLocacoes usado para receber a lista de locações
+     * o static foi usado para que a lista seja compartilhada entre as telas
      */
     private static ListaLocacoes listaLocacoes;
 
     /*
      * listaVeiculos usado para receber a lista de veículos
+     * o static foi usado para que a lista seja compartilhada entre as telas
      */
     private static ListaVeiculos listaVeiculos;
 

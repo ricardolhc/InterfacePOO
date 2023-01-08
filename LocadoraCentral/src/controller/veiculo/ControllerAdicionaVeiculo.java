@@ -414,6 +414,21 @@ public class ControllerAdicionaVeiculo {
     }
 
     /**
+     * Método para imprimir um alerta na tela
+     * 
+     * @param titulo   titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo     tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+
+    /**
      * Efeito de hover ao passar o mouse no botão de limpar
      * 
      * @param event evento de hover ao passar o mouse no botão
@@ -472,21 +487,6 @@ public class ControllerAdicionaVeiculo {
     @FXML
     void notHoverBtnAdicionar(MouseEvent event) {
         btnAdicionar.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
-    }
-
-    /**
-     * Método para imprimir um alerta na tela
-     * 
-     * @param titulo   titulo do alerta
-     * @param mensagem mensagem do alerta
-     * @param tipo     tipo do alerta
-     */
-    void alertInterface(String titulo, String mensagem, AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 
 }

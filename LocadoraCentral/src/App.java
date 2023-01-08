@@ -9,11 +9,23 @@ import lista.ListaClientes;
 import lista.ListaLocacoes;
 import lista.ListaVeiculos;
 
+/**
+ * A classe App é responsável por inicializar a aplicação
+ * 
+ * @author Mateus, Maurício, Ricardo, Tales
+ * @since dez 2022
+ * @version 1.0
+ */
 public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+    * Método utlizado para iniciar a aplicação, a lista de clientes, veículos e locações que são instanciadas e passadas para o controller
+    *
+    * @param primaryStage usado para iniciar a aplicação
+    */
     @Override
     public void start(Stage primaryStage) {
         try {

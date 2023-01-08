@@ -134,6 +134,20 @@ public class ControllerRemoveCliente {
     }
 
     /**
+     * Método para imprimir um alerta na tela
+     * @param titulo titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+
+    /**
      * Efeito de hover ao passar o mouse no botão de limpar
      * 
      * @param event evento de hover ao passar o mouse no botão
@@ -203,20 +217,6 @@ public class ControllerRemoveCliente {
     @FXML
     void notHoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
-    }
-
-    /**
-     * Método para imprimir um alerta na tela
-     * @param titulo titulo do alerta
-     * @param mensagem mensagem do alerta
-     * @param tipo tipo do alerta
-     */
-    void alertInterface(String titulo, String mensagem, AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 
 }

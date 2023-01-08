@@ -175,8 +175,38 @@ public class ControllerAdicionaCliente {
     }
 
     /**
-     * Efeito de hover ao passar o mouse no botão de voltar
+     * Método para limpar os campos de texto presentes na tela
      * 
+     * @param event evento de limpar os campos de texto presentes na tela
+     */
+    @FXML
+    void limparCampos(MouseEvent event) {
+        textFieldNome.clear();
+        textFieldCPF.clear();
+        textFieldCarteiraMotorista.clear();
+        textFieldTelefone.clear();
+        textFieldEndereco.clear();
+        rootPane.requestFocus();
+    }
+
+    
+    /**
+     * Método para imprimir um alerta na tela
+     * @param titulo titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de voltar
      * @param event evento hover ao passar o mouse no botão de voltar
      */
     @FXML
@@ -187,7 +217,6 @@ public class ControllerAdicionaCliente {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de voltar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -197,7 +226,6 @@ public class ControllerAdicionaCliente {
 
     /**
      * Efeito de hover ao passar o mouse no botão de adicionar
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -235,34 +263,5 @@ public class ControllerAdicionaCliente {
         btnLimpar.setStyle("-fx-background-color: #747474;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
-    /**
-     * Método para limpar os campos de texto presentes na tela
-     * 
-     * @param event evento de limpar os campos de texto presentes na tela
-     */
-    @FXML
-    void limparCampos(MouseEvent event) {
-        textFieldNome.clear();
-        textFieldCPF.clear();
-        textFieldCarteiraMotorista.clear();
-        textFieldTelefone.clear();
-        textFieldEndereco.clear();
-        rootPane.requestFocus();
-    }
-
     
-    /**
-     * Método para imprimir um alerta na tela
-     * @param titulo titulo do alerta
-     * @param mensagem mensagem do alerta
-     * @param tipo tipo do alerta
-     */
-    void alertInterface(String titulo, String mensagem, AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
-    }
-
 }

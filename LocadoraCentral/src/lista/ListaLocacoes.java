@@ -12,6 +12,7 @@ import java.util.Calendar;
 
 import exceptions.geral.EmptyList;
 import exceptions.locacao.LocacaoNotFoundException;
+import exceptions.veiculo.VeiculoNotFoundException;
 import veiculo.Veiculo;
 
 public class ListaLocacoes implements ILocacoes {
@@ -60,14 +61,11 @@ public class ListaLocacoes implements ILocacoes {
      */
     @Override
     public String getInfo(int codigo) {
-        if(locacoes.size() > 0) {
-            String conteudo = "";
-            for(Locacao locacao : locacoes) {
-                conteudo += locacao.toString() + "\n";
-            }
-            return conteudo;
+        try {
+            return get(codigo).toString();
+        } catch (VeiculoNotFoundException e) {
+            return e.getMessage();
         }
-        throw new EmptyList("Não existem locações cadastradas");
     }
 
     
@@ -117,8 +115,6 @@ public class ListaLocacoes implements ILocacoes {
         return false;
     }
 
-
-    // ASSIM POR ENQUANTO
     public String getLocacoesByCliente(Cliente cliente) {
         String conteudo = "";
         boolean flag = false;
@@ -134,7 +130,6 @@ public class ListaLocacoes implements ILocacoes {
         throw new LocacaoNotFoundException("O cliente não possui locações");
     }
 
-    // ASSIM POR ENQUANTO
     public String getLocacoesByVeiculo(Veiculo veiculo) {
         String conteudo = "";
         boolean flag = false;
@@ -156,9 +151,12 @@ public class ListaLocacoes implements ILocacoes {
         boolean flag = false;
 
         for(Locacao locacao : locacoes) {
-            if(locacao.getDataInicial().get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH) 
+            if(((locacao.getDataInicial().get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH) 
             && locacao.getDataInicial().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) 
-            && locacao.getDataInicial().get(Calendar.YEAR) == calendar.get(Calendar.YEAR)) {
+            && locacao.getDataInicial().get(Calendar.YEAR) == calendar.get(Calendar.YEAR))) || 
+            (locacao.getDataFinal().get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH) 
+            && locacao.getDataFinal().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) 
+            && locacao.getDataFinal().get(Calendar.YEAR) == calendar.get(Calendar.YEAR))) {
                 conteudo += locacao.toString() + "\n";
                 flag = true;
             }
