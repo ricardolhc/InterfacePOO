@@ -70,38 +70,68 @@ public class ControllerInfoLocacao {
     @FXML
     private Button btnMostrarEsconderCampos;
 
+    /*
+    *btnPesquisaID variavel privada para mostrar a pesquisa
+    */
     @FXML
     private Button btnPesquisaID;
 
+    /*
+     * btnPesquisaCPF usado para mostrar a pesquisa por CPF
+     */
     @FXML
     private Button btnPesquisaCPF;
 
+    /*
+     * btnPesquisaPlaca usado para mostrar a pesquisa por placa
+     */
     @FXML
     private Button btnPesquisaPlaca;
 
+    /*
+     * btnPesquisaData usado para mostrar a pesquisa por data
+     */
     @FXML
     private Button btnPesquisaData;
 
+    /*
+     * btnPesquisaPeriodo usado para mostrar a pesquisa por periodo 
+     */
     @FXML
     private Button btnPesquisaPeriodo;
 
+    /*
+     * btnPesquisarLocacaoID usado para pesquisar uma locacao pelo ID
+     */
     @FXML
     private Button btnPesquisarLocacaoID;
 
+    /*
+     * btnPesquisarLocacaoCPF usado para pesquisar uma locacao pelo CPF
+     */
     @FXML
     private Button btnPesquisarLocacaoCPF;
 
+    /*
+     * btnPesquisarLocacaoPlaca usado para pesquisar uma locacao pela placa
+     */
     @FXML
     private Button btnPesquisarLocacaoPlaca;
 
+    /*
+     * btnPesquisarLocacaoData usado para pesquisar uma locacao pela data
+     */
     @FXML
     private Button btnPesquisarLocacaoData;
 
+    /*
+     * btnPesquisarLocacaoPeriodo usado para pesquisar uma locacao pelo periodo
+     */
     @FXML
     private Button btnPesquisarLocacaoPeriodo;
 
     /*
-     * btnPesquisar usado para pesquisar um cliente
+     * btnPesquisar usado para pesquisar um cliente pelo CPF
      */
     @FXML
     private Button mostrarPesquisaCPF;
@@ -115,7 +145,7 @@ public class ControllerInfoLocacao {
 
     /*
      * btnMostrarPesquisaData usado para mostrar/esconder o campo de pesquisa por
-     * data
+     * placa
      */
     @FXML
     private Button btnPesquisarPlaca;
@@ -158,7 +188,7 @@ public class ControllerInfoLocacao {
     private TableColumn<DadosTabela, Integer> tableColumnIDInfoCompleta;
 
     /*
-     * tableColumnNomeInfoCompleta usado para mostrar o nome do cliente da locacao
+     * variavel privada para mostrar table de pesquisa pelo seguro
      */
     @FXML
     private TableColumn<DadosTabela, Boolean> tableColumnSeguroInfoCompleta;
@@ -176,74 +206,174 @@ public class ControllerInfoLocacao {
     @FXML
     private TableView<DadosTabela> tableViewInfoCompleta;
 
+    /*
+     * variavel privada para mostrar table de pesquisa pelo cpf
+     */
     @FXML
     private TableColumn<DadosTabela, String> tableColumnCPFInfo;
 
+    /*
+     * tableColumnDataFinalInfo usado para mostrar a data final da locacao
+     */
     @FXML
     private TableColumn<DadosTabela, Calendar> tableColumnDataFinalInfo;
 
+    /*
+     * tableColumnDataInicialInfo usado para mostrar a data inicial da locacao
+     */
     @FXML
     private TableColumn<DadosTabela, Calendar> tableColumnDataInicialInfo;
 
+    /*
+     * tableColumnIDInfo usado para mostrar as locações atraves do id
+     */
     @FXML
     private TableColumn<DadosTabela, Integer> tableColumnIDInfo;
 
+    /*
+     * variavel privada para mostrar table de pesquisa pelo seguro
+     */
     @FXML
     private TableColumn<DadosTabela, Boolean> tableColumnSeguroInfo;
 
+    /*
+     * tableColumnVeiculoInfo usado para mostrar o veiculo da locacao
+     */
     @FXML
     private TableColumn<DadosTabela, String> tableColumnVeiculoInfo;
+
+    /*
+     * tableViewInfo usado para mostrar as informações das locacoes
+     */
 
     @FXML
     private TableView<DadosTabela> tableViewInfoLocacao;
 
+    /*
+     * paneInfoLocacao usado para mostrar/esconder as informações das locacoes
+     */
+
     @FXML
     private Pane paneInfoLocacao;
+
+    /*
+     * paneInfoCompleta usado para mostrar/esconder as informações completas das
+     * locacoes pelo ID
+     */
 
     @FXML
     private Pane paneIDLocacao;
 
+    /*
+     * paneInfoCompleta usado para mostrar/esconder as informações completas das
+     * locacoes pelo CPF
+     */
+    
+
     @FXML
     private Pane paneCPFLocacao;
+
+    /*
+     * paneInfoCompleta usado para mostrar/esconder as informações completas das
+     * locacoes pela placa
+     */
 
     @FXML
     private Pane panePlacaLocacao;
 
+    /*
+     * paneInfoCompleta usado para mostrar/esconder as informações completas das
+     * locacoes pela data
+     */
+
     @FXML
     private Pane paneDataLocacao;
+
+    /*
+     * paneInfoCompleta usado para mostrar/esconder as informações completas das
+     * locacoes pelo periodo
+     */
 
     @FXML
     private Pane panePeriodoLocacao;
 
+    /*
+     * paneInfoCompleta usado para mostrar/esconder as informações completas das
+     * locacoes pelo ID
+     */
     @FXML
     private TextField textFieldIDLocacao;
 
+    /*
+     * textFieldIDLocacao usado para mostrar/esconder as informações completas das
+     * locacoes pelo cpf
+     */
     @FXML
     private TextField textFieldCPFLocacao;
 
+    /*
+     * textFieldIDLocacao usado para mostrar/esconder as informações completas das
+     */
     @FXML
     private TextField textFieldPlacaLocacao;
 
+    /*
+     * textFieldcpf usado para mostrar/esconder as informações completas das
+     * locacoes pelo cpf
+     */
     @FXML
     private TextField textFieldCPF;
 
+    /*
+     * textFieldIDLocacao usado para mostrar/esconder as informações completas das
+     */
     @FXML
     private TextField textFieldPlaca;
 
+    /*
+     * textFieldIDLocacao usado para mostrar/esconder as informações completas das
+     */
     @FXML
     private DatePicker pickerDataInicial;
+
+    /*
+     * textFieldIDLocacao usado para mostrar/esconder as informações completas das
+     * locacoes pela data final
+     */
 
     @FXML
     private DatePicker pickerDataFinal;
 
+    /*
+     * textFieldIDLocacao usado para mostrar/esconder as informações completas das
+     * locacoes pelo seguro
+     */
+
+    //
+
     @FXML
     private ChoiceBox<String> choiceSeguro;
+
+    /*
+     * textFieldIDLocacao usado para mostrar/esconder as informações completas das
+     * locacoes pela data
+     */
 
     @FXML
     private DatePicker datePickerDataLocacao;
 
+    /*
+     * textFieldIDLocacao usado para mostrar/esconder as informações completas das
+     * locacoes pela data inicial
+     */
+
     @FXML
     private DatePicker datePickerDataInicialLocacao;
+
+    /*
+     * textFieldIDLocacao usado para mostrar/esconder as informações completas das
+     * locacoes pela data final
+     */
 
     @FXML
     private DatePicker datePickerDataFinalLocacao;
@@ -252,8 +382,16 @@ public class ControllerInfoLocacao {
      * listaClientes usado para armazenar as locacoes
      */
     private ListaLocacoes listaLocacoes;
+    
+    /*
+     * listaClientes usado para armazenar os clientes
+     */
 
     private ListaClientes listaClientes;
+
+    /*
+     * listaVeiculos usado para armazenar os veiculos
+     */
 
     private ListaVeiculos listaVeiculos;
 
@@ -263,18 +401,51 @@ public class ControllerInfoLocacao {
      */
     private boolean mostrarEsconderInfoCompleta = true;
 
+    /*
+     * mostrarEsconderInfoLocacao usado para mostrar/esconder a tabela com as
+     * informações das locacoes
+     */
+
     private boolean mostrarEsconderInfoLocacao = true;
+
+    /*
+     * mostrarEsconderInfoLocacaoID usado para mostrar/esconder a tabela com as
+     * informações das locacoes pelo ID
+     */
 
     private boolean mostrarEsconderInfoLocacaoID = true;
 
+    /*
+     * mostrarEsconderInfoLocacaoCPF usado para mostrar/esconder a tabela com as
+     * informações das locacoes pelo CPF
+     */
+
     private boolean mostrarEsconderInfoLocacaoCPF = true;
+
+    /*
+     * mostrarEsconderInfoLocacaoPlaca usado para mostrar/esconder a tabela com as
+     * informações das locacoes pela placa
+     */
 
     private boolean mostrarEsconderInfoLocacaoPlaca = true;
 
+    /*
+     * mostrarEsconderInfoLocacaoData usado para mostrar/esconder a tabela com as
+     * informações das locacoes pela data
+     */
+
     private boolean mostrarEsconderInfoLocacaoData = true;
+
+    /*
+     * mostrarEsconderInfoLocacaoPeriodo usado para mostrar/esconder a tabela com as
+     * informações das locacoes pelo periodo
+     */
 
     private boolean mostrarEsconderInfoLocacaoPeriodo = true;
 
+    /* 
+    *
+    */
     private final String[] escolhaseguro = { "Sim", "Não" };
 
     /**
@@ -296,10 +467,13 @@ public class ControllerInfoLocacao {
         }
     }
 
-    /*
-     * Método usado para inicializar as colunas das tabelas de informações
-     * das locacoes e também para inicializar a lista de locacoes
+    /**
+        * Método usado para mostrar/esconder a tabela com as informações completas das
+        * locacoes
+        @param escolhaseguro adicionar seguro pela escolha
+        
      */
+    
     @FXML
     void initialize() {
 
@@ -426,6 +600,12 @@ public class ControllerInfoLocacao {
 
     ////////////////////////////////////// FALTA
     ////////////////////////////////////// ESSE////////////////////////////////
+
+    /**
+     * Método que mostra/esconde os campos de pesquisa
+     * 
+     * @param event evento de mostrar/esconder os campos de pesquisa
+     */
     @FXML
     void infoFullLocacao(ActionEvent event) {
 
@@ -507,6 +687,12 @@ public class ControllerInfoLocacao {
         mostrarEsconderInfoLocacao = !mostrarEsconderInfoLocacao;
     }
 
+
+    /**
+     * Método para mostrar/esconder os campos de pesquisa
+     * 
+     * @param event evento de mostrar/esconder os campos de pesquisa
+     */
     @FXML
     void mostrarPesquisaID(ActionEvent event) {
 
@@ -555,6 +741,12 @@ public class ControllerInfoLocacao {
         mostrarEsconderInfoLocacaoCPF = !mostrarEsconderInfoLocacaoCPF;
     }
 
+
+    /**
+     * Método para mostrar/esconder os campos de pesquisa
+     * 
+     * @param event evento de mostrar/esconder os campos de pesquisa
+     */
     @FXML
     void mostrarPesquisaPlaca(ActionEvent event) {
 
@@ -579,6 +771,12 @@ public class ControllerInfoLocacao {
         mostrarEsconderInfoLocacaoPlaca = !mostrarEsconderInfoLocacaoPlaca;
     }
 
+
+    /**
+     * Método para mostrar/esconder os campos de pesquisa
+     * 
+     * @param event evento de mostrar/esconder os campos de pesquisa
+     */
     @FXML
     void mostrarPesquisaData(ActionEvent event) {
 
@@ -603,6 +801,12 @@ public class ControllerInfoLocacao {
         mostrarEsconderInfoLocacaoData = !mostrarEsconderInfoLocacaoData;
     }
 
+
+    /**
+     * Método para mostrar/esconder os campos de pesquisa
+     * 
+     * @param event evento de mostrar/esconder os campos de pesquisa
+     */
     @FXML
     void mostrarPesquisaPeriodo(ActionEvent event) {
 
@@ -627,6 +831,12 @@ public class ControllerInfoLocacao {
         mostrarEsconderInfoLocacaoPeriodo = !mostrarEsconderInfoLocacaoPeriodo;
     }
 
+
+    /**
+     * Método para pesquisar uma locação pelo ID
+     * 
+     * @param event evento de pesquisa
+     */
     @FXML
     void pesquisarLocacaoID(ActionEvent event) {
         String id = textFieldIDLocacao.getText();
@@ -669,6 +879,11 @@ public class ControllerInfoLocacao {
         }
     }
 
+    /**
+     * Método para pesquisar uma locação pelo CPF
+     * 
+     * @param event evento de pesquisa
+     */
     @FXML
     void pesquisarLocacaoCPF(ActionEvent event) {
 
@@ -714,6 +929,12 @@ public class ControllerInfoLocacao {
         }
     }
 
+
+    /**
+     * Método para pesquisar uma locação pela placa
+     * 
+     * @param event evento de pesquisa
+     */
     @FXML
     void pesquisarLocacaoPlaca(ActionEvent event) {
 
@@ -757,6 +978,12 @@ public class ControllerInfoLocacao {
 
     }
 
+
+    /**
+     * Método para pesquisar uma locação pela data
+     * 
+     * @param event evento de pesquisa
+     */
     @FXML
     void pesquisarLocacaoData(ActionEvent event) {
 
@@ -795,6 +1022,12 @@ public class ControllerInfoLocacao {
         }
     }
 
+
+    /**
+     * Método para pesquisar uma locação por um período
+     * 
+     * @param event evento de pesquisa
+     */
     @FXML
     void pesquisarLocacaoPeriodo(ActionEvent event) {
         ObservableList<DadosTabela> observableListLocacoes = FXCollections.observableArrayList();
@@ -871,67 +1104,150 @@ public class ControllerInfoLocacao {
         btnInfoFullLocacao.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por ID
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnPesquisarLocacaoID(MouseEvent event) {
         btnPesquisarLocacaoID.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por CPF
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnPesquisarLocacaoCPF(MouseEvent event) {
         btnPesquisarLocacaoCPF.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por placa
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnPesquisarLocacaoPlaca(MouseEvent event) {
         btnPesquisarLocacaoPlaca.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por data
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnPesquisarLocacaoData(MouseEvent event) {
         btnPesquisarLocacaoData.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por periodo
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnPesquisarLocacaoPeriodo(MouseEvent event) {
         btnPesquisarLocacaoPeriodo
                 .setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por periodo
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltarHover.png"));
         btnVoltar.setStyle("-fx-cursor: hand;");
     }
 
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por periodo
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnMostrarEsconderCampos(MouseEvent event) {
         btnMostrarEsconderCampos.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por periodo
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnMostrarPesquisaID(MouseEvent event) {
         btnPesquisaID.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
 
     }
 
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por periodo
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnMostrarPesquisaCPF(MouseEvent event) {
         btnPesquisaCPF.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
 
     }
 
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por periodo
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnMostrarPesquisaPlaca(MouseEvent event) {
         btnPesquisaPlaca.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
 
     }
 
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por periodo
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnMostrarPesquisaData(MouseEvent event) {
         btnPesquisaData
                 .setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
+     * completas de uma locacao por periodo
+     * 
+     * @param event evento de hover ao passar o mouse no botão
+     */
     @FXML
     void hoverBtnMostrarPesquisaPeriodo(MouseEvent event) {
         btnPesquisaPeriodo.setStyle("-fx-background-color: #245823;-fx-cursor: hand; -fx-background-radius: 50;");
@@ -974,59 +1290,136 @@ public class ControllerInfoLocacao {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
 
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnMostrarEsconderCampos(MouseEvent event) {
         btnMostrarEsconderCampos.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnMostrarPesquisaID(MouseEvent event) {
         btnPesquisaID.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnMostrarPesquisaCPF(MouseEvent event) {
         btnPesquisaCPF.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnMostrarPesquisaPlaca(MouseEvent event) {
         btnPesquisaPlaca.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnMostrarPesquisaData(MouseEvent event) {
         btnPesquisaData.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnMostrarPesquisaPeriodo(MouseEvent event) {
         btnPesquisaPeriodo.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnPesquisarLocacaoID(MouseEvent event) {
         btnPesquisarLocacaoID.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
 
     }
 
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnPesquisarLocacaoCPF(MouseEvent event) {
         btnPesquisarLocacaoCPF.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
 
     }
 
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnPesquisarLocacaoPlaca(MouseEvent event) {
         btnPesquisarLocacaoPlaca.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
 
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnPesquisarLocacaoData(MouseEvent event) {
         btnPesquisarLocacaoData.setStyle("-fx-background-color: #2b6b2a;-fx-cursor: hand; -fx-background-radius: 50;");
 
     }
 
+
+    /**
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
+     * resumidas de todas as locacoes
+     * 
+     * @param event evento de hover ao tirar o mouse no botão
+     */
     @FXML
     void notHoverBtnPesquisarLocacaoPeriodo(MouseEvent event) {
         btnPesquisarLocacaoPeriodo
