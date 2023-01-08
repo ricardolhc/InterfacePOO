@@ -1,9 +1,10 @@
 package controller.cliente;
 
 import controller.ControllerMenuLocadora;
-import exceptions.cliente.CPFNotFoundException;
+import exceptions.cliente.ClienteNotFoundException;
 import exceptions.cliente.InvalidCPFException;
 import exceptions.geral.EmptyFieldException;
+import exceptions.geral.EmptyList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -266,6 +267,7 @@ public class ControllerInfoCliente {
             rootPane.getChildren().add(cmdPane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível voltar para o menu principal", AlertType.ERROR);
         }
     }
 
@@ -292,7 +294,7 @@ public class ControllerInfoCliente {
 
             /* VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO */
             if (!listaClientes.existe(cpfLong)) {
-                throw new CPFNotFoundException("CPF não existente!");
+                throw new ClienteNotFoundException("CPF não existente!");
             } else {
                 Cliente cliente = listaClientes.get(cpfLong);
 
@@ -307,8 +309,10 @@ public class ControllerInfoCliente {
                 textFieldCarteiraMotorista.setText(String.valueOf(cnh));
             }
 
-        } catch (NumberFormatException | EmptyFieldException | InvalidCPFException | CPFNotFoundException e) {
+        } catch (NumberFormatException e) {
             alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
+        } catch (EmptyFieldException | InvalidCPFException | ClienteNotFoundException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
 
     }
@@ -358,9 +362,9 @@ public class ControllerInfoCliente {
                     Cliente cliente = listaClientes.get(cpf);
                     observableListClientes.add(cliente);
                 }
-            } catch (EmptyFieldException e) {
-                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
             } catch (NumberFormatException e) {
+                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+            } catch (ClienteNotFoundException | EmptyList e) {
                 alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
             }
             tableViewInfoCompleta.setItems(observableListClientes);
@@ -404,7 +408,7 @@ public class ControllerInfoCliente {
             ObservableList<Cliente> observableListClientes = FXCollections.observableArrayList();
 
             try {
-                String[] dadosClientes = listaClientes.getInfo().split("\n");
+                String[] dadosClientes = listaClientes.getResumoInfo().split("\n");
                 for (String dados : dadosClientes) {
                     String[] campos = dados.split(";");
                     long cpf = Long.parseLong(campos[1].split(": ")[1]);
@@ -413,7 +417,7 @@ public class ControllerInfoCliente {
                     observableListClientes.add(cliente);
                 }
 
-            } catch (EmptyFieldException e) {
+            } catch (ClienteNotFoundException | EmptyList e) {
                 alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
             } catch (NumberFormatException e) {
                 alertInterface("ERRO", e.getMessage(), AlertType.ERROR);

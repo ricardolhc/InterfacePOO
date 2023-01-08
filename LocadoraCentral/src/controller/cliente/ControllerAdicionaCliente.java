@@ -117,6 +117,7 @@ public class ControllerAdicionaCliente {
             rootPane.getChildren().add(cmdPane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível voltar para o menu principal", AlertType.ERROR);
         }
     }
 
@@ -166,6 +167,8 @@ public class ControllerAdicionaCliente {
 
                 alertInterface("SUCESSO", "Cliente adicionado com sucesso!", AlertType.INFORMATION);
             }
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
         } catch (EmptyFieldException | InvalidCPFException | InvalidTelefoneException | CPFAlreadyAdd e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }

@@ -10,6 +10,8 @@ package lista;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import exceptions.geral.EmptyList;
+import exceptions.locacao.LocacaoNotFoundException;
 import veiculo.Veiculo;
 
 public class ListaLocacoes implements ILocacoes {
@@ -48,7 +50,7 @@ public class ListaLocacoes implements ILocacoes {
                 return locacao;
             }
         }
-        throw new NullPointerException("Locação não encontrada");
+        throw new LocacaoNotFoundException("Locação não encontrada");
     }
 
     
@@ -58,11 +60,14 @@ public class ListaLocacoes implements ILocacoes {
      */
     @Override
     public String getInfo(int codigo) {
-        try {
-            return get(codigo).toString();
-        } catch (NullPointerException e) {
-            return e.getMessage();
+        if(locacoes.size() > 0) {
+            String conteudo = "";
+            for(Locacao locacao : locacoes) {
+                conteudo += locacao.toString() + "\n";
+            }
+            return conteudo;
         }
+        throw new EmptyList("Não existem locações cadastradas");
     }
 
     
@@ -78,7 +83,7 @@ public class ListaLocacoes implements ILocacoes {
             }
             return conteudo;
         }
-        throw new NullPointerException("Não existem locações cadastradas");
+        throw new EmptyList("Não existem locações cadastradas");
     }
 
     
@@ -88,13 +93,13 @@ public class ListaLocacoes implements ILocacoes {
      */
     @Override
     public boolean remove(int codigo) {
-        try {
-            locacoes.remove(get(codigo));
-            return true;
-        } catch(NullPointerException e) {
-            System.out.println("Erro: " + e.getMessage());
-            return false;
+        for(Locacao locacao : locacoes) {
+            if(locacao.getCodigo() == codigo) {
+                locacoes.remove(locacao);
+                return true;
+            }
         }
+        return false;
     }
 
     
@@ -104,18 +109,17 @@ public class ListaLocacoes implements ILocacoes {
      */
     @Override
     public boolean existe(int codigo) {
-        try {
-            get(codigo);
-            return true;
-        } catch (NullPointerException e) {
-            System.out.println("Erro: " + e.getMessage());
-            return false;
+        for(Locacao locacao : locacoes) {
+            if(locacao.getCodigo() == codigo) {
+                return true;
+            }
         }
+        return false;
     }
 
 
     // ASSIM POR ENQUANTO
-    public String getLocacaoByCliente(Cliente cliente) {
+    public String getLocacoesByCliente(Cliente cliente) {
         String conteudo = "";
         boolean flag = false;
         for(Locacao locacao : locacoes) {
@@ -127,11 +131,11 @@ public class ListaLocacoes implements ILocacoes {
         if(flag) {
             return conteudo;
         }
-        throw new NullPointerException("O Cliente não possui locações");
+        throw new LocacaoNotFoundException("O cliente não possui locações");
     }
 
     // ASSIM POR ENQUANTO
-    public String getLocacaoByVeiculo(Veiculo veiculo) {
+    public String getLocacoesByVeiculo(Veiculo veiculo) {
         String conteudo = "";
         boolean flag = false;
         for(Locacao locacao : locacoes) {
@@ -143,11 +147,11 @@ public class ListaLocacoes implements ILocacoes {
         if(flag) {
             return conteudo;
         }
-        throw new NullPointerException("O Veiculo não possui locações");
+        throw new LocacaoNotFoundException("O veiculo não possui locações");
         
     }
 
-    public String getLocacaoByDiaMesAno(Calendar calendar) {
+    public String getLocacoesByDiaMesAno(Calendar calendar) {
         String conteudo = "";
         boolean flag = false;
 
@@ -162,44 +166,10 @@ public class ListaLocacoes implements ILocacoes {
         if(flag) {
             return conteudo;
         }
-        throw new NullPointerException("Não foi possível encontrar uma locação");
-    }
+        throw new LocacaoNotFoundException("Não foi possível encontrar uma locação");
+    }  
 
-    public String getLocacaoByMesAno(Calendar calendar) {
-        String conteudo = "";
-        boolean flag = false;
-
-        for(Locacao locacao : locacoes) {
-            if(locacao.getDataInicial().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) 
-            && locacao.getDataInicial().get(Calendar.YEAR) == calendar.get(Calendar.YEAR)) {
-                conteudo += locacao.toString() + "\n";
-                flag = true;
-            }
-        }
-        if(flag) {
-            return conteudo;
-        }
-        throw new NullPointerException("Não foi possível encontrar uma locação");
-        
-    }
-
-    public String getLocacaoByAno(Calendar calendar) {
-        String conteudo = "";
-        boolean flag = false;
-
-        for(Locacao locacao : locacoes) {
-            if(locacao.getDataInicial().get(Calendar.YEAR) == calendar.get(Calendar.YEAR)) {
-                conteudo += locacao.toString() + "\n";
-                flag = true;
-            }
-        }
-        if(flag) {
-            return conteudo;
-        }
-        throw new NullPointerException("Não foi possível encontrar uma locação");
-    }
-
-    public String getLocacaoByPeriodo(Calendar dataInicial, Calendar dataFinal) {
+    public String getLocacoesByPeriodo(Calendar dataInicial, Calendar dataFinal) {
         String conteudo = "";
         boolean flag = false;
 
@@ -212,12 +182,7 @@ public class ListaLocacoes implements ILocacoes {
         if(flag) {
             return conteudo;
         }
-        throw new NullPointerException("Não foi possível encontrar uma locação");
-        
+        throw new LocacaoNotFoundException("Não foi possível encontrar uma locação");
     }
-
-
-
-
 
 }

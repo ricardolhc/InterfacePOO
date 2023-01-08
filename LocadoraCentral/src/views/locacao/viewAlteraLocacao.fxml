@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.locacao.ControllerAlteraLocacao">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #03071e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.locacao.ControllerAlteraLocacao">
    <children>
       <Label layoutX="308.0" layoutY="14.0" prefHeight="54.0" prefWidth="311.0" text="Alterar Locação" textFill="WHITE">
          <font>
@@ -52,11 +52,6 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="btnAlterar" layoutX="397.0" layoutY="476.0" mnemonicParsing="false" onAction="#alterarLocacao" onMouseExited="#notHoverBtnAlterar" onMouseMoved="#hoverBtnAlterar" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 50; -fx-background-color: #2b6b2a;" text="Alterar" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
       <Button fx:id="btnLimpar" layoutX="211.0" layoutY="476.0" mnemonicParsing="false" onMouseClicked="#limparCampos" onMouseExited="#notHoverBtnLimpar" onMouseMoved="#hoverBtnLimpar" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 50; -fx-background-color: #747474;" text="Limpar" textFill="WHITE">
          <font>
             <Font size="20.0" />
@@ -80,7 +75,12 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="btnPesquisar" layoutX="583.0" layoutY="476.0" mnemonicParsing="false" onAction="#pesquisarLocacao" onMouseExited="#notHoverBtnPesquisar" onMouseMoved="#hoverBtnPesquisar" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 50; -fx-background-color: #807d0a;" text="Pesquisar" textFill="WHITE">
+      <Button fx:id="btnAlterar" layoutX="585.0" layoutY="476.0" mnemonicParsing="false" onAction="#alterarLocacao" onMouseExited="#notHoverBtnAlterar" onMouseMoved="#hoverBtnAlterar" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 50; -fx-background-color: #807d0a;" text="Alterar" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnPesquisar" layoutX="396.0" layoutY="476.0" mnemonicParsing="false" onAction="#pesquisarLocacao" onMouseExited="#notHoverBtnPesquisar" onMouseMoved="#hoverBtnPesquisar" prefHeight="46.0" prefWidth="134.0" style="-fx-background-radius: 50; -fx-background-color: #2b6b2a;" text="Pesquisar" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

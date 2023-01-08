@@ -1,16 +1,20 @@
 package controller.locacao;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
 import controller.ControllerMenuLocadora;
-import exceptions.cliente.CPFNotFoundException;
+import exceptions.cliente.ClienteNotFoundException;
 import exceptions.cliente.InvalidCPFException;
 import exceptions.geral.EmptyFieldException;
 import exceptions.locacao.DateDifferenceException;
 import exceptions.locacao.IDNotFoundException;
+import exceptions.locacao.LocacaoNotFoundException;
+import exceptions.locacao.LocacaoSwitchedException;
+import exceptions.veiculo.VeiculoNotFoundException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,7 +78,7 @@ public class ControllerAlteraLocacao {
     /**
      * escolhaseguro string com as opções de seguro
      */
-    private final String[] escolhaseguro = { "Sim", "Não"};
+    private final String[] escolhaseguro = { "Sim", "Não" };
 
     /**
      * pickerDataFinal usado para escolher a data final da locacao
@@ -115,7 +119,7 @@ public class ControllerAlteraLocacao {
     /**
      * IDAlterar usado para receber o id da locacao a ser alterada
      */
-    private int IDAlterar;
+    private String IDAlterar;
 
     /**
      * listaLocacao usado para receber a lista de locacoes
@@ -133,15 +137,15 @@ public class ControllerAlteraLocacao {
     private ListaClientes listaClientes;
 
     /**
-     * locacao usado para receber a locacao a ser alterada
-     */
-    private Locacao locacao;
-
-     /**
      * Método usado para inicializar a lista de locacoes a partir do menu principal
      */
+    @FXML
     void initialize() {
+        choiceSeguro.getItems().addAll(escolhaseguro);
+
         listaLocacao = ControllerMenuLocadora.getListaLocacoes();
+        listaClientes = ControllerMenuLocadora.getListaClientes();
+        listaVeiculo = ControllerMenuLocadora.getListaVeiculos();
     }
 
     /**
@@ -159,6 +163,7 @@ public class ControllerAlteraLocacao {
             rootPane.getChildren().add(cmdPane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível voltar para o menu principal", AlertType.ERROR);
         }
     }
 
@@ -169,36 +174,69 @@ public class ControllerAlteraLocacao {
      */
     @FXML
     void pesquisarLocacao(ActionEvent event) {
-        IDAlterar = textFieldID.getText().isEmpty() ? 0 : Integer.parseInt(textFieldID.getText());
+        IDAlterar = textFieldID.getText();
 
         try {
-            if (textFieldID.getText().isEmpty()) {
+            int idInt = Integer.parseInt(IDAlterar);
+
+            if (IDAlterar.isEmpty()) {
                 throw new EmptyFieldException("Campo ID vazio!");
             }
 
-            if (!listaLocacao.existe((IDAlterar))) {
+            if (!listaLocacao.existe((idInt))) {
                 throw new IDNotFoundException("ID não encontrado!");
-            }
+            } else {
+                Locacao locacao = listaLocacao.get(idInt);
 
+                String seguro = locacao.getSeguro() ? "Sim" : "Não";
+
+                Calendar dataInicial = locacao.getDataInicial();
+                Calendar dataFinal = locacao.getDataFinal();
+
+                Instant instantInicial = dataInicial.toInstant();
+                Instant instantFinal = dataFinal.toInstant();
+
+                LocalDate localDateInicial = instantInicial.atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate localDateFinal = instantFinal.atZone(ZoneId.systemDefault()).toLocalDate();
+
+                textFieldPlaca.setText(locacao.getVeiculo().getPlaca());
+                textFieldCPF.setText(locacao.getCliente().getCpf());
+                choiceSeguro.setValue(seguro);
+                pickerDataInicial.setValue(localDateInicial);
+                pickerDataFinal.setValue(localDateFinal);
+            }
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "ID inválido!", AlertType.ERROR);
         } catch (EmptyFieldException | IDNotFoundException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
     }
 
     /**
-     * Método usado para alterar as informações placa, cpf, seguro, datainicial, datafinal de uma locacao 
+     * Método usado para alterar as informações placa, cpf, seguro, datainicial,
+     * datafinal de uma locacao
      * 
      * @param event evento de clicar no botão
      */
     @FXML
     void alterarLocacao(ActionEvent event) {
-        
-        try {
-            if (textFieldPlaca.getText().isEmpty() || textFieldCPF.getText().isEmpty() || choiceSeguro.getValue() == null
-                    || pickerDataInicial.getValue() == null || pickerDataFinal.getValue() == null) {
-            throw new EmptyFieldException("Preencha todos os campos!");
-            } 
 
+        String locacaoFinal = textFieldID.getText();
+        String placa = textFieldPlaca.getText();
+        String cpf = textFieldCPF.getText();
+
+        try {
+            long cpfLong = Long.parseLong(cpf);
+
+            if (locacaoFinal.isEmpty() || placa.isEmpty() || cpf.isEmpty()
+                    || choiceSeguro.getValue() == null
+                    || pickerDataInicial.getValue() == null || pickerDataFinal.getValue() == null) {
+                throw new EmptyFieldException("Preencha todos os campos!");
+            }
+
+            if (!locacaoFinal.equals(IDAlterar)) {
+                throw new LocacaoSwitchedException("Pesquise o ID alterado antes de alterar!");
+            }
             if (pickerDataInicial.getValue().isAfter(pickerDataFinal.getValue())) {
                 throw new DateDifferenceException("Data final deve ser maior que a data inicial!");
             }
@@ -211,27 +249,19 @@ public class ControllerAlteraLocacao {
 
             Calendar dataInicialC = Calendar.getInstance();
             dataInicialC.setTime(date);
-            System.out.println("\nConversion of LocalDate to java.util.Calendar is :- \n"
-                + dataInicialC.get(Calendar.DAY_OF_MONTH) + dataInicialC.get(Calendar.MONTH) + dataInicialC.get(Calendar.YEAR));
 
             Calendar dataFinalC = Calendar.getInstance();
             dataFinalC.setTime(date2);
-            System.out.println("\nConversion of LocalDate to java.util.Calendar is :- \n"
-                + dataFinalC.get(Calendar.DAY_OF_MONTH) + dataFinalC.get(Calendar.MONTH) + dataFinalC.get(Calendar.YEAR));
 
-            
-            String placa = textFieldPlaca.getText();
-            String cpf = textFieldCPF.getText();
             String escolhaseguro = choiceSeguro.getValue();
-            Long cpfLong;
 
             boolean seguroBoolean = false;
-            int codigoFinal = locacao.getCodigo();
-            cpfLong = Long.parseLong(cpf);                    
+            int codigoFinal = Integer.parseInt(locacaoFinal);
+            cpfLong = Long.parseLong(cpf);
 
             if (escolhaseguro.equals("Sim")) {
                 seguroBoolean = true;
-                } else {
+            } else {
                 seguroBoolean = false;
             }
 
@@ -240,25 +270,33 @@ public class ControllerAlteraLocacao {
             }
 
             if (!listaClientes.existe(cpfLong)) {
-                throw new CPFNotFoundException("CPF não encontrado!");
+                throw new ClienteNotFoundException("CPF não encontrado!");
             } else {
-                /* alterar locacao */
-                
-                Locacao locacao = listaLocacao.get(codigoFinal);
-                Cliente Cliente = listaClientes.get(cpfLong);
-                Veiculo Veiculo = listaVeiculo.get(placa);
 
-                locacao.setSeguro(seguroBoolean);
-                locacao.setDataInicial(dataInicialC);
-                locacao.setDataFinal(dataFinalC);
-                locacao.setCliente(Cliente); 
-                locacao.setVeiculo(Veiculo);
+                if (!listaVeiculo.existe(placa)) {
+                    throw new VeiculoNotFoundException("Placa não encontrada!");
+                } else {
 
-                limparCampos(null);
+                    /* alterar locacao */
+                    Locacao locacao = listaLocacao.get(codigoFinal);
+                    Cliente Cliente = listaClientes.get(cpfLong);
+                    Veiculo Veiculo = listaVeiculo.get(placa);
 
-                alertInterface("SUCESSO", "Locação alterada com sucesso!", AlertType.INFORMATION);
+                    locacao.setSeguro(seguroBoolean);
+                    locacao.setDataInicial(dataInicialC);
+                    locacao.setDataFinal(dataFinalC);
+                    locacao.setCliente(Cliente);
+                    locacao.setVeiculo(Veiculo);
+
+                    limparCampos(null);
+
+                    alertInterface("SUCESSO", "Locação alterada com sucesso!", AlertType.INFORMATION);
+                }
             }
-        } catch (InvalidCPFException | CPFNotFoundException | EmptyFieldException | DateDifferenceException e) {
+
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
+        } catch (InvalidCPFException | ClienteNotFoundException | VeiculoNotFoundException | EmptyFieldException | DateDifferenceException | LocacaoNotFoundException | LocacaoSwitchedException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
     }
@@ -301,6 +339,7 @@ public class ControllerAlteraLocacao {
      */
     @FXML
     void limparCampos(MouseEvent event) {
+        textFieldID.clear();
         textFieldCPF.clear();
         textFieldPlaca.clear();
         rootPane.requestFocus();
@@ -358,9 +397,10 @@ public class ControllerAlteraLocacao {
 
     /**
      * Método para imprimir um alerta na tela
-     * @param titulo titulo do alerta
+     * 
+     * @param titulo   titulo do alerta
      * @param mensagem mensagem do alerta
-     * @param tipo tipo do alerta
+     * @param tipo     tipo do alerta
      */
     void alertInterface(String titulo, String mensagem, AlertType tipo) {
         Alert alert = new Alert(tipo);

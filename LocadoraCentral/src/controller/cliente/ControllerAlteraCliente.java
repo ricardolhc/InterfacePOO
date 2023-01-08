@@ -1,10 +1,10 @@
 package controller.cliente;
 
 import controller.ControllerMenuLocadora;
-import exceptions.cliente.CPFNotFoundException;
 import exceptions.cliente.ClienteNotFoundException;
 import exceptions.cliente.InvalidCPFException;
 import exceptions.cliente.InvalidTelefoneException;
+import exceptions.cliente.CPFSwitchedException;
 import exceptions.geral.EmptyFieldException;
 import javafx.event.ActionEvent;
 
@@ -130,6 +130,7 @@ public class ControllerAlteraCliente {
             rootPane.getChildren().add(cmdPane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível voltar para o menu principal", AlertType.ERROR);
         }
     }
 
@@ -169,10 +170,11 @@ public class ControllerAlteraCliente {
                 textFieldCarteiraMotorista.setText(String.valueOf(cnh));
             }
 
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha o campo corretamente!", AlertType.ERROR);
         } catch (InvalidCPFException | ClienteNotFoundException | EmptyFieldException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
-
     }
 
     /**
@@ -200,7 +202,7 @@ public class ControllerAlteraCliente {
                 throw new EmptyFieldException("Preencha todos os campos");
             }
             if (!cpfAlterar.equals(cpfFinal)) {
-                throw new IllegalArgumentException("CPF não pode ser alterado sem pressionar o botão procurar!");
+                throw new CPFSwitchedException("Pesquise o cpf alterado antes de alterar!");
             }
 
             /* POSSIVEL NUMBERFORMATEXCEPTION */
@@ -215,7 +217,7 @@ public class ControllerAlteraCliente {
                 throw new InvalidTelefoneException("Telefone inválido");
             }
             if (!listaClientes.existe(cpfLong)) {
-                throw new CPFNotFoundException("CPF não existente!");
+                throw new ClienteNotFoundException("CPF não existente!");
             } else {
 
                 /* ADICIONA CLIENTE */
@@ -231,7 +233,9 @@ public class ControllerAlteraCliente {
                 alertInterface("SUCESSO", "Cliente alterado com sucesso!", AlertType.INFORMATION);
             }
 
-        } catch (InvalidCPFException | CPFNotFoundException | EmptyFieldException | InvalidTelefoneException e) {
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
+        } catch (InvalidCPFException | ClienteNotFoundException | EmptyFieldException | InvalidTelefoneException | CPFSwitchedException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
 

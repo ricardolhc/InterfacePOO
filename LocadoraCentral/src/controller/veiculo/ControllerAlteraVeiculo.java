@@ -3,6 +3,8 @@ package controller.veiculo;
 import controller.ControllerMenuLocadora;
 import exceptions.geral.EmptyFieldException;
 import exceptions.veiculo.PlacaNotFoundException;
+import exceptions.veiculo.PlacaSwitchedException;
+import exceptions.veiculo.VeiculoNotFoundException;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -220,6 +222,7 @@ public class ControllerAlteraVeiculo {
             rootPane.getChildren().add(cmdPane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível voltar para o menu principal", AlertType.ERROR);
         }
     }
 
@@ -241,7 +244,7 @@ public class ControllerAlteraVeiculo {
                 throw new PlacaNotFoundException("Veículo não existente!");
             } else {
                 if (!placaFinal.equals(placaAlterar)) {
-                    throw new IllegalArgumentException("Placa trocada originalmente!");
+                    throw new PlacaSwitchedException("Pesquise a placa alterada antes de alterar!");
                 }
 
                 Veiculo veiculo = listaVeiculos.get(placaFinal);
@@ -315,7 +318,9 @@ public class ControllerAlteraVeiculo {
                 textFieldTipoVeiculo.setText("");
 
             }
-        } catch (NumberFormatException | EmptyFieldException | PlacaNotFoundException e) {
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
+        } catch (EmptyFieldException | PlacaNotFoundException | PlacaSwitchedException | VeiculoNotFoundException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
     }
@@ -415,7 +420,7 @@ public class ControllerAlteraVeiculo {
                 paneOnibus.setVisible(false);
                 paneCaminhao.setVisible(true);
             }
-        } catch (NumberFormatException | EmptyFieldException | PlacaNotFoundException e) {
+        } catch (NumberFormatException | EmptyFieldException | PlacaNotFoundException | VeiculoNotFoundException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         } 
 

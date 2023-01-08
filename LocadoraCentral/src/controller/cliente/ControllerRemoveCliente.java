@@ -1,7 +1,6 @@
 package controller.cliente;
 
 import controller.ControllerMenuLocadora;
-import exceptions.cliente.CPFNotFoundException;
 import exceptions.cliente.ClienteNotFoundException;
 import exceptions.cliente.InvalidCPFException;
 import exceptions.cliente.RemoveClientException;
@@ -91,6 +90,7 @@ public class ControllerRemoveCliente {
             rootPane.getChildren().add(cmdPane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível voltar para o menu principal", AlertType.ERROR);
         }
     }
 
@@ -117,7 +117,7 @@ public class ControllerRemoveCliente {
 
             /* VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO */
             if (!listaClientes.existe(cpfLong)) {
-                throw new CPFNotFoundException("CPF não existente");
+                throw new ClienteNotFoundException("CPF não existente");
             }
             if (!listaClientes.remove(cpfLong)) {
                 throw new RemoveClientException("Erro ao remover cliente");
@@ -125,7 +125,9 @@ public class ControllerRemoveCliente {
                 alertInterface("SUCESSO", "Cliente removido com sucesso!", AlertType.INFORMATION);
                 limparCampos(null);
             }
-        } catch (NumberFormatException | EmptyFieldException | InvalidCPFException | CPFNotFoundException | RemoveClientException e) {
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha o campo corretamente!", AlertType.ERROR);
+        } catch (EmptyFieldException | InvalidCPFException | ClienteNotFoundException | RemoveClientException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
 

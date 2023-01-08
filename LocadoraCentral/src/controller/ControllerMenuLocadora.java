@@ -7,8 +7,9 @@ import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -215,6 +216,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de adicionar cliente", AlertType.ERROR);
         }
     }
 
@@ -229,6 +231,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de adicionar locação", AlertType.ERROR);
         }
     }
 
@@ -243,6 +246,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de adicionar veículo", AlertType.ERROR);
         }  
     }
 
@@ -257,6 +261,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de alterar locação", AlertType.ERROR);
         }
     }
 
@@ -271,6 +276,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de alterar veículo", AlertType.ERROR);
         }
     }
 
@@ -285,6 +291,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de alterar cliente", AlertType.ERROR);
         }   
     }
 
@@ -299,6 +306,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de remover cliente", AlertType.ERROR);
         }   
     }
 
@@ -313,6 +321,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de remover locação", AlertType.ERROR);
         }   
     }
 
@@ -327,6 +336,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de remover veículo", AlertType.ERROR);
         } 
     }
 
@@ -341,6 +351,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(anchorPaneInfoCliente);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de visualizar informações cliente", AlertType.ERROR);
         }
     }
 
@@ -355,6 +366,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de visualizar informações locação", AlertType.ERROR);
         }
     }
 
@@ -369,6 +381,7 @@ public class ControllerMenuLocadora {
             rootPane.getChildren().setAll(pane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível entrar na tela de visualizar informações veículo", AlertType.ERROR);
         }  
     }
 
@@ -799,6 +812,21 @@ public class ControllerMenuLocadora {
 
     public static ListaVeiculos getListaVeiculos() {
         return listaVeiculos;
+    }
+
+    /**
+     * Método para imprimir um alerta na tela
+     * 
+     * @param titulo   titulo do alerta
+     * @param mensagem mensagem do alerta
+     * @param tipo     tipo do alerta
+     */
+    void alertInterface(String titulo, String mensagem, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 
 }

@@ -9,6 +9,9 @@ package lista;
 
 import java.util.ArrayList;
 
+import exceptions.cliente.ClienteNotFoundException;
+import exceptions.geral.EmptyList;
+
 public class ListaClientes implements IClientes {
 
 
@@ -47,7 +50,7 @@ public class ListaClientes implements IClientes {
                 return cliente;
             }
         }
-        throw new NullPointerException("Cliente não encontrado");
+        throw new ClienteNotFoundException("Cliente não encontrado");
     }
 
     
@@ -59,7 +62,7 @@ public class ListaClientes implements IClientes {
     public String getInfo(long CPF) {
         try {
             return get(CPF).toString();
-        } catch (NullPointerException e) {
+        } catch (ClienteNotFoundException e) {
             return e.getMessage();
         }
     }
@@ -77,7 +80,7 @@ public class ListaClientes implements IClientes {
             }
             return conteudo;
         }
-        throw new NullPointerException("Não existem clientes cadastrados");
+        throw new EmptyList("Não existem clientes cadastrados");
     }
 
     
@@ -93,7 +96,7 @@ public class ListaClientes implements IClientes {
             }
             return conteudo;
         }
-        throw new NullPointerException("Não existem clientes cadastrados");
+        throw new EmptyList("Não existem clientes cadastrados");
     }
 
     
@@ -132,7 +135,7 @@ public class ListaClientes implements IClientes {
      * @param CPF long utilizado para identificar o cliente
      * @param nome String que identifica o cliente
      */
-    public void setNome(long CPF, String nome) {
+    public void setNome(long CPF, String nome) throws ClienteNotFoundException {
         get(CPF).setNome(nome);
     }
 
@@ -141,7 +144,7 @@ public class ListaClientes implements IClientes {
      * @param CPF long utilizado para identificar o cliente
      * @param numeroCarteiraMotorista int que identifica o número da carteira de motorista do cliente
      */
-    public void setNumeroCarteira(long CPF, int numeroCarteiraMotorista) {
+    public void setNumeroCarteira(long CPF, int numeroCarteiraMotorista) throws ClienteNotFoundException {
         get(CPF).setNumeroCarteira(numeroCarteiraMotorista);
     }
 
@@ -150,7 +153,7 @@ public class ListaClientes implements IClientes {
      * @param CPF long utlizado para identificar o cliente
      * @param endereco String que identifica o endereço do cliente
      */
-    public void setEndereco(long CPF, String endereco) {
+    public void setEndereco(long CPF, String endereco) throws ClienteNotFoundException {
         get(CPF).setEndereco(endereco);
     }
 
@@ -159,7 +162,7 @@ public class ListaClientes implements IClientes {
      * @param CPF long utilizado para identificar o cliente
      * @param telefone int que identifica o telefone do cliente
      */
-    public void setTelefone(long CPF, long telefone) {
+    public void setTelefone(long CPF, long telefone) throws ClienteNotFoundException {
         get(CPF).setTelefone(telefone);
     }
     

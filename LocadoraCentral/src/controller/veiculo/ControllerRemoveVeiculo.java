@@ -66,6 +66,25 @@ public class ControllerRemoveVeiculo {
     private ListaVeiculos listaVeiculos;
 
     /**
+     * Método usado para voltar ao menu principal
+     * 
+     * @param event evento de clicar no botão de voltar
+     */
+    @FXML
+    void voltarParaPrincipal(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
+            Pane cmdPane = (Pane) fxmlLoader.load();
+
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(cmdPane);
+        } catch (Exception e) {
+            System.out.println(e);
+            alertInterface("ERRO", "Não foi possível voltar para o menu principal", AlertType.ERROR);
+        }
+    }
+
+    /**
      * Método usado para inicializar a lista de veiculos a partir do menu principal
      */
     @FXML
@@ -96,27 +115,9 @@ public class ControllerRemoveVeiculo {
                     limparCampos(null);
                 }
             }
-        } catch (NumberFormatException | EmptyFieldException | PlacaNotFoundException | RemoveVeiculoException e) {
+        } catch (EmptyFieldException | PlacaNotFoundException | RemoveVeiculoException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         } 
-    }
-
-    /**
-     * Método usado para voltar ao menu principal
-     * 
-     * @param event evento de clicar no botão de voltar
-     */
-    @FXML
-    void voltarParaPrincipal(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/viewIndex.fxml"));
-            Pane cmdPane = (Pane) fxmlLoader.load();
-
-            rootPane.getChildren().clear();
-            rootPane.getChildren().add(cmdPane);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
     }
 
     /**

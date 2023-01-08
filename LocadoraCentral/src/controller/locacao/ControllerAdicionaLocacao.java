@@ -6,31 +6,43 @@ import java.util.Calendar;
 import java.util.Date;
 
 import controller.ControllerMenuLocadora;
+
+import exceptions.cliente.ClienteNotFoundException;
 import exceptions.geral.EmptyFieldException;
 import exceptions.locacao.DateDifferenceException;
+import exceptions.veiculo.VeiculoNotFoundException;
+
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+
 import lista.ListaVeiculos;
 import lista.Locacao;
-import veiculo.Veiculo;
 import lista.Cliente;
 import lista.ListaClientes;
 import lista.ListaLocacoes;
 
+import veiculo.Veiculo;
+
 /**
- * A classe ControllerAdicionaLocacao é responsável por controlar a tela de adicionar locacao
+ * A classe ControllerAdicionaLocacao é responsável por controlar a tela de
+ * adicionar locacao
  * 
  * @author Mateus, Maurício, Ricardo, Tales
  * @since dez 2022
@@ -113,7 +125,8 @@ public class ControllerAdicionaLocacao {
     private ListaLocacoes listaLocacoes;
 
     /**
-     * Método usado para inicializar a lista de locacoes, veiculos e clientes a partir do menu principal
+     * Método usado para inicializar a lista de locacoes, veiculos e clientes a
+     * partir do menu principal
      * e também para adicionar as opções de seguro no choicebox
      */
     @FXML
@@ -140,24 +153,26 @@ public class ControllerAdicionaLocacao {
             rootPane.getChildren().add(cmdPane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível voltar para o menu principal", AlertType.ERROR);
         }
     }
 
-    
     /**
-     * Método usado para adicionar uma locacao a partir da placa, cpf, seguro, datainicial, datafinal
+     * Método usado para adicionar uma locacao a partir da placa, cpf, seguro,
+     * datainicial, datafinal
+     * 
      * @param event evento de clicar no botão
      */
     @FXML
     void adicionarLocacao(ActionEvent event) {
-         
-        long diferencaDias = 0L;
 
         String placa = textFieldPlaca.getText();
-        
+
         try {
+
             // INFORMAÇÕES BÁSICAS NÃO PREENCHIDAS
-            if (textFieldPlaca.getText().isEmpty() || textFieldCPF.getText().isEmpty() || choiceSeguro.getValue() == null
+            if (textFieldPlaca.getText().isEmpty() || textFieldCPF.getText().isEmpty()
+                    || choiceSeguro.getValue() == null
                     || pickerDataInicial.getValue() == null || pickerDataFinal.getValue() == null) {
                 throw new EmptyFieldException("Preencha todos os campos!");
             }
@@ -165,52 +180,46 @@ public class ControllerAdicionaLocacao {
             LocalDate dataInicial = pickerDataInicial.getValue();
             LocalDate dataFinal = pickerDataFinal.getValue();
 
-            
             Date date = Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant());
             Date date2 = Date.from(dataFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
-    
+
             Calendar dataInicialC = Calendar.getInstance();
             dataInicialC.setTime(date);
-            System.out.println("\nConversion of LocalDate to java.util.Calendar is :- \n"
-                    + dataInicialC.get(Calendar.DAY_OF_MONTH) + dataInicialC.get(Calendar.MONTH) + dataInicialC.get(Calendar.YEAR));
-
 
             Calendar dataFinalC = Calendar.getInstance();
             dataFinalC.setTime(date2);
-            System.out.println("\nConversion of LocalDate to java.util.Calendar is :- \n"
-                    + dataFinalC.get(Calendar.DAY_OF_MONTH) + dataFinalC.get(Calendar.MONTH) + dataFinalC.get(Calendar.YEAR));
 
-            diferencaDias = (dataFinalC.getTimeInMillis() - dataFinalC.getTimeInMillis()) / (1000 * 60 * 60 * 24);
-            
+            long diferencaDias = (dataFinalC.getTimeInMillis() - dataInicialC.getTimeInMillis()) / (1000 * 60 * 60 * 24);
+
+            if (diferencaDias < 0) {
+                throw new DateDifferenceException("Data final deve ser maior que a data inicial!");
+            }
+
             String escolhaseguro = choiceSeguro.getValue();
             boolean seguroBoolean = false;
-            
+
+            long cpf = Long.parseLong(textFieldCPF.getText());
+            Veiculo veiculo = listaVeiculos.get(placa);
+            Cliente cliente = listaClientes.get(cpf);
+
             if (escolhaseguro.equals("Sim")) {
                 seguroBoolean = true;
             } else {
                 seguroBoolean = false;
             }
 
-            if (diferencaDias < 0) {
-                throw new DateDifferenceException("Data final deve ser maior que a data inicial!");
-            } else {
-                long cpf = Long.parseLong(textFieldCPF.getText());
-                Veiculo veiculo = listaVeiculos.get(placa);
-                Cliente cliente = listaClientes.get(cpf);
+            listaLocacoes.add(new Locacao(seguroBoolean, dataInicialC, dataFinalC, cliente, veiculo));
+            limparCampos(null);
 
-                listaLocacoes.add(new Locacao(seguroBoolean, dataInicialC, dataFinalC, cliente, veiculo));
-                limparCampos(null);
+            alertInterface("SUCESSO", "Locação adicionada com sucesso!", AlertType.INFORMATION);
 
-                alertInterface("SUCESSO", "Locação adicionada com sucesso!", AlertType.INFORMATION);
-            }
-            
-            } catch (EmptyFieldException | DateDifferenceException e) {
-                alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
-            } 
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
+        } catch (EmptyFieldException | DateDifferenceException | VeiculoNotFoundException | ClienteNotFoundException e) {
+            alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
+        }
     }
 
-        
-    
     /**
      * Método para limpar os campos de texto presentes na tela
      * 
@@ -285,9 +294,10 @@ public class ControllerAdicionaLocacao {
 
     /**
      * Método para imprimir um alerta na tela
-     * @param titulo titulo do alerta
+     * 
+     * @param titulo   titulo do alerta
      * @param mensagem mensagem do alerta
-     * @param tipo tipo do alerta
+     * @param tipo     tipo do alerta
      */
     void alertInterface(String titulo, String mensagem, AlertType tipo) {
         Alert alert = new Alert(tipo);

@@ -2,7 +2,9 @@ package controller.veiculo;
 
 import controller.ControllerMenuLocadora;
 import exceptions.geral.EmptyFieldException;
+import exceptions.geral.EmptyList;
 import exceptions.veiculo.PlacaNotFoundException;
+import exceptions.veiculo.VeiculoNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -406,6 +408,7 @@ public class ControllerInfoVeiculo {
             rootPane.getChildren().add(cmdPane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível voltar para o menu principal", AlertType.ERROR);
         }
     }
 
@@ -420,6 +423,8 @@ public class ControllerInfoVeiculo {
         String placa = textFieldPlaca.getText();
 
         try {
+            
+            Veiculo veiculo = listaVeiculos.get(placa);
 
             if (!placa.isEmpty()) {
                 throw new EmptyFieldException("Preencha o campo placa!");
@@ -427,8 +432,6 @@ public class ControllerInfoVeiculo {
             if (!listaVeiculos.existe(placa)) {
                 throw new PlacaNotFoundException("Veículo não encontrado!");
             }
-
-            Veiculo veiculo = listaVeiculos.get(placa);
 
             if (veiculo instanceof Carro) {
                 Carro carro = (Carro) veiculo;
@@ -557,12 +560,11 @@ public class ControllerInfoVeiculo {
                     Veiculo veiculo = listaVeiculos.get(placa);
                     observableListVeiculos.add(veiculo);
                 }
-            } catch (NullPointerException e) {
+            } catch (EmptyList | VeiculoNotFoundException e) {
                 alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
             }
             tableViewInfoCompleta.setItems(observableListVeiculos);
         }
-
     }
 
     /**
@@ -611,7 +613,7 @@ public class ControllerInfoVeiculo {
                     Veiculo veiculo = listaVeiculos.get(placa);
                     observableListVeiculos.add(veiculo);
                 }
-            } catch (NullPointerException e) {
+            } catch (EmptyList | VeiculoNotFoundException e) {
                 alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
             }
             tableViewInfoResumo.setItems(observableListVeiculos);

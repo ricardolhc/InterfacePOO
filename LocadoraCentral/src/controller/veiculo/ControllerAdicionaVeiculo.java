@@ -216,6 +216,7 @@ public class ControllerAdicionaVeiculo {
             rootPane.getChildren().add(cmdPane);
         } catch (Exception e) {
             System.out.println(e);
+            alertInterface("ERRO", "Não foi possível voltar para o menu principal", AlertType.ERROR);
         }
     }
 
@@ -264,27 +265,23 @@ public class ControllerAdicionaVeiculo {
         String diaria = textFieldDiaria.getText();
 
         try {
-
-            if (placa.isEmpty() || ano.isEmpty() || diaria.isEmpty()) {
-                throw new EmptyFieldException("Preencha todos os campos!");
-            }
-
-            // PLACA JÁ CADASTRADA
-            if (listaVeiculos.existe(placa)) {
-                throw new PlacaAlreadyAdd("Placa já cadastrada!");
-            }
-
             String tipoVeiculo = choiceBoxTipoVeiculo.getValue();
-
-            // VEICULO ESCOLHIDO
-            if (tipoVeiculo == null) {
-                throw new InvalidVeiculoException("Escolha um veículo!");
-            }
 
             /* POSSIVEL NUMBERFORMATEXCEPTION */
             int anoInt = Integer.parseInt(ano);
             double diariaDouble = Double.parseDouble(diaria);
-
+            
+            if (placa.isEmpty() || ano.isEmpty() || diaria.isEmpty()) {
+                throw new EmptyFieldException("Preencha todos os campos!");
+            }
+            // PLACA JÁ CADASTRADA
+            if (listaVeiculos.existe(placa)) {
+                throw new PlacaAlreadyAdd("Placa já cadastrada!");
+            }
+            // VEICULO ESCOLHIDO
+            if (tipoVeiculo == null) {
+                throw new InvalidVeiculoException("Escolha um veículo!");
+            }
             switch (tipoVeiculo) {
 
                 case "Carro":
@@ -376,8 +373,9 @@ public class ControllerAdicionaVeiculo {
                     }
                     break;
             }
-
-        } catch (NumberFormatException | EmptyFieldException | PlacaAlreadyAdd | InvalidVeiculoException e) {
+        } catch (NumberFormatException e) {
+            alertInterface("ERRO", "Preencha os campos corretamente!", AlertType.ERROR);
+        } catch (EmptyFieldException | PlacaAlreadyAdd | InvalidVeiculoException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
 
