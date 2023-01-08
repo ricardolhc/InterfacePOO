@@ -1,10 +1,3 @@
-/**
- * A classe ListaLocacoes é responsável por armazenar as locações de um cliente.
- * @author Mateus, Maurício, Ricardo, Tales
- * @since nov 2022
- * @version 1.0
- */
-
 package lista;
 
 import java.util.ArrayList;
@@ -15,6 +8,12 @@ import exceptions.locacao.LocacaoNotFoundException;
 import exceptions.veiculo.VeiculoNotFoundException;
 import veiculo.Veiculo;
 
+/**
+ * A classe ListaLocacoes é responsável por armazenar as locações de um cliente.
+ * @author Mateus, Maurício, Ricardo, Tales
+ * @since nov 2022
+ * @version 1.0
+ */
 public class ListaLocacoes implements ILocacoes {
 
     /**
@@ -86,7 +85,7 @@ public class ListaLocacoes implements ILocacoes {
 
     
     /** 
-     * @param cpf do tipo int que é usado para procurar a locacao
+     * @param codigo do tipo int que é usado para procurar a locacao
      * @return boolean se a remoção foi feita com sucesso
      */
     @Override

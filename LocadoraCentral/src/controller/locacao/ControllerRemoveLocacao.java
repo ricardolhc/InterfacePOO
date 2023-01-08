@@ -96,9 +96,6 @@ public class ControllerRemoveLocacao {
      */
     @FXML
     void removerLocacao(ActionEvent event) {
-
-        /* VERIFICAR SE O CAMPO ESTÁ VAZIO */
-
         String codigoUnico = textFieldLocacao.getText();
 
         try {

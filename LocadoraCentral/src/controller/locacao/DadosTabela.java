@@ -30,9 +30,9 @@ public class DadosTabela {
 
     /**
      * Construtor da classe DadosTabela que recebe como parâmetro a locação, o veículo e o cliente
-     * @param locacao
-     * @param veiculo
-     * @param cliente
+     * @param locacao do tipo Locacao para receber a locação que será exibida na tabela
+     * @param veiculo do tipo Veiculo para receber o veículo que será exibido na tabela
+     * @param cliente do tipo Cliente para receber o cliente que será exibido na tabela
      */
     public DadosTabela(Locacao locacao, Veiculo veiculo, Cliente cliente) {
         this.locacao = locacao;

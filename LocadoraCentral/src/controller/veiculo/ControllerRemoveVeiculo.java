@@ -23,51 +23,49 @@ import lista.ListaVeiculos;
 /**
  * A classe ControllerRemoveVeiculo é responsável por controlar a tela de
  * remover veiculo
- * 
  * @author Mateus, Maurício, Ricardo, Tales
  * @since dez 2022
  * @version 1.0
  */
 public class ControllerRemoveVeiculo {
 
-    /*
+    /**
      * btnLimpar usado para limpar os campos
      */
     @FXML
     private Button btnLimpar;
 
-    /*
+    /**
      * btnRemover usado para remover um cliente
      */
     @FXML
     private Button btnRemover;
 
-    /*
+    /**
      * btnVoltar usado para voltar para a tela principal
      */
     @FXML
     private ImageView btnVoltar;
 
-    /*
+    /**
      * rootPane usado para mostrar a tela de remover clientes
      */
     @FXML
     private AnchorPane rootPane;
 
-    /*
+    /**
      * textFieldCPF usado para receber a placa do veículo
      */
     @FXML
     private TextField textFieldPlaca;
 
-    /*
+    /**
      * listaVeiculos usado para receber a lista de veículos
      */
     private ListaVeiculos listaVeiculos;
 
     /**
      * Método usado para voltar ao menu principal
-     * 
      * @param event evento de clicar no botão de voltar
      */
     @FXML
@@ -122,10 +120,9 @@ public class ControllerRemoveVeiculo {
 
     /**
      * Método para imprimir um alerta na tela
-     * 
-     * @param titulo   titulo do alerta
+     * @param titulo titulo do alerta
      * @param mensagem mensagem do alerta
-     * @param tipo     tipo do alerta
+     * @param tipo tipo do alerta
      */
     void alertInterface(String titulo, String mensagem, AlertType tipo) {
         Alert alert = new Alert(tipo);
@@ -137,7 +134,6 @@ public class ControllerRemoveVeiculo {
 
     /**
      * Método para limpar os campos de texto presentes na tela
-     * 
      * @param event evento de limpar os campos de texto presentes na tela
      */
     @FXML
@@ -147,7 +143,6 @@ public class ControllerRemoveVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de limpar
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -157,7 +152,6 @@ public class ControllerRemoveVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de limpar
-     * 
      * @param event efeito de hover ao tirar o mouse do botão
      */
     @FXML
@@ -167,7 +161,6 @@ public class ControllerRemoveVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de voltar
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -178,7 +171,6 @@ public class ControllerRemoveVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de voltar
-     * 
      * @param event efeito de hover ao tirar o mouse do botão
      */
     @FXML
@@ -188,7 +180,6 @@ public class ControllerRemoveVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de remover
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -198,7 +189,6 @@ public class ControllerRemoveVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de remover
-     * 
      * @param event efeito de hover ao tirar o mouse do botão
      */
     @FXML

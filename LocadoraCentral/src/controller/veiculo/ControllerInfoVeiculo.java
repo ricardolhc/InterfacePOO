@@ -39,267 +39,268 @@ import veiculo.*;
 /**
  * Classe responsável por controlar a tela de visualização de informações de
  * veiculos
- * 
  * @author Mateus, Maurício, Ricardo, Tales
  * @since dez 2022
  * @version 1.0
  */
 public class ControllerInfoVeiculo {
 
-    /*
+    /**
      * btnInfoFullVeiculo usado para mostrar informações completas dos veiculos
      */
     @FXML
     private Button btnInfoFullVeiculo;
 
-    /*
+    /**
      * btnInfoResumoVeiculo usado para mostrar informações resumidas dos veiculos
      */
     @FXML
     private Button btnInfoResumoVeiculo;
 
-    /*
+    /**
      * btnLimpar usado para limpar os campos de texto
      */
     @FXML
     private Button btnLimpar;
 
-    /*
+    /**
      * btnMostrarEsconderCampos usado para mostrar/esconder os campos de texto
      */
     @FXML
     private Button btnMostrarEsconderCampos;
 
-    /*
+    /**
      * btnPesquisar usado para pesquisar um cliente
      */
     @FXML
     private Button btnPesquisar;
 
+    /**
+     * choiceBoxArCondicionadoCarro usado para mostrar as opções de ar condicionado
+     */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoCarro;
 
-    /*
+    /**
      * btnVoltar usado para voltar para a tela principal
      */
     @FXML
     private ImageView btnVoltar;
 
-    /*
+    /**
      * labelPlaca usado para mostrar o texto Placa na tela
      */
     @FXML
     private Label labelPlaca;
 
-    /*
+    /**
      * labelAno usado para mostrar o texto Ano na tela
      */
     @FXML
     private Label labelAno;
 
-    /*
+    /**
      * labelDiaria usado para mostrar o texto Diaria na tela
      */
     @FXML
     private Label labelDiaria;
 
-    /*
+    /**
      * labelTipoVeiculo usado para mostrar o texto Tipo de Veiculo na tela
      */
     @FXML
     private Label labelTipoVeiculo;
 
-    /*
+    /**
      * rootPane usado para mostrar a tela de informações de clientes
      */
     @FXML
     private AnchorPane rootPane;
 
-    /*
-     * tableColumnAnoInfoCompleta usado para mostrar o ano do veiculo nas
-     * informações completas
+    /**
+     * tableColumnAnoInfoCompleta usado para mostrar o ano do veiculo nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnAnoInfoCompleta;
 
-    /*
+    /**
      * tableColumnAnoInfoCompleta usado para mostrar o ano do veiculo nas
      * informações resumidas
      */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnAnoInfoResumo;
 
-    /*
+    /**
      * tableColumnArCondicionadoInfoCompleta usado para mostrar se o veiculo tem ar
      * condicionado nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Boolean> tableColumnArCondicionadoInfoCompleta;
 
-    /*
+    /**
      * tableColumnCargaMaximaInfoCompleta usado para mostrar a carga maxima do
      * caminhao nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnCargaMaximaInfoCompleta;
 
-    /*
+    /**
      * tableColumnCategoriaInfoCompleta usado para mostrar a categoria do onibus nas
      * informações completas
      */
     @FXML
     private TableColumn<Veiculo, Categoria> tableColumnCategoriaInfoCompleta;
 
-    /*
+    /**
      * tableColumnDiariaInfoCompleta usado para mostrar a diaria do veiculo nas
      * informações completas
      */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnDiariaInfoCompleta;
 
-    /*
+    /**
      * tableColumnDiariaInfoResumo usado para mostrar a diaria do veiculo nas
      * informações resumidas
      */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnDiariaInfoResumo;
 
-    /*
+    /**
      * tableColumnEixosInfoCompleta usado para mostrar a quantidade de eixos do
      * caminhao nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnEixosInfoCompleta;
 
-    /*
+    /**
      * tableColumnMediaKmInfoCompleta usado para mostrar a media de km do veiculo
      * nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Double> tableColumnMediaKmInfoCompleta;
 
-    /*
+    /**
      * tableColumnPassageirosInfoCompleta usado para mostrar a quantidade de
      * passageiros do onibus nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnPassageirosInfoCompleta;
 
-    /*
+    /**
      * tableColumnPlacaInfoCompleta usado para mostrar a placa do veiculo nas
      * informações completas
      */
     @FXML
     private TableColumn<Veiculo, String> tableColumnPlacaInfoCompleta;
 
-    /*
+    /**
      * tableColumnPlacaInfoResumo usado para mostrar a placa do veiculo nas
      * informações resumidas
      */
     @FXML
     private TableColumn<Veiculo, String> tableColumnPlacafInfoResumo;
 
-    /*
+    /**
      * tableColumnPortasInfoCompleta usado para mostrar a quantidade de portas do
      * veiculo nas informações completas
      */
     @FXML
     private TableColumn<Veiculo, Integer> tableColumnPortasInfoCompleta;
 
-    /*
+    /**
      * tableColumnWifiInfoCompleta usado para mostrar se o onibus tem wifi nas
      * informações completas
      */
     @FXML
     private TableColumn<Veiculo, Boolean> tableColumnWifiInfoCompleta;
 
-    /*
+    /**
      * tableViewInfoCompleta usado para mostrar as informações completas do veiculo
      */
     @FXML
     private TableView<Veiculo> tableViewInfoCompleta;
 
-    /*
+    /**
      * tableViewInfoResumo usado para mostrar as informações resumidas do veiculo
      */
     @FXML
     private TableView<Veiculo> tableViewInfoResumo;
 
-    /*
+    /**
      * textFieldAno usado para receber a placa do veiculo
      */
     @FXML
     private TextField textFieldPlaca;
 
-    /*
+    /**
      * textFieldAno usado para receber o ano do veiculo
      */
     @FXML
     private TextField textFieldAno;
 
-    /*
+    /**
      * textFieldDiaria usado para receber a diaria do veiculo
      */
     @FXML
     private TextField textFieldDiaria;
 
-    /*
+    /**
      * textFieldTipoVeiculo usado para receber o tipo de veiculo
      */
     @FXML
     private TextField textFieldTipoVeiculo;
 
-    /*
+    /**
      * textFieldNumeroPassageirosCarro usado para receber a quantidade de
      * passageiros do carro
      */
     @FXML
     private TextField textFieldNumeroPassageirosCarro;
 
-    /*
+    /**
      * textFieldMediaKm usado para receber a media de km do veiculo
      */
     @FXML
     private TextField textFieldMediaKm;
 
-    /*
+    /**
      * textFieldNumeroPortas usado para receber a quantidade de portas do veiculo
      */
     @FXML
     private TextField textFieldNumeroPortas;
 
-    /*
+    /**
      * textFieldCargaMaxima usado para receber a carga maxima do caminhao
      */
     @FXML
     private TextField textFieldCargaMaxima;
 
-    /*
+    /**
      * textFieldNumeroEixos usado para receber a quantidade de eixos do caminhao
      */
     @FXML
     private TextField textFieldNumeroEixos;
 
-    /*
+    /**
      * textFieldNumeroPassageirosOnibus usado para receber a quantidade de
      * passageiros do onibus
      */
     @FXML
     private TextField textFieldNumeroPassageirosOnibus;
 
-    /*
+    /**
      * choiceBoxCategoria usado para receber a categoria do onibus
      */
     @FXML
     private ChoiceBox<String> choiceBoxCategoria;
 
-    /*
+    /**
      * choiceBoxWifiOnibus usado para receber se o onibus tem wifi
      */
     @FXML
     private ChoiceBox<String> choiceBoxWifiOnibus;
 
-    /*
+    /**
      * choiceBoxArCondicionadoOnibus usado para receber se o onibus tem ar
      * condicionado
      */
@@ -340,28 +341,22 @@ public class ControllerInfoVeiculo {
     private final String[] tipoCategorias = { "Leito", "Executivo", "Convencional" };
 
     /**
-     * mostrarEsconderInfoVeiculo usado para mostrar ou esconder as informações do
-     * veiculo
+     * mostrarEsconderInfoVeiculo usado para mostrar ou esconder as informações do veiculo
      */
     private boolean mostrarEsconderInfoVeiculo = true;
 
     /**
-     * mostrarEsconderInfoCompleta usado para mostrar ou esconder as informações
-     * completas do veiculo
+     * mostrarEsconderInfoCompleta usado para mostrar ou esconder as informações completas do veiculo
      */
     private boolean mostrarEsconderInfoCompleta = true;
 
     /**
-     * mostrarEsconderInfoResumo usado para mostrar ou esconder as informações
-     * resumidas do veiculo
+     * mostrarEsconderInfoResumo usado para mostrar ou esconder as informações resumidas do veiculo
      */
     private boolean mostrarEsconderInfoResumo = true;
 
     /**
-     * Método usado para inicializar as colunas placa, ano, diaria, categoria,
-     * mediaKm, cargaMaxima, eixos, passageiros, portas, wifi e arCondicionado da
-     * tabela
-     * e também para inicializar a lista de locacoes
+     * Método usado para inicializar as colunas placa, ano, diaria, categoria, mediaKm, cargaMaxima, eixos, passageiros, portas, wifi e arCondicionado da tabela e também para inicializar a lista de locacoes
      */
     @FXML
     void initialize() {
@@ -395,7 +390,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Método usado para voltar ao menu principal
-     * 
      * @param event evento de clicar no botão
      */
     @FXML
@@ -414,7 +408,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Método usado para mostrar as informações do veiculo pela placa
-     * 
      * @param event evento de clicar no botão
      */
     @FXML
@@ -517,7 +510,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Método usado para mostrar as informações completas do veiculo pela placa
-     * 
      * @param event evento de clicar no botão
      */
     @FXML
@@ -569,7 +561,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Método usado para mostrar as informações resumidas do veiculo pela placa
-     * 
      * @param event evento de clicar no botão
      */
     @FXML
@@ -623,10 +614,9 @@ public class ControllerInfoVeiculo {
 
     /**
      * Método para imprimir um alerta na tela
-     * 
-     * @param titulo   titulo do alerta
+     * @param titulo titulo do alerta
      * @param mensagem mensagem do alerta
-     * @param tipo     tipo do alerta
+     * @param tipo tipo do alerta
      */
     void alertInterface(String titulo, String mensagem, AlertType tipo) {
         Alert alert = new Alert(tipo);
@@ -638,7 +628,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Método para limpar os campos de texto presentes na tela
-     * 
      * @param event evento de limpar os campos de texto presentes na tela
      */
     @FXML
@@ -661,7 +650,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Método para mostrar/esconder os campos de texto presentes na tela
-     * 
      * @param event evento de mostrar/esconder os campos de texto
      */
     @FXML
@@ -696,9 +684,7 @@ public class ControllerInfoVeiculo {
     }
 
     /**
-     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
-     * completas de todos os veículos
-     * 
+     * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações completas de todos os veículos
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -708,7 +694,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse no botão de limpar os campos de texto
-     * 
      * @param event evento de hover ao tirar o mouse no botão
      */
     @FXML
@@ -719,7 +704,6 @@ public class ControllerInfoVeiculo {
     /**
      * Efeito de hover ao tirar o mouse no botão de mostrar/esconder os campos de
      * pesquisa
-     * 
      * @param event evento de hover ao tirar o mouse no botão
      */
     @FXML
@@ -729,7 +713,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse no botão de pesquisar
-     * 
      * @param event evento de hover ao tirar o mouse no botão
      */
     @FXML
@@ -739,7 +722,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse no botão de voltar
-     * 
      * @param event evento de hover ao tirar o mouse no botão
      */
     @FXML
@@ -750,7 +732,6 @@ public class ControllerInfoVeiculo {
     /**
      * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
      * completas de todos os veículos
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -761,7 +742,6 @@ public class ControllerInfoVeiculo {
     /**
      * Efeito de hover ao passar o mouse no botão de mostrar todas as informações
      * resumidas de todos os veículos
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -772,7 +752,6 @@ public class ControllerInfoVeiculo {
     /**
      * Efeito de hover ao tirar o mouse no botão de mostrar todas as informações
      * resumidas de todos os veículos
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -782,7 +761,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de limpar os campos de texto
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -793,7 +771,6 @@ public class ControllerInfoVeiculo {
     /**
      * Efeito de hover ao passar o mouse no botão de mostrar/esconder os campos de
      * texto
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -803,7 +780,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de pesquisar
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -813,7 +789,6 @@ public class ControllerInfoVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de voltar
-     * 
      * @param event evento hover ao passar o mouse no botão de voltar
      */
     @FXML

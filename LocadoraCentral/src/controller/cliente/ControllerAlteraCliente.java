@@ -28,7 +28,6 @@ import lista.ListaClientes;
 
 /**
  * Classe responsável por controlar a tela de alteração de clientes
- * 
  * @author Mateus, Maurício, Ricardo, Tales
  * @since dez 2022
  * @version 1.0
@@ -72,8 +71,7 @@ public class ControllerAlteraCliente {
     private TextField textFieldCPF;
 
     /**
-     * textFieldCarteiraMotorista usado para receber o número da carteira de
-     * motorista do cliente
+     * textFieldCarteiraMotorista usado para receber o número da carteira de motorista do cliente
      */
     @FXML
     private TextField textFieldCarteiraMotorista;
@@ -107,8 +105,7 @@ public class ControllerAlteraCliente {
     private String cpfAlterar;
 
     /**
-     * Método utilizado para inicializar a lista de clientes a partir do menu
-     * principal
+     * Método utilizado para inicializar a lista de clientes a partir do menu principal
      */
     @FXML
     void initialize() {
@@ -117,7 +114,6 @@ public class ControllerAlteraCliente {
 
     /**
      * Método usado para voltar ao menu principal
-     * 
      * @param event evento de clicar no botão de voltar
      */
     @FXML
@@ -136,7 +132,6 @@ public class ControllerAlteraCliente {
 
     /**
      * Método usado para procurar um cliente na lista de clientes apartir do cpf
-     * 
      * @param event evento usado para buscar um cliente na lista de clientes
      */
     @FXML
@@ -178,9 +173,7 @@ public class ControllerAlteraCliente {
     }
 
     /**
-     * Método usado para alterar informações cpf, cnh, telefone, nome, endereco, de
-     * um cliente
-     * 
+     * Método usado para alterar informações cpf, cnh, telefone, nome, endereco, de um cliente
      * @param event evento usado para alterar informações de um cliente
      */
     @FXML
@@ -242,8 +235,7 @@ public class ControllerAlteraCliente {
     }
 
     /**
-     * Método para limpar os campos de texto presentes na tela
-     * 
+     * Método para limpar os campos de texto presentes na tela 
      * @param event evento de limpar os campos de texto presentes na tela
      */
     @FXML
@@ -272,7 +264,6 @@ public class ControllerAlteraCliente {
 
     /**
      * Efeito de hover ao passar o mouse no botão de limpar
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -282,7 +273,6 @@ public class ControllerAlteraCliente {
 
     /**
      * Efeito de hover ao passar o mouse no botão de voltar
-     * 
      * @param event evento hover ao passar o mouse no botão
      */
     @FXML
@@ -293,7 +283,6 @@ public class ControllerAlteraCliente {
 
     /**
      * Efeito de hover ao passar o mouse no botão de alterar
-     * 
      * @param event evento hover ao passar o mouse no botão
      */
     @FXML
@@ -303,7 +292,6 @@ public class ControllerAlteraCliente {
 
     /**
      * Efeito de hover ao passar o mouse no botão de procurar
-     * 
      * @param event evento hover ao passar o mouse no botão
      */
     @FXML
@@ -313,7 +301,6 @@ public class ControllerAlteraCliente {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de procurar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -323,7 +310,6 @@ public class ControllerAlteraCliente {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de limpar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -333,7 +319,6 @@ public class ControllerAlteraCliente {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de alterar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -343,14 +328,11 @@ public class ControllerAlteraCliente {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de voltar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
     void notHoverBtnVoltar(MouseEvent event) {
         btnVoltar.setImage(new Image("views/cliente/pngVoltar.png"));
     }
-
-    
 
 }

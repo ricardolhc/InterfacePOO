@@ -11,7 +11,6 @@ public class CPFSwitchedException extends IllegalArgumentException {
 
     /**
      * Construtor da classe CPFSwitchedException
-     * 
      * @param message Mensagem de erro
      */
     public CPFSwitchedException(String message) {

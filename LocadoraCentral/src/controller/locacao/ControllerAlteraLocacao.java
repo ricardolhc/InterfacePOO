@@ -150,7 +150,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Método usado para voltar ao menu principal
-     * 
      * @param event evento de clicar no botão de voltar
      */
     @FXML
@@ -169,7 +168,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Método usado para pesquisar uma locacao usando o id, na lista de locacoes
-     * 
      * @param event evento de clicar no botão
      */
     @FXML
@@ -215,7 +213,6 @@ public class ControllerAlteraLocacao {
     /**
      * Método usado para alterar as informações placa, cpf, seguro, datainicial,
      * datafinal de uma locacao
-     * 
      * @param event evento de clicar no botão
      */
     @FXML
@@ -303,7 +300,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Método para imprimir um alerta na tela
-     * 
      * @param titulo   titulo do alerta
      * @param mensagem mensagem do alerta
      * @param tipo     tipo do alerta
@@ -318,7 +314,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Método para limpar os campos de texto presentes na tela
-     * 
      * @param event evento de limpar os campos de texto presentes na tela
      */
     @FXML
@@ -331,7 +326,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Efeito de hover ao passar o mouse no botão de alterar
-     * 
      * @param event evento hover ao passar o mouse no botão
      */
     @FXML
@@ -341,7 +335,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Efeito de hover ao passar o mouse no botão de limpar
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -351,7 +344,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Efeito de hover ao passar o mouse no botão de voltar
-     * 
      * @param event evento hover ao passar o mouse no botão
      */
     @FXML
@@ -362,7 +354,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de alterar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -372,7 +363,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de limpar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -382,7 +372,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de voltar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -392,7 +381,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Efeito de hover ao passar o mouse no botão de pesquisar
-     * 
      * @param event evento hover ao passar o mouse no botão
      */
     @FXML
@@ -402,7 +390,6 @@ public class ControllerAlteraLocacao {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de procurar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML

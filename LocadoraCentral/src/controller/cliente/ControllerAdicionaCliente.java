@@ -140,12 +140,10 @@ public class ControllerAdicionaCliente {
         long telefoneLong;
 
         try {
-            /* VERIFICAR SE O CAMPO ESTÁ VAZIO */
             if (cpf.isEmpty() || cnh.isEmpty() || telefone.isEmpty() || nome.isEmpty() || endereco.isEmpty()) {
                 throw new EmptyFieldException("Preencha todos os campos!");
             }
 
-            /* POSSÍVEL NUMBERFORMATEXCEPTION */
             cnhLong = Long.parseLong(cnh);
             telefoneLong = Long.parseLong(telefone);
             cpfLong = Long.parseLong(cpf);
@@ -156,11 +154,11 @@ public class ControllerAdicionaCliente {
             if (telefone.length() != 11 && telefone.length() != 10) {
                 throw new InvalidTelefoneException("Telefone inválido!");
             }
-            /* VERIFICAR SE O CPF ESTÁ CADASTRADO */
+
             if (listaClientes.existe(cpfLong)) {
                 throw new CPFAlreadyAdd("CPF já cadastrado!");
             } else {
-                /* ADICIONA CLIENTE */
+
                 listaClientes.add(new Cliente(cpf, nome, cnhLong, endereco, telefoneLong));
 
                 limparCampos(null);
@@ -176,7 +174,6 @@ public class ControllerAdicionaCliente {
 
     /**
      * Método para limpar os campos de texto presentes na tela
-     * 
      * @param event evento de limpar os campos de texto presentes na tela
      */
     @FXML

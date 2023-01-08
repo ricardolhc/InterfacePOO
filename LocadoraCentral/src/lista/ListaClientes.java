@@ -1,10 +1,3 @@
-/**
- * A classe ListaClientes representa uma lista de clientes.
- * @author Mateus, Maurício, Ricardo, Tales
- * @since nov 2022
- * @version 1.0
- */
-
 package lista;
 
 import java.util.ArrayList;
@@ -12,6 +5,12 @@ import java.util.ArrayList;
 import exceptions.cliente.ClienteNotFoundException;
 import exceptions.geral.EmptyList;
 
+/**
+ * A classe ListaClientes representa uma lista de clientes.
+ * @author Mateus, Maurício, Ricardo, Tales
+ * @since nov 2022
+ * @version 1.0
+ */
 public class ListaClientes implements IClientes {
 
 

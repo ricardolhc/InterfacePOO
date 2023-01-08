@@ -1,10 +1,3 @@
-/**
- * A classe ListaVeiculos modela uma lista de veiculos.
- * @author Mateus, Maurício, Ricardo, Tales
- * @since nov 2022
- * @version 1.0
- */
-
 package lista;
 
 import java.util.ArrayList;
@@ -14,6 +7,12 @@ import exceptions.geral.EmptyList;
 import exceptions.veiculo.VeiculoNotFoundException;
 import veiculo.*;
 
+/**
+ * A classe ListaVeiculos modela uma lista de veiculos.
+ * @author Mateus, Maurício, Ricardo, Tales
+ * @since nov 2022
+ * @version 1.0
+ */
 public class ListaVeiculos implements IVeiculos {
 
     /**
@@ -171,7 +170,7 @@ public class ListaVeiculos implements IVeiculos {
     
     /** 
      * @param placa do tipo String que é usado para procurar o veiculo
-     * @param mediaKM do tipo double que é usado para alterar a media de KM do veiculo
+     * @param mediaKm do tipo double que é usado para alterar a media de KM do veiculo
      */
     public void setMediaKmCarro(String placa, double mediaKm) throws ClienteNotFoundException {
         Carro carro = (Carro) get(placa);

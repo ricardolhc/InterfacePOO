@@ -1,12 +1,11 @@
+package veiculo;
+
 /**
  * A classe Carro modela um carro do sistema.
  * @author Ricardo, Tales, Mateus, Mauricio
  * @since nov 2022
  * @version 1.0
  */
-
-package veiculo;
-
 public class Carro extends Veiculo {
 
     /**
@@ -54,7 +53,7 @@ public class Carro extends Veiculo {
      * Construtor alternativo da classe Carro<br>
      * <b>Uso: </b>
      * Carro carro = new Carro("ABC1234");<br><br>
-     * @param placa
+     * @param placa String que identifica a placa do carro
      */
     public Carro(String placa) {
         this(placa, 0, 0, 0, 0, 0, false);

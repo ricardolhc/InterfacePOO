@@ -41,9 +41,7 @@ import lista.ListaLocacoes;
 import veiculo.Veiculo;
 
 /**
- * A classe ControllerAdicionaLocacao é responsável por controlar a tela de
- * adicionar locacao
- * 
+ * A classe ControllerAdicionaLocacao é responsável por controlar a tela de adicionar locacao
  * @author Mateus, Maurício, Ricardo, Tales
  * @since dez 2022
  * @version 1.0
@@ -140,7 +138,6 @@ public class ControllerAdicionaLocacao {
 
     /**
      * Método usado para voltar ao menu principal
-     * 
      * @param event evento de clicar no botão
      */
     @FXML
@@ -160,7 +157,6 @@ public class ControllerAdicionaLocacao {
     /**
      * Método usado para adicionar uma locacao a partir da placa, cpf, seguro,
      * datainicial, datafinal
-     * 
      * @param event evento de clicar no botão
      */
     @FXML
@@ -170,7 +166,6 @@ public class ControllerAdicionaLocacao {
 
         try {
 
-            // INFORMAÇÕES BÁSICAS NÃO PREENCHIDAS
             if (textFieldPlaca.getText().isEmpty() || textFieldCPF.getText().isEmpty()
                     || choiceSeguro.getValue() == null
                     || pickerDataInicial.getValue() == null || pickerDataFinal.getValue() == null) {
@@ -222,7 +217,6 @@ public class ControllerAdicionaLocacao {
 
     /**
      * Método para limpar os campos de texto presentes na tela
-     * 
      * @param event evento de limpar os campos de texto presentes na tela
      */
     @FXML
@@ -233,7 +227,6 @@ public class ControllerAdicionaLocacao {
 
     /**
      * Método para imprimir um alerta na tela
-     * 
      * @param titulo   titulo do alerta
      * @param mensagem mensagem do alerta
      * @param tipo     tipo do alerta
@@ -248,7 +241,6 @@ public class ControllerAdicionaLocacao {
 
     /**
      * Efeito de hover ao passar o mouse no botão de adicionar
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -258,7 +250,6 @@ public class ControllerAdicionaLocacao {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de adicionar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -268,7 +259,6 @@ public class ControllerAdicionaLocacao {
 
     /**
      * Efeito de hover ao passar o mouse no botão de limpar
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -278,7 +268,6 @@ public class ControllerAdicionaLocacao {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de limpar
-     * 
      * @param event efeito de hover ao tirar o mouse do botão
      */
     @FXML
@@ -288,7 +277,6 @@ public class ControllerAdicionaLocacao {
 
     /**
      * Efeito de hover ao passar o mouse no botão de voltar
-     * 
      * @param event evento hover ao passar o mouse no botão de voltar
      */
     @FXML
@@ -299,7 +287,6 @@ public class ControllerAdicionaLocacao {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de voltar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML

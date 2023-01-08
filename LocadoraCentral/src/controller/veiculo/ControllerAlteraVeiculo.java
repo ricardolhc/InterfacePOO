@@ -28,7 +28,6 @@ import veiculo.*;
 
 /**
  * Classe responsável por controlar a tela de alteração de veiculos
- * 
  * @author Mateus, Maurício, Ricardo, Tales
  * @since dez 2022
  * @version 1.0
@@ -60,15 +59,13 @@ public class ControllerAlteraVeiculo {
     private ImageView btnVoltar;
 
     /**
-     * choiceBoxArCondicionadoCarro usado para selecionar se o carro tem ar
-     * condicionado
+     * choiceBoxArCondicionadoCarro usado para selecionar se o carro tem ar condicionado
      */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoCarro;
 
     /**
-     * choiceBoxArCondicionadoOnibus usado para selecionar se o onibus tem ar
-     * condicionado
+     * choiceBoxArCondicionadoOnibus usado para selecionar se o onibus tem ar condicionado
      */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoOnibus;
@@ -147,8 +144,7 @@ public class ControllerAlteraVeiculo {
     private TextField textFieldNumeroPassageirosCarro;
 
     /**
-     * textFieldNumeroPassageirosOnibus usado para receber o numero de passageiros
-     * do onibus
+     * textFieldNumeroPassageirosOnibus usado para receber o numero de passageiros do onibus
      */
     @FXML
     private TextField textFieldNumeroPassageirosOnibus;
@@ -192,10 +188,7 @@ public class ControllerAlteraVeiculo {
     private ListaVeiculos listaVeiculos;
 
     /**
-     * Método usado para inicializar a lista de locacoes, veiculos e clientes a
-     * partir do menu principal
-     * e também para adicionar ar condicionado do carro e onibus, wifi do onibus,
-     * categoria do onibus no choiceBox
+     * Método usado para inicializar a lista de locacoes, veiculos e clientes a partir do menu principal e também para adicionar ar condicionado do carro e onibus, wifi do onibus, categoria do onibus no choiceBox
      */
     @FXML
     void initialize() {
@@ -209,7 +202,6 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Método usado para voltar ao menu principal
-     * 
      * @param event evento de clicar no botão
      */
     @FXML
@@ -227,9 +219,7 @@ public class ControllerAlteraVeiculo {
     }
 
     /**
-     * Método usado para alterar as informações ano, diaria, media de km, numero de
-     * eixos, numero de passageiros, numero de portas, placa, tipo do veiculo
-     * 
+     * Método usado para alterar as informações ano, diaria, media de km, numero de eixos, numero de passageiros, numero de portas, placa, tipo do veiculo
      * @param event evento de clicar no botão
      */
     @FXML
@@ -327,7 +317,6 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Método usado para pesquisar um veiculo usando a placa
-     * 
      * @param event evento de clicar no botão
      */
     @FXML
@@ -428,10 +417,9 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Método para imprimir um alerta na tela
-     * 
-     * @param titulo   titulo do alerta
+     * @param titulo titulo do alerta
      * @param mensagem mensagem do alerta
-     * @param tipo     tipo do alerta
+     * @param tipo tipo do alerta
      */
     void alertInterface(String titulo, String mensagem, AlertType tipo) {
         Alert alert = new Alert(tipo);
@@ -443,7 +431,6 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Método para limpar os campos de texto presentes na tela
-     * 
      * @param event evento de limpar os campos de texto presentes na tela
      */
     @FXML
@@ -461,7 +448,6 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de limpar
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -471,7 +457,6 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de limpar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -481,7 +466,6 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de voltar
-     * 
      * @param event evento hover ao passar o mouse no botão
      */
     @FXML
@@ -492,7 +476,6 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de voltar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -502,7 +485,6 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de pesquisar
-     * 
      * @param event evento hover ao passar o mouse no botão
      */
     @FXML
@@ -512,7 +494,6 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de procurar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -522,7 +503,6 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de alterar
-     * 
      * @param event evento hover ao passar o mouse no botão
      */
     @FXML
@@ -532,14 +512,10 @@ public class ControllerAlteraVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de alterar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
     void notHoverBtnAlterar(MouseEvent event) {
         btnAlterar.setStyle("-fx-background-color: #807d0a;-fx-cursor: hand; -fx-background-radius: 50;");
     }
-
-    
-
 }

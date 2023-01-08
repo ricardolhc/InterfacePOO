@@ -1,12 +1,11 @@
+package veiculo;
+
 /**
  * A classe Veiculo modela as informações mínimas de um veículo do sistema.
  * @author Ricardo, Tales, Mateus, Mauricio
  * @since nov 2022
  * @version 1.0
  */
-
-package veiculo;
-
 public abstract class Veiculo {
 
     /**

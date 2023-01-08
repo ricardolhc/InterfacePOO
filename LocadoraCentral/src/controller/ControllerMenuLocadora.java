@@ -1,7 +1,4 @@
 package controller;
-import java.net.URL;
-
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 
@@ -20,193 +17,179 @@ import lista.ListaVeiculos;
 
 /**
  * A classe ControllerMenuLocadora é responsável por controlar a tela principal
- * 
  * @author Mateus, Maurício, Ricardo, Tales
  * @since dez 2022
  * @version 1.0
  */
 public class ControllerMenuLocadora {
 
-    /*
+    /**
      * rootPane usado para mostrar a tela principal
      */
     @FXML
     private AnchorPane rootPane;
 
-    /*
+    /**
      * btnAdicionaCliente usado para acessar a tela de adicionar cliente
      */
     @FXML
     private Button btnAdicionaCliente;
 
-    /*
+    /**
      * btnAdicionaLocacao usado para acessar a tela de adicionar locação
      */
     @FXML
     private Button btnAdicionaLocacao;
 
-    /*
+    /**
      * btnAdicionaVeiculo usado para acessar a tela de adicionar veículo
      */
     @FXML
     private Button btnAdicionaVeiculo;
 
-    /*
-     * btnAlteraInformacoesCliente usado para acessar a tela de alterar informações
-     * do cliente
+    /**
+     * btnAlteraInformacoesCliente usado para acessar a tela de alterar informações do cliente
      */
     @FXML
     private Button btnAlteraInformacoesLocacao;
 
-    /*
-     * btnAlteraInformacoesVeiculo usado para acessar a tela de alterar informações
-     * do veículo
+    /**
+     * btnAlteraInformacoesVeiculo usado para acessar a tela de alterar informações do veículo
      */
     @FXML
     private Button btnAlteraInformacoesVeiculo;
 
-    /*
-     * btnAlterarInformacoesCliente usado para acessar a tela de alterar informações
-     * do cliente
+    /**
+     * btnAlterarInformacoesCliente usado para acessar a tela de alterar informações do cliente
      */
     @FXML
     private Button btnAlterarInformacoesCliente;
 
-    /*
+    /**
      * btnClientesExpandir usado para expandir o menu de clientes
      */
     @FXML
     private Button btnClientesExpandir;
 
-    /*
+    /**
      * btnClientesFechar usado para fechar o menu de clientes
      */
     @FXML
     private Button btnClientesFechar;
 
-    /*
+    /**
      * btnLocacoesExpandir usado para expandir o menu de locações
      */
     @FXML
     private Button btnLocacoesExpandir;
 
-    /*
+    /**
      * btnLocacoesFechar usado para fechar o menu de locações
      */
     @FXML
     private Button btnLocacoesFechar;
 
-    /*
+    /**
      * btnRemoveCliente usado para acessar a tela de remover cliente
      */
     @FXML
     private Button btnRemoveCliente;
 
-    /*
+    /**
      * btnRemoveLocacao usado para acessar a tela de remover locação
      */
     @FXML
     private Button btnRemoveLocacao;
 
-    /*
+    /**
      * btnRemoveVeiculo usado para acessar a tela de remover veículo
      */
     @FXML
     private Button btnRemoveVeiculo;
 
-    /*
+    /**
      * btnVeiculosExpandir usado para expandir o menu de veículos
      */
     @FXML
     private Button btnVeiculosExpandir;
 
-    /*
+    /**
      * btnVeiculosFechar usado para fechar o menu de veículos
      */
     @FXML
     private Button btnVeiculosFechar;
 
-    /*
-     * btnVisualizaInformacoesCliente usado para acessar a tela de visualizar
-     * informações do cliente
+    /**
+     * btnVisualizaInformacoesCliente usado para acessar a tela de visualizar informações do cliente
      */
     @FXML
     private Button btnVisualizaInformacoesCliente;
 
-    /*
-     * btnVisualizaInformacoesLocacao usado para acessar a tela de visualizar
-     * informações da locação
+    /**
+     * btnVisualizaInformacoesLocacao usado para acessar a tela de visualizar informações da locação
      */
     @FXML
     private Button btnVisualizaInformacoesLocacao;
 
-    /*
-     * btnVisualizaInformacoesVeiculo usado para acessar a tela de visualizar
-     * informações do veículo
+    /**
+     * btnVisualizaInformacoesVeiculo usado para acessar a tela de visualizar informações do veículo
      */
     @FXML
     private Button btnVisualizaInformacoesVeiculo;
 
-    /*
+    /**
      * paneMenuClientesExpandido usado para mostrar o menu de clientes expandido
      */
     @FXML
     private Pane paneMenuClientesExpandido;
 
-    /*
+    /**
      * paneMenuClientesFechado usado para mostrar o menu de clientes fechado
      */
     @FXML
     private Pane paneMenuClientesFechado;
 
-    /*
+    /**
      * paneMenuLocacoesExpandido usado para mostrar o menu de locações expandido
      */
     @FXML
     private Pane paneMenuLocacoesExpandido;
 
-    /*
+    /**
      * paneMenuLocacoesFechado usado para mostrar o menu de locações fechado
      */
     @FXML
     private Pane paneMenuLocacoesFechado;
 
-    /*
+    /**
      * paneMenuVeiculosExpandido usado para mostrar o menu de veículos expandido
      */
     @FXML
     private Pane paneMenuVeiculosExpandido;
 
-    /*
+    /**
      * paneMenuVeiculosFechado usado para mostrar o menu de veículos fechado
      */
     @FXML
     private Pane paneMenuVeiculosFechado;
 
-    /*
+    /**
      * listaClientes usado para receber a lista de clientes
      * o static foi usado para que a lista seja compartilhada entre as telas
      */
     private static ListaClientes listaClientes;
 
-    /*
+    /**
      * listaLocacoes usado para receber a lista de locações
      * o static foi usado para que a lista seja compartilhada entre as telas
      */
     private static ListaLocacoes listaLocacoes;
 
-    /*
+    /**
      * listaVeiculos usado para receber a lista de veículos
      * o static foi usado para que a lista seja compartilhada entre as telas
      */
     private static ListaVeiculos listaVeiculos;
-
-    /**
-     * Método usado para inicializar o menu principal
-     */
-    @FXML
-    public void initialize(URL location, ResourceBundle resources) {
-    }
 
     /**
      * Método usado para acessar a tela de adicionar cliente
@@ -450,7 +433,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no menu de clientes fechado
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -461,7 +443,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no menu de clientes aberto
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -471,7 +452,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de clientes fechado
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -481,7 +461,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no menu de veiculos fechado
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -492,7 +471,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de veiculos fechado
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -502,8 +480,7 @@ public class ControllerMenuLocadora {
     }
 
     /**
-     * Efeito de hover ao passar o mouse no menu de veiculos aberto
-     * 
+     * Efeito de hover ao passar o mouse no menu de veiculos aberto 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -513,7 +490,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de veiculos aberto
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -523,7 +499,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no menu de locacoes fechado
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -533,8 +508,7 @@ public class ControllerMenuLocadora {
     }
 
     /**
-     * Efeito de hover ao passar o mouse no menu de locacoes aberto
-     * 
+     * Efeito de hover ao passar o mouse no menu de locacoes abert
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -544,7 +518,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de locacoes fechado
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -554,7 +527,6 @@ public class ControllerMenuLocadora {
     
     /**
      * Efeito de hover ao passar o mouse no botão de adicionar cliente
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -564,7 +536,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no botão de adicionar locação
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -574,7 +545,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no botão de adicionar veículo
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -584,7 +554,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no botão de alterar informações do cliente
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -594,7 +563,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no botão de alterar informações da locação
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -604,7 +572,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no botão de alterar informações do veículo
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -614,7 +581,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no botão de remover cliente
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -624,7 +590,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no botão de remover locação
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -633,8 +598,7 @@ public class ControllerMenuLocadora {
     }
 
     /**
-     * Efeito de hover ao passar o mouse no botão de remover veículo
-     * 
+     * Efeito de hover ao passar o mouse no botão de remover veículo 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -644,7 +608,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no botão de visualizar informações do cliente
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -654,7 +617,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no botão de visualizar informações da locação
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -664,7 +626,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao passar o mouse no botão de visualizar informações do veículo
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -674,7 +635,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de adicionar clientes
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -684,7 +644,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de adicionar locação
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -694,7 +653,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de adicionar veículo
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -704,7 +662,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de alterar informações do cliente
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -714,7 +671,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de alterar informações da locação
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -724,7 +680,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de alterar informações do veículo
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -734,7 +689,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de remover cliente
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -744,7 +698,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de remover locação
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -754,7 +707,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de remover veículo
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -764,7 +716,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de visualizar informações do cliente
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -774,7 +725,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de visualizar informações da locação
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -784,7 +734,6 @@ public class ControllerMenuLocadora {
 
     /**
      * Efeito de hover ao tirar o mouse do menu de visualizar informações do veículo
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -793,36 +742,59 @@ public class ControllerMenuLocadora {
     }
     
 
+    /**
+     * Método para setar a lista clientes no sistema
+     * @param listaClientesNova lista de clientes
+     */
     public void setListaClientes(ListaClientes listaClientesNova) {
         listaClientes = listaClientesNova;
     }
 
+    /**
+     * Método para setar a lista de locações no sistema
+     * @param listaLocacoesNova lista de locações
+     */
     public void setListaLocacoes(ListaLocacoes listaLocacoesNova) {
         listaLocacoes = listaLocacoesNova;
     }
 
+    /**
+     * Método para setar a lista de veículos no sistema
+     * @param listaVeiculosNova lista de veículos
+     */
     public void setListaVeiculos(ListaVeiculos listaVeiculosNova) {
         listaVeiculos = listaVeiculosNova;
     }
 
+    /**
+     * Método para pegar a lista de clientes do sistema, o static é necessário visto que o método é chamado em outra classe
+     * @return lista de clientes
+     */
     public static ListaClientes getListaClientes() {
         return listaClientes;
     }
 
+    /**
+     * Método para pegar a lista de locações do sistema, o static é necessário visto que o método é chamado em outra classe
+     * @return lista de locações
+     */
     public static ListaLocacoes getListaLocacoes() {
         return listaLocacoes;
     }
 
+    /**
+     * Método para pegar a lista de veículos do sistema, o static é necessário visto que o método é chamado em outra classe
+     * @return lista de veículos
+     */
     public static ListaVeiculos getListaVeiculos() {
         return listaVeiculos;
     }
 
     /**
      * Método para imprimir um alerta na tela
-     * 
-     * @param titulo   titulo do alerta
+     * @param titulo titulo do alerta
      * @param mensagem mensagem do alerta
-     * @param tipo     tipo do alerta
+     * @param tipo tipo do alerta
      */
     void alertInterface(String titulo, String mensagem, AlertType tipo) {
         Alert alert = new Alert(tipo);

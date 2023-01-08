@@ -1,16 +1,15 @@
-/**
- * A classe Locacao modela uma locacao do sistema.
- * @author Mateus, Maurício, Ricardo, Tales
- * @since nov 2022
- * @version 1.0
- */
-
 package lista;
 
 import java.util.Calendar;
 
 import veiculo.Veiculo;
 
+/**
+ * A classe Locacao modela uma locacao do sistema.
+ * @author Mateus, Maurício, Ricardo, Tales
+ * @since nov 2022
+ * @version 1.0
+ */
 public class Locacao {
 
 

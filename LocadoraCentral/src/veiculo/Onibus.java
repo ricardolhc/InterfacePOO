@@ -1,12 +1,11 @@
+package veiculo;
+
 /**
  * A classe Onibus modela um onibus do sistema.
  * @author Ricardo, Tales, Mateus, Mauricio
  * @since nov 2022
  * @version 1.0
  */
-
-package veiculo;
-
 public class Onibus extends Veiculo {
 
     /**

@@ -1,12 +1,11 @@
+package veiculo;
+
 /**
  * A classe Categoria modela as categorias de um onibus do sistema.
  * @author Ricardo, Tales, Mateus, Mauricio
  * @since nov 2022
  * @version 1.0
  */
-
-package veiculo;
-
 public enum Categoria {
     
     LEITO("Leito"), EXECUTIVO("Executivo"), CONVENCIONAL("Convencional");

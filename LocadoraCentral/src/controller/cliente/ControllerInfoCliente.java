@@ -278,7 +278,6 @@ public class ControllerInfoCliente {
      */
     @FXML
     void infoCliente(ActionEvent event) {
-        /* VERIFICAR SE O CAMPO ESTÁ VAZIO */
 
         String cpf = textFieldCPF.getText();
 
@@ -292,7 +291,6 @@ public class ControllerInfoCliente {
 
             long cpfLong = Long.parseLong(cpf);
 
-            /* VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO */
             if (!listaClientes.existe(cpfLong)) {
                 throw new ClienteNotFoundException("CPF não existente!");
             } else {

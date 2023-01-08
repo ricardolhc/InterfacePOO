@@ -104,7 +104,6 @@ public class ControllerRemoveCliente {
         String cpf = textFieldCPF.getText();
 
         try {
-            /* VERIFICAR SE O CAMPO ESTÁ VAZIO */
             if (cpf.isEmpty()) {
                 throw new EmptyFieldException("Campo cpf vazio");
             }
@@ -115,7 +114,6 @@ public class ControllerRemoveCliente {
                 throw new InvalidCPFException("CPF inválido");
             }
 
-            /* VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO */
             if (!listaClientes.existe(cpfLong)) {
                 throw new ClienteNotFoundException("CPF não existente");
             }

@@ -25,7 +25,6 @@ import veiculo.*;
 /**
  * A classe ControllerAdicionaLocacao é responsável por controlar a tela de
  * adicionar veiculo
- * 
  * @author Mateus, Maurício, Ricardo, Tales
  * @since dez 2022
  * @version 1.0
@@ -82,8 +81,7 @@ public class ControllerAdicionaVeiculo {
     private ChoiceBox<String> choiceBoxWifiOnibus;
 
     /**
-     * choiceBoxArCondicionadoOnibus usado para selecionar se o onibus tem ar
-     * condicionado
+     * choiceBoxArCondicionadoOnibus usado para selecionar se o onibus tem ar condicionado
      */
     @FXML
     private ChoiceBox<String> choiceBoxArCondicionadoOnibus;
@@ -137,15 +135,13 @@ public class ControllerAdicionaVeiculo {
     private TextField textFieldNumeroEixos;
 
     /**
-     * textFieldNumeroPassageirosCarro usado para receber o numero de passageiros do
-     * carro
+     * textFieldNumeroPassageirosCarro usado para receber o numero de passageiros do carro
      */
     @FXML
     private TextField textFieldNumeroPassageirosCarro;
 
     /**
-     * textFieldNumeroPassageirosOnibus usado para receber o numero de passageiros
-     * do onibus
+     * textFieldNumeroPassageirosOnibus usado para receber o numero de passageiros do onibus
      */
     @FXML
     private TextField textFieldNumeroPassageirosOnibus;
@@ -183,10 +179,8 @@ public class ControllerAdicionaVeiculo {
     private ListaVeiculos listaVeiculos;
 
     /**
-     * Método usado para inicializar a lista de locacoes, veiculos e clientes a
-     * partir do menu principal
-     * e também para adicionar as opções de tipo de veiculo, ar condicionado do
-     * carro e onibus, wifi do onibus, categoria do onibus no choiceBox
+     * Método usado para inicializar a lista de locacoes, veiculos e clientes a partir do menu principal
+     * É utilizado ambém para adicionar as opções de tipo de veiculo, ar condicionado do carro e onibus, wifi do onibus, categoria do onibus no choiceBox
      */
     @FXML
     void initialize() {
@@ -203,7 +197,6 @@ public class ControllerAdicionaVeiculo {
 
     /**
      * Método usado para voltar ao menu principal
-     * 
      * @param event evento de clicar no botão
      */
     @FXML
@@ -223,7 +216,6 @@ public class ControllerAdicionaVeiculo {
     /**
      * Método usado para selecionar o tipo de veiculo, que pode ser carro, onibus ou
      * caminhao
-     * 
      * @param event evento de clicar no botão
      */
     public void selecionaTipoVeiculo(ActionEvent event) {
@@ -249,12 +241,7 @@ public class ControllerAdicionaVeiculo {
     }
 
     /**
-     * Método usado para adicionar um veiculo a partir da placa, tipo de veiculo,
-     * ano, diaria, marca, modelo, media de km, numero de portas, numero de
-     * passageiros do carro, numero de eixos do caminhao, numero de passageiros do
-     * onibus, ar condicionado do carro, ar condicionado do onibus, wifi do onibus,
-     * categoria do onibus
-     * 
+     * Método usado para adicionar um veiculo a partir da placa, tipo de veiculo, ano, diaria, marca, modelo, media de km, numero de portas, numero de passageiros do carro, numero de eixos do caminhao, numero de passageiros do onibus, ar condicionado do carro, ar condicionado do onibus, wifi do onibus, categoria do onibus
      * @param event evento de clicar no botão
      */
     @FXML
@@ -267,18 +254,15 @@ public class ControllerAdicionaVeiculo {
         try {
             String tipoVeiculo = choiceBoxTipoVeiculo.getValue();
 
-            /* POSSIVEL NUMBERFORMATEXCEPTION */
             int anoInt = Integer.parseInt(ano);
             double diariaDouble = Double.parseDouble(diaria);
             
             if (placa.isEmpty() || ano.isEmpty() || diaria.isEmpty()) {
                 throw new EmptyFieldException("Preencha todos os campos!");
             }
-            // PLACA JÁ CADASTRADA
             if (listaVeiculos.existe(placa)) {
                 throw new PlacaAlreadyAdd("Placa já cadastrada!");
             }
-            // VEICULO ESCOLHIDO
             if (tipoVeiculo == null) {
                 throw new InvalidVeiculoException("Escolha um veículo!");
             }
@@ -383,7 +367,6 @@ public class ControllerAdicionaVeiculo {
 
     /**
      * Método para limpar os campos de texto presentes na tela
-     * 
      * @param event evento de limpar os campos de texto presentes na tela
      */
     void limparCampos() {
@@ -397,7 +380,6 @@ public class ControllerAdicionaVeiculo {
 
     /**
      * Método para limpar todos os campos de texto presentes na tela
-     * 
      * @param event evento de limpar os campos de texto presentes na tela
      */
     @FXML
@@ -415,7 +397,6 @@ public class ControllerAdicionaVeiculo {
 
     /**
      * Método para imprimir um alerta na tela
-     * 
      * @param titulo   titulo do alerta
      * @param mensagem mensagem do alerta
      * @param tipo     tipo do alerta
@@ -430,7 +411,6 @@ public class ControllerAdicionaVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de limpar
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -440,7 +420,6 @@ public class ControllerAdicionaVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de limpar
-     * 
      * @param event efeito de hover ao tirar o mouse do botão
      */
     @FXML
@@ -450,7 +429,6 @@ public class ControllerAdicionaVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de voltar
-     * 
      * @param event evento hover ao passar o mouse no botão de voltar
      */
     @FXML
@@ -461,7 +439,6 @@ public class ControllerAdicionaVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de voltar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
@@ -471,7 +448,6 @@ public class ControllerAdicionaVeiculo {
 
     /**
      * Efeito de hover ao passar o mouse no botão de adicionar
-     * 
      * @param event evento de hover ao passar o mouse no botão
      */
     @FXML
@@ -481,7 +457,6 @@ public class ControllerAdicionaVeiculo {
 
     /**
      * Efeito de hover ao tirar o mouse do botão de adicionar
-     * 
      * @param event evento de hover ao tirar o mouse do botão
      */
     @FXML
