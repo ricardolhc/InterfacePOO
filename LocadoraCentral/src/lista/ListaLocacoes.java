@@ -115,6 +115,10 @@ public class ListaLocacoes implements ILocacoes {
         return false;
     }
 
+    /** 
+     * @param cliente do tipo Cliente que é usado para procurar a locacao
+     * @return String com as informações da locação
+     */
     public String getLocacoesByCliente(Cliente cliente) {
         String conteudo = "";
         boolean flag = false;
@@ -130,6 +134,10 @@ public class ListaLocacoes implements ILocacoes {
         throw new LocacaoNotFoundException("O cliente não possui locações");
     }
 
+    /** 
+     * @param veiculo do tipo Veiculo que é usado para procurar a locacao
+     * @return String com as informações da locação
+     */
     public String getLocacoesByVeiculo(Veiculo veiculo) {
         String conteudo = "";
         boolean flag = false;
@@ -146,6 +154,10 @@ public class ListaLocacoes implements ILocacoes {
         
     }
 
+    /** 
+     * @param calendar do tipo Calendar que é usado para procurar a locacao
+     * @return String com as informações da locação
+     */
     public String getLocacoesByDiaMesAno(Calendar calendar) {
         String conteudo = "";
         boolean flag = false;
@@ -167,6 +179,11 @@ public class ListaLocacoes implements ILocacoes {
         throw new LocacaoNotFoundException("Não foi possível encontrar uma locação");
     }  
 
+    /** 
+     * @param dataInicial do tipo Calendar que é usado para procurar a locacao
+     * @param dataFinal do tipo Calendar que é usado para procurar a locacao
+     * @return String com as informações da locação
+     */
     public String getLocacoesByPeriodo(Calendar dataInicial, Calendar dataFinal) {
         String conteudo = "";
         boolean flag = false;

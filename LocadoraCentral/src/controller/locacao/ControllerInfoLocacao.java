@@ -429,7 +429,7 @@ public class ControllerInfoLocacao {
     @FXML
     void infoFullLocacao(ActionEvent event) {
 
-        if(tableViewInfoLocacao.isVisible()) {
+        if (tableViewInfoLocacao.isVisible()) {
             tableViewInfoLocacao.setVisible(false);
         }
 
@@ -483,7 +483,7 @@ public class ControllerInfoLocacao {
     @FXML
     void mostrarEsconderCampos(ActionEvent event) {
 
-        if(tableViewInfoLocacao.isVisible()) {
+        if (tableViewInfoLocacao.isVisible()) {
             tableViewInfoLocacao.setVisible(false);
         }
         if (tableViewInfoCompleta.isVisible() || paneIDLocacao.isVisible() || paneCPFLocacao.isVisible()
@@ -510,7 +510,7 @@ public class ControllerInfoLocacao {
     @FXML
     void mostrarPesquisaID(ActionEvent event) {
 
-        if(tableViewInfoLocacao.isVisible()) {
+        if (tableViewInfoLocacao.isVisible()) {
             tableViewInfoLocacao.setVisible(false);
         }
 
@@ -534,7 +534,7 @@ public class ControllerInfoLocacao {
     @FXML
     void mostrarPesquisaCPF(ActionEvent event) {
 
-        if(tableViewInfoLocacao.isVisible()) {
+        if (tableViewInfoLocacao.isVisible()) {
             tableViewInfoLocacao.setVisible(false);
         }
 
@@ -558,7 +558,7 @@ public class ControllerInfoLocacao {
     @FXML
     void mostrarPesquisaPlaca(ActionEvent event) {
 
-        if(tableViewInfoLocacao.isVisible()) {
+        if (tableViewInfoLocacao.isVisible()) {
             tableViewInfoLocacao.setVisible(false);
         }
 
@@ -582,7 +582,7 @@ public class ControllerInfoLocacao {
     @FXML
     void mostrarPesquisaData(ActionEvent event) {
 
-        if(tableViewInfoLocacao.isVisible()) {
+        if (tableViewInfoLocacao.isVisible()) {
             tableViewInfoLocacao.setVisible(false);
         }
 
@@ -606,7 +606,7 @@ public class ControllerInfoLocacao {
     @FXML
     void mostrarPesquisaPeriodo(ActionEvent event) {
 
-        if(tableViewInfoLocacao.isVisible()) {
+        if (tableViewInfoLocacao.isVisible()) {
             tableViewInfoLocacao.setVisible(false);
         }
 
@@ -754,12 +754,12 @@ public class ControllerInfoLocacao {
         } catch (EmptyFieldException | VeiculoNotFoundException | LocacaoNotFoundException e) {
             alertInterface("ERRO", e.getMessage(), AlertType.ERROR);
         }
-        
+
     }
 
     @FXML
     void pesquisarLocacaoData(ActionEvent event) {
-        
+
         ObservableList<DadosTabela> observableListLocacoes = FXCollections.observableArrayList();
         try {
 
@@ -822,7 +822,8 @@ public class ControllerInfoLocacao {
                 throw new DateDifferenceException("Data inicial maior que a data final!");
             }
 
-            String[] dadosLocacoes = listaLocacoes.getLocacoesByPeriodo(dataInicialCalendar, dataFinalCalendar).split("\n");
+            String[] dadosLocacoes = listaLocacoes.getLocacoesByPeriodo(dataInicialCalendar, dataFinalCalendar)
+                    .split("\n");
 
             for (String dados : dadosLocacoes) {
                 String[] campos = dados.split(";");
