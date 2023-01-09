@@ -2,7 +2,6 @@ package lista;
 
 import java.util.ArrayList;
 
-import exceptions.cliente.ClienteNotFoundException;
 import exceptions.geral.EmptyList;
 import exceptions.veiculo.VeiculoNotFoundException;
 import veiculo.*;
@@ -134,7 +133,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param ano do tipo int que é usado para alterar o ano do veiculo
      */
-    public void setAno(String placa, int ano) throws ClienteNotFoundException {
+    public void setAno(String placa, int ano) throws VeiculoNotFoundException {
         get(placa).setAno(ano);
     }
 
@@ -143,7 +142,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param diaria do tipo double que é usado para alterar o valor da diaria do veiculo
      */
-    public void setDiaria(String placa, double diaria) throws ClienteNotFoundException {
+    public void setDiaria(String placa, double diaria) throws VeiculoNotFoundException {
         get(placa).setDiaria(diaria);
     }
 
@@ -152,7 +151,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param numeroPortas do tipo int que é usado para alterar o numero de portas do veiculo
      */
-    public void setNumeroPortaCarro(String placa, int numeroPortas) throws ClienteNotFoundException {
+    public void setNumeroPortaCarro(String placa, int numeroPortas) throws VeiculoNotFoundException {
         Carro carro = (Carro) get(placa);
         carro.setNumeroPortas(numeroPortas);
     }
@@ -162,7 +161,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param numeroPassageiros do tipo int que é usado para alterar o numero de passageiros do veiculo
      */
-    public void setNumeroPassageiroCarro(String placa, int numeroPassageiros) throws ClienteNotFoundException {
+    public void setNumeroPassageiroCarro(String placa, int numeroPassageiros) throws VeiculoNotFoundException {
         Carro carro = (Carro) get(placa);
         carro.setNumeroPassageiros(numeroPassageiros);
     }
@@ -172,7 +171,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param mediaKm do tipo double que é usado para alterar a media de KM do veiculo
      */
-    public void setMediaKmCarro(String placa, double mediaKm) throws ClienteNotFoundException {
+    public void setMediaKmCarro(String placa, double mediaKm) throws VeiculoNotFoundException {
         Carro carro = (Carro) get(placa);
         carro.setmediaKm(mediaKm);
     }
@@ -182,7 +181,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param arcondicionado do tipo boolean que é usado para alterar o ar condicionado do veiculo
      */
-    public void setArcondicionadoCarro(String placa, boolean arcondicionado) throws ClienteNotFoundException {
+    public void setArcondicionadoCarro(String placa, boolean arcondicionado) throws VeiculoNotFoundException {
         Carro carro = (Carro) get(placa);
         carro.setArcondicionado(arcondicionado);
     }
@@ -192,7 +191,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param numeroPassageiros do tipo int que é usado para alterar o numero de passageiros do veiculo
      */
-    public void setNumeroPassageiroOnibus(String placa, int numeroPassageiros) throws ClienteNotFoundException {
+    public void setNumeroPassageiroOnibus(String placa, int numeroPassageiros) throws VeiculoNotFoundException {
         Onibus onibus = (Onibus) get(placa);
         onibus.setNumeroPassageiros(numeroPassageiros);
     }
@@ -202,7 +201,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param categoria do tipo String que é usado para alterar a categoria do veiculo
      */
-    public void setCategoriaOnibus(String placa, Categoria categoria) throws ClienteNotFoundException {
+    public void setCategoriaOnibus(String placa, Categoria categoria) throws VeiculoNotFoundException {
         Onibus onibus = (Onibus) get(placa);
         onibus.setCategoria(categoria);
     }
@@ -212,7 +211,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param wifi do tipo boolean que é usado para alterar o wifi do veiculo
      */
-    public void setWifiOnibus(String placa, boolean wifi) throws ClienteNotFoundException {
+    public void setWifiOnibus(String placa, boolean wifi) throws VeiculoNotFoundException {
         Onibus onibus = (Onibus) get(placa);
         onibus.setWifi(wifi);
     }
@@ -222,7 +221,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param arcondicionado do tipo boolean que é usado para alterar o ar condicionado do veiculo
      */
-    public void setArcondicionadoOnibus(String placa, boolean arcondicionado) throws ClienteNotFoundException {
+    public void setArcondicionadoOnibus(String placa, boolean arcondicionado) throws VeiculoNotFoundException {
         Onibus onibus = (Onibus) get(placa);
         onibus.setArcondicionado(arcondicionado);
     }
@@ -232,7 +231,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param numeroEixos do tipo int que é usado para alterar o numero de eixos do veiculo
      */
-    public void setNumeroEixoCaminhao(String placa, int numeroEixos) throws ClienteNotFoundException {
+    public void setNumeroEixoCaminhao(String placa, int numeroEixos) throws VeiculoNotFoundException {
         Caminhao caminhao = (Caminhao) get(placa);
         caminhao.setNumeroEixos(numeroEixos);
     }
@@ -242,7 +241,7 @@ public class ListaVeiculos implements IVeiculos {
      * @param placa do tipo String que é usado para procurar o veiculo
      * @param cargamaxima do tipo double que é usado para alterar a carga maxima do veiculo
      */
-    public void setCargaMaximaCaminhao(String placa, int cargamaxima) throws ClienteNotFoundException {
+    public void setCargaMaximaCaminhao(String placa, int cargamaxima) throws VeiculoNotFoundException {
         Caminhao caminhao = (Caminhao) get(placa);
         caminhao.setCargaMaxima(cargamaxima);
     }

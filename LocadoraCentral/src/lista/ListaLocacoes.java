@@ -149,8 +149,7 @@ public class ListaLocacoes implements ILocacoes {
         if(flag) {
             return conteudo;
         }
-        throw new LocacaoNotFoundException("O veiculo não possui locações");
-        
+        throw new LocacaoNotFoundException("O veiculo não possui locações"); 
     }
 
     /** 
